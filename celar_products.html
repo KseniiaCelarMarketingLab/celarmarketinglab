@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Celar Marketing Lab</title>
+<meta name="description" content="Digital products from Celar Marketing Lab. Practical tools, challenges and frameworks for growing your brand in the EU market.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0B0F2B;
+    --purple: #6502A2;
+    --cyan:   #00FFF0;
+    --rose:   #ED3E61;
+    --lime:   #D4FF00;
+    --silver: #DCDCDC;
+    --white:  #F5F5F5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; background: var(--navy); color: var(--silver); overflow-x: hidden; }
+  h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.1; }
+
+  #star-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 clamp(24px,5vw,80px); height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(11,15,43,0); backdrop-filter: blur(0px);
+    transition: background .4s, backdrop-filter .4s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled { background: rgba(11,15,43,.92); backdrop-filter: blur(20px); border-bottom-color: rgba(0,255,240,.08); }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-text { font-family: 'Space Grotesk',sans-serif; font-size: 15px; font-weight: 700; letter-spacing: .12em; color: var(--white); text-transform: uppercase; line-height: 1.1; }
+  .nav-logo-text span { display: block; font-size: 10px; font-weight: 400; letter-spacing: .3em; color: var(--silver); opacity: .6; }
+  .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: .08em; color: rgba(220,220,220,.7); text-decoration: none; text-transform: uppercase; transition: color .2s; position: relative; }
+  .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--cyan); transition:width .3s; }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--cyan); }
+  .nav-links a.active::after { width: 100%; }
+  .nav-cta { background:transparent!important; border:1px solid var(--cyan)!important; color:var(--cyan)!important; padding:8px 20px; border-radius:4px; font-size:12px!important; transition:background .2s,color .2s!important; }
+  .nav-cta:hover { background:var(--cyan)!important; color:var(--navy)!important; }
+  .nav-cta::after { display:none!important; }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+  .hamburger span { width:24px; height:2px; background:var(--silver); border-radius:2px; }
+
+  /* ── PAGE HERO ── */
+  .products-hero {
+    position: relative; z-index: 1;
+    padding: 148px clamp(24px,8vw,120px) 72px;
+    text-align: center;
+  }
+  .products-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 24px;
+  }
+  .products-eyebrow::before,.products-eyebrow::after { content:''; width:24px; height:1px; background:var(--cyan); }
+  .products-headline { font-size: clamp(40px,6vw,80px); font-weight: 700; color: var(--white); line-height: 1.05; margin-bottom: 20px; }
+  .products-headline .accent { color: var(--cyan); }
+  .products-sub { font-size: clamp(15px,1.6vw,18px); font-weight: 300; line-height: 1.7; color: rgba(220,220,220,.55); max-width: 520px; margin: 0 auto 48px; }
+  .products-back { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(220,220,220,.4); text-decoration:none; transition:color .2s; }
+  .products-back:hover { color: var(--cyan); }
+  .products-back:hover svg { transform: translateX(-3px); }
+  .products-back svg { transition: transform .2s; }
+
+  /* ── LAYOUT ── */
+  .products-layout {
+    position: relative; z-index: 1;
+    padding: 0 clamp(24px,8vw,120px) 120px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .filter-label { font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(220,220,220,.25); margin-right: 4px; }
+  .filter-btn {
+    font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    padding: 7px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,.1);
+    background: transparent; color: rgba(220,220,220,.45); cursor: pointer; transition: all .2s;
+  }
+  .filter-btn:hover { border-color: rgba(0,255,240,.3); color: var(--cyan); }
+  .filter-btn.active { background: rgba(0,255,240,.08); border-color: rgba(0,255,240,.3); color: var(--cyan); }
+
+  /* ── PRODUCT GRID ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+
+  /* ── PRODUCT CARD ── */
+  .product-card {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform .3s, border-color .3s;
+    cursor: pointer;
+    position: relative;
+  }
+  .product-card:hover { transform: translateY(-4px); border-color: rgba(0,255,240,.18); }
+  .product-card.featured { border-color: rgba(0,255,240,.25); background: rgba(0,255,240,.03); }
+
+  .product-card-visual {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-card-visual.challenge-bg {
+    background: linear-gradient(135deg, #06091a 0%, #0d1535 40%, #1a0828 100%);
+  }
+
+  /* Animated orbit in card visual */
+  .card-orbit-wrap {
+    position: absolute;
+    width: 180px; height: 180px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .card-orbit { position: absolute; border-radius: 50%; border: 1px solid; top:50%; left:50%; transform:translate(-50%,-50%); }
+  .card-orbit-1 { width:100%;height:100%; border-color:rgba(0,255,240,.15); animation:cardRotate 30s linear infinite; }
+  .card-orbit-2 { width:65%;height:65%; border-color:rgba(237,62,97,.2); animation:cardRotate 18s linear infinite reverse; }
+  .card-orbit-center { position:absolute; width:28px;height:28px; top:50%;left:50%; transform:translate(-50%,-50%); border-radius:50%; background:var(--purple); box-shadow:0 0 20px rgba(101,2,162,.6); }
+  @keyframes cardRotate { to { transform:translate(-50%,-50%) rotate(360deg); } }
+
+  .card-orbit-dot {
+    position:absolute; border-radius:50%;
+    top:50%; left:50%;
+  }
+  .card-orbit-dot-1 { width:8px;height:8px; margin:-4px; background:var(--cyan); box-shadow:0 0 10px var(--cyan); animation:dotOrbit1 30s linear infinite; }
+  .card-orbit-dot-2 { width:6px;height:6px; margin:-3px; background:var(--rose); box-shadow:0 0 8px var(--rose); animation:dotOrbit2 18s linear infinite reverse; }
+  @keyframes dotOrbit1 { from{transform:translateX(90px) rotate(0deg);} to{transform:translateX(90px) rotate(360deg);} }
+  @keyframes dotOrbit2 { from{transform:translateX(58px) rotate(0deg);} to{transform:translateX(58px) rotate(360deg);} }
+
+  .card-title-overlay {
+    position: absolute; bottom: 16px; left: 20px; right: 20px;
+    font-family: 'Space Grotesk',sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .2em; text-transform: uppercase; color: rgba(220,220,220,.35);
+  }
+
+  .product-card-body { padding: 24px; }
+
+  .product-badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .product-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 10px;
+  }
+  .badge-challenge { color: var(--cyan); border: 1px solid rgba(0,255,240,.25); background: rgba(0,255,240,.06); }
+  .badge-new { color: var(--lime); border: 1px solid rgba(212,255,0,.3); background: rgba(212,255,0,.06); }
+  .badge-digital { color: rgba(220,220,220,.5); border: 1px solid rgba(220,220,220,.1); }
+
+  .product-card-title { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--white); margin-bottom:8px; line-height:1.2; }
+  .product-card-tagline { font-size:13px; line-height:1.7; color:rgba(220,220,220,.5); margin-bottom:20px; }
+
+  .product-card-stats { display:flex; gap:20px; margin-bottom:20px; flex-wrap:wrap; }
+  .product-stat { display:flex; flex-direction:column; gap:2px; }
+  .product-stat-val { font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--cyan); line-height:1; }
+  .product-stat-label { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(220,220,220,.3); }
+
+  .product-card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid rgba(255,255,255,.05); }
+  .product-price { font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:700; color:var(--white); }
+  .product-price-sub { font-size:11px; color:rgba(220,220,220,.35); margin-top:2px; }
+  .product-card-cta {
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--cyan); color:var(--navy);
+    font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    padding:10px 20px; border-radius:6px; border:none; cursor:pointer; transition:all .3s; text-decoration:none;
+  }
+  .product-card-cta:hover { box-shadow:0 6px 24px rgba(0,255,240,.3); transform:translateY(-1px); }
+
+  /* Coming soon card */
+  .product-card-coming { opacity:.5; cursor:default; }
+  .product-card-coming:hover { transform:none; border-color:rgba(255,255,255,.07); }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider { width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,255,240,.12),transparent);margin:80px 0; }
+
+  /* ══════════════════════════════════════════════════════
+     PRODUCT DETAIL MODAL — SMM Challenge
+  ══════════════════════════════════════════════════════ */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,.85); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: #0d112e;
+    border: 1px solid rgba(0,255,240,.15);
+    border-radius: 24px;
+    width: 100%; max-width: 920px;
+    max-height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,255,240,.2) transparent;
+    transform: translateY(24px) scale(.98);
+    transition: transform .3s;
+    position: relative;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+  .modal-close {
+    position: absolute; top: 20px; right: 20px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    color: rgba(220,220,220,.6); font-size: 18px; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all .2s; z-index: 2;
+  }
+  .modal-close:hover { background: rgba(237,62,97,.15); border-color: var(--rose); color: var(--rose); }
+
+  /* Modal hero */
+  .modal-hero {
+    background: linear-gradient(135deg, #06091a 0%, #0d1535 50%, #1a0828 100%);
+    padding: 52px 48px 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px 24px 0 0;
+  }
+  .modal-hero::before {
+    content:''; position:absolute; top:-60px; right:-60px;
+    width:300px; height:300px; border-radius:50%;
+    background:radial-gradient(circle,rgba(0,255,240,.08),transparent 70%);
+  }
+  .modal-hero::after {
+    content:''; position:absolute; bottom:-40px; left:20%;
+    width:200px; height:200px; border-radius:50%;
+    background:radial-gradient(circle,rgba(101,2,162,.12),transparent 70%);
+  }
+  .modal-badge-row { display:flex; gap:8px; margin-bottom:20px; position:relative; z-index:1; }
+  .modal-title {
+    font-family:'Space Grotesk',sans-serif;
+    font-size: clamp(32px,5vw,56px); font-weight:700; color:var(--white);
+    line-height:1.05; margin-bottom:16px; position:relative; z-index:1;
+  }
+  .modal-title .accent-cyan { color:var(--cyan); }
+  .modal-title .accent-rose { color:var(--rose); }
+  .modal-tagline { font-size:16px; line-height:1.7; color:rgba(220,220,220,.6); max-width:520px; margin-bottom:32px; position:relative; z-index:1; }
+  .modal-stats-row { display:flex; gap:32px; flex-wrap:wrap; position:relative; z-index:1; }
+  .modal-stat { }
+  .modal-stat-val { font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; color:var(--cyan); line-height:1; margin-bottom:4px; }
+  .modal-stat-label { font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:rgba(220,220,220,.35); }
+
+  /* Modal body */
+  .modal-body { padding: 48px; }
+
+  .modal-section { margin-bottom: 48px; }
+  .modal-section-title {
+    font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700;
+    letter-spacing:.25em; text-transform:uppercase; color:var(--cyan);
+    margin-bottom:20px; display:flex; align-items:center; gap:10px;
+  }
+  .modal-section-title::before { content:''; width:20px; height:1px; background:var(--cyan); }
+
+  /* Who it's for */
+  .who-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .who-card {
+    padding:18px 16px; border-radius:12px;
+    background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06);
+    transition:border-color .2s;
+  }
+  .who-card:hover { border-color:rgba(0,255,240,.15); }
+  .who-icon { font-size:24px; margin-bottom:10px; }
+  .who-title { font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+  .who-desc { font-size:12px; line-height:1.6; color:rgba(220,220,220,.45); }
+
+  /* NOT for */
+  .not-for-list { display:flex; flex-direction:column; gap:10px; }
+  .not-for-item {
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:13px; line-height:1.6; color:rgba(220,220,220,.5);
+    padding:10px 14px; border-radius:8px; background:rgba(237,62,97,.04); border:1px solid rgba(237,62,97,.08);
+  }
+  .not-for-x { color:var(--rose); font-size:14px; flex-shrink:0; margin-top:1px; }
+
+  /* Week breakdown */
+  .weeks-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .week-card {
+    padding:24px 20px; border-radius:14px;
+    border:1px solid rgba(255,255,255,.06); background:rgba(255,255,255,.02);
+    position:relative; overflow:hidden; transition:border-color .3s;
+  }
+  .week-card:hover { border-color:rgba(0,255,240,.12); }
+  .week-card::before { content:''; position:absolute; top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;opacity:.06; }
+  .week-card:nth-child(1)::before { background:var(--cyan); }
+  .week-card:nth-child(2)::before { background:var(--rose); }
+  .week-card:nth-child(3)::before { background:var(--lime); }
+  .week-card:nth-child(4)::before { background:var(--purple); }
+  .week-num { font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; margin-bottom:8px; }
+  .week-title { font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700; color:var(--white); margin-bottom:10px; }
+  .week-desc { font-size:13px; line-height:1.7; color:rgba(220,220,220,.5); margin-bottom:14px; }
+  .week-bullets { list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .week-bullets li { font-size:12px; color:rgba(220,220,220,.4); display:flex; align-items:flex-start; gap:8px; }
+  .week-bullets li::before { content:'→'; flex-shrink:0; opacity:.5; }
+
+  /* What you get */
+  .get-list { display:flex; flex-direction:column; gap:12px; }
+  .get-item {
+    display:flex; align-items:flex-start; gap:14px;
+    padding:14px 16px; border-radius:10px;
+    background:rgba(0,255,240,.03); border:1px solid rgba(0,255,240,.08);
+  }
+  .get-check { color:var(--cyan); font-size:16px; flex-shrink:0; margin-top:1px; }
+  .get-text { font-size:13px; line-height:1.6; color:rgba(220,220,220,.65); }
+  .get-text strong { color:var(--white); font-weight:600; }
+
+  /* ── PAYMENT BLOCK ── */
+  .payment-block {
+    background: linear-gradient(135deg, rgba(0,255,240,.04), rgba(101,2,162,.06));
+    border: 1px solid rgba(0,255,240,.15);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 48px;
+  }
+  .payment-header { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:20px; margin-bottom:32px; }
+  .payment-price-block {}
+  .payment-price-label { font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(220,220,220,.35); margin-bottom:6px; }
+  .payment-price-main { font-family:'Space Grotesk',sans-serif; font-size:52px; font-weight:700; color:var(--white); line-height:1; }
+  .payment-price-main sup { font-size:24px; vertical-align:super; color:var(--cyan); }
+  .payment-price-note { font-size:12px; color:rgba(220,220,220,.3); margin-top:4px; }
+  .payment-includes { }
+  .payment-includes-label { font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:rgba(220,220,220,.3); margin-bottom:10px; }
+  .payment-includes-items { display:flex; flex-direction:column; gap:6px; }
+  .payment-includes-item { display:flex; align-items:center; gap:8px; font-size:12px; color:rgba(220,220,220,.5); }
+  .payment-includes-item::before { content:'✓'; color:var(--cyan); font-size:11px; font-weight:700; }
+
+  /* Payment form */
+  .payment-form { display:flex; flex-direction:column; gap:16px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .form-group { display:flex; flex-direction:column; gap:6px; }
+  .form-group.full { grid-column:1/-1; }
+  .form-label { font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:rgba(220,220,220,.35); }
+  .form-label .required { color:var(--rose); margin-left:3px; }
+  .form-input {
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+    border-radius:8px; color:var(--white); font-family:'Poppins',sans-serif; font-size:15px;
+    padding:13px 16px; outline:none; transition:border-color .3s;
+    width:100%;
+  }
+  .form-input::placeholder { color:rgba(220,220,220,.2); }
+  .form-input:focus { border-color:rgba(0,255,240,.4); }
+  .form-input.error { border-color:var(--rose); }
+
+  .form-note {
+    font-size:12px; color:rgba(220,220,220,.3); line-height:1.5;
+    display:flex; align-items:flex-start; gap:8px;
+  }
+  .form-note svg { flex-shrink:0; margin-top:1px; }
+
+  /* Pay button */
+  .pay-btn {
+    width:100%; padding:18px; border-radius:10px;
+    background:var(--cyan); color:var(--navy);
+    font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    border:none; cursor:pointer; transition:all .3s;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    position:relative; overflow:hidden;
+  }
+  .pay-btn:hover { box-shadow:0 8px 32px rgba(0,255,240,.35); transform:translateY(-1px); }
+  .pay-btn:active { transform:translateY(0); }
+  .pay-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+  .pay-btn-sub { font-size:11px; font-weight:400; opacity:.7; display:block; margin-top:4px; }
+
+  /* Payment trust row */
+  .payment-trust { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:16px; justify-content:center; }
+  .trust-item { display:flex; align-items:center; gap:6px; font-size:11px; color:rgba(220,220,220,.3); }
+
+  /* Success state */
+  .payment-success {
+    display:none; text-align:center; padding:20px 0;
+  }
+  .success-icon { font-size:56px; margin-bottom:16px; }
+  .success-title { font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; color:var(--white); margin-bottom:12px; }
+  .success-body { font-size:15px; line-height:1.7; color:rgba(220,220,220,.6); margin-bottom:8px; }
+  .success-email { color:var(--cyan); font-weight:600; }
+
+  /* ── COMING SOON SECTION ── */
+  .coming-soon-section { margin-top: 0; }
+  .coming-title { font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:var(--white); margin-bottom:8px; }
+  .coming-sub { font-size:15px; color:rgba(220,220,220,.4); margin-bottom:32px; }
+  .coming-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
+  .coming-card {
+    padding:24px; border-radius:14px;
+    border:1px solid rgba(255,255,255,.05); background:rgba(255,255,255,.01);
+    transition:border-color .2s;
+  }
+  .coming-card:hover { border-color:rgba(255,255,255,.1); }
+  .coming-card-icon { font-size:28px; margin-bottom:14px; opacity:.5; }
+  .coming-card-title { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:rgba(220,220,220,.5); margin-bottom:6px; }
+  .coming-card-desc { font-size:12px; line-height:1.6; color:rgba(220,220,220,.25); }
+  .coming-tag { display:inline-flex; align-items:center; font-size:9px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; padding:4px 10px; border-radius:10px; border:1px solid rgba(220,220,220,.1); color:rgba(220,220,220,.25); margin-top:12px; }
+
+  /* Notify me form */
+  .notify-block {
+    margin-top:40px; padding:32px 36px;
+    background:rgba(101,2,162,.06); border:1px solid rgba(101,2,162,.15); border-radius:16px;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;
+  }
+  .notify-text {}
+  .notify-label { font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--white); margin-bottom:4px; }
+  .notify-sub { font-size:13px; color:rgba(220,220,220,.4); }
+  .notify-form { display:flex; gap:10px; flex-wrap:wrap; }
+  .notify-input {
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);
+    border-radius:8px; color:var(--white); font-family:'Poppins',sans-serif; font-size:14px;
+    padding:11px 16px; outline:none; transition:border-color .3s; min-width:220px;
+  }
+  .notify-input::placeholder { color:rgba(220,220,220,.2); }
+  .notify-input:focus { border-color:rgba(101,2,162,.5); }
+  .notify-btn {
+    background:var(--purple); color:var(--white);
+    font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    padding:11px 22px; border-radius:8px; border:none; cursor:pointer; transition:all .3s;
+    white-space:nowrap;
+  }
+  .notify-btn:hover { box-shadow:0 6px 24px rgba(101,2,162,.4); transform:translateY(-1px); }
+
+  /* Reveal */
+  .reveal { opacity:0; transform:translateY(32px); transition:opacity .8s ease,transform .8s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-delay-1 { transition-delay:.1s; }
+  .reveal-delay-2 { transition-delay:.2s; }
+  .reveal-delay-3 { transition-delay:.3s; }
+
+  /* Footer */
+  footer {
+    position:relative; z-index:1;
+    padding:48px clamp(24px,8vw,120px);
+    border-top:1px solid rgba(255,255,255,.05);
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px;
+  }
+  .footer-left { display:flex; align-items:center; gap:32px; flex-wrap:wrap; }
+  .footer-copy { font-size:13px; color:rgba(220,220,220,.3); }
+  .footer-social { display:flex; gap:16px; }
+  .social-link { width:36px;height:36px; border:1px solid rgba(255,255,255,.1); border-radius:50%; display:flex;align-items:center;justify-content:center; text-decoration:none; color:rgba(220,220,220,.4); transition:all .3s; }
+  .social-link:hover { border-color:var(--cyan); color:var(--cyan); }
+  .footer-nl { font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:rgba(220,220,220,.25); display:flex; align-items:center; gap:8px; }
+  .footer-nl::before { content:''; width:16px; height:1px; background:rgba(220,220,220,.15); }
+
+  @media (max-width:900px) {
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+    .who-grid { grid-template-columns:1fr; }
+    .weeks-grid { grid-template-columns:1fr; }
+    .form-row { grid-template-columns:1fr; }
+    .modal-body { padding:28px; }
+    .modal-hero { padding:40px 28px 32px; }
+    .payment-block { padding:24px; }
+    .payment-header { flex-direction:column; }
+    .notify-block { flex-direction:column; }
+  }
+  @media (max-width:600px) {
+    .products-grid { grid-template-columns:1fr; }
+    .coming-grid { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="star-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="celar.html" class="nav-logo">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="16" stroke="url(#pLogoG1)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="10" stroke="url(#pLogoG2)" stroke-width="1"/>
+      <circle cx="18" cy="18" r="4" stroke="url(#pLogoG3)" stroke-width="1"/>
+      <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+      <circle cx="4" cy="18" r="1.5" fill="rgba(220,220,220,.35)"/>
+      <circle cx="32" cy="18" r="1.5" fill="rgba(220,220,220,.35)"/>
+      <defs>
+        <linearGradient id="pLogoG1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFF0"/><stop offset="1" stop-color="#ED3E61"/></linearGradient>
+        <linearGradient id="pLogoG2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFF0" stop-opacity=".65"/><stop offset="1" stop-color="#ED3E61" stop-opacity=".65"/></linearGradient>
+        <linearGradient id="pLogoG3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFF0" stop-opacity=".4"/><stop offset="1" stop-color="#ED3E61" stop-opacity=".4"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="nav-logo-text">Celar <span>Marketing Lab</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="celar.html#about">About</a></li>
+    <li><a href="celar.html#services">Services</a></li>
+    <li><a href="celar_cases.html">Cases</a></li>
+    <li><a href="celar_products.html" class="active">Products</a></li>
+    <li><a href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" class="nav-cta">Book a call</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="products-hero">
+  <div class="products-eyebrow">Digital Products</div>
+  <h1 class="products-headline">Tools that work<br><span class="accent">while you sleep.</span></h1>
+  <p class="products-sub">Practical frameworks and challenges from CML — built for business owners and experts who want results without waiting for an agency.</p>
+  <a href="celar.html" class="products-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to main site
+  </a>
+</div>
+
+<!-- PRODUCTS LAYOUT -->
+<div class="products-layout">
+
+  <!-- Filter bar -->
+  <div class="filter-bar reveal">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterProducts('all',this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('free',this)">Free</button>
+    <button class="filter-btn" onclick="filterProducts('challenge',this)">Challenges</button>
+    <button class="filter-btn" onclick="filterProducts('template',this)">Templates</button>
+    <button class="filter-btn" onclick="filterProducts('guide',this)">Guides</button>
+    <button class="filter-btn" onclick="filterProducts('service',this)">Mini-Services</button>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <div class="products-grid">
+
+    <!-- FREE LEAD MAGNET — Social Launch Strategy -->
+    <div class="product-card featured reveal" data-category="free" onclick="openModal('modal-sls')">
+      <div class="product-card-visual" style="background:linear-gradient(135deg,#06091a 0%,#0d2a35 50%,#0d1535 100%);">
+        <div class="card-orbit-wrap">
+          <div class="card-orbit card-orbit-1" style="border-color:rgba(212,255,0,.15);"></div>
+          <div class="card-orbit card-orbit-2" style="border-color:rgba(0,255,240,.2);"></div>
+          <div class="card-orbit-dot card-orbit-dot-1" style="background:var(--lime);box-shadow:0 0 10px var(--lime);"></div>
+          <div class="card-orbit-dot card-orbit-dot-2"></div>
+          <div class="card-orbit-center"></div>
+        </div>
+        <div class="card-title-overlay">6 phases · Interactive tool · PDF export</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-badge-row">
+          <span class="product-badge" style="color:var(--lime);border-color:rgba(212,255,0,.3);background:rgba(212,255,0,.06);">Free</span>
+          <span class="product-badge badge-digital">Interactive Tool</span>
+        </div>
+        <div class="product-card-title">Social Launch Strategy</div>
+        <div class="product-card-tagline">Mission Control — build your complete social media launch plan in 6 guided phases. Auto-saves as you go.</div>
+        <div class="product-card-stats">
+          <div class="product-stat"><div class="product-stat-val">6</div><div class="product-stat-label">Phases</div></div>
+          <div class="product-stat"><div class="product-stat-val">PDF</div><div class="product-stat-label">Export</div></div>
+          <div class="product-stat"><div class="product-stat-val">Auto</div><div class="product-stat-label">Save</div></div>
+        </div>
+        <div class="product-card-footer">
+          <div>
+            <div class="product-price" style="color:var(--lime);">Free</div>
+            <div class="product-price-sub">No card required</div>
+          </div>
+          <button class="product-card-cta" style="background:var(--lime);">Start now →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SMM WITHOUT BUDGET -->
+    <div class="product-card featured reveal" data-category="challenge" onclick="openModal('modal-smm')">
+      <div class="product-card-visual challenge-bg">
+        <div class="card-orbit-wrap">
+          <div class="card-orbit card-orbit-1"></div>
+          <div class="card-orbit card-orbit-2"></div>
+          <div class="card-orbit-dot card-orbit-dot-1"></div>
+          <div class="card-orbit-dot card-orbit-dot-2"></div>
+          <div class="card-orbit-center"></div>
+        </div>
+        <div class="card-title-overlay">28 days · 15 min each · Zero ad spend</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-badge-row">
+          <span class="product-badge badge-challenge">Challenge</span>
+          <span class="product-badge badge-new">Popular</span>
+          <span class="product-badge badge-digital">Digital</span>
+        </div>
+        <div class="product-card-title">SMM Without Budget</div>
+        <div class="product-card-tagline">Grow your social media from zero — with no ad spend, no agency, and 15 minutes a day.</div>
+        <div class="product-card-stats">
+          <div class="product-stat"><div class="product-stat-val">28</div><div class="product-stat-label">Daily blocks</div></div>
+          <div class="product-stat"><div class="product-stat-val">4</div><div class="product-stat-label">Weeks</div></div>
+          <div class="product-stat"><div class="product-stat-val">15<span style="font-size:13px;font-family:'Poppins',sans-serif;font-weight:400;">min</span></div><div class="product-stat-label">Per day</div></div>
+        </div>
+        <div class="product-card-footer">
+          <div>
+            <div class="product-price">€28</div>
+            <div class="product-price-sub">One-time · Lifetime access</div>
+          </div>
+          <button class="product-card-cta">Get access →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRAND VOICE CHEATSHEET -->
+    <div class="product-card reveal reveal-delay-1" data-category="template" onclick="openModal('modal-voice')">
+      <div class="product-card-visual" style="background:linear-gradient(135deg,#06091a,#1a0828);">
+        <div class="card-orbit-wrap" style="width:140px;height:140px;">
+          <svg width="100%" height="100%" viewBox="0 0 64 64" fill="none" style="opacity:.5"><polygon points="32,10 48,19 48,41 32,52 16,41 16,19" stroke="#D4FF00" stroke-width="1.3"/><polygon points="32,20 41,25.5 41,37 32,42.5 23,37 23,25.5" stroke="#D4FF00" stroke-width="0.9" opacity="0.5"/><circle cx="32" cy="31" r="4" fill="#D4FF00"/></svg>
+        </div>
+        <div class="card-title-overlay">1-page PDF · Instant download</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-badge-row">
+          <span class="product-badge" style="color:var(--lime);border-color:rgba(212,255,0,.3);">Template</span>
+          <span class="product-badge badge-digital">PDF</span>
+        </div>
+        <div class="product-card-title">Brand Voice Cheatsheet</div>
+        <div class="product-card-tagline">Define your brand's voice in one sitting — archetype, tone, forbidden words, before/after examples.</div>
+        <div class="product-card-stats">
+          <div class="product-stat"><div class="product-stat-val">1</div><div class="product-stat-label">Page PDF</div></div>
+          <div class="product-stat"><div class="product-stat-val">15<span style="font-size:13px;font-family:'Poppins',sans-serif;font-weight:400;">min</span></div><div class="product-stat-label">To complete</div></div>
+        </div>
+        <div class="product-card-footer">
+          <div>
+            <div class="product-price">€12</div>
+            <div class="product-price-sub">One-time</div>
+          </div>
+          <button class="product-card-cta">Get it →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ICP WORKBOOK -->
+    <div class="product-card reveal reveal-delay-2" data-category="template" onclick="openModal('modal-icp')">
+      <div class="product-card-visual" style="background:linear-gradient(135deg,#06091a,#0d1535);">
+        <div class="card-orbit-wrap" style="width:140px;height:140px;">
+          <svg width="100%" height="100%" viewBox="0 0 64 64" fill="none" style="opacity:.5"><circle cx="32" cy="20" r="9.5" stroke="#00FFF0" stroke-width="1.4"/><path d="M12 54 C12 41 20.5 36.5 32 36.5 C43.5 36.5 52 41 52 54" stroke="#00FFF0" stroke-width="1.4"/><circle cx="49" cy="32" r="4.5" stroke="#D4FF00" stroke-width="1.1"/></svg>
+        </div>
+        <div class="card-title-overlay">Workbook · Worksheets + matrices</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-badge-row">
+          <span class="product-badge" style="color:var(--cyan);border-color:rgba(0,255,240,.3);">Workbook</span>
+          <span class="product-badge badge-digital">PDF</span>
+        </div>
+        <div class="product-card-title">ICP Workbook</div>
+        <div class="product-card-tagline">Find your ideal client profile with guided worksheets — questions, matrices, real EU market examples.</div>
+        <div class="product-card-stats">
+          <div class="product-stat"><div class="product-stat-val">12</div><div class="product-stat-label">Pages</div></div>
+          <div class="product-stat"><div class="product-stat-val">45<span style="font-size:13px;font-family:'Poppins',sans-serif;font-weight:400;">min</span></div><div class="product-stat-label">To complete</div></div>
+        </div>
+        <div class="product-card-footer">
+          <div>
+            <div class="product-price">€19</div>
+            <div class="product-price-sub">One-time</div>
+          </div>
+          <button class="product-card-cta">Get it →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT AUDIT TEMPLATE -->
+    <div class="product-card reveal reveal-delay-3" data-category="template" onclick="openModal('modal-audit')">
+      <div class="product-card-visual" style="background:linear-gradient(135deg,#06091a,#1a0828);">
+        <div class="card-orbit-wrap" style="width:140px;height:140px;">
+          <svg width="100%" height="100%" viewBox="0 0 64 64" fill="none" style="opacity:.5"><rect x="9" y="14" width="46" height="32" rx="4" stroke="#00FFF0" stroke-width="1.4"/><polyline points="13,29 19,29 22,20 26,38 30,29 34,29 37,24 40,34 43,29 51,29" stroke="#00FFF0" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="37" cy="24" r="3" fill="#ED3E61"/></svg>
+        </div>
+        <div class="card-title-overlay">Notion + PDF template</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-badge-row">
+          <span class="product-badge" style="color:var(--rose);border-color:rgba(237,62,97,.3);">Template</span>
+          <span class="product-badge badge-digital">Notion</span>
+        </div>
+        <div class="product-card-title">Content Audit Template</div>
+        <div class="product-card-tagline">Audit any Instagram or LinkedIn account in under 2 hours — find what's working and what's not.</div>
+        <div class="product-card-stats">
+          <div class="product-stat"><div class="product-stat-val">2<span style="font-size:13px;font-family:'Poppins',sans-serif;font-weight:400;">h</span></div><div class="product-stat-label">To complete</div></div>
+          <div class="product-stat"><div class="product-stat-val">8</div><div class="product-stat-label">Audit areas</div></div>
+        </div>
+        <div class="product-card-footer">
+          <div>
+            <div class="product-price">€24</div>
+            <div class="product-price-sub">One-time</div>
+          </div>
+          <button class="product-card-cta">Get it →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU MARKET ENTRY CHECKLIST -->
+    <div class="product-card reveal reveal-delay-1" data-category="guide" onclick="openModal('modal-eu')">
+      <div class="product-card-visual" style="background:linear-gradient(135deg,#06091a,#0d1535);">
+        <div class="card-orbit-wrap" style="width:140px;height:140px;">
+          <svg width="100%" height="100%" viewBox="0 0 64 64" fill="none" style="opacity:.5"><path d="M32 9 C23 9 16 16 16 25 C16 36 32 54 32 54 C32 54 48 36 48 25 C48 16 41 9 32 9Z" stroke="#6502A2" stroke-width="1.4"/><circle cx="32" cy="25" r="8" stroke="#00FFF0" stroke-width="1.2"/><circle cx="32" cy="19" r="1.3" fill="#D4FF00"/><circle cx="38" cy="21.5" r="1.3" fill="#D4FF00"/><circle cx="26" cy="21.5" r="1.3" fill="#D4FF00"/></svg>
+        </div>
+        <div class="card-title-overlay">Strategic guide · NL · BE · FR</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-badge-row">
+          <span class="product-badge" style="color:#b060ff;border-color:rgba(101,2,162,.4);">Guide</span>
+          <span class="product-badge badge-digital">PDF</span>
+        </div>
+        <div class="product-card-title">EU Market Entry Checklist</div>
+        <div class="product-card-tagline">Bringing your brand to the Netherlands, Belgium, or France — channels, localisation, common mistakes.</div>
+        <div class="product-card-stats">
+          <div class="product-stat"><div class="product-stat-val">3</div><div class="product-stat-label">Markets covered</div></div>
+          <div class="product-stat"><div class="product-stat-val">20</div><div class="product-stat-label">Pages</div></div>
+        </div>
+        <div class="product-card-footer">
+          <div>
+            <div class="product-price">€49</div>
+            <div class="product-price-sub">One-time</div>
+          </div>
+          <button class="product-card-cta">Get it →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPRESS BRAND CHECK -->
+    <div class="product-card reveal reveal-delay-2" data-category="service" onclick="openModal('modal-express')">
+      <div class="product-card-visual" style="background:linear-gradient(135deg,#1a0828,#06091a);">
+        <div class="card-orbit-wrap" style="width:140px;height:140px;">
+          <svg width="100%" height="100%" viewBox="0 0 64 64" fill="none" style="opacity:.5"><circle cx="27" cy="27" r="11" stroke="#00FFF0" stroke-width="1.5"/><ellipse cx="27" cy="27" rx="6.5" ry="3.2" stroke="#00FFF0" stroke-width="1" opacity="0.6" transform="rotate(-35 27 27)"/><circle cx="27" cy="27" r="2.2" fill="#00FFF0"/><circle cx="33" cy="23.5" r="1.8" fill="#ED3E61"/><line x1="35" y1="36" x2="48" y2="50" stroke="#00FFF0" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="card-title-overlay">Written review · 48h turnaround</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-badge-row">
+          <span class="product-badge" style="color:var(--rose);border-color:rgba(237,62,97,.3);">Mini-Service</span>
+          <span class="product-badge badge-digital">Personal</span>
+        </div>
+        <div class="product-card-title">Express Brand Check</div>
+        <div class="product-card-tagline">Fill out a short questionnaire — get a written expert review of your brand and channels in 48 hours.</div>
+        <div class="product-card-stats">
+          <div class="product-stat"><div class="product-stat-val">48<span style="font-size:13px;font-family:'Poppins',sans-serif;font-weight:400;">h</span></div><div class="product-stat-label">Turnaround</div></div>
+          <div class="product-stat"><div class="product-stat-val">1:1</div><div class="product-stat-label">Personal review</div></div>
+        </div>
+        <div class="product-card-footer">
+          <div>
+            <div class="product-price">€69</div>
+            <div class="product-price-sub">One-time</div>
+          </div>
+          <button class="product-card-cta">Book it →</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /products-grid -->
+
+  <!-- COMING SOON section -->
+  <div class="coming-soon-section section-divider" style="margin-bottom:0;"></div>
+  <div style="padding-top:64px;" class="reveal">
+    <div class="coming-title">What's in the pipeline</div>
+    <div class="coming-sub">Products being built right now. Drop your email to get notified first.</div>
+    <div class="coming-grid">
+      <div class="coming-card">
+        <div class="coming-card-icon">🧲</div>
+        <div class="coming-card-title">Lead Magnet Toolkit</div>
+        <div class="coming-card-desc">5 proven lead magnet formats with copywriting frameworks. Build your email list from scratch.</div>
+        <div class="coming-tag">Toolkit · Q3 2026</div>
+      </div>
+      <div class="coming-card">
+        <div class="coming-card-icon">💼</div>
+        <div class="coming-card-title">LinkedIn 30-Day Challenge</div>
+        <div class="coming-card-desc">Build a personal brand on LinkedIn from zero — same method behind our Ax Lindholm case study.</div>
+        <div class="coming-tag">Challenge · Q3 2026</div>
+      </div>
+      <div class="coming-card">
+        <div class="coming-card-icon">🧠</div>
+        <div class="coming-card-title">Brand Universe Workshop</div>
+        <div class="coming-card-desc">Interactive self-guided workshop to define your brand positioning, voice, and visual direction.</div>
+        <div class="coming-tag">Workshop · Q4 2026</div>
+      </div>
+      <div class="coming-card">
+        <div class="coming-card-icon">📅</div>
+        <div class="coming-card-title">Content Calendar From Zero</div>
+        <div class="coming-card-desc">Template + guide to plan a full month of content for your business without a marketer.</div>
+        <div class="coming-tag">Template · Q4 2026</div>
+      </div>
+    </div>
+    <div class="notify-block">
+      <div class="notify-text">
+        <div class="notify-label">Be the first to know</div>
+        <div class="notify-sub">New products, early access pricing, and free resources — straight to your inbox.</div>
+      </div>
+      <div class="notify-form">
+        <input type="email" class="notify-input" placeholder="your@email.com" id="notify-email" />
+        <button class="notify-btn" onclick="handleNotify()">Notify me →</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /products-layout -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <a href="celar.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <span style="font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;color:rgba(220,220,220,.5);text-transform:uppercase;">Celar Marketing Lab</span>
+    </a>
+    <span class="footer-copy">© 2026 Celar Marketing Lab · Netherlands</span>
+  </div>
+  <div class="footer-right">
+    <div class="footer-social">
+      <a href="https://instagram.com/celar_marketing_lab" target="_blank" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://t.me/K_KKlsh" target="_blank" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+    </div>
+    <span class="footer-nl">celarlab.com</span>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     PRODUCT DETAIL MODAL — SMM Without Budget
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal-smm">
+    <button class="modal-close" onclick="closeModal()">×</button>
+
+    <!-- Hero -->
+    <div class="modal-hero">
+      <div class="modal-badge-row">
+        <span class="product-badge badge-challenge">Challenge</span>
+        <span class="product-badge badge-new">New · 2026</span>
+      </div>
+      <div class="modal-title">SMM <span class="accent-cyan">Without</span><br><span class="accent-rose">Budget</span></div>
+      <div class="modal-tagline">A 28-day guided challenge to grow your social media presence from scratch — with zero ad spend, 15 minutes a day, and a method backed by behavioral science.</div>
+      <div class="modal-stats-row">
+        <div class="modal-stat"><div class="modal-stat-val">28</div><div class="modal-stat-label">Daily blocks</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">4</div><div class="modal-stat-label">Weeks</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">15 min</div><div class="modal-stat-label">Per day</div></div>
+        <div class="modal-stat"><div class="modal-stat-val">€0</div><div class="modal-stat-label">Ad spend</div></div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+
+      <!-- What it is -->
+      <div class="modal-section">
+        <div class="modal-section-title">What it is</div>
+        <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);margin-bottom:16px;">Most people fail at social media not because they lack creativity — but because they lack a <em style="color:var(--white);font-style:normal;">system</em>. They post when inspired, panic when they don't know what to say, and give up after two weeks.</p>
+        <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);">SMM Without Budget is a 28-day structured challenge designed by Celar Marketing Lab to fix exactly that. Each day you get one focused task — 15 minutes, one skill, measurable output. By day 28, you have a complete social media system that runs on 2 hours a week.</p>
+      </div>
+
+      <!-- For whom -->
+      <div class="modal-section">
+        <div class="modal-section-title">This is for you if</div>
+        <div class="who-grid">
+          <div class="who-card">
+            <div class="who-icon">🧭</div>
+            <div class="who-title">You're a founder or solopreneur</div>
+            <div class="who-desc">You know social media matters for your brand — but you don't have a team, a budget, or time to figure it out from scratch.</div>
+          </div>
+          <div class="who-card">
+            <div class="who-icon">🚀</div>
+            <div class="who-title">You're just starting out</div>
+            <div class="who-desc">0 followers, 0 content plan, 0 idea where to begin. This challenge was built for the exact starting point of zero.</div>
+          </div>
+          <div class="who-card">
+            <div class="who-icon">🔁</div>
+            <div class="who-title">You've tried and stopped before</div>
+            <div class="who-desc">You posted for a few weeks, saw little traction, and quit. The problem wasn't you — it was the absence of a structured method.</div>
+          </div>
+          <div class="who-card">
+            <div class="who-icon">🌍</div>
+            <div class="who-title">You're entering a new market</div>
+            <div class="who-desc">Launching in the EU? Building a presence in a language that isn't your first? The challenge works in any language, any platform.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOT for whom -->
+      <div class="modal-section">
+        <div class="modal-section-title">This is NOT for you if</div>
+        <div class="not-for-list">
+          <div class="not-for-item">
+            <span class="not-for-x">✕</span>
+            <span>You're looking for viral hacks or growth shortcuts. This is a system, not a trick.</span>
+          </div>
+          <div class="not-for-item">
+            <span class="not-for-x">✕</span>
+            <span>You want someone to run your social media for you. This challenge teaches you to do it yourself.</span>
+          </div>
+          <div class="not-for-item">
+            <span class="not-for-x">✕</span>
+            <span>You can't commit 15 minutes a day for 28 days. The system only works if you work it.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week breakdown -->
+      <div class="modal-section">
+        <div class="modal-section-title">The 4-week breakdown</div>
+        <div class="weeks-grid">
+          <div class="week-card">
+            <div class="week-num" style="color:var(--cyan);">Week 01</div>
+            <div class="week-title">Foundation</div>
+            <div class="week-desc">Understand why social media works, who your audience actually is, and how algorithms think — before you post a single thing.</div>
+            <ul class="week-bullets">
+              <li>Define your positioning in one sentence</li>
+              <li>Identify your 3 ideal audience profiles</li>
+              <li>Audit your current presence honestly</li>
+              <li>Set up your content pillars</li>
+            </ul>
+          </div>
+          <div class="week-card">
+            <div class="week-num" style="color:var(--rose);">Week 02</div>
+            <div class="week-title">Content</div>
+            <div class="week-desc">Build a content system that runs on near-autopilot. Stop panicking about what to post and start working from structure.</div>
+            <ul class="week-bullets">
+              <li>Create your 30-day content bank</li>
+              <li>Write hooks that stop the scroll</li>
+              <li>Build reusable content formats</li>
+              <li>Kill the blank-screen panic forever</li>
+            </ul>
+          </div>
+          <div class="week-card">
+            <div class="week-num" style="color:var(--lime);">Week 03</div>
+            <div class="week-title">Growth</div>
+            <div class="week-desc">Organic reach, discovery, and community building. No ad budget required — only smart, consistent actions that compound.</div>
+            <ul class="week-bullets">
+              <li>Master hashtag and keyword strategy</li>
+              <li>Build a community, not just an audience</li>
+              <li>Collab and cross-promotion tactics</li>
+              <li>Turn engagement into relationships</li>
+            </ul>
+          </div>
+          <div class="week-card">
+            <div class="week-num" style="color:var(--purple); filter:brightness(1.6);">Week 04</div>
+            <div class="week-title">System</div>
+            <div class="week-desc">The machine that runs without willpower. By the end of week 4, you have a repeatable system: 2 hours per week, forever.</div>
+            <ul class="week-bullets">
+              <li>Build your weekly content ritual</li>
+              <li>Set up analytics to guide decisions</li>
+              <li>Create your 90-day content calendar</li>
+              <li>Define your growth metrics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- What you get -->
+      <div class="modal-section">
+        <div class="modal-section-title">What's included</div>
+        <div class="get-list">
+          <div class="get-item">
+            <span class="get-check">✓</span>
+            <span class="get-text"><strong>28 daily task blocks</strong> — one focused action per day, 15 minutes each. No overwhelm, no guessing what to do next.</span>
+          </div>
+          <div class="get-item">
+            <span class="get-check">✓</span>
+            <span class="get-text"><strong>4 weekly frameworks</strong> — Foundation, Content, Growth, System. Each week builds on the last.</span>
+          </div>
+          <div class="get-item">
+            <span class="get-check">✓</span>
+            <span class="get-text"><strong>Content bank template</strong> — a reusable structure for generating 30+ content ideas at a time.</span>
+          </div>
+          <div class="get-item">
+            <span class="get-check">✓</span>
+            <span class="get-text"><strong>Hook formula library</strong> — 20+ proven opening lines adapted to your niche and voice.</span>
+          </div>
+          <div class="get-item">
+            <span class="get-check">✓</span>
+            <span class="get-text"><strong>Lifetime access</strong> — the challenge is yours forever. Run it again in 6 months and it hits differently.</span>
+          </div>
+          <div class="get-item">
+            <span class="get-check">✓</span>
+            <span class="get-text"><strong>Individual access link</strong> — sent to your email within minutes of purchase. Your own private URL, no shared login.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT BLOCK -->
+      <div class="payment-block" id="payment-block">
+        <div class="payment-header">
+          <div class="payment-price-block">
+            <div class="payment-price-label">One-time investment</div>
+            <div class="payment-price-main"><sup>€</sup>28</div>
+            <div class="payment-price-note">Lifetime access · No subscription · No hidden fees</div>
+          </div>
+          <div class="payment-includes">
+            <div class="payment-includes-label">Includes</div>
+            <div class="payment-includes-items">
+              <div class="payment-includes-item">28 daily challenge blocks</div>
+              <div class="payment-includes-item">4 framework guides</div>
+              <div class="payment-includes-item">Content bank template</div>
+              <div class="payment-includes-item">Hook formula library</div>
+              <div class="payment-includes-item">Your individual access link via email</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div id="payment-form-wrap">
+          <div class="modal-section-title" style="margin-bottom:20px;">Your details</div>
+          <div class="payment-form" id="payment-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First name <span class="required">*</span></label>
+                <input type="text" class="form-input" id="pay-name" placeholder="Kseniia" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last name</label>
+                <input type="text" class="form-input" id="pay-lastname" placeholder="Kalashnikova" />
+              </div>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Email address <span class="required">*</span></label>
+              <input type="email" class="form-input" id="pay-email" placeholder="your@email.com" required />
+              <div class="form-note" style="margin-top:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,255,240,0.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                Your individual access link will be sent to this address within minutes of payment. Make sure it's correct.
+              </div>
+            </div>
+
+            <button class="pay-btn" onclick="handlePayment()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              <span>
+                Get Access — €28
+                <span class="pay-btn-sub">You'll receive your link within minutes</span>
+              </span>
+            </button>
+
+            <div class="payment-trust">
+              <div class="trust-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Secure payment
+              </div>
+              <div class="trust-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Instant delivery
+              </div>
+              <div class="trust-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                Lifetime access
+              </div>
+              <div class="trust-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Questions? <a href="https://wa.me/31629475620" target="_blank" style="color:var(--cyan);margin-left:4px;">WhatsApp us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success state -->
+        <div class="payment-success" id="payment-success">
+          <div class="success-icon">🚀</div>
+          <div class="success-title">You're in orbit.</div>
+          <div class="success-body">Your access link is on its way to <span class="success-email" id="success-email-display"></span></div>
+          <div class="success-body" style="margin-top:8px;">Check your inbox — and your spam folder just in case. The challenge starts the moment you open the link.</div>
+          <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="https://instagram.com/celar_marketing_lab" target="_blank" style="font-size:13px;color:var(--cyan);text-decoration:none;">Follow @celar_marketing_lab →</a>
+          </div>
+        </div>
+
+      </div><!-- /payment-block -->
+
+    </div><!-- /modal-body -->
+  </div><!-- /modal -->
+    <div class="modal" id="modal-sls" style="display:none;">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-hero" style="background:linear-gradient(135deg,#06091a 0%,#0d2a35 50%,#0d1535 100%);">
+        <div class="modal-badge-row">
+          <span class="product-badge" style="color:var(--lime);border-color:rgba(212,255,0,.3);background:rgba(212,255,0,.06);">Free</span>
+          <span class="product-badge badge-digital">Interactive Tool</span>
+        </div>
+        <div class="modal-title">Social Launch <span class="accent-cyan">Strategy</span></div>
+        <div class="modal-tagline">Mission Control — a 6-phase interactive tool that walks you through building a complete social media launch strategy. Auto-saves your progress. Exports to PDF when you're done.</div>
+        <div class="modal-stats-row">
+          <div class="modal-stat"><div class="modal-stat-val">6</div><div class="modal-stat-label">Phases</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">~45min</div><div class="modal-stat-label">To complete</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">PDF</div><div class="modal-stat-label">Export</div></div>
+          <div class="modal-stat"><div class="modal-stat-val" style="color:var(--lime);">€0</div><div class="modal-stat-label">Cost</div></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <div class="modal-section-title">What it is</div>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);margin-bottom:16px;">Most brands launch on social media with a vague idea and no real plan — then wonder why nothing sticks. Social Launch Strategy is a guided tool that forces the right questions in the right order, so by the end you have an actual launch plan, not just inspiration.</p>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);">Work through 6 phases — positioning, audience, content pillars, schedule, launch sequence, and metrics. Your answers save automatically as you go. When you're finished, export everything as a clean PDF you can actually use.</p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">This is for you if</div>
+          <div class="who-grid">
+            <div class="who-card"><div class="who-icon">🚀</div><div class="who-title">You're launching a new brand or account</div><div class="who-desc">Starting from zero and want a real plan before your first post — not a guess.</div></div>
+            <div class="who-card"><div class="who-icon">🔄</div><div class="who-title">You're relaunching after going quiet</div><div class="who-desc">Picking social media back up and need fresh positioning and a content structure.</div></div>
+            <div class="who-card"><div class="who-icon">🌍</div><div class="who-title">You're entering the EU market</div><div class="who-desc">Includes EU-specific notes — multilingual positioning, GDPR tracking limits, EU-friendly tools.</div></div>
+            <div class="who-card"><div class="who-icon">💡</div><div class="who-title">You want clarity, not theory</div><div class="who-desc">You don't need another article about social media — you need to actually build the plan.</div></div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">What you'll walk away with</div>
+          <div class="get-list">
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Clear positioning statement</strong> — who you are and why anyone should care.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Defined audience profile</strong> — who you're actually talking to.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Content pillar structure</strong> — the themes your content will rotate around.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Launch sequence</strong> — what to post, in what order, in your first weeks.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>A downloadable PDF</strong> — your entire plan in one document, ready to execute.</span></div>
+          </div>
+        </div>
+        <div class="payment-block" style="background:linear-gradient(135deg,rgba(212,255,0,.05),rgba(0,255,240,.04));border-color:rgba(212,255,0,.18);">
+          <div class="payment-header">
+            <div class="payment-price-block">
+              <div class="payment-price-label">Cost</div>
+              <div class="payment-price-main" style="color:var(--lime);">Free</div>
+              <div class="payment-price-note">No payment, no card — just your email to save your access link</div>
+            </div>
+          </div>
+          <div id="form-wrap-sls">
+            <div class="modal-section-title" style="margin-bottom:20px;">Get instant access</div>
+            <div class="payment-form">
+              <div class="form-group full">
+                <label class="form-label">Email address <span class="required">*</span></label>
+                <input type="email" class="form-input" id="email-sls" placeholder="your@email.com" required />
+                <div class="form-note" style="margin-top:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(212,255,0,0.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  We'll send your direct access link instantly. No spam, ever.
+                </div>
+              </div>
+              <button class="pay-btn" style="background:var(--lime);" onclick="handleFreeAccess('sls')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span>Start the tool — Free<span class="pay-btn-sub">Instant access link via email</span></span>
+              </button>
+            </div>
+          </div>
+          <div class="payment-success" id="success-sls">
+            <div class="success-icon">🛰️</div>
+            <div class="success-title">Mission link sent.</div>
+            <div class="success-body">Your access link is on its way to <span class="success-email" id="success-email-sls"></span></div>
+            <div class="success-body" style="margin-top:8px;">Open it whenever you're ready — your progress saves automatically.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-voice" style="display:none;">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-hero" style="background:linear-gradient(135deg,#06091a 0%,#1a0828 100%);">
+        <div class="modal-badge-row">
+          <span class="product-badge" style="color:var(--lime);border-color:rgba(212,255,0,.3);">Template</span>
+          <span class="product-badge badge-digital">1-Page PDF</span>
+        </div>
+        <div class="modal-title">Brand Voice <span class="accent-cyan">Cheatsheet</span></div>
+        <div class="modal-tagline">A single-page reference that defines exactly how your brand sounds — so every post, email, and caption feels like it came from the same person.</div>
+        <div class="modal-stats-row">
+          <div class="modal-stat"><div class="modal-stat-val">1</div><div class="modal-stat-label">Page PDF</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">15min</div><div class="modal-stat-label">To complete</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">€12</div><div class="modal-stat-label">One-time</div></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <div class="modal-section-title">What it is</div>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);margin-bottom:16px;">Inconsistent brand voice is invisible until you see it written down — one post sounds corporate, the next sounds like a teenager, the third sounds like nobody at all. The Brand Voice Cheatsheet fixes that in one sitting.</p>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);">Fill in your brand archetype, tone spectrum, words you'd never use, and side-by-side before/after examples. The result is a single reference page you — or anyone writing for your brand — can check before publishing anything.</p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">This is for you if</div>
+          <div class="who-grid">
+            <div class="who-card"><div class="who-icon">✍️</div><div class="who-title">You write your own content</div><div class="who-desc">And want a fast gut-check before publishing instead of agonizing over tone every time.</div></div>
+            <div class="who-card"><div class="who-icon">👥</div><div class="who-title">You delegate content to others</div><div class="who-desc">A team member, freelancer, or VA writes for you — give them the rules in one page.</div></div>
+            <div class="who-card"><div class="who-icon">🎭</div><div class="who-title">Your brand feels inconsistent</div><div class="who-desc">You've noticed your posts sound different depending on your mood that day.</div></div>
+            <div class="who-card"><div class="who-icon">⚡</div><div class="who-title">You want a fast answer, not a course</div><div class="who-desc">No theory, no fluff — just a usable document you fill in once and reference forever.</div></div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">What's included</div>
+          <div class="get-list">
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Brand archetype selector</strong> — 12 archetypes with descriptions to find your match.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Tone spectrum sliders</strong> — formal↔casual, serious↔playful, calm↔energetic.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Forbidden words list template</strong> — phrases and jargon your brand never uses.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Before/after example slots</strong> — rewrite 3 real captions in your defined voice.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Printable, shareable PDF</strong> — send it to anyone writing for your brand.</span></div>
+          </div>
+        </div>
+        <div class="payment-block">
+          <div class="payment-header">
+            <div class="payment-price-block">
+              <div class="payment-price-label">One-time investment</div>
+              <div class="payment-price-main"><sup>€</sup>12</div>
+              <div class="payment-price-note">Instant download · No subscription</div>
+            </div>
+            <div class="payment-includes">
+              <div class="payment-includes-label">Includes</div>
+              <div class="payment-includes-items">
+                <div class="payment-includes-item">Fillable PDF template</div>
+                <div class="payment-includes-item">12 brand archetypes guide</div>
+                <div class="payment-includes-item">Your link via email</div>
+              </div>
+            </div>
+          </div>
+          <div id="form-wrap-voice">
+            <div class="modal-section-title" style="margin-bottom:20px;">Your details</div>
+            <div class="payment-form">
+              <div class="form-group full">
+                <label class="form-label">Email address <span class="required">*</span></label>
+                <input type="email" class="form-input" id="email-voice" placeholder="your@email.com" required />
+                <div class="form-note" style="margin-top:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,255,240,0.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  Your download link will be sent here within minutes of payment.
+                </div>
+              </div>
+              <button class="pay-btn" onclick="handlePaymentFor('voice', 12)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <span>Get Access — €12<span class="pay-btn-sub">You'll receive your link within minutes</span></span>
+              </button>
+            </div>
+          </div>
+          <div class="payment-success" id="success-voice">
+            <div class="success-icon">🚀</div>
+            <div class="success-title">You're in orbit.</div>
+            <div class="success-body">Your access link is on its way to <span class="success-email" id="success-email-voice"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-icp" style="display:none;">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-hero" style="background:linear-gradient(135deg,#06091a 0%,#0d1535 100%);">
+        <div class="modal-badge-row">
+          <span class="product-badge" style="color:var(--cyan);border-color:rgba(0,255,240,.3);">Workbook</span>
+          <span class="product-badge badge-digital">12-Page PDF</span>
+        </div>
+        <div class="modal-title">ICP <span class="accent-cyan">Workbook</span></div>
+        <div class="modal-tagline">Stop guessing who you're marketing to. A guided workbook to define your Ideal Client Profile with real precision — built for the EU market.</div>
+        <div class="modal-stats-row">
+          <div class="modal-stat"><div class="modal-stat-val">12</div><div class="modal-stat-label">Pages</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">45min</div><div class="modal-stat-label">To complete</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">€19</div><div class="modal-stat-label">One-time</div></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <div class="modal-section-title">What it is</div>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);margin-bottom:16px;">"Everyone" is not a target audience. Most small businesses describe their ideal client in such broad strokes that no marketing message could ever speak to them specifically. The ICP Workbook forces the precision that actually converts.</p>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);">Work through structured worksheets and matrices to define demographics, psychographics, buying triggers, objections, and where your ideal client actually spends time online — with examples drawn from real EU small business cases.</p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">This is for you if</div>
+          <div class="who-grid">
+            <div class="who-card"><div class="who-icon">🎯</div><div class="who-title">Your messaging feels generic</div><div class="who-desc">You're writing content that could apply to anyone — which means it resonates with no one.</div></div>
+            <div class="who-card"><div class="who-icon">🛍️</div><div class="who-title">You're a small EU business or e-commerce</div><div class="who-desc">Examples and frameworks built specifically around the European small business context.</div></div>
+            <div class="who-card"><div class="who-icon">📉</div><div class="who-title">Your ads or content aren't converting</div><div class="who-desc">Often the targeting isn't wrong — the underlying client definition is too vague.</div></div>
+            <div class="who-card"><div class="who-icon">🆕</div><div class="who-title">You're launching something new</div><div class="who-desc">Define your audience before you build messaging, not after you've already guessed wrong.</div></div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">What's included</div>
+          <div class="get-list">
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Demographics + psychographics worksheets</strong> — go beyond age and location.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Buying trigger matrix</strong> — what actually makes your client decide to buy.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Objection mapping exercise</strong> — the real reasons people don't buy yet.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Channel-finder worksheet</strong> — where your ICP actually spends time online.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>EU market examples</strong> — real worked examples from Dutch, French, Belgian SMBs.</span></div>
+          </div>
+        </div>
+        <div class="payment-block">
+          <div class="payment-header">
+            <div class="payment-price-block">
+              <div class="payment-price-label">One-time investment</div>
+              <div class="payment-price-main"><sup>€</sup>19</div>
+              <div class="payment-price-note">Instant download · No subscription</div>
+            </div>
+            <div class="payment-includes">
+              <div class="payment-includes-label">Includes</div>
+              <div class="payment-includes-items">
+                <div class="payment-includes-item">12-page fillable workbook</div>
+                <div class="payment-includes-item">EU market worked examples</div>
+                <div class="payment-includes-item">Your link via email</div>
+              </div>
+            </div>
+          </div>
+          <div id="form-wrap-icp">
+            <div class="modal-section-title" style="margin-bottom:20px;">Your details</div>
+            <div class="payment-form">
+              <div class="form-group full">
+                <label class="form-label">Email address <span class="required">*</span></label>
+                <input type="email" class="form-input" id="email-icp" placeholder="your@email.com" required />
+                <div class="form-note" style="margin-top:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,255,240,0.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  Your download link will be sent here within minutes of payment.
+                </div>
+              </div>
+              <button class="pay-btn" onclick="handlePaymentFor('icp', 19)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <span>Get Access — €19<span class="pay-btn-sub">You'll receive your link within minutes</span></span>
+              </button>
+            </div>
+          </div>
+          <div class="payment-success" id="success-icp">
+            <div class="success-icon">🚀</div>
+            <div class="success-title">You're in orbit.</div>
+            <div class="success-body">Your access link is on its way to <span class="success-email" id="success-email-icp"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-audit" style="display:none;">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-hero" style="background:linear-gradient(135deg,#06091a 0%,#1a0828 100%);">
+        <div class="modal-badge-row">
+          <span class="product-badge" style="color:var(--rose);border-color:rgba(237,62,97,.3);">Template</span>
+          <span class="product-badge badge-digital">Notion + PDF</span>
+        </div>
+        <div class="modal-title">Content Audit <span class="accent-rose">Template</span></div>
+        <div class="modal-tagline">A structured framework to audit any Instagram or LinkedIn account in under 2 hours — find exactly what's working, what's not, and what to fix first.</div>
+        <div class="modal-stats-row">
+          <div class="modal-stat"><div class="modal-stat-val">2h</div><div class="modal-stat-label">To complete</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">8</div><div class="modal-stat-label">Audit areas</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">€24</div><div class="modal-stat-label">One-time</div></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <div class="modal-section-title">What it is</div>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);margin-bottom:16px;">Most people scroll their own feed and "feel" like something's off — but can't pinpoint what. This template replaces vague intuition with a structured 8-area audit covering bio, content mix, engagement patterns, visual consistency, and growth signals.</p>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);">Built as a Notion template (with a PDF version included), you'll walk through your own account — or a competitor's — systematically, scoring each area and walking away with a prioritized action list.</p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">This is for you if</div>
+          <div class="who-grid">
+            <div class="who-card"><div class="who-icon">🔍</div><div class="who-title">You feel stuck but can't say why</div><div class="who-desc">Growth has plateaued and you need a structured way to find the actual bottleneck.</div></div>
+            <div class="who-card"><div class="who-icon">📊</div><div class="who-title">You manage multiple accounts</div><div class="who-desc">Client accounts, brand accounts — a repeatable audit process saves real time.</div></div>
+            <div class="who-card"><div class="who-icon">🕵️</div><div class="who-title">You want to study competitors</div><div class="who-desc">The same framework works to reverse-engineer what's working for others in your niche.</div></div>
+            <div class="who-card"><div class="who-icon">🛠️</div><div class="who-title">You're a freelance social media manager</div><div class="who-desc">Use it as your own audit deliverable for client onboarding.</div></div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">What's included</div>
+          <div class="get-list">
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Notion template</strong> — duplicate into your own workspace, fully editable.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>8 audit categories</strong> — bio, content mix, visual consistency, engagement, growth, and more.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Scoring system</strong> — quantify weak spots instead of relying on gut feeling.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Prioritized action list generator</strong> — know what to fix first.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>PDF version included</strong> — for anyone who prefers print or non-Notion workflows.</span></div>
+          </div>
+        </div>
+        <div class="payment-block">
+          <div class="payment-header">
+            <div class="payment-price-block">
+              <div class="payment-price-label">One-time investment</div>
+              <div class="payment-price-main"><sup>€</sup>24</div>
+              <div class="payment-price-note">Instant download · No subscription</div>
+            </div>
+            <div class="payment-includes">
+              <div class="payment-includes-label">Includes</div>
+              <div class="payment-includes-items">
+                <div class="payment-includes-item">Notion template + PDF</div>
+                <div class="payment-includes-item">8-area scoring system</div>
+                <div class="payment-includes-item">Your link via email</div>
+              </div>
+            </div>
+          </div>
+          <div id="form-wrap-audit">
+            <div class="modal-section-title" style="margin-bottom:20px;">Your details</div>
+            <div class="payment-form">
+              <div class="form-group full">
+                <label class="form-label">Email address <span class="required">*</span></label>
+                <input type="email" class="form-input" id="email-audit" placeholder="your@email.com" required />
+                <div class="form-note" style="margin-top:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,255,240,0.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  Your access link will be sent here within minutes of payment.
+                </div>
+              </div>
+              <button class="pay-btn" onclick="handlePaymentFor('audit', 24)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <span>Get Access — €24<span class="pay-btn-sub">You'll receive your link within minutes</span></span>
+              </button>
+            </div>
+          </div>
+          <div class="payment-success" id="success-audit">
+            <div class="success-icon">🚀</div>
+            <div class="success-title">You're in orbit.</div>
+            <div class="success-body">Your access link is on its way to <span class="success-email" id="success-email-audit"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-eu" style="display:none;">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-hero" style="background:linear-gradient(135deg,#06091a 0%,#0d1535 100%);">
+        <div class="modal-badge-row">
+          <span class="product-badge" style="color:#b060ff;border-color:rgba(101,2,162,.4);">Guide</span>
+          <span class="product-badge badge-digital">20-Page PDF</span>
+        </div>
+        <div class="modal-title">EU Market Entry <span class="accent-cyan">Checklist</span></div>
+        <div class="modal-tagline">A strategic guide for bringing your brand into the Dutch, Belgian, or French market — channels, localisation, and the mistakes that quietly kill EU launches.</div>
+        <div class="modal-stats-row">
+          <div class="modal-stat"><div class="modal-stat-val">3</div><div class="modal-stat-label">Markets covered</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">20</div><div class="modal-stat-label">Pages</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">€49</div><div class="modal-stat-label">One-time</div></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <div class="modal-section-title">What it is</div>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);margin-bottom:16px;">Entering the European market isn't "translate and post" — it's a different regulatory environment, different buying behaviors, and different channel preferences depending on which country you're in. This checklist is built from CML's direct experience operating across NL, BE, and FR.</p>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);">You get a structured, no-fluff guide covering market-by-market channel preferences, localisation pitfalls (it's not just language), GDPR-aware marketing practices, and a launch sequence checklist you can follow step by step.</p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">This is for you if</div>
+          <div class="who-grid">
+            <div class="who-card"><div class="who-icon">🌍</div><div class="who-title">You're expanding into the EU</div><div class="who-desc">From the US, UK, or elsewhere — and don't want to learn the regulatory pitfalls the hard way.</div></div>
+            <div class="who-card"><div class="who-icon">🏪</div><div class="who-title">You run an e-commerce brand</div><div class="who-desc">Specific guidance on EU consumer expectations and channel mix for online retail.</div></div>
+            <div class="who-card"><div class="who-icon">🗣️</div><div class="who-title">You think "translation = localisation"</div><div class="who-desc">This guide explains why that assumption quietly kills EU launches — and what to do instead.</div></div>
+            <div class="who-card"><div class="who-icon">📋</div><div class="who-title">You want a checklist, not a strategy session</div><div class="who-desc">Self-serve, structured, actionable — without booking a consultation first.</div></div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">What's included</div>
+          <div class="get-list">
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Market-by-market breakdown</strong> — Netherlands, Belgium, France channel preferences and tone expectations.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Localisation vs. translation guide</strong> — what actually needs to adapt beyond language.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>GDPR-aware marketing checklist</strong> — practical compliance notes for tracking and email.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Common entry mistakes</strong> — real patterns CML has seen kill EU launches.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Step-by-step launch checklist</strong> — a sequence to follow, not just things to know.</span></div>
+          </div>
+        </div>
+        <div class="payment-block">
+          <div class="payment-header">
+            <div class="payment-price-block">
+              <div class="payment-price-label">One-time investment</div>
+              <div class="payment-price-main"><sup>€</sup>49</div>
+              <div class="payment-price-note">Instant download · No subscription</div>
+            </div>
+            <div class="payment-includes">
+              <div class="payment-includes-label">Includes</div>
+              <div class="payment-includes-items">
+                <div class="payment-includes-item">20-page strategic PDF guide</div>
+                <div class="payment-includes-item">3-market breakdown</div>
+                <div class="payment-includes-item">Your link via email</div>
+              </div>
+            </div>
+          </div>
+          <div id="form-wrap-eu">
+            <div class="modal-section-title" style="margin-bottom:20px;">Your details</div>
+            <div class="payment-form">
+              <div class="form-group full">
+                <label class="form-label">Email address <span class="required">*</span></label>
+                <input type="email" class="form-input" id="email-eu" placeholder="your@email.com" required />
+                <div class="form-note" style="margin-top:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,255,240,0.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  Your download link will be sent here within minutes of payment.
+                </div>
+              </div>
+              <button class="pay-btn" onclick="handlePaymentFor('eu', 49)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <span>Get Access — €49<span class="pay-btn-sub">You'll receive your link within minutes</span></span>
+              </button>
+            </div>
+          </div>
+          <div class="payment-success" id="success-eu">
+            <div class="success-icon">🚀</div>
+            <div class="success-title">You're in orbit.</div>
+            <div class="success-body">Your access link is on its way to <span class="success-email" id="success-email-eu"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-express" style="display:none;">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="modal-hero" style="background:linear-gradient(135deg,#1a0828 0%,#06091a 100%);">
+        <div class="modal-badge-row">
+          <span class="product-badge" style="color:var(--rose);border-color:rgba(237,62,97,.3);">Mini-Service</span>
+          <span class="product-badge badge-digital">Personal Review</span>
+        </div>
+        <div class="modal-title">Express <span class="accent-rose">Brand Check</span></div>
+        <div class="modal-tagline">Not a template — a real human review. Fill out a short questionnaire about your brand and channels, and get back a written expert analysis within 48 hours.</div>
+        <div class="modal-stats-row">
+          <div class="modal-stat"><div class="modal-stat-val">48h</div><div class="modal-stat-label">Turnaround</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">1:1</div><div class="modal-stat-label">Personal review</div></div>
+          <div class="modal-stat"><div class="modal-stat-val">€69</div><div class="modal-stat-label">One-time</div></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <div class="modal-section-title">What it is</div>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);margin-bottom:16px;">Sometimes a template isn't enough — you need a second pair of trained eyes looking at your specific brand and saying exactly what's working and what isn't. The Express Brand Check is that, without the commitment of a full audit or a sales call.</p>
+          <p style="font-size:15px;line-height:1.85;color:rgba(220,220,220,.65);">You answer 5–7 focused questions about your brand, goals, and current channels. Within 48 hours, you receive a written review from the CML team — specific, actionable, and honest. No generic checklist, no upsell pressure — just a real assessment.</p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">This is for you if</div>
+          <div class="who-grid">
+            <div class="who-card"><div class="who-icon">🤔</div><div class="who-title">You're not ready for a full audit</div><div class="who-desc">€490 feels like a big first step — this is a lower-commitment way to get real expert eyes on your brand.</div></div>
+            <div class="who-card"><div class="who-icon">⚡</div><div class="who-title">You want a fast, honest opinion</div><div class="who-desc">No 30-minute call needed — just answer questions in writing and get a written answer back.</div></div>
+            <div class="who-card"><div class="who-icon">🧭</div><div class="who-title">You're deciding your next move</div><div class="who-desc">Not sure if you need an audit, a strategy session, or just a few tweaks — this review tells you.</div></div>
+            <div class="who-card"><div class="who-icon">💬</div><div class="who-title">You prefer written feedback</div><div class="who-desc">Something you can read, re-read, and reference — rather than a call you half-remember.</div></div>
+          </div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-title">What's included</div>
+          <div class="get-list">
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>5-7 question brand questionnaire</strong> — focused on your goals, channels, and current challenges.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Written expert review</strong> — delivered by the CML team within 48 hours.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>3 specific, actionable recommendations</strong> — not generic advice, tailored to what you shared.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>Clear next-step guidance</strong> — what to focus on first, and what to leave for later.</span></div>
+            <div class="get-item"><span class="get-check">✓</span><span class="get-text"><strong>€69 credited toward a full audit</strong> — if you decide to go further within 30 days.</span></div>
+          </div>
+        </div>
+        <div class="payment-block">
+          <div class="payment-header">
+            <div class="payment-price-block">
+              <div class="payment-price-label">One-time investment</div>
+              <div class="payment-price-main"><sup>€</sup>69</div>
+              <div class="payment-price-note">48-hour turnaround · Credited toward a full audit</div>
+            </div>
+            <div class="payment-includes">
+              <div class="payment-includes-label">Includes</div>
+              <div class="payment-includes-items">
+                <div class="payment-includes-item">Written expert review</div>
+                <div class="payment-includes-item">3 actionable recommendations</div>
+                <div class="payment-includes-item">Delivered via email</div>
+              </div>
+            </div>
+          </div>
+          <div id="form-wrap-express">
+            <div class="modal-section-title" style="margin-bottom:20px;">Your details</div>
+            <div class="payment-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Name <span class="required">*</span></label>
+                  <input type="text" class="form-input" id="name-express" placeholder="Your name" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Brand / Instagram handle</label>
+                  <input type="text" class="form-input" id="handle-express" placeholder="@yourbrand" />
+                </div>
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Email address <span class="required">*</span></label>
+                <input type="email" class="form-input" id="email-express" placeholder="your@email.com" required />
+                <div class="form-note" style="margin-top:8px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(237,62,97,0.5)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  After payment, you'll receive the brand questionnaire at this email — your review arrives within 48h of submitting it.
+                </div>
+              </div>
+              <button class="pay-btn" style="background:var(--rose);" onclick="handlePaymentFor('express', 69)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <span>Book Express Check — €69<span class="pay-btn-sub">Questionnaire sent immediately after payment</span></span>
+              </button>
+            </div>
+          </div>
+          <div class="payment-success" id="success-express">
+            <div class="success-icon">📝</div>
+            <div class="success-title">You're booked.</div>
+            <div class="success-body">Your brand questionnaire is on its way to <span class="success-email" id="success-email-express"></span></div>
+            <div class="success-body" style="margin-top:8px;">Fill it out and your written review arrives within 48 hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div><!-- /modal-overlay -->
+
+<!-- STAR FIELD -->
+<script>
+(function() {
+  const canvas = document.getElementById('star-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize() { canvas.width = window.innerWidth; canvas.height = document.body.scrollHeight; }
+  function init() {
+    stars = [];
+    const count = Math.floor((canvas.width * canvas.height) / 5000);
+    for (let i = 0; i < count; i++) {
+      stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.8, base: Math.random()*0.6+0.05, opacity: 0, phase: Math.random()*Math.PI*2, speed: Math.random()*0.008+0.002 });
+    }
+  }
+  function draw(t) {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    stars.forEach(s => {
+      s.opacity = s.base + Math.sin(s.phase + t*s.speed)*0.3;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle = `rgba(200,210,255,${Math.max(0,s.opacity)})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener('resize', ()=>{ resize(); init(); });
+  init();
+  requestAnimationFrame(draw);
+})();
+
+// NAV
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+
+// Mobile menu
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const links = document.querySelector('.nav-links');
+  if (menuOpen) {
+    links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:rgba(11,15,43,0.98);padding:24px 32px;gap:24px;backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,255,240,0.1);';
+  } else { links.style.cssText = ''; }
+}
+
+// Reveal
+const revealEls = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => ro.observe(el));
+
+// Filter
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card => {
+    if (cat === 'all' || card.dataset.category === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Modal
+function openModal(modalId) {
+  modalId = modalId || 'modal-smm';
+  document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+  const target = document.getElementById(modalId);
+  if (target) target.style.display = 'block';
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Payment handler
+function handlePayment() {
+  const name = document.getElementById('pay-name').value.trim();
+  const email = document.getElementById('pay-email').value.trim();
+  const emailInput = document.getElementById('pay-email');
+  const nameInput = document.getElementById('pay-name');
+
+  // Validate
+  let valid = true;
+  if (!name) { nameInput.classList.add('error'); valid = false; } else { nameInput.classList.remove('error'); }
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    emailInput.classList.add('error'); valid = false;
+  } else { emailInput.classList.remove('error'); }
+  if (!valid) { emailInput.focus(); return; }
+
+  // Show loading
+  const btn = document.querySelector('.pay-btn');
+  const origHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Processing...';
+
+  // ⚡ REPLACE THIS URL with your actual payment link (Stripe, Gumroad, Lemon Squeezy, etc.)
+  // The payment system should collect email and send the access link automatically.
+  // For now this simulates the flow — wire up your real payment processor here:
+  setTimeout(() => {
+    // On real integration: redirect to payment page with email pre-filled
+    // window.open(`https://your-payment-link.com?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`, '_blank');
+    
+    // Show success
+    document.getElementById('payment-form-wrap').style.display = 'none';
+    document.getElementById('payment-success').style.display = 'block';
+    document.getElementById('success-email-display').textContent = email;
+    btn.disabled = false;
+    btn.innerHTML = origHTML;
+  }, 1800);
+}
+
+// ── Universal payment handler for all paid templates/guides ──
+function handlePaymentFor(productId, price) {
+  const emailInput = document.getElementById('email-' + productId);
+  const email = emailInput.value.trim();
+  let valid = true;
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    emailInput.classList.add('error'); valid = false;
+  } else {
+    emailInput.classList.remove('error');
+  }
+
+  // Express Brand Check also requires name
+  const nameInput = document.getElementById('name-' + productId);
+  if (nameInput) {
+    if (!nameInput.value.trim()) { nameInput.classList.add('error'); valid = false; }
+    else { nameInput.classList.remove('error'); }
+  }
+
+  if (!valid) { emailInput.focus(); return; }
+
+  const formWrap = document.getElementById('form-wrap-' + productId);
+  const btn = formWrap.querySelector('.pay-btn');
+  const origHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Processing...';
+
+  // ⚡ REPLACE WITH REAL PAYMENT LINKS PER PRODUCT (Stripe/Gumroad/Lemon Squeezy)
+  // Example: window.open(`https://buy.stripe.com/YOUR_LINK?prefilled_email=${encodeURIComponent(email)}`, '_blank');
+  setTimeout(() => {
+    formWrap.style.display = 'none';
+    const successEl = document.getElementById('success-' + productId);
+    if (successEl) successEl.style.display = 'block';
+    const emailDisplay = document.getElementById('success-email-' + productId);
+    if (emailDisplay) emailDisplay.textContent = email;
+    btn.disabled = false;
+    btn.innerHTML = origHTML;
+  }, 1800);
+}
+
+// ── Free product access handler (Social Launch Strategy) ──
+function handleFreeAccess(productId) {
+  const emailInput = document.getElementById('email-' + productId);
+  const email = emailInput.value.trim();
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    emailInput.classList.add('error');
+    emailInput.focus();
+    return;
+  }
+  emailInput.classList.remove('error');
+
+  const formWrap = document.getElementById('form-wrap-' + productId);
+  const btn = formWrap.querySelector('.pay-btn');
+  const origHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending...';
+
+  // ⚡ This should trigger an email automation (no payment) — e.g. via a form service or Zapier webhook
+  setTimeout(() => {
+    formWrap.style.display = 'none';
+    const successEl = document.getElementById('success-' + productId);
+    if (successEl) successEl.style.display = 'block';
+    const emailDisplay = document.getElementById('success-email-' + productId);
+    if (emailDisplay) emailDisplay.textContent = email;
+    btn.disabled = false;
+    btn.innerHTML = origHTML;
+  }, 1400);
+}
+
+// Notify
+function handleNotify() {
+  const input = document.getElementById('notify-email');
+  const email = input.value.trim();
+  if (email && email.includes('@')) {
+    const btn = document.querySelector('.notify-btn');
+    btn.textContent = '✓ You\'re on the list';
+    btn.style.background = '#22c55e';
+    input.value = '';
+    setTimeout(() => { btn.textContent = 'Notify me →'; btn.style.background = ''; }, 3000);
+  }
+}
+</script>
+
+</body>
+</html>
