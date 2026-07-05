@@ -1,11 +1,5 @@
 {
-  "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/celar.html" },
-    { "source": "/cases", "destination": "/celar_cases.html" },
-    { "source": "/products", "destination": "/celar_products.html" },
-    { "source": "/privacy", "destination": "/celar_privacy.html" }
-  ],
-  "redirects": [],
-  "headers": []
+    { "source": "/", "destination": "/celar.html" }
+  ]
 }
