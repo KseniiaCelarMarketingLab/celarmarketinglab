@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Lost in Space · Celar Marketing Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230B0F2B'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%2300FFF0' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%2300FFF0'/%3E%3C/svg%3E">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--navy:#0B0F2B;--cyan:#00FFF0;--purple:#6502A2;--rose:#ED3E61;--silver:#DCDCDC}
+  body{font-family:'Poppins',sans-serif;background:var(--navy);color:var(--silver);
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;padding:40px 24px;overflow:hidden;}
+  canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+  .content{position:relative;z-index:1;max-width:520px;}
+  .err-code{font-family:'Space Grotesk',sans-serif;font-size:clamp(80px,18vw,140px);
+    font-weight:700;line-height:1;letter-spacing:-0.02em;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    margin-bottom:8px;}
+  .err-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,4vw,28px);
+    font-weight:600;color:#fff;margin-bottom:16px;}
+  .err-sub{font-size:15px;line-height:1.7;color:rgba(220,220,220,0.55);margin-bottom:40px;}
+  .btn-home{display:inline-block;padding:14px 36px;border-radius:30px;
+    background:var(--purple);color:#fff;font-size:15px;font-weight:600;
+    text-decoration:none;font-family:'Space Grotesk',sans-serif;
+    transition:all 0.3s;box-shadow:0 4px 24px rgba(101,2,162,0.35);}
+  .btn-home:hover{background:#8510cc;transform:translateY(-2px);
+    box-shadow:0 8px 32px rgba(101,2,162,0.5);}
+  .links{margin-top:24px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
+  .link-sm{font-size:13px;color:rgba(0,255,240,0.6);text-decoration:none;
+    transition:color 0.2s;}
+  .link-sm:hover{color:#00FFF0;}
+  .rocket-wrap{font-size:clamp(40px,10vw,80px);margin-bottom:24px;
+    animation:rocketFloat 3s ease-in-out infinite;}
+  @keyframes rocketFloat{0%,100%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-12px) rotate(3deg);}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="content">
+  <div class="rocket-wrap">🚀</div>
+  <div class="err-code">404</div>
+  <div class="err-title">Lost in orbit</div>
+  <p class="err-sub">This page drifted off course. The URL might have changed, or the page never existed in this galaxy.</p>
+  <a href="celar.html" class="btn-home">← Back to home base</a>
+  <div class="links">
+    <a href="celar_cases.html" class="link-sm">View cases</a>
+    <a href="celar_products.html" class="link-sm">Browse products</a>
+    <a href="https://calendly.com/kseniia-kklsh/30min" target="_blank" class="link-sm">Book a call</a>
+  </div>
+</div>
+<script>
+const c=document.getElementById('stars'),ctx=c.getContext('2d');
+function resize(){c.width=innerWidth;c.height=innerHeight;draw();}
+function draw(){
+  ctx.clearRect(0,0,c.width,c.height);
+  const g=ctx.createRadialGradient(c.width/2,c.height/2,0,c.width/2,c.height/2,c.width*0.8);
+  g.addColorStop(0,'#0a0818');g.addColorStop(1,'#000');
+  ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);
+  for(let i=0;i<180;i++){
+    const x=Math.random()*c.width,y=Math.random()*c.height,r=Math.random()*1.4+0.2;
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(200,210,255,${Math.random()*0.7+0.15})`;ctx.fill();
+  }
+}
+resize();window.addEventListener('resize',resize);
+</script>
+</body>
+</html>
