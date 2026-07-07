@@ -305,7 +305,7 @@ canvas#cv{position:fixed;inset:0;z-index:0;pointer-events:none}
 
   if(!token || !/^[a-f0-9]{64}$/.test(token)){
     // No token — redirect to buy page
-    window.location.replace('https://celarlab.com/celar_products.html#modal-smm');
+    window.location.replace('https://celarmarketinglab.com/celar_products.html#modal-smm');
     return;
   }
 
@@ -319,7 +319,7 @@ canvas#cv{position:fixed;inset:0;z-index:0;pointer-events:none}
     .then(function(data){
       if(!data.valid){
         localStorage.removeItem('smm_access_token');
-        window.location.replace('https://celarlab.com/celar_products.html#modal-smm');
+        window.location.replace('https://celarmarketinglab.com/celar_products.html#modal-smm');
       }
     })
     .catch(function(){
