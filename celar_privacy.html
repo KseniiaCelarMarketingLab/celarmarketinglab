@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Celar Marketing Lab</title>
+  <meta name="description" content="GDPR privacy policy for Celar Marketing Lab, a Netherlands-based marketing studio serving EU clients.">
+  <link rel="canonical" href="https://celarmarketinglab.com/celar_privacy.html">
+  <meta property="og:title" content="Privacy Policy — Celar Marketing Lab">
+  <meta property="og:description" content="GDPR privacy policy for Celar Marketing Lab, a Netherlands-based marketing studio serving EU clients.">
+  <meta property="og:image" content="https://celarmarketinglab.com/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://celarmarketinglab.com/celar_privacy.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%2300FFF0'/%3E%3Cstop offset='1' stop-color='%23ED3E61'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='url(%23g)' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23DCDCDC'/%3E%3Ccircle cx='4' cy='32' r='2.4' fill='%23DCDCDC'/%3E%3Ccircle cx='60' cy='32' r='2.4' fill='%23DCDCDC'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MarketingAgency","name":"Celar Marketing Lab","url":"https://celarmarketinglab.com","address":{"@type":"PostalAddress","addressCountry":"NL"},"areaServed":["NL","BE","DE","FR"],"description":"GDPR privacy policy for Celar Marketing Lab, a Netherlands-based marketing studio serving EU clients."}
+  </script>
+  <style>
+
+    :root{
+      --navy:#0B0F2B; --cyan:#00FFF0; --purple:#6502A2; --rose:#ED3E61; --lime:#D4FF00; --silver:#DCDCDC;
+      --navy-2:#12173d; --navy-3:#181e4a;
+      --font-display:'Space Grotesk', sans-serif; --font-body:'Poppins', sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+    body{
+      background:
+        radial-gradient(ellipse 900px 700px at 8% 0%, rgba(237,62,97,.10), transparent 60%),
+        radial-gradient(ellipse 800px 900px at 100% 30%, rgba(101,2,162,.16), transparent 55%),
+        radial-gradient(ellipse 700px 600px at 15% 95%, rgba(0,255,240,.08), transparent 60%),
+        var(--navy);
+      background-attachment:fixed;
+      color:var(--silver); font-family:var(--font-body);
+      font-weight:400; line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit; text-decoration:none;}
+    ul{list-style:none;}
+    img{max-width:100%; display:block;}
+    button{font-family:inherit; cursor:pointer;}
+    ::selection{background:var(--purple); color:#fff;}
+    :focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+    h1,h2,h3,h4{font-family:var(--font-display); font-weight:700; color:#fff; letter-spacing:-0.01em;}
+    .eyebrow{
+      font-family:var(--font-display); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--cyan); font-weight:600; display:inline-flex; align-items:center; gap:10px;
+      text-shadow:0 0 14px rgba(0,255,240,.35);
+    }
+    .eyebrow::before{content:'';width:22px;height:1px;background:var(--cyan);box-shadow:0 0 8px rgba(0,255,240,.6);display:inline-block;}
+    .eyebrow-rose{color:var(--rose); text-shadow:0 0 14px rgba(237,62,97,.4);}
+    .eyebrow-rose::before{background:var(--rose); box-shadow:0 0 8px rgba(237,62,97,.6);}
+    .glow-cyan{text-shadow:0 0 26px rgba(0,255,240,.35), 0 0 60px rgba(0,255,240,.12);}
+    .glow-rose{text-shadow:0 0 26px rgba(237,62,97,.35), 0 0 60px rgba(237,62,97,.12);}
+    .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+    section{position:relative; padding:120px 0;}
+    @media (max-width:768px){ section{padding:80px 0;} }
+
+    /* ---------- Starfield canvas backdrop ---------- */
+    #starfield{position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:.6;}
+
+    /* ---------- Navbar ---------- */
+    #navbar{
+      position:fixed; top:0; left:0; right:0; z-index:900;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 32px; background:rgba(11,15,43,.55); backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(220,220,220,.08);
+      transition:background .3s;
+    }
+    .brand{display:flex; align-items:center; gap:10px;}
+    .brand-mark{filter:drop-shadow(0 0 6px rgba(0,255,240,.45));}
+    .brand-text{font-family:var(--font-display); font-weight:700; font-size:.92rem; letter-spacing:.06em; color:#fff;}
+    .brand-text em{display:block; font-style:normal; font-weight:400; font-size:.56rem; letter-spacing:.32em; color:var(--silver); opacity:.75;}
+    .nav-links{display:flex; align-items:center; gap:30px;}
+    .nav-links a{font-size:.86rem; font-weight:500; color:var(--silver); position:relative; transition:color .25s;}
+    .nav-links a:hover{color:var(--cyan); text-shadow:0 0 10px rgba(0,255,240,.5);}
+    .nav-links a.cta-link{
+      background:linear-gradient(135deg,var(--cyan),var(--purple) 55%,var(--rose)); color:#fff; font-weight:600; text-shadow:0 1px 3px rgba(4,8,28,.35);
+      padding:9px 18px; border-radius:2px; transition:filter .25s, box-shadow .25s;
+    }
+    .nav-links a.cta-link:hover{color:#fff; filter:brightness(1.1); box-shadow:0 0 20px rgba(237,62,97,.4);}
+    .nav-toggle{display:none; background:none; border:none; width:30px; height:22px; position:relative; z-index:1000;}
+    .nav-toggle span{position:absolute; left:0; width:100%; height:2px; background:var(--silver); transition:.3s;}
+    .nav-toggle span:nth-child(1){top:0;} .nav-toggle span:nth-child(2){top:10px;} .nav-toggle span:nth-child(3){top:20px;}
+    .nav-toggle.active span:nth-child(1){transform:translateY(10px) rotate(45deg);}
+    .nav-toggle.active span:nth-child(2){opacity:0;}
+    .nav-toggle.active span:nth-child(3){transform:translateY(-10px) rotate(-45deg);}
+    @media (max-width:900px){
+      .nav-links{
+        position:fixed; inset:0 0 0 auto; width:78%; max-width:340px; height:100vh;
+        background:rgba(11,15,43,.98); backdrop-filter:blur(20px); flex-direction:column;
+        justify-content:center; gap:34px; transform:translateX(100%); transition:transform .4s ease;
+      }
+      .nav-links.open{transform:translateX(0);}
+      .nav-toggle{display:block;}
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:.92rem;
+      padding:15px 30px; border-radius:2px; border:1px solid transparent; transition:transform .25s, filter .25s;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px);}
+    .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--purple) 55%,var(--rose)); color:#fff; text-shadow:0 1px 3px rgba(4,8,28,.35); box-shadow:0 0 0 rgba(0,0,0,0);}
+    .btn-primary:hover{filter:brightness(1.14); box-shadow:0 0 28px rgba(237,62,97,.35), 0 0 20px rgba(0,255,240,.25);}
+    .btn-ghost{border-color:rgba(220,220,220,.35); color:var(--silver); transition:transform .25s, border-color .25s, box-shadow .25s, color .25s;}
+    .btn-ghost:hover{border-color:var(--rose); color:var(--rose); box-shadow:0 0 22px rgba(237,62,97,.25);}
+    .btn-block{width:100%; justify-content:center;}
+
+    /* ---------- Reveal on scroll ---------- */
+    .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
+    .reveal.in{opacity:1; transform:translateY(0);}
+
+    /* ---------- Footer ---------- */
+    footer{padding:60px 0 30px; border-top:1px solid rgba(220,220,220,.08); position:relative; z-index:2;}
+    .footer-top{display:flex; flex-wrap:wrap; justify-content:space-between; gap:30px; margin-bottom:36px;}
+    .footer-social{display:flex; gap:16px;}
+    .footer-social a{width:38px; height:38px; border:1px solid rgba(220,220,220,.2); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:.25s;}
+    .footer-social a:hover{border-color:var(--cyan); color:var(--cyan);}
+    .footer-bottom{display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; font-size:.82rem; opacity:.65;}
+    .footer-bottom a:hover{color:var(--cyan);}
+
+    /* ---------- Cookie banner ---------- */
+    #cookie-banner{
+      position:fixed; bottom:0; left:0; right:0; z-index:9998;
+      background:rgba(11,15,43,0.97); border-top:1px solid rgba(101,2,162,0.3);
+      padding:14px 24px 18px; display:flex; flex-direction:column; align-items:center;
+      gap:12px; backdrop-filter:blur(12px); transform:translateY(100%);
+      transition:transform 0.4s ease-out; text-align:center;
+    }
+    #cookie-banner.show{transform:translateY(0);}
+    #cookie-banner p{font-size:.82rem; max-width:640px; opacity:.85;}
+    #cookie-banner a{color:var(--cyan);}
+    .cookie-btns{display:flex; gap:12px;}
+    .cookie-btns button{padding:9px 20px; border-radius:2px; font-size:.8rem; font-weight:600; border:1px solid rgba(220,220,220,.3); background:transparent; color:var(--silver);}
+    .cookie-btns button.accept{background:linear-gradient(135deg,var(--cyan),var(--purple) 55%,var(--rose)); color:#fff; text-shadow:0 1px 3px rgba(4,8,28,.35); border:none;}
+
+    /* ---------- Scroll to top ---------- */
+    #scroll-top{
+      position:fixed; right:22px; bottom:22px; width:44px; height:44px; border-radius:2px;
+      background:rgba(11,15,43,.9); border:1px solid var(--cyan); color:var(--cyan);
+      display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none;
+      transform:translateY(10px); transition:.3s; z-index:850; box-shadow:0 0 18px rgba(0,255,240,.25);
+    }
+    #scroll-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+    #scroll-top:hover{border-color:var(--rose); color:var(--rose); box-shadow:0 0 18px rgba(237,62,97,.35);}
+
+    /* ---------- Sticky mobile CTA ---------- */
+    #sticky-cta{
+      position:fixed; left:16px; right:16px; bottom:16px; z-index:860; display:none;
+      background:linear-gradient(135deg,var(--cyan),var(--purple) 55%,var(--rose)); color:#fff; text-shadow:0 1px 3px rgba(4,8,28,.35);
+      text-align:center; padding:14px; border-radius:2px; font-weight:600; font-size:.88rem;
+      box-shadow:0 10px 30px rgba(0,0,0,.4), 0 0 26px rgba(237,62,97,.3); transform:translateY(120%); transition:transform .35s;
+    }
+    @media (max-width:768px){ #sticky-cta{display:block;} }
+    #sticky-cta.show{transform:translateY(0);}
+
+    /* ---------- Preloader ---------- */
+    #preloader{
+      position:fixed; inset:0; z-index:99999; background:var(--navy); display:flex; flex-direction:column;
+      align-items:center; justify-content:center; transition:opacity .6s ease, visibility .6s ease;
+    }
+    #preloader.hide{opacity:0; visibility:hidden;}
+    #pre-canvas{position:absolute; inset:0; width:100%; height:100%;}
+    .rocket-wrap{position:relative; width:130px; height:230px; z-index:2;}
+    .rocket-wrap svg{position:absolute; left:50%; transform:translateX(-50%); animation:rocketFloat 2.4s ease-in-out infinite;}
+    @keyframes rocketFloat{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-10px);}}
+    .rocket-wrap .thrust-flame, .rocket-wrap .thrust-flame-core{animation:flamePulse .35s ease-in-out infinite alternate;}
+    @keyframes flamePulse{from{opacity:.7; transform:scaleY(.9);}to{opacity:1; transform:scaleY(1.08);}}
+    .pre-progress-wrap{width:220px; margin-top:26px; z-index:2;}
+    .pre-label{font-family:var(--font-display); font-size:.68rem; letter-spacing:.3em; text-align:center; color:var(--silver); margin-bottom:10px;}
+    .pre-bar{height:2px; width:100%; background:rgba(220,220,220,.15); border-radius:2px; overflow:hidden;}
+    .pre-bar-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--cyan),var(--purple),var(--rose)); transition:width .2s linear;}
+    #pre-skip{margin-top:22px; z-index:2; background:none; border:1px solid rgba(220,220,220,.25); color:var(--silver); padding:8px 18px; border-radius:2px; font-size:.75rem; letter-spacing:.05em;}
+    #pre-skip:hover{border-color:var(--cyan); color:var(--cyan);}
+
+    /* ---------- Badges / chips ---------- */
+    .chip-row{display:flex; flex-wrap:wrap; gap:10px;}
+    .chip{
+      font-family:var(--font-display); font-size:.68rem; letter-spacing:.1em; font-weight:600;
+      padding:7px 14px; border:1px solid rgba(220,220,220,.2); border-radius:2px; color:var(--silver); opacity:.85;
+    }
+    .chip-rose{border-color:rgba(237,62,97,.4); color:var(--rose); opacity:1; box-shadow:0 0 12px rgba(237,62,97,.15);}
+    .chip-cyan{border-color:rgba(0,255,240,.4); color:var(--cyan); opacity:1; box-shadow:0 0 12px rgba(0,255,240,.15);}
+
+
+    #page-hero{padding-top:190px; padding-bottom:40px; text-align:center; position:relative; z-index:2;}
+    #page-hero h1{font-size:clamp(2rem,4vw,3rem); margin-top:18px;}
+    #policy{padding-top:20px; padding-bottom:100px;}
+    .policy-body{max-width:760px; margin:0 auto;}
+    .policy-body h2{font-size:1.3rem; margin:44px 0 14px;}
+    .policy-body h2:first-child{margin-top:0;}
+    .policy-body p{opacity:.82; margin-bottom:14px; font-size:.95rem;}
+    .policy-body ul{margin:0 0 14px 0; display:flex; flex-direction:column; gap:8px;}
+    .policy-body ul li{opacity:.82; font-size:.95rem; padding-left:18px; position:relative;}
+    .policy-body ul li::before{content:'\2014'; position:absolute; left:0; opacity:.5;}
+    .policy-body a{color:var(--cyan);}
+    .updated-note{opacity:.55; font-size:.82rem; margin-bottom:30px;}
+
+  </style>
+</head>
+<body>
+  <div id="preloader">
+    <canvas id="pre-canvas"></canvas>
+    <div class="rocket-wrap"><svg width="96" height="220" viewBox="0 0 96 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glowHalo" cx="50%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#00FFF0" stop-opacity=".55"/>
+      <stop offset="55%" stop-color="#6502A2" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#6502A2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hullGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5F5FA"/>
+      <stop offset="55%" stop-color="#DADAE4"/>
+      <stop offset="100%" stop-color="#A9A9B8"/>
+    </linearGradient>
+    <linearGradient id="hullShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#00000055"/>
+    </linearGradient>
+    <radialGradient id="windowGlow" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#EAFFFE"/>
+      <stop offset="45%" stop-color="#00FFF0"/>
+      <stop offset="100%" stop-color="#6502A2"/>
+    </radialGradient>
+    <linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#D4FF00"/>
+      <stop offset="45%" stop-color="#00FFF0"/>
+      <stop offset="100%" stop-color="#6502A2" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softBlur" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="tightBlur" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="2.4"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="48" cy="86" rx="46" ry="52" fill="url(#glowHalo)" filter="url(#softBlur)"/>
+
+  <ellipse class="thrust-flame" cx="48" cy="196" rx="13" ry="26" fill="url(#flameGrad)" filter="url(#tightBlur)" opacity=".9"/>
+  <ellipse class="thrust-flame-core" cx="48" cy="184" rx="6" ry="14" fill="#D4FF00" filter="url(#tightBlur)"/>
+
+  <ellipse cx="48" cy="202" rx="20" ry="7" fill="#6502A2" opacity=".5" filter="url(#tightBlur)"/>
+
+  <path d="M48 8C64 24 72 52 72 96V150H24V96C24 52 32 24 48 8Z" fill="url(#hullGrad)" stroke="#8C8C9C" stroke-width="1"/>
+  <path d="M48 8C64 24 72 52 72 96V150H48V8Z" fill="url(#hullShade)"/>
+
+  <path d="M24 128L4 172H24V128Z" fill="#ED3E61"/>
+  <path d="M24 128L4 172H24V128Z" fill="#000" opacity=".12"/>
+  <path d="M72 128L92 172H72V128Z" fill="#6502A2"/>
+  <path d="M72 128L92 172H72V128Z" fill="#EAEAF2" opacity=".15"/>
+
+  <rect x="20" y="104" width="56" height="12" fill="#ED3E61"/>
+  <rect x="20" y="104" width="56" height="4" fill="#fff" opacity=".25"/>
+
+  <circle cx="48" cy="76" r="17" fill="#0B0F2B" stroke="url(#windowGlow)" stroke-width="3.4"/>
+  <circle cx="48" cy="76" r="17" fill="none" stroke="#00FFF0" stroke-width="1" opacity=".6" filter="url(#tightBlur)"/>
+  <circle cx="48" cy="76" r="9" fill="url(#windowGlow)" opacity=".85"/>
+  <circle cx="43" cy="71" r="3" fill="#ffffff" opacity=".65"/>
+
+  <path d="M30 150H66L60 172C60 172 54 180 48 180C42 180 36 172 36 172L30 150Z" fill="#C7C7D2"/>
+  <path d="M30 150H66L60 172C60 172 54 180 48 180C42 180 36 172 36 172L30 150Z" fill="url(#hullShade)" opacity=".4"/>
+
+  <g class="thrust-flame">
+    <path d="M40 182C40 182 44 202 48 202C52 202 56 182 56 182C56 182 52 192 48 192C44 192 40 182 40 182Z" fill="url(#flameGrad)">
+      <animate attributeName="d" dur="0.45s" repeatCount="indefinite"
+        values="M40 182C40 182 44 202 48 202C52 202 56 182 56 182C56 182 52 192 48 192C44 192 40 182 40 182Z;
+                M40 182C40 182 44 214 48 214C52 214 56 182 56 182C56 182 52 196 48 196C44 196 40 182 40 182Z;
+                M40 182C40 182 44 202 48 202C52 202 56 182 56 182C56 182 52 192 48 192C44 192 40 182 40 182Z"/>
+    </path>
+  </g>
+</svg></div>
+    <div class="pre-progress-wrap">
+      <div class="pre-label">CELAR MARKETING LAB</div>
+      <div class="pre-bar"><div class="pre-bar-fill" id="pre-bar-fill"></div></div>
+    </div>
+    <button id="pre-skip">Skip</button>
+  </div>
+  <canvas id="starfield"></canvas>
+  <nav id="navbar">
+    <a href="celar.html" class="brand" aria-label="Celar Marketing Lab home">
+        <svg class="brand-mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="logoGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#00FFF0"/>
+          <stop offset="0.5" stop-color="#DCDCDC"/>
+          <stop offset="1" stop-color="#ED3E61"/>
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="27" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="17" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="7" fill="none" stroke="#DCDCDC" stroke-width="2.5"/>
+      <circle cx="2.5" cy="32" r="2.2" fill="#DCDCDC"/>
+      <circle cx="61.5" cy="32" r="2.2" fill="#DCDCDC"/>
+    </svg>
+        <span class="brand-text">CELAR <em>MARKETING LAB</em></span>
+      </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="celar.html#about">About</a></li>
+      <li><a href="celar_services.html">Services</a></li>
+      <li><a href="celar.html#process">How we work</a></li>
+      <li><a href="celar_cases.html">Cases</a></li>
+      <li><a href="celar_products.html">Products</a></li>
+      <li><a href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" rel="noopener" class="cta-link">Book a call</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+  <section id="page-hero">
+    <div class="container reveal in">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+    </div>
+  </section>
+  <section id="policy">
+    <div class="container"><div class="policy-body">
+      <p class="updated-note">Last updated: July 2026</p>
+
+      <h2>Who we are</h2>
+      <p>Celar Marketing Lab (&ldquo;CML&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is a marketing studio based in the Netherlands, operating within the European Union. This policy explains how we collect, use and protect personal data when you visit celarmarketinglab.com or interact with our services.</p>
+
+      <h2>What data we collect</h2>
+      <ul>
+        <li>Contact form submissions: name, email, website/Instagram handle, and message content</li>
+        <li>Quiz responses: your answers and, if provided, your email address</li>
+        <li>Purchase data processed via Stripe when you buy a digital product</li>
+        <li>Cookie preferences, stored locally in your browser</li>
+      </ul>
+
+      <h2>Legal basis for processing</h2>
+      <p>Under GDPR, we process your data based on one or more of the following: your <strong>consent</strong> (e.g. cookie preferences, quiz email), the performance of a <strong>contract</strong> (e.g. delivering a purchased product), or our <strong>legitimate interest</strong> in responding to enquiries and improving our services.</p>
+
+      <h2>Third parties we work with</h2>
+      <ul>
+        <li><strong>Stripe</strong> &mdash; payment processing for digital products</li>
+        <li><strong>Web3Forms</strong> &mdash; contact form and lead capture delivery</li>
+        <li><strong>Vercel</strong> &mdash; website hosting and deployment</li>
+        <li><strong>Calendly</strong> &mdash; call scheduling</li>
+        <li><strong>Google Fonts</strong> &mdash; typography delivery</li>
+      </ul>
+
+      <h2>Your rights</h2>
+      <p>Under GDPR you have the right to:</p>
+      <ul>
+        <li>Access the personal data we hold about you</li>
+        <li>Request correction of inaccurate data</li>
+        <li>Request erasure of your data</li>
+        <li>Restrict or object to certain processing</li>
+        <li>Request data portability</li>
+        <li>Withdraw consent at any time</li>
+        <li>Lodge a complaint with a supervisory authority</li>
+        <li>Not be subject to automated decision-making</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>For any privacy questions or requests, contact us at <a href="mailto:kseniia@celarlab.com">kseniia@celarlab.com</a>.</p>
+
+      <h2>Supervisory authority</h2>
+      <p>If you believe your data protection rights have been violated, you may lodge a complaint with the Dutch supervisory authority, the <strong>Autoriteit Persoonsgegevens</strong>.</p>
+    </div></div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="footer-top reveal">
+        <div>
+          <a href="celar.html" class="brand" aria-label="Celar Marketing Lab home">
+        <svg class="brand-mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="logoGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#00FFF0"/>
+          <stop offset="0.5" stop-color="#DCDCDC"/>
+          <stop offset="1" stop-color="#ED3E61"/>
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="27" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="17" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="7" fill="none" stroke="#DCDCDC" stroke-width="2.5"/>
+      <circle cx="2.5" cy="32" r="2.2" fill="#DCDCDC"/>
+      <circle cx="61.5" cy="32" r="2.2" fill="#DCDCDC"/>
+    </svg>
+        <span class="brand-text">CELAR <em>MARKETING LAB</em></span>
+      </a>
+          <p style="margin-top:14px;max-width:320px;font-size:.85rem;opacity:.7;">We build brand universes grounded in behavioral science &mdash; for EU businesses ready to stop blending in.</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/celar_marketing_lab?igsh=MTFmMmUzbWw3eGV6Mg==" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://www.linkedin.com/company/celar-marketing-lab/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4v16H4zM6 4a2 2 0 100 4 2 2 0 000-4zM11 10v10h4v-5.5c0-1.5 1-2.5 2.5-2.5s2.5 1 2.5 2.5V20h4v-6.5c0-3-1.8-5-4.5-5-2 0-3.2 1.1-4.5 2.6V10z"/></svg></a>
+          <a href="https://wa.me/31629475620?text=Hi%20Celar%20Marketing%20Lab%2C%20I%27d%20like%20to%20talk%20about%20my%20brand" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12a8 8 0 11-14.9-4L4 20l4.2-1.1A8 8 0 0120 12z"/></svg></a>
+          <a href="https://t.me/+31629475620" target="_blank" rel="noopener" aria-label="Telegram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3L2 11l6 2m14-10l-6 18-8-8m14-10L8 13"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Celar Marketing Lab &middot; Netherlands</span>
+        <a href="celar_privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+  <div id="cookie-banner">
+    <p>We use cookies to run this site and understand what&rsquo;s useful. No creepy tracking, no data sold. See our <a href="celar_privacy.html">Privacy Policy</a>.</p>
+    <div class="cookie-btns">
+      <button onclick="declineCookies()">Decline</button>
+      <button class="accept" onclick="acceptCookies()">Accept</button>
+    </div>
+  </div>
+  <button id="scroll-top" aria-label="Scroll to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <a id="sticky-cta" href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" rel="noopener">Book a call &rarr;</a>
+  <script>
+
+    // ---------- Starfield ----------
+    (function(){
+      const c=document.getElementById('starfield'); if(!c) return;
+      const ctx=c.getContext('2d'); let w,h,stars=[];
+      function resize(){w=c.width=window.innerWidth; h=c.height=window.innerHeight;
+        stars=Array.from({length:130},()=>{
+          const roll=Math.random();
+          const tint = roll<0.08 ? '0,255,240' : roll<0.14 ? '237,62,97' : '220,220,220';
+          return {x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3+.2,a:Math.random(),tint:tint};
+        });}
+      window.addEventListener('resize',resize); resize();
+      function draw(){ctx.clearRect(0,0,w,h);
+        stars.forEach(s=>{s.a+=0.006; const op=(Math.sin(s.a)+1)/2*.8+.1;
+          ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7); ctx.fillStyle='rgba('+s.tint+','+op+')'; ctx.fill();});
+        requestAnimationFrame(draw);}
+      draw();
+    })();
+
+    // ---------- Nav toggle ----------
+    function toggleNav(){
+      document.getElementById('nav-links').classList.toggle('open');
+      document.querySelector('.nav-toggle').classList.toggle('active');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+      document.getElementById('nav-links').classList.remove('open');
+      document.querySelector('.nav-toggle').classList.remove('active');
+    }));
+
+    // ---------- Reveal on scroll ----------
+    const revealObserver=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revealObserver.unobserve(e.target); } });
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+    // ---------- Cookie banner ----------
+    (function(){
+      const banner=document.getElementById('cookie-banner');
+      if(!banner) return;
+      const consent=localStorage.getItem('cml_cookie_consent');
+      if(!consent){ setTimeout(()=>banner.classList.add('show'),1800); }
+      window.acceptCookies=function(){ localStorage.setItem('cml_cookie_consent','accepted'); banner.classList.remove('show'); };
+      window.declineCookies=function(){ localStorage.setItem('cml_cookie_consent','declined'); banner.classList.remove('show'); };
+    })();
+
+    // ---------- Scroll to top + sticky CTA ----------
+    (function(){
+      const top=document.getElementById('scroll-top');
+      const sticky=document.getElementById('sticky-cta');
+      const contact=document.getElementById('contact');
+      window.addEventListener('scroll',()=>{
+        if(top){ window.scrollY>400 ? top.classList.add('show') : top.classList.remove('show'); }
+        if(sticky){
+          let hideForContact=false;
+          if(contact){ const r=contact.getBoundingClientRect(); hideForContact = r.top < window.innerHeight && r.bottom > 0; }
+          (window.scrollY>600 && !hideForContact) ? sticky.classList.add('show') : sticky.classList.remove('show');
+        }
+      });
+      if(top) top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    })();
+
+    // ---------- Preloader ----------
+    (function(){
+      const pre=document.getElementById('preloader'); if(!pre) return;
+      const fill=document.getElementById('pre-bar-fill');
+      const skip=document.getElementById('pre-skip');
+      const cvs=document.getElementById('pre-canvas'); const ctx=cvs?cvs.getContext('2d'):null;
+      let w,h,shooting=[];
+      function resize(){ if(!cvs) return; w=cvs.width=window.innerWidth; h=cvs.height=window.innerHeight; }
+      window.addEventListener('resize',resize); resize();
+      let bgStars=Array.from({length:90},()=>({x:Math.random()*(w||window.innerWidth),y:Math.random()*(h||window.innerHeight),r:Math.random()*1.2+.3}));
+      function spawnShoot(){ shooting.push({x:Math.random()*w,y:0,life:0}); }
+      setTimeout(spawnShoot,400); setTimeout(spawnShoot,1400); setTimeout(spawnShoot,2300);
+      function drawBG(){
+        if(!ctx) return; ctx.clearRect(0,0,w,h);
+        ctx.fillStyle='rgba(220,220,220,.5)';
+        bgStars.forEach(s=>{ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7); ctx.fill();});
+        shooting.forEach(s=>{
+          s.life+=1; s.x+=6; s.y+=6;
+          ctx.strokeStyle='rgba(0,255,240,'+Math.max(0,1-s.life/40)+')'; ctx.lineWidth=1.6;
+          ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-24,s.y-24); ctx.stroke();
+        });
+        shooting=shooting.filter(s=>s.life<40);
+        requestAnimationFrame(drawBG);
+      }
+      drawBG();
+      let pct=0;
+      const timer=setInterval(()=>{
+        pct+=Math.random()*14+6; if(pct>100) pct=100;
+        if(fill) fill.style.width=pct+'%';
+        if(pct>=100){ clearInterval(timer); setTimeout(finish,300); }
+      },220);
+      function finish(){ pre.classList.add('hide'); setTimeout(()=>pre.remove(),650); }
+      if(skip) skip.addEventListener('click',()=>{ clearInterval(timer); finish(); });
+      setTimeout(finish,4500);
+    })();
+    
+  </script>
+</body>
+</html>
