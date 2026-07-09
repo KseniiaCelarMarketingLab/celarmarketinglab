@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — Celar Marketing Lab</title>
+  <meta name="description" content="This page drifted out of orbit. Head back to Celar Marketing Lab's homepage, cases, or products.">
+  <link rel="canonical" href="https://celarmarketinglab.com/404.html">
+  <meta property="og:title" content="Page Not Found — Celar Marketing Lab">
+  <meta property="og:description" content="This page drifted out of orbit. Head back to Celar Marketing Lab's homepage, cases, or products.">
+  <meta property="og:image" content="https://celarmarketinglab.com/og-image.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://celarmarketinglab.com/404.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%2300FFF0'/%3E%3Cstop offset='1' stop-color='%23ED3E61'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='url(%23g)' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23DCDCDC'/%3E%3Ccircle cx='4' cy='32' r='2.4' fill='%23DCDCDC'/%3E%3Ccircle cx='60' cy='32' r='2.4' fill='%23DCDCDC'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MarketingAgency","name":"Celar Marketing Lab","url":"https://celarmarketinglab.com","address":{"@type":"PostalAddress","addressCountry":"NL"},"areaServed":["NL","BE","DE","FR"],"description":"This page drifted out of orbit. Head back to Celar Marketing Lab's homepage, cases, or products."}
+  </script>
+  <style>
+
+    :root{
+      --navy:#0B0F2B; --cyan:#00FFF0; --purple:#6502A2; --rose:#ED3E61; --lime:#D4FF00; --silver:#DCDCDC;
+      --navy-2:#12173d; --navy-3:#181e4a;
+      --font-display:'Space Grotesk', sans-serif; --font-body:'Poppins', sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+    body{
+      background:
+        radial-gradient(ellipse 900px 700px at 8% 0%, rgba(237,62,97,.10), transparent 60%),
+        radial-gradient(ellipse 800px 900px at 100% 30%, rgba(101,2,162,.16), transparent 55%),
+        radial-gradient(ellipse 700px 600px at 15% 95%, rgba(0,255,240,.08), transparent 60%),
+        var(--navy);
+      background-attachment:fixed;
+      color:var(--silver); font-family:var(--font-body);
+      font-weight:400; line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit; text-decoration:none;}
+    ul{list-style:none;}
+    img{max-width:100%; display:block;}
+    button{font-family:inherit; cursor:pointer;}
+    ::selection{background:var(--purple); color:#fff;}
+    :focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+    h1,h2,h3,h4{font-family:var(--font-display); font-weight:700; color:#fff; letter-spacing:-0.01em;}
+    .eyebrow{
+      font-family:var(--font-display); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--cyan); font-weight:600; display:inline-flex; align-items:center; gap:10px;
+      text-shadow:0 0 14px rgba(0,255,240,.35);
+    }
+    .eyebrow::before{content:'';width:22px;height:1px;background:var(--cyan);box-shadow:0 0 8px rgba(0,255,240,.6);display:inline-block;}
+    .eyebrow-rose{color:var(--rose); text-shadow:0 0 14px rgba(237,62,97,.4);}
+    .eyebrow-rose::before{background:var(--rose); box-shadow:0 0 8px rgba(237,62,97,.6);}
+    .glow-cyan{text-shadow:0 0 26px rgba(0,255,240,.35), 0 0 60px rgba(0,255,240,.12);}
+    .glow-rose{text-shadow:0 0 26px rgba(237,62,97,.35), 0 0 60px rgba(237,62,97,.12);}
+    .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+    section{position:relative; padding:120px 0;}
+    @media (max-width:768px){ section{padding:80px 0;} }
+
+    /* ---------- Starfield canvas backdrop ---------- */
+    #starfield{position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:.6;}
+
+    /* ---------- Navbar ---------- */
+    #navbar{
+      position:fixed; top:0; left:0; right:0; z-index:900;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 32px; background:rgba(11,15,43,.55); backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(220,220,220,.08);
+      transition:background .3s;
+    }
+    .brand{display:flex; align-items:center; gap:10px;}
+    .brand-mark{filter:drop-shadow(0 0 6px rgba(0,255,240,.45));}
+    .brand-text{font-family:var(--font-display); font-weight:700; font-size:.92rem; letter-spacing:.06em; color:#fff;}
+    .brand-text em{display:block; font-style:normal; font-weight:400; font-size:.56rem; letter-spacing:.32em; color:var(--silver); opacity:.75;}
+    .nav-links{display:flex; align-items:center; gap:30px;}
+    .nav-links a{font-size:.86rem; font-weight:500; color:var(--silver); position:relative; transition:color .25s;}
+    .nav-links a:hover{color:var(--cyan); text-shadow:0 0 10px rgba(0,255,240,.5);}
+    .nav-links a.cta-link{
+      background:linear-gradient(135deg,rgba(0,255,240,.16),rgba(101,2,162,.13));
+      border:1.5px solid rgba(0,255,240,.65); color:#eafffe; font-weight:600; text-shadow:0 0 10px rgba(0,255,240,.4);
+      padding:8px 18px; border-radius:2px; transition:background .25s, box-shadow .25s, border-color .25s;
+      box-shadow:0 0 16px rgba(0,255,240,.14);
+    }
+    .nav-links a.cta-link:hover{color:#eafffe; border-color:var(--cyan); background:linear-gradient(135deg,rgba(0,255,240,.24),rgba(101,2,162,.17)); box-shadow:0 0 26px rgba(0,255,240,.3);}
+    .nav-toggle{display:none; background:none; border:none; width:30px; height:22px; position:relative; z-index:1000;}
+    .nav-toggle span{position:absolute; left:0; width:100%; height:2px; background:var(--silver); transition:.3s;}
+    .nav-toggle span:nth-child(1){top:0;} .nav-toggle span:nth-child(2){top:10px;} .nav-toggle span:nth-child(3){top:20px;}
+    .nav-toggle.active span:nth-child(1){transform:translateY(10px) rotate(45deg);}
+    .nav-toggle.active span:nth-child(2){opacity:0;}
+    .nav-toggle.active span:nth-child(3){transform:translateY(-10px) rotate(-45deg);}
+    @media (max-width:900px){
+      .nav-links{
+        position:fixed; inset:0 0 0 auto; width:78%; max-width:340px; height:100vh;
+        background:rgba(11,15,43,.98); backdrop-filter:blur(20px); flex-direction:column;
+        justify-content:center; gap:34px; transform:translateX(100%); transition:transform .4s ease;
+      }
+      .nav-links.open{transform:translateX(0);}
+      .nav-toggle{display:block;}
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; font-weight:600; font-size:.92rem;
+      padding:15px 30px; border-radius:2px; border:1px solid transparent; transition:transform .25s, filter .25s;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-2px);}
+    .btn-primary{
+      background:linear-gradient(135deg,rgba(0,255,240,.14),rgba(101,2,162,.12));
+      border:1.5px solid rgba(0,255,240,.65); color:#eafffe;
+      text-shadow:0 0 10px rgba(0,255,240,.4);
+      box-shadow:0 0 18px rgba(0,255,240,.16), inset 0 0 16px rgba(0,255,240,.05);
+    }
+    .btn-primary:hover{
+      background:linear-gradient(135deg,rgba(0,255,240,.22),rgba(101,2,162,.16));
+      border-color:var(--cyan);
+      box-shadow:0 0 30px rgba(0,255,240,.32), inset 0 0 20px rgba(0,255,240,.08);
+    }
+    .btn-ghost{border-color:rgba(220,220,220,.35); color:var(--silver); transition:transform .25s, border-color .25s, box-shadow .25s, color .25s;}
+    .btn-ghost:hover{border-color:var(--cyan); color:#eafffe; text-shadow:0 0 10px rgba(0,255,240,.4); box-shadow:0 0 22px rgba(0,255,240,.22);}
+    .btn-block{width:100%; justify-content:center;}
+
+    /* ---------- Reveal on scroll ---------- */
+    .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
+    .reveal.in{opacity:1; transform:translateY(0);}
+
+    /* ---------- Footer ---------- */
+    footer{padding:60px 0 30px; border-top:1px solid rgba(220,220,220,.08); position:relative; z-index:2;}
+    .footer-top{display:flex; flex-wrap:wrap; justify-content:space-between; gap:30px; margin-bottom:36px;}
+    .footer-social{display:flex; gap:16px;}
+    .footer-social a{width:38px; height:38px; border:1px solid rgba(220,220,220,.2); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:.25s;}
+    .footer-social a:hover{border-color:var(--cyan); color:var(--cyan);}
+    .footer-bottom{display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; font-size:.82rem; opacity:.65;}
+    .footer-bottom a:hover{color:var(--cyan);}
+
+    /* ---------- Cookie banner ---------- */
+    #cookie-banner{
+      position:fixed; bottom:0; left:0; right:0; z-index:9998;
+      background:rgba(11,15,43,0.97); border-top:1px solid rgba(101,2,162,0.3);
+      padding:14px 24px 18px; display:flex; flex-direction:column; align-items:center;
+      gap:12px; backdrop-filter:blur(12px); transform:translateY(100%);
+      transition:transform 0.4s ease-out; text-align:center;
+    }
+    #cookie-banner.show{transform:translateY(0);}
+    #cookie-banner p{font-size:.82rem; max-width:640px; opacity:.85;}
+    #cookie-banner a{color:var(--cyan);}
+    .cookie-btns{display:flex; gap:12px;}
+    .cookie-btns button{padding:9px 20px; border-radius:2px; font-size:.8rem; font-weight:600; border:1px solid rgba(220,220,220,.3); background:transparent; color:var(--silver);}
+    .cookie-btns button.accept{
+      background:linear-gradient(135deg,rgba(0,255,240,.16),rgba(101,2,162,.13)); color:#eafffe; text-shadow:0 0 10px rgba(0,255,240,.4);
+      border:1.5px solid rgba(0,255,240,.65); box-shadow:0 0 14px rgba(0,255,240,.14);
+    }
+
+    /* ---------- Scroll to top ---------- */
+    #scroll-top{
+      position:fixed; right:22px; bottom:22px; width:44px; height:44px; border-radius:2px;
+      background:rgba(11,15,43,.9); border:1px solid var(--cyan); color:var(--cyan);
+      display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none;
+      transform:translateY(10px); transition:.3s; z-index:850; box-shadow:0 0 18px rgba(0,255,240,.25);
+    }
+    #scroll-top.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+    #scroll-top:hover{border-color:var(--cyan); color:var(--cyan); box-shadow:0 0 20px rgba(0,255,240,.35);}
+
+    /* ---------- Sticky mobile CTA ---------- */
+    #sticky-cta{
+      position:fixed; left:16px; right:16px; bottom:16px; z-index:860; display:none;
+      background:linear-gradient(135deg,rgba(11,15,43,.92),rgba(11,15,43,.92)); color:#eafffe; text-shadow:0 0 10px rgba(0,255,240,.4);
+      border:1.5px solid rgba(0,255,240,.6); backdrop-filter:blur(10px);
+      text-align:center; padding:13px; border-radius:2px; font-weight:600; font-size:.88rem;
+      box-shadow:0 10px 30px rgba(0,0,0,.4), 0 0 22px rgba(0,255,240,.22); transform:translateY(120%); transition:transform .35s;
+    }
+    @media (max-width:768px){ #sticky-cta{display:block;} }
+    #sticky-cta.show{transform:translateY(0);}
+
+    /* ---------- Preloader ---------- */
+    #preloader{
+      position:fixed; inset:0; z-index:99999; background:var(--navy); display:flex; flex-direction:column;
+      align-items:center; justify-content:center; transition:opacity .6s ease, visibility .6s ease;
+    }
+    #preloader.hide{opacity:0; visibility:hidden;}
+    #pre-canvas{position:absolute; inset:0; width:100%; height:100%;}
+    .rocket-wrap{position:relative; width:130px; height:230px; z-index:2;}
+    .rocket-wrap svg{position:absolute; left:50%; transform:translateX(-50%); animation:rocketFloat 2.4s ease-in-out infinite;}
+    @keyframes rocketFloat{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-10px);}}
+    .rocket-wrap .thrust-flame, .rocket-wrap .thrust-flame-core{animation:flamePulse .35s ease-in-out infinite alternate;}
+    @keyframes flamePulse{from{opacity:.7; transform:scaleY(.9);}to{opacity:1; transform:scaleY(1.08);}}
+    .pre-progress-wrap{width:220px; margin-top:26px; z-index:2;}
+    .pre-label{font-family:var(--font-display); font-size:.68rem; letter-spacing:.3em; text-align:center; color:var(--silver); margin-bottom:10px;}
+    .pre-bar{height:2px; width:100%; background:rgba(220,220,220,.15); border-radius:2px; overflow:hidden;}
+    .pre-bar-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--cyan),var(--purple),var(--rose)); transition:width .2s linear;}
+    #pre-skip{margin-top:22px; z-index:2; background:none; border:1px solid rgba(220,220,220,.25); color:var(--silver); padding:8px 18px; border-radius:2px; font-size:.75rem; letter-spacing:.05em;}
+    #pre-skip:hover{border-color:var(--cyan); color:var(--cyan);}
+
+    /* ---------- Badges / chips ---------- */
+    .chip-row{display:flex; flex-wrap:wrap; gap:10px;}
+    .chip{
+      font-family:var(--font-display); font-size:.68rem; letter-spacing:.1em; font-weight:600;
+      padding:7px 14px; border:1px solid rgba(220,220,220,.2); border-radius:2px; color:var(--silver); opacity:.85;
+    }
+    .chip-rose{border-color:rgba(237,62,97,.4); color:var(--rose); opacity:1; box-shadow:0 0 12px rgba(237,62,97,.15);}
+    .chip-cyan{border-color:rgba(0,255,240,.4); color:var(--cyan); opacity:1; box-shadow:0 0 12px rgba(0,255,240,.15);}
+
+
+    body{display:flex; flex-direction:column; min-height:100vh;}
+    #err-main{flex:1; display:flex; align-items:center; justify-content:center; padding:160px 20px 100px; position:relative; z-index:2;}
+    .err-code{
+      font-family:var(--font-display); font-weight:700; font-size:clamp(5rem,18vw,11rem); line-height:1;
+      background:linear-gradient(135deg,var(--cyan),var(--purple),var(--rose)); -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .err-title{font-size:1.4rem; margin:10px 0 14px;}
+    .err-sub{opacity:.75; max-width:440px; margin:0 auto 34px;}
+    .err-links{display:flex; flex-wrap:wrap; gap:14px; justify-content:center;}
+    .err-rocket{margin-bottom:10px;}
+    @keyframes floatRocket{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-14px) rotate(4deg);}}
+    .err-rocket svg{animation:floatRocket 3.2s ease-in-out infinite;}
+
+  </style>
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+  <nav id="navbar">
+    <a href="celar.html" class="brand" aria-label="Celar Marketing Lab home">
+        <svg class="brand-mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="logoGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#00FFF0"/>
+          <stop offset="0.5" stop-color="#DCDCDC"/>
+          <stop offset="1" stop-color="#ED3E61"/>
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="27" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="17" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="7" fill="none" stroke="#DCDCDC" stroke-width="2.5"/>
+      <circle cx="2.5" cy="32" r="2.2" fill="#DCDCDC"/>
+      <circle cx="61.5" cy="32" r="2.2" fill="#DCDCDC"/>
+    </svg>
+        <span class="brand-text">CELAR <em>MARKETING LAB</em></span>
+      </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="celar.html#about">About</a></li>
+      <li><a href="celar_services.html">Services</a></li>
+      <li><a href="celar.html#process">How we work</a></li>
+      <li><a href="celar_cases.html">Cases</a></li>
+      <li><a href="celar_products.html">Products</a></li>
+      <li><a href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" rel="noopener" class="cta-link">Book a call</a></li>
+    </ul>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+  <main id="err-main">
+    <div class="container reveal in" style="text-align:center;">
+      <div class="err-rocket"><svg width="60" height="100" viewBox="0 0 70 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M35 4C46 16 51 36 51 70V110H19V70C19 36 24 16 35 4Z" fill="#E8E8EE"/>
+  <path d="M35 4C46 16 51 36 51 70V110H35V4Z" fill="#C9C9D4"/>
+  <path d="M19 92L7 122H19V92Z" fill="#ED3E61"/>
+  <path d="M51 92L63 122H51V92Z" fill="#6502A2"/>
+  <rect x="17" y="74" width="36" height="8" fill="#ED3E61"/>
+  <circle cx="35" cy="52" r="10" fill="#0B0F2B" stroke="#00FFF0" stroke-width="2.4"/>
+</svg></div>
+      <div class="err-code">404</div>
+      <h1 class="err-title">Lost in orbit</h1>
+      <p class="err-sub">This page drifted out of range. Let&rsquo;s get you back on a stable trajectory.</p>
+      <div class="err-links">
+        <a class="btn btn-primary" href="celar.html">Back to home</a>
+        <a class="btn btn-ghost" href="celar_cases.html">View cases</a>
+        <a class="btn btn-ghost" href="celar_products.html">Browse products</a>
+        <a class="btn btn-ghost" href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" rel="noopener">Book a call</a>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-top reveal">
+        <div>
+          <a href="celar.html" class="brand" aria-label="Celar Marketing Lab home">
+        <svg class="brand-mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+      <defs>
+        <linearGradient id="logoGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#00FFF0"/>
+          <stop offset="0.5" stop-color="#DCDCDC"/>
+          <stop offset="1" stop-color="#ED3E61"/>
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="27" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="17" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+      <circle cx="32" cy="32" r="7" fill="none" stroke="#DCDCDC" stroke-width="2.5"/>
+      <circle cx="2.5" cy="32" r="2.2" fill="#DCDCDC"/>
+      <circle cx="61.5" cy="32" r="2.2" fill="#DCDCDC"/>
+    </svg>
+        <span class="brand-text">CELAR <em>MARKETING LAB</em></span>
+      </a>
+          <p style="margin-top:14px;max-width:320px;font-size:.85rem;opacity:.7;">We build brand universes grounded in behavioral science &mdash; for EU businesses ready to stop blending in.</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/celar_marketing_lab?igsh=MTFmMmUzbWw3eGV6Mg==" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://www.linkedin.com/company/celar-marketing-lab/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4v16H4zM6 4a2 2 0 100 4 2 2 0 000-4zM11 10v10h4v-5.5c0-1.5 1-2.5 2.5-2.5s2.5 1 2.5 2.5V20h4v-6.5c0-3-1.8-5-4.5-5-2 0-3.2 1.1-4.5 2.6V10z"/></svg></a>
+          <a href="https://wa.me/31629475620?text=Hi%20Celar%20Marketing%20Lab%2C%20I%27d%20like%20to%20talk%20about%20my%20brand" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12a8 8 0 11-14.9-4L4 20l4.2-1.1A8 8 0 0120 12z"/></svg></a>
+          <a href="https://t.me/+31629475620" target="_blank" rel="noopener" aria-label="Telegram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3L2 11l6 2m14-10l-6 18-8-8m14-10L8 13"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Celar Marketing Lab &middot; Netherlands</span>
+        <a href="celar_privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+  <button id="scroll-top" aria-label="Scroll to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <script>
+
+    // ---------- Starfield ----------
+    (function(){
+      const c=document.getElementById('starfield'); if(!c) return;
+      const ctx=c.getContext('2d'); let w,h,stars=[];
+      function resize(){w=c.width=window.innerWidth; h=c.height=window.innerHeight;
+        stars=Array.from({length:130},()=>{
+          const roll=Math.random();
+          const tint = roll<0.08 ? '0,255,240' : roll<0.14 ? '237,62,97' : '220,220,220';
+          return {x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3+.2,a:Math.random(),tint:tint};
+        });}
+      window.addEventListener('resize',resize); resize();
+      function draw(){ctx.clearRect(0,0,w,h);
+        stars.forEach(s=>{s.a+=0.006; const op=(Math.sin(s.a)+1)/2*.8+.1;
+          ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7); ctx.fillStyle='rgba('+s.tint+','+op+')'; ctx.fill();});
+        requestAnimationFrame(draw);}
+      draw();
+    })();
+
+    // ---------- Nav toggle ----------
+    function toggleNav(){
+      document.getElementById('nav-links').classList.toggle('open');
+      document.querySelector('.nav-toggle').classList.toggle('active');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+      document.getElementById('nav-links').classList.remove('open');
+      document.querySelector('.nav-toggle').classList.remove('active');
+    }));
+
+    // ---------- Reveal on scroll ----------
+    const revealObserver=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revealObserver.unobserve(e.target); } });
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+    // ---------- Cookie banner ----------
+    (function(){
+      const banner=document.getElementById('cookie-banner');
+      if(!banner) return;
+      const consent=localStorage.getItem('cml_cookie_consent');
+      if(!consent){ setTimeout(()=>banner.classList.add('show'),1800); }
+      window.acceptCookies=function(){ localStorage.setItem('cml_cookie_consent','accepted'); banner.classList.remove('show'); };
+      window.declineCookies=function(){ localStorage.setItem('cml_cookie_consent','declined'); banner.classList.remove('show'); };
+    })();
+
+    // ---------- Scroll to top + sticky CTA ----------
+    (function(){
+      const top=document.getElementById('scroll-top');
+      const sticky=document.getElementById('sticky-cta');
+      const contact=document.getElementById('contact');
+      window.addEventListener('scroll',()=>{
+        if(top){ window.scrollY>400 ? top.classList.add('show') : top.classList.remove('show'); }
+        if(sticky){
+          let hideForContact=false;
+          if(contact){ const r=contact.getBoundingClientRect(); hideForContact = r.top < window.innerHeight && r.bottom > 0; }
+          (window.scrollY>600 && !hideForContact) ? sticky.classList.add('show') : sticky.classList.remove('show');
+        }
+      });
+      if(top) top.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    })();
+
+    // ---------- Preloader ----------
+    (function(){
+      const pre=document.getElementById('preloader'); if(!pre) return;
+      const fill=document.getElementById('pre-bar-fill');
+      const skip=document.getElementById('pre-skip');
+      const cvs=document.getElementById('pre-canvas'); const ctx=cvs?cvs.getContext('2d'):null;
+      let w,h,shooting=[];
+      function resize(){ if(!cvs) return; w=cvs.width=window.innerWidth; h=cvs.height=window.innerHeight; }
+      window.addEventListener('resize',resize); resize();
+      let bgStars=Array.from({length:90},()=>({x:Math.random()*(w||window.innerWidth),y:Math.random()*(h||window.innerHeight),r:Math.random()*1.2+.3}));
+      function spawnShoot(){ shooting.push({x:Math.random()*w,y:0,life:0}); }
+      setTimeout(spawnShoot,400); setTimeout(spawnShoot,1400); setTimeout(spawnShoot,2300);
+      function drawBG(){
+        if(!ctx) return; ctx.clearRect(0,0,w,h);
+        ctx.fillStyle='rgba(220,220,220,.5)';
+        bgStars.forEach(s=>{ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7); ctx.fill();});
+        shooting.forEach(s=>{
+          s.life+=1; s.x+=6; s.y+=6;
+          ctx.strokeStyle='rgba(0,255,240,'+Math.max(0,1-s.life/40)+')'; ctx.lineWidth=1.6;
+          ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s.x-24,s.y-24); ctx.stroke();
+        });
+        shooting=shooting.filter(s=>s.life<40);
+        requestAnimationFrame(drawBG);
+      }
+      drawBG();
+      let pct=0;
+      const timer=setInterval(()=>{
+        pct+=Math.random()*14+6; if(pct>100) pct=100;
+        if(fill) fill.style.width=pct+'%';
+        if(pct>=100){ clearInterval(timer); setTimeout(finish,300); }
+      },220);
+      function finish(){ pre.classList.add('hide'); setTimeout(()=>pre.remove(),650); }
+      if(skip) skip.addEventListener('click',()=>{ clearInterval(timer); finish(); });
+      setTimeout(finish,4500);
+    })();
+    
+  </script>
+</body>
+</html>

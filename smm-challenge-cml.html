@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMM Without Budget — 30-Day Challenge · Celar Marketing Lab</title>
+<meta property="og:title" content="SMM Without Budget — 30-Day Challenge · Celar Marketing Lab">
+<meta property="og:description" content="Grow your social media with zero ad spend. 28 daily blocks, 15 min each. €28 one-time.">
+<meta property="og:url" content="https://celarmarketinglab.com/smm-challenge-cml.html">
+<meta property="og:image" content="https://celarmarketinglab.com/og-image.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230B0F2B'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%2300FFF0' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%2300FFF0'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B0F2B;
+  --purple:#6502A2;
+  --cyan:#00FFF0;
+  --rose:#ED3E61;
+  --lime:#D4FF00;
+  --silver:#DCDCDC;
+  --white:#F5F5F5;
+  --glass:rgba(11,15,43,0.75);
+  /* aliases for challenge */
+  --pk:var(--rose);
+  --tl:var(--cyan);
+  --pd:rgba(237,62,97,.1);
+  --td:rgba(0,255,240,.08);
+  --pb:rgba(237,62,97,.32);
+  --tb:rgba(0,255,240,.28);
+  --bg:var(--navy);
+  --surface:rgba(255,255,255,.03);
+  --border:rgba(255,255,255,.07);
+  --text-muted:rgba(220,220,220,.45);
+}
+html,body{background:radial-gradient(ellipse 900px 700px at 8% 0%,rgba(237,62,97,.10),transparent 60%),radial-gradient(ellipse 800px 900px at 100% 30%,rgba(101,2,162,.16),transparent 55%),radial-gradient(ellipse 700px 600px at 15% 95%,rgba(0,255,240,.08),transparent 60%),#0B0F2B;background-attachment:fixed;color:var(--silver);font-family:'Poppins',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* ── VIEWS ── */
+#view-hero{display:block;position:relative;height:100vh;overflow:hidden}
+#view-course{display:none}
+canvas#planet-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+.overlay{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 90% at 15% 50%,rgba(11,15,43,.92) 0%,rgba(11,15,43,.55) 50%,transparent 100%)}
+
+/* ── PRELOADER ── */
+#preloader{position:fixed;inset:0;z-index:9999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;transition:opacity .7s,visibility .7s}
+#preloader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#pl-skip{position:absolute;top:22px;right:28px;background:transparent;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.35);font-family:'Poppins',sans-serif;font-size:11px;padding:6px 14px;cursor:pointer;letter-spacing:.06em;transition:all .2s}
+#pl-skip:hover{border-color:rgba(255,255,255,.5);color:#fff}
+#pl-stage{position:relative;z-index:2;width:clamp(260px,60vw,380px);display:flex;flex-direction:column;align-items:center;gap:0}
+#pl-rocket-wrap{width:38%;margin:0 auto;opacity:0;animation:rocketAppear 1.2s cubic-bezier(.22,1,.36,1) .4s forwards}
+#pl-rocket-svg{width:100%;animation:rocketHover 4s ease-in-out infinite 1.6s;filter:drop-shadow(0 0 16px rgba(0,255,240,.4)) drop-shadow(0 0 40px rgba(101,2,162,.35))}
+.pl-glow-halo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:clamp(180px,45vw,260px);height:clamp(180px,45vw,260px);border-radius:50%;background:radial-gradient(circle,rgba(101,2,162,.25) 0%,rgba(0,255,240,.08) 50%,transparent 75%);animation:glowPulse 3s ease-in-out infinite;pointer-events:none;z-index:0}
+#pl-label{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:.28em;color:rgba(255,255,255,.25);text-transform:uppercase;margin-top:28px;opacity:0;animation:plFadeIn .6s ease .9s forwards}
+#pl-tagline{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.18);margin-top:10px;text-align:center;opacity:0;animation:plFadeIn .6s ease 1.1s forwards}
+.pl-progress-wrap{width:120px;height:1px;background:rgba(255,255,255,.08);margin-top:20px;overflow:hidden;opacity:0;animation:plFadeIn .6s ease 1.3s forwards}
+.pl-progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--rose));transition:width .1s linear}
+
+@keyframes rocketAppear{from{opacity:0;transform:translateY(32px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes rocketHover{0%,100%{transform:translateY(0) rotate(-.3deg)}50%{transform:translateY(-12px) rotate(.3deg)}}
+@keyframes glowPulse{0%,100%{opacity:.7;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+@keyframes plFadeIn{to{opacity:1}}
+@keyframes plasmaFlicker{0%{transform:scaleX(1) scaleY(1) skewX(0deg)}25%{transform:scaleX(1.06) scaleY(.96) skewX(-1.5deg)}50%{transform:scaleX(.96) scaleY(1.08) skewX(1deg)}75%{transform:scaleX(1.04) scaleY(.95) skewX(-1deg)}100%{transform:scaleX(1) scaleY(1) skewX(0deg)}}
+
+/* ── HERO NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;padding:20px clamp(24px,5vw,64px);display:flex;align-items:center;justify-content:space-between;background:rgba(11,15,43,.6);backdrop-filter:blur(16px);border-bottom:.5px solid rgba(255,255,255,.06);opacity:0;animation:fadeUp .6s .3s forwards}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-mark{width:28px;height:28px;filter:drop-shadow(0 0 6px rgba(0,255,240,.45))}
+.nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--white);text-transform:uppercase}
+.nav-logo-text span{display:block;font-size:8px;font-weight:400;letter-spacing:.18em;color:rgba(220,220,220,.4);text-transform:uppercase;line-height:1.2}
+.nav-tag{font-size:9px;letter-spacing:.18em;color:rgba(220,220,220,.25);text-transform:uppercase;border:.5px solid rgba(255,255,255,.1);padding:5px 12px}
+
+/* ── HERO CONTENT ── */
+.hero-content{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,5vw,72px);padding-top:100px}
+.eyebrow{font-size:9px;letter-spacing:.26em;color:rgba(220,220,220,.35);text-transform:uppercase;margin-bottom:18px;opacity:0;animation:fadeUp .7s .6s forwards}
+.eyebrow span{color:var(--cyan);text-shadow:0 0 24px rgba(0,255,240,.45)}
+.hero-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(52px,10vw,120px);font-weight:700;line-height:.88;letter-spacing:-.03em;text-transform:uppercase;opacity:0;animation:fadeUp .9s .75s forwards}
+.hero-title .ghost{color:rgba(255,255,255,.05);display:block}
+.accent-bar{display:flex;align-items:center;gap:16px;margin:24px 0;opacity:0;animation:fadeUp .7s .95s forwards}
+.accent-bar-line{width:48px;height:1px;background:linear-gradient(90deg,var(--cyan),var(--rose))}
+.accent-bar-dot{width:5px;height:5px;background:var(--cyan);border-radius:50%}
+.hero-sub{font-size:clamp(13px,1.4vw,16px);color:var(--text-muted);line-height:1.8;max-width:440px;margin-bottom:36px;opacity:0;animation:fadeUp .7s 1.1s forwards}
+.stats-row{display:flex;gap:clamp(24px,4vw,56px);margin-bottom:40px;opacity:0;animation:fadeUp .7s 1.2s forwards}
+.stat-val{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;line-height:1}
+.stat-lbl{font-size:8px;color:rgba(220,220,220,.3);text-transform:uppercase;letter-spacing:.14em;margin-top:4px}
+.btn-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;opacity:0;animation:fadeUp .7s 1.3s forwards}
+
+/* ── BUTTONS — matching celar.html ── */
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(0,255,240,.14),rgba(101,2,162,.12));border:1.5px solid rgba(0,255,240,.65);color:#eafffe;text-shadow:0 0 10px rgba(0,255,240,.4);box-shadow:0 0 18px rgba(0,255,240,.16),inset 0 0 16px rgba(0,255,240,.05);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:2px;cursor:pointer;position:relative;overflow:hidden;transition:background .25s,box-shadow .25s,border-color .25s}
+.btn-primary:hover{background:linear-gradient(135deg,rgba(0,255,240,.22),rgba(101,2,162,.16));border-color:#00FFF0;box-shadow:0 0 30px rgba(0,255,240,.32),inset 0 0 20px rgba(0,255,240,.08)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);border:1px solid rgba(220,220,220,.25);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:13px 28px;cursor:pointer;transition:all .25s}
+.btn-outline:hover{border-color:#00FFF0;color:#eafffe;text-shadow:0 0 10px rgba(0,255,240,.4);box-shadow:0 0 22px rgba(0,255,240,.22)}
+
+/* ── SIDE ORBIT ── */
+.side-orbit{position:fixed;right:clamp(24px,5vw,64px);top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:16px;opacity:0;animation:fadeUp .7s 1.5s forwards}
+.orbit-line{width:1px;height:60px;background:linear-gradient(180deg,rgba(255,255,255,.2),transparent)}
+.orbit-label{font-size:8px;letter-spacing:.2em;color:rgba(255,255,255,.2);text-transform:uppercase;writing-mode:vertical-rl}
+.orbit-dot{width:4px;height:4px;background:var(--cyan);border-radius:50%;animation:dotPulse 2s ease-in-out infinite}
+
+/* ── INFO PANEL ── */
+#info-panel{display:none;position:fixed;inset:0;z-index:50;background:rgba(11,15,43,.92);backdrop-filter:blur(24px);padding:clamp(28px,5vw,72px);flex-direction:column;justify-content:center;overflow-y:auto;opacity:0;transition:opacity .3s}
+#info-panel.open{display:flex;opacity:1}
+.panel-close{position:absolute;top:28px;right:28px;background:rgba(255,255,255,.04);border:.5px solid rgba(255,255,255,.1);color:rgba(255,255,255,.35);width:40px;height:40px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:'Poppins',sans-serif}
+.panel-close:hover{background:rgba(255,255,255,.08);color:#fff}
+.panel-eyebrow{font-size:9px;letter-spacing:.22em;color:var(--cyan);text-transform:uppercase;margin-bottom:14px}
+.panel-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,4vw,48px);font-weight:700;letter-spacing:-.025em;margin-bottom:24px;line-height:1;text-transform:uppercase}
+.weeks-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;max-width:600px}
+.wk-card{border:.5px solid rgba(255,255,255,.08);padding:18px;background:rgba(255,255,255,.02);transition:border-color .2s}
+.wk-card:hover{border-color:rgba(255,255,255,.16);box-shadow:0 0 20px rgba(0,255,240,.15)}
+.wk-num{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;margin-bottom:7px}
+.wk-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px}
+.wk-desc{font-size:11px;color:rgba(220,220,220,.36);line-height:1.6}
+
+/* ── COURSE LAYOUT ── */
+canvas#cv{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{max-width:800px;margin:0 auto;min-height:100vh;position:relative;z-index:10}
+.screen{display:none;padding:48px;min-height:100vh;flex-direction:column}
+.screen.active{display:flex}
+@media(max-width:640px){.screen{padding:24px 20px}}
+
+.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;padding-bottom:18px;border-bottom:.5px solid rgba(255,255,255,.06)}
+.tb-logo{display:flex;align-items:center;gap:8px}
+.tb-logo-mark{width:22px;height:22px}
+.tb-logo-text{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;color:rgba(220,220,220,.5);text-transform:uppercase}
+.tb-label{font-size:9px;letter-spacing:.18em;color:rgba(220,220,220,.22);text-transform:uppercase}
+
+.big-num{font-family:'Space Grotesk',sans-serif;font-size:110px;font-weight:700;color:rgba(255,255,255,.022);line-height:1;position:absolute;right:48px;top:48px;pointer-events:none;user-select:none;letter-spacing:-.04em}
+.stitle{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,5vw,58px);font-weight:700;letter-spacing:-.03em;line-height:.95;margin-bottom:12px;text-transform:uppercase;color:var(--white)}
+.ssub{font-size:13px;color:var(--text-muted);line-height:1.8;margin-bottom:26px;max-width:500px}
+.np{color:var(--rose);text-shadow:0 0 18px rgba(237,62,97,.4)}.nt{color:var(--cyan);text-shadow:0 0 18px rgba(0,255,240,.4)}.nl{color:var(--lime)}.npu{color:var(--purple)}
+.ql{font-size:8px;letter-spacing:.22em;color:rgba(220,220,220,.25);text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.dl{width:40px;height:1px;background:linear-gradient(90deg,var(--cyan),var(--rose));margin:18px 0}
+
+/* ── COURSE BUTTONS ── */
+.bp{background:var(--cyan);color:var(--navy);border:none;padding:13px 28px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif}
+.bp:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,255,240,.25)}
+.bt{background:transparent;color:var(--cyan);border:1px solid rgba(0,255,240,.4);padding:12px 28px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif}
+.bt:hover{background:rgba(0,255,240,.06);border-color:var(--cyan)}
+.bg{background:transparent;color:rgba(220,220,220,.32);border:.5px solid rgba(255,255,255,.12);padding:12px 20px;font-size:10px;font-weight:600;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;font-family:'Space Grotesk',sans-serif}
+.bg:hover{color:var(--white);border-color:rgba(255,255,255,.35)}
+.brow{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:24px}
+
+/* ── OPTION CARDS ── */
+.opts2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.opt{border:.5px solid rgba(255,255,255,.09);padding:16px;cursor:pointer;transition:all .2s;position:relative;background:rgba(255,255,255,.02)}
+.opt:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.04)}
+.opt.sel{border-color:var(--cyan);background:rgba(0,255,240,.06)}
+.opt.sel::after{content:"✓";position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--cyan);font-size:11px;font-weight:700}
+.ot{font-weight:700;font-size:12px;display:block;margin-bottom:3px;font-family:'Space Grotesk',sans-serif;color:var(--white)}
+.od{font-size:10px;color:rgba(220,220,220,.3);line-height:1.5}
+
+/* ── NETWORK BUTTONS ── */
+.nets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.nb{border:.5px solid rgba(255,255,255,.09);padding:16px 10px;cursor:pointer;text-align:center;font-size:9px;font-weight:700;color:rgba(220,220,220,.3);letter-spacing:.06em;transition:all .2s;text-transform:uppercase;background:rgba(255,255,255,.02)}
+.nb:hover{border-color:rgba(255,255,255,.28);color:var(--white);background:rgba(255,255,255,.04)}
+.nb.sel{border-color:var(--rose);color:var(--rose);background:rgba(237,62,97,.08)}
+.nb i{font-size:22px;display:block;margin-bottom:7px}
+.note{font-size:10px;color:rgba(220,220,220,.2);margin-top:8px}
+
+/* ── METRICS ── */
+.mrow{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;border-bottom:.5px solid rgba(255,255,255,.05);padding:12px 0}
+.mlb{font-size:11px;color:rgba(220,220,220,.45)}
+.mnet{font-size:8px;text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.mi{background:transparent;border:.5px solid rgba(255,255,255,.14);color:var(--white);padding:9px 12px;font-size:14px;font-weight:700;width:120px;text-align:right;outline:none;transition:border-color .2s;font-family:'Space Grotesk',sans-serif}
+.mi:focus{border-color:var(--cyan)}
+
+/* ── PROFILE BOX ── */
+.pbox{border:.5px solid rgba(0,255,240,.25);background:rgba(0,255,240,.04);padding:22px;margin-bottom:22px;position:relative;overflow:hidden}
+.pbox::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--cyan),var(--rose))}
+.ptag{font-size:8px;letter-spacing:.2em;color:var(--cyan);text-transform:uppercase;margin-bottom:9px;font-weight:600}
+.ptitle{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;margin-bottom:9px;color:var(--white)}
+.pdesc{font-size:12px;color:rgba(220,220,220,.45);line-height:1.85}
+
+/* ── XP BAR ── */
+.xpw{background:rgba(255,255,255,.05);height:2px;margin:14px 0 5px;overflow:hidden}
+.xpb{height:100%;background:linear-gradient(90deg,var(--cyan),var(--rose));transition:width 1.4s ease}
+.xpl{display:flex;justify-content:space-between;font-size:9px;color:rgba(220,220,220,.2);letter-spacing:.06em}
+
+/* ── BADGES ── */
+.badges{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.badge{border:.5px solid rgba(255,255,255,.09);padding:6px 12px;font-size:8px;font-weight:700;color:rgba(220,220,220,.22);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.01)}
+.badge i{font-size:12px}
+.ep{border-color:rgba(237,62,97,.4)!important;color:var(--rose)!important;background:rgba(237,62,97,.07)!important}
+.et{border-color:rgba(0,255,240,.35)!important;color:var(--cyan)!important;background:rgba(0,255,240,.05)!important}
+
+/* ── STREAK BAR ── */
+.sbar{display:flex;align-items:center;gap:16px;border:.5px solid rgba(255,255,255,.06);padding:16px 18px;margin-bottom:18px;background:rgba(255,255,255,.01)}
+.snx{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;color:var(--rose);line-height:1}
+.slb{font-size:8px;color:rgba(220,220,220,.25);text-transform:uppercase;letter-spacing:.1em;margin-top:3px}
+.sep{width:.5px;background:rgba(255,255,255,.06);align-self:stretch;margin:0 4px}
+
+/* ── DAY GRID ── */
+.dgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:8px 0 20px}
+.dc{aspect-ratio:1;border:.5px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:rgba(220,220,220,.18);font-family:'Space Grotesk',sans-serif}
+.dc.today{border-color:var(--rose);color:var(--rose);background:rgba(237,62,97,.08)}
+.dc.done{border-color:rgba(0,255,240,.4);color:var(--cyan);background:rgba(0,255,240,.06)}
+
+/* ── WEEK NAV ── */
+.wknav{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.04);margin-bottom:28px;border:.5px solid rgba(255,255,255,.04)}
+.wni{background:var(--navy);padding:13px 10px;text-align:center;cursor:pointer;transition:background .2s}
+.wni:hover{background:rgba(255,255,255,.025)}
+.wnin{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;line-height:1}
+.wnil{font-size:7px;text-transform:uppercase;letter-spacing:.1em;margin-top:3px;font-family:'Space Grotesk',sans-serif}
+
+/* ── OVERVIEW GRID ── */
+.ovg{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:22px}
+.ovc{border:.5px solid rgba(255,255,255,.08);padding:14px;background:rgba(255,255,255,.02)}
+.ovd{font-size:8px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700}
+.ovt{font-size:12px;font-weight:700;margin-bottom:3px;font-family:'Space Grotesk',sans-serif;color:var(--white)}
+.ovs{font-size:10px;color:rgba(220,220,220,.32)}
+
+/* ── BADGE PROMO ── */
+.bpromo{border:.5px solid rgba(237,62,97,.3);background:rgba(237,62,97,.06);padding:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.bpr{border:.5px solid rgba(237,62,97,.3);padding:9px 14px;font-size:9px;font-weight:700;color:var(--rose);letter-spacing:.1em;text-transform:uppercase;font-family:'Space Grotesk',sans-serif}
+
+/* ── DAY CARDS ── */
+.wcard{border:.5px solid rgba(255,255,255,.07);padding:20px;background:rgba(255,255,255,.01);margin-bottom:7px;transition:border-color .3s}
+.wcard.open{border-color:rgba(0,255,240,.2)}
+.wcard.locked{opacity:.22;pointer-events:none}
+.whead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px}
+.wn{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:rgba(255,255,255,.05);line-height:1;margin-bottom:3px}
+.wt{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px;color:var(--white)}
+.ws{font-size:11px;color:rgba(220,220,220,.32);line-height:1.65}
+.wst{font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border:.5px solid rgba(255,255,255,.1);color:rgba(220,220,220,.28);white-space:nowrap;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
+.wst.now{border-color:rgba(0,255,240,.4);color:var(--cyan)}
+.wst.dn{border-color:rgba(237,62,97,.4);color:var(--rose)}
+.tw{margin-top:18px;border-top:.5px solid rgba(255,255,255,.05);padding-top:18px}
+
+/* ── CONTENT SECTIONS ── */
+.btg{font-size:8px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:9px;font-weight:700}
+.btg.p{color:var(--rose)}.btg.t{color:var(--cyan)}
+.tt{font-size:12px;color:rgba(220,220,220,.48);line-height:1.9;margin-bottom:16px}
+.tt strong{color:var(--white)}
+.exs{border:.5px solid rgba(237,62,97,.25);background:rgba(237,62,97,.05);padding:16px;margin-bottom:16px}
+.exl{font-size:8px;letter-spacing:.16em;color:var(--rose);text-transform:uppercase;margin-bottom:11px;font-weight:700}
+.exc{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.excard{background:rgba(0,0,0,.2);border:.5px solid rgba(255,255,255,.05);padding:12px}
+.ectag{font-size:7px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px;font-weight:700}
+.ectag.bad{color:rgba(255,80,80,.65)}.ectag.good{color:var(--cyan)}
+.ep2{background:rgba(255,255,255,.02);padding:10px;font-size:11px;color:rgba(220,220,220,.5);line-height:1.65;margin-bottom:9px;border-left:1.5px solid}
+.ep2.bad{border-color:rgba(255,80,80,.3)}.ep2.good{border-color:rgba(0,255,240,.3)}
+.ests{display:flex;gap:12px}
+.est{font-size:9px;color:rgba(220,220,220,.25)}
+.est span{display:block;font-size:14px;font-weight:700;color:var(--white);line-height:1.1;font-family:'Space Grotesk',sans-serif}
+.est span.g{color:var(--cyan)}
+.fbox{border:.5px solid rgba(0,255,240,.2);background:rgba(0,255,240,.04);padding:18px;margin-bottom:16px}
+.fsteps{display:flex;flex-direction:column;gap:9px;margin-top:10px}
+.fstep{display:flex;align-items:flex-start;gap:11px;font-size:12px;color:rgba(220,220,220,.5);line-height:1.7}
+.fn{width:20px;height:20px;border:.5px solid var(--cyan);color:var(--cyan);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.tblock{border:.5px solid rgba(255,255,255,.09);padding:18px;margin-bottom:12px;background:rgba(255,255,255,.01)}
+.ttxt{font-size:12px;color:rgba(220,220,220,.52);line-height:1.85;margin-bottom:12px}
+.ttxt em{color:var(--white);font-style:normal;border-bottom:.5px solid rgba(255,255,255,.22)}
+.dbtn{background:transparent;border:.5px solid rgba(255,255,255,.14);color:rgba(220,220,220,.32);padding:12px 18px;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;width:100%;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:7px;font-family:'Space Grotesk',sans-serif}
+.dbtn:hover{border-color:var(--cyan);color:var(--cyan)}
+.dbtn.done{background:rgba(0,255,240,.05);border-color:rgba(0,255,240,.4);color:var(--cyan);pointer-events:none}
+.tog{background:transparent;border:none;color:rgba(220,220,220,.2);font-size:9px;cursor:pointer;letter-spacing:.07em;text-transform:uppercase;margin-top:12px;padding:0;transition:color .2s;font-family:'Space Grotesk',sans-serif}
+.tog:hover{color:var(--white)}
+
+/* ── FLASH / FAB / Q-PANEL ── */
+.fmsg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--navy);color:var(--white);padding:18px 32px;font-size:12px;font-weight:700;letter-spacing:.07em;z-index:9999;text-transform:uppercase;text-align:center;border-top:1px solid var(--cyan);box-shadow:0 0 48px rgba(0,255,240,.15);font-family:'Space Grotesk',sans-serif;border:.5px solid rgba(0,255,240,.25)}
+.qfab{position:fixed;bottom:28px;right:28px;z-index:200;background:var(--rose);border:none;width:50px;height:50px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(237,62,97,.35);transition:transform .2s}
+.qfab:hover{transform:scale(1.1)}
+.qfab i{font-size:20px;color:#fff}
+.qpanel{position:fixed;bottom:88px;right:28px;z-index:200;width:310px;background:rgba(11,15,43,.97);backdrop-filter:blur(16px);border:.5px solid rgba(237,62,97,.3);padding:20px;display:none;box-shadow:0 0 40px rgba(0,0,0,.7)}
+.qpanel.open{display:block}
+.qi{background:rgba(255,255,255,.03);border:.5px solid rgba(255,255,255,.1);color:var(--white);padding:9px 11px;font-size:11px;width:100%;outline:none;resize:none;font-family:'Space Grotesk',sans-serif;margin-bottom:7px;display:block;transition:border-color .2s}
+.qi:focus{border-color:var(--rose)}
+.qsend{background:var(--rose);color:#fff;border:none;padding:10px 0;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;width:100%;transition:opacity .2s;font-family:'Space Grotesk',sans-serif}
+.qsend:hover{opacity:.85}
+.qok{text-align:center;padding:10px 0;font-size:11px;color:var(--cyan);display:none}
+
+/* ── REVIEW ── */
+.stars{display:flex;gap:7px;margin-bottom:12px}
+.star{font-size:22px;cursor:pointer;opacity:.2;transition:opacity .2s;color:var(--rose)}
+.star.on{opacity:1}
+
+/* ── FINAL STATS ── */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:14px 0}
+.sc{border:.5px solid rgba(255,255,255,.08);padding:16px;text-align:center;background:rgba(255,255,255,.02)}
+.scv{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;line-height:1;margin-bottom:3px}
+.scl{font-size:8px;color:rgba(220,220,220,.28);text-transform:uppercase;letter-spacing:.1em}
+
+/* ── STATS ROW (s0) ── */
+.hsr{display:flex;gap:clamp(20px,4vw,44px);margin:20px 0;flex-wrap:wrap}
+.hsi{display:flex;flex-direction:column}
+.hsv{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;line-height:1.1}
+.hsl{font-size:8px;color:rgba(220,220,220,.25);text-transform:uppercase;letter-spacing:.12em;margin-top:4px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dotPulse{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+@media(max-width:600px){
+  .side-orbit{display:none}
+  .hero-title{font-size:clamp(44px,14vw,72px)}
+  .weeks-grid,.ovg,.exc{grid-template-columns:1fr}
+  .big-num{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Token validation — runs before anything renders -->
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  // Show success state if returning from Stripe payment
+  if(params.get('paid') === 'smm') {
+    document.addEventListener('DOMContentLoaded', function() {
+      var heroEmail = document.getElementById('hero-email');
+      var btnRow = heroEmail ? heroEmail.closest('.btn-row') : null;
+      if(btnRow) {
+        btnRow.innerHTML = '<div style="background:rgba(0,255,240,.07);border:1.5px solid rgba(0,255,240,.4);border-radius:2px;padding:20px 24px;text-align:center">'
+          + '<div style="font-size:16px;font-weight:700;color:#eafffe;margin-bottom:8px">Payment received — check your email</div>'
+          + '<div style="font-size:13px;color:rgba(220,220,220,.6)">Your access link is on its way. Check your inbox (and spam folder).</div>'
+          + '</div>';
+      }
+    });
+    return; // don't do token check if coming back from payment
+  }
+  var token = params.get('token');
+
+  // If no token in URL, check localStorage (saved from previous visit)
+  if(!token) token = localStorage.getItem('smm_access_token');
+
+  if(!token || !/^[a-f0-9]{64}$/.test(token)){
+    // No token — redirect to buy page
+    window.location.replace('https://celarlab.com/celar_products.html#modal-smm');
+    return;
+  }
+
+  // Save token locally so user can return without the URL param
+  try{ localStorage.setItem('smm_access_token', token); }catch(e){}
+
+  // Validate token against API (non-blocking — show course, then verify)
+  // If invalid, redirect after a short delay (avoids flash for legit users)
+  fetch('https://celarlab.com/api/validate-token?token=' + token)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(!data.valid){
+        localStorage.removeItem('smm_access_token');
+        window.location.replace('https://celarlab.com/celar_products.html#modal-smm');
+      }
+    })
+    .catch(function(){
+      // Network error — fail open, don't block real users
+    });
+})();
+</script>
+
+
+<!-- ═══════════════ PRELOADER ═══════════════ -->
+<div id="preloader">
+  <canvas id="pl-space-canvas" style="position:absolute;inset:0;z-index:0;width:100%;height:100%"></canvas>
+  <button id="pl-skip" onclick="skipPL()">Skip ↗</button>
+  <div id="pl-stage">
+    <div style="position:relative;display:flex;justify-content:center;">
+      <div class="pl-glow-halo"></div>
+      <div style="position:relative;z-index:1;width:100%">
+        <div id="pl-rocket-wrap">
+          <svg id="pl-rocket-svg" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="rBody" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1a1a2a"/><stop offset="20%" stop-color="#606080"/><stop offset="45%" stop-color="#e8e8f8"/><stop offset="55%" stop-color="#f4f4ff"/><stop offset="80%" stop-color="#808098"/><stop offset="100%" stop-color="#14141e"/></linearGradient>
+              <linearGradient id="rFin" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0a0a14"/><stop offset="60%" stop-color="#303048"/><stop offset="100%" stop-color="#505068"/></linearGradient>
+              <radialGradient id="rEng" cx="50%" cy="20%" r="75%"><stop offset="0%" stop-color="#9040ff"/><stop offset="40%" stop-color="#6502A2"/><stop offset="100%" stop-color="#2a0060"/></radialGradient>
+              <radialGradient id="rCyan" cx="35%" cy="30%" r="60%"><stop offset="0%" stop-color="#80ffff"/><stop offset="50%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#006060"/></radialGradient>
+              <radialGradient id="rFlame" cx="50%" cy="0%" r="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="20%" stop-color="#c080ff"/><stop offset="55%" stop-color="#6502A2"/><stop offset="85%" stop-color="#2a0060"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+              <filter id="rGlow" x="-80%" y="-40%" width="260%" height="220%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <filter id="rBodyGlow" x="-10%" y="-5%" width="120%" height="110%"><feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#00FFF0" flood-opacity="0.2"/></filter>
+            </defs>
+            <g id="pl-flame">
+              <ellipse cx="60" cy="175" rx="22" ry="10" fill="rgba(101,2,162,0.2)" filter="url(#rGlow)"/>
+              <g id="pl-flame-inner" style="animation:plasmaFlicker .18s ease-in-out infinite">
+                <path d="M50 165 Q55 178 60 185 Q65 178 70 165Z" fill="url(#rFlame)"/>
+                <ellipse cx="60" cy="167" rx="7" ry="5" fill="rgba(200,150,255,0.9)"/>
+                <ellipse cx="60" cy="165" rx="4" ry="3" fill="white"/>
+              </g>
+            </g>
+            <path d="M42 120 L28 158 L44 148 L46 128Z" fill="url(#rFin)"/>
+            <path d="M78 120 L92 158 L76 148 L74 128Z" fill="url(#rFin)"/>
+            <rect x="40" y="52" width="40" height="116" rx="20" fill="rgba(0,0,0,0.4)" transform="translate(2,3)"/>
+            <rect x="40" y="52" width="40" height="116" rx="20" fill="url(#rBody)" filter="url(#rBodyGlow)"/>
+            <rect x="40" y="52" width="14" height="116" rx="20" fill="rgba(0,0,0,0.4)"/>
+            <rect x="66" y="52" width="14" height="116" rx="20" fill="rgba(0,0,0,0.25)"/>
+            <rect x="54" y="58" width="12" height="104" rx="6" fill="rgba(255,255,255,0.08)"/>
+            <circle cx="60" cy="100" r="14" fill="#0a0a18" stroke="rgba(0,255,240,0.5)" stroke-width="1.5"/>
+            <circle cx="60" cy="100" r="14" fill="none" stroke="#00FFF0" stroke-width="1" opacity="0.6" filter="url(#rBodyGlow)"/>
+            <circle cx="60" cy="100" r="10" fill="#080820"/>
+            <circle cx="60" cy="100" r="8" fill="url(#rEng)"/>
+            <circle cx="60" cy="100" r="8" fill="none" stroke="rgba(0,255,240,0.4)" stroke-width="0.8"/>
+            <ellipse cx="57" cy="97" rx="3" ry="2" fill="rgba(255,255,255,0.2)" transform="rotate(-20 57 97)"/>
+            <path d="M40 52 Q40 30 60 14 Q80 30 80 52Z" fill="url(#rBody)"/>
+            <path d="M40 52 Q40 34 60 20 Q80 34 80 52Z" fill="rgba(0,0,0,0.35)"/>
+            <path d="M52 52 Q52 36 60 22 Q68 36 68 52Z" fill="rgba(255,255,255,0.06)"/>
+            <path d="M57 14 Q58 10 60 8 Q62 10 63 14" stroke="rgba(0,255,240,0.6)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div id="pl-label">Celar Marketing Lab</div>
+    <div id="pl-tagline">SMM Without Budget · 30-Day Challenge</div>
+    <div class="pl-progress-wrap"><div class="pl-progress-bar" id="pl-bar"></div></div>
+  </div>
+</div></div>
+
+<!-- ═══════════════ HERO VIEW ═══════════════ -->
+<div id="view-hero">
+  <canvas id="planet-canvas"></canvas>
+  <div class="overlay"></div>
+
+  <nav>
+    <a class="nav-logo" href="#">
+    <svg class="nav-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="16" stroke="url(#lg1)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="10" stroke="url(#lg2)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="4" stroke="url(#lg3)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+      <circle cx="4" cy="18" r="1.5" fill="rgba(220,220,220,0.4)"/>
+      <circle cx="32" cy="18" r="1.5" fill="rgba(220,220,220,0.4)"/>
+      <defs>
+        <linearGradient id="lg1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+        <linearGradient id="lg2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.7"/></linearGradient>
+        <linearGradient id="lg3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.5"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="nav-logo-text">Celar<span>Marketing Lab</span></div>
+  </a>
+    <ul style="display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0">
+      <li><a href="celar.html#about" style="font-size:11px;letter-spacing:.08em;color:rgba(220,220,220,.45);text-decoration:none;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#00FFF0'" onmouseout="this.style.color='rgba(220,220,220,.45)'">About</a></li>
+      <li><a href="celar_services.html" style="font-size:11px;letter-spacing:.08em;color:rgba(220,220,220,.45);text-decoration:none;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#00FFF0'" onmouseout="this.style.color='rgba(220,220,220,.45)'">Services</a></li>
+      <li><a href="celar.html#process" style="font-size:11px;letter-spacing:.08em;color:rgba(220,220,220,.45);text-decoration:none;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#00FFF0'" onmouseout="this.style.color='rgba(220,220,220,.45)'">How we work</a></li>
+      <li><a href="celar_cases.html" style="font-size:11px;letter-spacing:.08em;color:rgba(220,220,220,.45);text-decoration:none;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#00FFF0'" onmouseout="this.style.color='rgba(220,220,220,.45)'">Cases</a></li>
+      <li><a href="celar_products.html" style="font-size:11px;letter-spacing:.08em;color:rgba(220,220,220,.45);text-decoration:none;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#00FFF0'" onmouseout="this.style.color='rgba(220,220,220,.45)'">Products</a></li>
+      <li><a href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" style="font-size:11px;letter-spacing:.08em;color:var(--cyan);border:1px solid rgba(0,255,240,.35);padding:7px 16px;text-decoration:none;text-transform:uppercase;transition:all .2s" onmouseover="this.style.background='rgba(0,255,240,.06)'" onmouseout="this.style.background='transparent'">Book a call</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-content">
+    <div class="eyebrow">By Celar Marketing Lab · <span>EU-based</span> Strategic Marketing Studio</div>
+    <h1 class="hero-title">SMM<br>Without<br><span class="ghost">Budget</span></h1>
+    <div class="accent-bar">
+      <div class="accent-bar-line"></div>
+      <div class="accent-bar-dot"></div>
+    </div>
+    <p class="hero-sub">Grow your social media from zero with no ad spend, no agency, and no prior marketing knowledge. One daily block. 15 minutes. 28 days.</p>
+    <div class="stats-row">
+      <div><div class="stat-val" style="color:var(--pk)">28</div><div class="stat-lbl">Daily blocks</div></div>
+      <div><div class="stat-val" style="color:var(--tl)">4</div><div class="stat-lbl">Weeks</div></div>
+      <div><div class="stat-val">15<span style="font-size:18px;font-family:'Space Grotesk'">min</span></div><div class="stat-lbl">Per day</div></div>
+      <div><div class="stat-val" style="color:var(--tl)">28</div><div class="stat-lbl">Skills learned</div></div>
+    </div>
+    <div class="btn-row">
+      <p style="font-size:13px;color:rgba(220,220,220,.55);margin-bottom:12px;line-height:1.5">One-time · €28 · Access sent to your email</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+        <input id="hero-email" type="email" placeholder="your@email.com"
+          style="background:rgba(255,255,255,.05);border:1.5px solid rgba(0,255,240,.3);border-radius:2px;color:#eafffe;font-family:'Poppins',sans-serif;font-size:13px;padding:13px 16px;flex:1;min-width:200px;outline:none;transition:border-color .2s"
+          onfocus="this.style.borderColor='rgba(0,255,240,.65)'"
+          onblur="this.style.borderColor='rgba(0,255,240,.3)'"
+          onkeydown="if(event.key==='Enter')goToStripe()" />
+        <button class="btn-primary" onclick="goToStripe()" style="white-space:nowrap">Get Access — €28</button>
+      </div>
+      <p style="font-size:11px;color:rgba(220,220,220,.3);margin-top:6px">3-day money-back guarantee · No questions asked · <a href="celar_privacy.html" style="color:rgba(0,255,240,.4);text-decoration:none">Privacy Policy</a></p>
+      <button class="btn-outline" onclick="openPanel()" style="margin-top:10px">Learn More</button>
+    </div>
+  </div>
+
+  <div class="side-orbit">
+    <div class="orbit-label">Mission Active</div>
+    <div class="orbit-line"></div>
+    <div class="orbit-dot"></div>
+  </div>
+
+  <div id="info-panel">
+    <button class="panel-close" onclick="closePanel()">×</button>
+    <div style="max-width:640px">
+      <div class="panel-eyebrow">Most popular · €28 one-time</div>
+      <div class="panel-title">SMM Without Budget —<br>30-Day Challenge</div>
+
+      <p style="font-size:14px;color:rgba(220,220,220,.65);line-height:1.75;margin:16px 0 24px">
+        A step-by-step system for growing on social media without ad spend — 30 daily tasks for solo founders and creators who run their account alone.
+      </p>
+
+      <div class="panel-eyebrow" style="margin-bottom:10px">What you get</div>
+      <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:8px">
+        <li style="font-size:13px;color:rgba(220,220,220,.7);display:flex;gap:10px"><span style="color:var(--tl);flex-shrink:0">→</span>30 daily tasks, each 20–40 minutes</li>
+        <li style="font-size:13px;color:rgba(220,220,220,.7);display:flex;gap:10px"><span style="color:var(--tl);flex-shrink:0">→</span>Ready-made content prompts, hook formulas and a publishing calendar template</li>
+        <li style="font-size:13px;color:rgba(220,220,220,.7);display:flex;gap:10px"><span style="color:var(--tl);flex-shrink:0">→</span>Progress syncs to the cloud — continue from any device</li>
+        <li style="font-size:13px;color:rgba(220,220,220,.7);display:flex;gap:10px"><span style="color:var(--tl);flex-shrink:0">→</span>4 weekly modules: Foundation → Content → Growth → System</li>
+      </ul>
+
+      <div class="panel-eyebrow" style="margin-bottom:10px">How it works</div>
+      <ol style="padding:0 0 0 18px;margin:0 0 24px;display:flex;flex-direction:column;gap:8px">
+        <li style="font-size:13px;color:rgba(220,220,220,.7)">Pay via Stripe — access link arrives in your email within minutes</li>
+        <li style="font-size:13px;color:rgba(220,220,220,.7)">One lesson per day, at your own pace</li>
+        <li style="font-size:13px;color:rgba(220,220,220,.7)">Progress saves automatically as you go</li>
+      </ol>
+
+      <div class="panel-eyebrow" style="margin-bottom:10px">Common questions</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+        <div style="border:1px solid rgba(255,255,255,.07);border-radius:2px;padding:14px 16px">
+          <div style="font-size:13px;font-weight:600;color:#eafffe;margin-bottom:4px">What if I fall behind schedule?</div>
+          <div style="font-size:13px;color:rgba(220,220,220,.55)">The challenge doesn't expire. Your progress is saved — continue whenever you're ready.</div>
+        </div>
+        <div style="border:1px solid rgba(255,255,255,.07);border-radius:2px;padding:14px 16px">
+          <div style="font-size:13px;font-weight:600;color:#eafffe;margin-bottom:4px">Does it really work without an ad budget?</div>
+          <div style="font-size:13px;color:rgba(220,220,220,.55)">Yes. The entire system is built on organic growth — no paid promotion needed.</div>
+        </div>
+        <div style="border:1px solid rgba(255,255,255,.07);border-radius:2px;padding:14px 16px">
+          <div style="font-size:13px;font-weight:600;color:#eafffe;margin-bottom:4px">What if it's not for me?</div>
+          <div style="font-size:13px;color:rgba(220,220,220,.55)">3-day money-back guarantee. No questions asked.</div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:20px">
+        <p style="font-size:13px;color:rgba(220,220,220,.5);margin-bottom:12px">Enter your email — access link will be sent after payment</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px">
+          <input id="panel-email" type="email" placeholder="your@email.com"
+            style="background:rgba(255,255,255,.05);border:1.5px solid rgba(0,255,240,.3);border-radius:2px;color:#eafffe;font-family:'Poppins',sans-serif;font-size:13px;padding:13px 16px;flex:1;min-width:180px;outline:none;transition:border-color .2s"
+            onfocus="this.style.borderColor='rgba(0,255,240,.65)'"
+            onblur="this.style.borderColor='rgba(0,255,240,.3)'"
+            onkeydown="if(event.key==='Enter')goToStripeFromPanel()" />
+          <button class="btn-primary" onclick="goToStripeFromPanel()" style="white-space:nowrap">Get Access — €28</button>
+        </div>
+        <p style="font-size:11px;color:rgba(220,220,220,.3)">3-day money-back guarantee · <a href="celar_privacy.html" style="color:rgba(0,255,240,.4);text-decoration:none">Privacy Policy</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ COURSE VIEW ═══════════════ -->
+<div id="view-course">
+<canvas id="cv"></canvas>
+<div class="wrap">
+
+<!-- S0 WELCOME — no price shown (user already purchased) -->
+<div class="screen active" id="s0">
+<div class="big-num">00</div>
+<div class="top-bar">
+  <div class="tb-logo"><svg class="tb-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="16" stroke="url(#tlg1)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="10" stroke="url(#tlg2)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="4" stroke="url(#tlg3)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+      <defs>
+        <linearGradient id="tlg1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+        <linearGradient id="tlg2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.7"/></linearGradient>
+        <linearGradient id="tlg3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.5"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="tb-logo-text">Celar</div>
+  </div>
+  <div class="logo">SMM Challenge</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:24px">
+<div style="font-size:9px;letter-spacing:.22em;color:rgba(255,255,255,.2);text-transform:uppercase;margin-bottom:20px">30-Day Challenge · Celar Marketing Lab</div>
+<div class="stitle" style="font-size:clamp(52px,9vw,100px)">SMM<br>Without<br><span style="color:rgba(255,255,255,.08)">Budget</span></div>
+<div class="dl"></div>
+<p class="ssub">Your 28-day mission to grow social media with zero ad spend. 5 minutes of setup — then we launch.</p>
+<div class="hsr">
+<div class="hsi"><div class="hsv np">28</div><div class="hsl">Daily blocks</div></div>
+<div class="hsi"><div class="hsv nt">4</div><div class="hsl">Weeks</div></div>
+<div class="hsi"><div class="hsv">15<span style="font-size:16px;font-family:'Space Grotesk'">min</span></div><div class="hsl">Per day</div></div>
+</div>
+<div class="brow"><button class="bp" onclick="go(1)">Start Mission →</button></div>
+</div>
+</div>
+  <div class="logo-brand">Celar<span>.</span>lab</div>
+  <div class="logo">SMM Challenge</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:24px">
+<div style="font-size:9px;letter-spacing:.22em;color:rgba(255,255,255,.2);text-transform:uppercase;margin-bottom:20px">30-Day Challenge · Celar Marketing Lab</div>
+<div class="stitle" style="font-size:clamp(52px,9vw,100px)">SMM<br>Without<br><span style="color:rgba(255,255,255,.08)">Budget</span></div>
+<div class="dl"></div>
+<p class="ssub">Your 28-day mission to grow social media with zero ad spend. 5 minutes of setup — then we launch.</p>
+<div class="hsr">
+<div class="hsi"><div class="hsv np">28</div><div class="hsl">Daily blocks</div></div>
+<div class="hsi"><div class="hsv nt">4</div><div class="hsl">Weeks</div></div>
+<div class="hsi"><div class="hsv">15<span style="font-size:16px;font-family:'Space Grotesk'">min</span></div><div class="hsl">Per day</div></div>
+</div>
+<div class="brow"><button class="bp" onclick="go(1)">Start Mission →</button></div>
+</div>
+</div>
+
+<!-- S1 GOAL -->
+<div class="screen" id="s1">
+<div class="big-num">01</div>
+<div class="top-bar">
+  <div class="tb-logo"><svg class="tb-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="16" stroke="url(#tlg1)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="10" stroke="url(#tlg2)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="4" stroke="url(#tlg3)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+      <defs>
+        <linearGradient id="tlg1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+        <linearGradient id="tlg2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.7"/></linearGradient>
+        <linearGradient id="tlg3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.5"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="tb-logo-text">Celar</div>
+  </div><div class="logo">Step 1 of 4 — Goal</div></div>
+<div class="stitle">What's your <span class="np">mission?</span></div>
+<p class="ssub">This shapes your entire challenge — tasks and examples built around your goal.</p>
+<div class="ql">Your main goal</div>
+<div class="opts2" id="go">
+<div class="opt" onclick="pick(this,'goal')" data-v="sales"><span class="ot">Drive sales</span><span class="od">Turn followers into customers</span></div>
+<div class="opt" onclick="pick(this,'goal')" data-v="brand"><span class="ot">Personal brand</span><span class="od">Build authority and recognition</span></div>
+<div class="opt" onclick="pick(this,'goal')" data-v="traffic"><span class="ot">Website traffic</span><span class="od">Bring people to my site</span></div>
+<div class="opt" onclick="pick(this,'goal')" data-v="learn"><span class="ot">Learn SMM</span><span class="od">Understand how it all works</span></div>
+</div>
+<div class="ql">Time per day</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px" id="to">
+<div class="opt" onclick="pick(this,'time')" data-v="15" style="text-align:center"><span class="ot">15 min</span><span class="od">Light</span></div>
+<div class="opt" onclick="pick(this,'time')" data-v="30" style="text-align:center"><span class="ot">30 min</span><span class="od">Steady</span></div>
+<div class="opt" onclick="pick(this,'time')" data-v="60" style="text-align:center"><span class="ot">1 hour</span><span class="od">Sprint</span></div>
+</div>
+<div class="brow"><button class="bg" onclick="go(0)">Back</button><button class="bp" onclick="chk(['goal','time'],2)">Next →</button></div>
+</div>
+
+<!-- S2 NETWORKS -->
+<div class="screen" id="s2">
+<div class="big-num">02</div>
+<div class="top-bar">
+  <div class="tb-logo"><svg class="tb-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="16" stroke="url(#tlg1)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="10" stroke="url(#tlg2)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="4" stroke="url(#tlg3)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+      <defs>
+        <linearGradient id="tlg1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+        <linearGradient id="tlg2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.7"/></linearGradient>
+        <linearGradient id="tlg3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.5"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="tb-logo-text">Celar</div>
+  </div><div class="logo">Step 2 of 4 — Platforms</div></div>
+<div class="stitle">Your <span class="nt">platforms</span></div>
+<p class="ssub">Pick up to 3 networks. Every task across all 28 days tailored to your selection.</p>
+<div class="ql">Select up to 3</div>
+<div class="nets" id="ng">
+<div class="nb" onclick="tnet(this)" data-v="Instagram"><i class="ti ti-brand-instagram"></i>Instagram</div>
+<div class="nb" onclick="tnet(this)" data-v="TikTok"><i class="ti ti-brand-tiktok"></i>TikTok</div>
+<div class="nb" onclick="tnet(this)" data-v="LinkedIn"><i class="ti ti-brand-linkedin"></i>LinkedIn</div>
+<div class="nb" onclick="tnet(this)" data-v="Facebook"><i class="ti ti-brand-facebook"></i>Facebook</div>
+<div class="nb" onclick="tnet(this)" data-v="Telegram"><i class="ti ti-brand-telegram"></i>Telegram</div>
+<div class="nb" onclick="tnet(this)" data-v="Pinterest"><i class="ti ti-brand-pinterest"></i>Pinterest</div>
+</div>
+<p class="note" id="nn">0 of 3 selected</p>
+<div class="brow"><button class="bg" onclick="go(1)">Back</button><button class="bp" onclick="chkNets()">Next →</button></div>
+</div>
+
+<!-- S3 METRICS -->
+<div class="screen" id="s3">
+<div class="big-num">03</div>
+<div class="top-bar">
+  <div class="tb-logo"><svg class="tb-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="16" stroke="url(#tlg1)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="10" stroke="url(#tlg2)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="4" stroke="url(#tlg3)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+      <defs>
+        <linearGradient id="tlg1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+        <linearGradient id="tlg2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.7"/></linearGradient>
+        <linearGradient id="tlg3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.5"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="tb-logo-text">Celar</div>
+  </div><div class="logo">Step 3 of 4 — Baseline</div></div>
+<div class="stitle">Your <span class="np">start point</span></div>
+<p class="ssub">Record your numbers now. On Day 28 compare — this becomes your before/after case study.</p>
+<div id="mf"></div>
+<p class="note" style="margin-top:10px">Enter 0 if no account yet — perfectly fine.</p>
+<div class="brow" style="margin-top:16px"><button class="bg" onclick="go(2)">Back</button><button class="bp" onclick="saveMet()">Launch Mission →</button></div>
+</div>
+
+<!-- S4 MISSION CONTROL -->
+<div class="screen" id="s4">
+<div class="big-num">04</div>
+<div class="top-bar">
+  <div class="tb-logo"><svg class="tb-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="16" stroke="url(#tlg1)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="10" stroke="url(#tlg2)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="4" stroke="url(#tlg3)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+      <defs>
+        <linearGradient id="tlg1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+        <linearGradient id="tlg2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.7"/></linearGradient>
+        <linearGradient id="tlg3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.5"/></linearGradient>
+      </defs>
+    </svg>
+    <div class="tb-logo-text">Celar</div>
+  </div><div class="logo">Mission Control</div></div>
+<div id="pr"></div>
+<div class="ql">XP Progress</div>
+<div class="xpw"><div class="xpb" id="xb" style="width:4%"></div></div>
+<div class="xpl"><span id="xv">40 XP earned</span><span>1000 XP = mission complete</span></div>
+<div class="ql" style="margin-top:22px">Badges</div>
+<div class="badges" id="badge-list">
+<div class="badge ep" id="b-launched"><i class="ti ti-rocket"></i>Launched</div>
+<div class="badge ep" id="b-goal"><i class="ti ti-target"></i>Goal set</div>
+<div class="badge et" id="b-nets"><i class="ti ti-planet"></i>Networks locked</div>
+<div class="badge" id="b-streak"><i class="ti ti-flame"></i>First streak</div>
+<div class="badge" id="b-w1"><i class="ti ti-trophy"></i>Week 1 done</div>
+<div class="badge" id="b-w2"><i class="ti ti-writing"></i>Content Maker</div>
+<div class="badge" id="b-w3"><i class="ti ti-trending-up"></i>Growth Hacker</div>
+<div class="badge" id="b-w4"><i class="ti ti-settings"></i>SMM System Built</div>
+<div class="badge" id="b-champ"><i class="ti ti-star"></i>SMM Champion</div>
+</div>
+<div class="brow"><button class="bt" onclick="go(5)">Enter Week 1 →</button></div>
+</div>
+
+<!-- S5 WEEK 1 -->
+<div class="screen" id="s5">
+<div class="top-bar"><div class="logo nt">Week 1 — Foundation · Days 1–7</div><div class="np" style="font-size:11px;font-weight:700" id="xpt">40 XP</div></div>
+<div id="wkn5"></div>
+<div class="sbar"><div><div class="snx" id="sn1">1</div><div class="slb">Streak</div></div><div class="sep"></div><div style="flex:1;padding-left:16px"><div style="font-size:13px;color:rgba(255,255,255,.3);line-height:1.65">Complete one day every day. Streaks multiply XP and unlock rare badges.</div></div><div style="text-align:right;flex-shrink:0;padding-left:16px"><div class="np" style="font-family:'Poppins';font-size:32px;font-weight:900" id="xp1">40</div><div style="font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em">XP total</div></div></div>
+<div class="ql">Days 1–7</div><div class="dgrid" id="dg1"></div>
+<div id="w1d"></div>
+<div class="brow"><button class="bt" onclick="go(6)">Week 2 Overview →</button></div>
+</div>
+
+<!-- S6 W2 OVERVIEW -->
+<div class="screen" id="s6">
+<div class="big-num">02</div>
+<div class="top-bar"><div class="logo np">Week 2 — Content</div><div class="np" style="font-size:11px;font-weight:700" id="xp2ov">40 XP</div></div>
+<div id="wkn6"></div>
+<div style="width:48px;height:2px;background:var(--pk);margin-bottom:20px"></div>
+<div class="stitle">Week 2:<br><span class="np">Content</span></div>
+<p class="ssub">You understand the foundations. Now build a content system that runs on autopilot.</p>
+<div class="ql">What you master this week</div>
+<div class="ovg">
+<div class="ovc"><div class="ovd np">Day 8</div><div class="ovt">Content Planning</div><div class="ovs">Kill the daily panic forever.</div></div>
+<div class="ovc"><div class="ovd np">Day 9</div><div class="ovt">Storytelling</div><div class="ovs">Stories outsell facts every time.</div></div>
+<div class="ovc"><div class="ovd nt">Day 10</div><div class="ovt">Content Formats</div><div class="ovs">Reels, Stories, carousels.</div></div>
+<div class="ovc"><div class="ovd nt">Day 11</div><div class="ovt">Scroll-stopping hooks</div><div class="ovs">7 formulas. 1.7 seconds.</div></div>
+<div class="ovc"><div class="ovd np">Day 12</div><div class="ovt">CTAs that convert</div><div class="ovs">Soft to direct — never pushy.</div></div>
+<div class="ovc"><div class="ovd np">Day 13</div><div class="ovt">Content without a face</div><div class="ovs">Grow without the camera.</div></div>
+</div>
+<div class="bpromo"><div><div style="font-size:9px;color:var(--pk);text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:4px">Badge to unlock</div><div style="font-family:'Poppins';font-size:15px;font-weight:900">Content Maker</div></div><div class="bpr"><i class="ti ti-writing"></i> +280 XP</div></div>
+<div class="brow"><button class="bg" onclick="go(5)">← Week 1</button><button class="bp" onclick="go(7)">Start Week 2 →</button></div>
+</div>
+
+<!-- S7 WEEK 2 -->
+<div class="screen" id="s7">
+<div class="top-bar"><div class="logo np">Week 2 — Content · Days 8–14</div><div class="np" style="font-size:11px;font-weight:700" id="xp2">40 XP</div></div>
+<div id="wkn7"></div>
+<div class="sbar"><div><div class="snx np" id="sn2">1</div><div class="slb">Streak</div></div><div class="sep"></div><div style="flex:1;padding-left:16px"><div style="font-size:13px;color:rgba(255,255,255,.3);line-height:1.65">Week 2 — 7 new skills. Each builds on last week.</div></div><div style="text-align:right;flex-shrink:0;padding-left:16px"><div class="np" style="font-family:'Poppins';font-size:32px;font-weight:900" id="xp2b">40</div><div style="font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em">XP total</div></div></div>
+<div class="ql">Days 8–14</div><div class="dgrid" id="dg2"></div>
+<div id="w2d"></div>
+<div class="brow"><button class="bg" onclick="go(6)">← Overview</button><button class="bt" onclick="go(8)">Week 3 Overview →</button></div>
+</div>
+
+<!-- S8 W3 OVERVIEW -->
+<div class="screen" id="s8">
+<div class="big-num">03</div>
+<div class="top-bar"><div class="logo nt">Week 3 — Growth</div><div class="nt" style="font-size:11px;font-weight:700" id="xp3ov">40 XP</div></div>
+<div id="wkn8"></div>
+<div style="width:48px;height:2px;background:var(--tl);margin-bottom:20px"></div>
+<div class="stitle">Week 3:<br><span class="nt">Growth</span></div>
+<p class="ssub">You can create content. Now make it travel — organic reach, discovery, and real community without spending a cent.</p>
+<div class="ql">What you master this week</div>
+<div class="ovg">
+<div class="ovc" style="border-color:rgba(0,229,204,.18)"><div class="ovd nt">Day 15</div><div class="ovt">Hashtags & SEO</div><div class="ovs">Be found without paying.</div></div>
+<div class="ovc" style="border-color:rgba(0,229,204,.18)"><div class="ovd nt">Day 16</div><div class="ovt">Collaborations</div><div class="ovs">Share audiences for free.</div></div>
+<div class="ovc" style="border-color:rgba(0,229,204,.18)"><div class="ovd np">Day 17</div><div class="ovt">Community</div><div class="ovs">Followers → living community.</div></div>
+<div class="ovc" style="border-color:rgba(0,229,204,.18)"><div class="ovd np">Day 18</div><div class="ovt">Profile SEO Audit</div><div class="ovs">Make every element convert.</div></div>
+<div class="ovc" style="border-color:rgba(0,229,204,.18)"><div class="ovd nt">Day 19</div><div class="ovt">Viral Patterns</div><div class="ovs">6 triggers that travel far.</div></div>
+<div class="ovc" style="border-color:rgba(0,229,204,.18)"><div class="ovd nt">Day 20</div><div class="ovt">First Short Video</div><div class="ovs">Your first Reel or TikTok.</div></div>
+</div>
+<div class="bpromo" style="border-color:var(--tb);background:var(--td)"><div><div style="font-size:9px;color:var(--tl);text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:4px">Badge to unlock</div><div style="font-family:'Poppins';font-size:15px;font-weight:900">Growth Hacker</div></div><div style="border:.5px solid var(--tb);padding:10px 16px;font-size:10px;font-weight:700;color:var(--tl);letter-spacing:.1em;text-transform:uppercase"><i class="ti ti-trending-up"></i> +280 XP</div></div>
+<div class="brow"><button class="bg" onclick="go(7)">← Week 2</button><button class="bt" onclick="go(9)">Start Week 3 →</button></div>
+</div>
+
+<!-- S9 WEEK 3 -->
+<div class="screen" id="s9">
+<div class="top-bar"><div class="logo nt">Week 3 — Growth · Days 15–21</div><div class="nt" style="font-size:11px;font-weight:700" id="xp3">40 XP</div></div>
+<div id="wkn9"></div>
+<div class="sbar"><div><div class="snx nt" id="sn3">1</div><div class="slb">Streak</div></div><div class="sep"></div><div style="flex:1;padding-left:16px"><div style="font-size:13px;color:rgba(255,255,255,.3);line-height:1.65">Week 3 — reach, discovery and community.</div></div><div style="text-align:right;flex-shrink:0;padding-left:16px"><div class="nt" style="font-family:'Poppins';font-size:32px;font-weight:900" id="xp3b">40</div><div style="font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em">XP total</div></div></div>
+<div class="ql">Days 15–21</div><div class="dgrid" id="dg3"></div>
+<div id="w3d"></div>
+<div class="brow"><button class="bg" onclick="go(8)">← Overview</button><button class="bp" onclick="go(10)">Week 4 Overview →</button></div>
+</div>
+
+<!-- S10 W4 OVERVIEW -->
+<div class="screen" id="s10">
+<div class="big-num">04</div>
+<div class="top-bar"><div class="logo np">Week 4 — System</div><div class="np" style="font-size:11px;font-weight:700" id="xp4ov">40 XP</div></div>
+<div id="wkn10"></div>
+<div style="width:48px;height:2px;background:var(--pk);margin-bottom:20px"></div>
+<div class="stitle">Week 4:<br><span class="np">System</span></div>
+<p class="ssub">You have the knowledge. Now build the machine that runs without willpower.</p>
+<div class="ql">What you master this week</div>
+<div class="ovg">
+<div class="ovc" style="border-color:rgba(255,45,120,.18)"><div class="ovd np">Day 22</div><div class="ovt">2-Hour Weekly System</div><div class="ovs">Run everything in 2 hrs/week.</div></div>
+<div class="ovc" style="border-color:rgba(255,45,120,.18)"><div class="ovd np">Day 23</div><div class="ovt">Metrics that matter</div><div class="ovs">Stop tracking vanity.</div></div>
+<div class="ovc" style="border-color:rgba(255,45,120,.18)"><div class="ovd nt">Day 24</div><div class="ovt">Content Repurposing</div><div class="ovs">1 idea × 5 formats.</div></div>
+<div class="ovc" style="border-color:rgba(255,45,120,.18)"><div class="ovd nt">Day 25</div><div class="ovt">Free Automation Tools</div><div class="ovs">Schedule, automate, delegate.</div></div>
+<div class="ovc" style="border-color:rgba(255,45,120,.18)"><div class="ovd np">Day 26</div><div class="ovt">Organic Monetisation</div><div class="ovs">How posts lead to payment.</div></div>
+<div class="ovc" style="border-color:rgba(255,45,120,.18)"><div class="ovd np">Day 27</div><div class="ovt">Burnout Prevention</div><div class="ovs">How to keep going 90+ days.</div></div>
+</div>
+<div class="bpromo"><div><div style="font-size:9px;color:var(--pk);text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:4px">Final badge</div><div style="font-family:'Poppins';font-size:15px;font-weight:900">SMM Champion 🏆</div></div><div class="bpr"><i class="ti ti-star"></i> +400 XP</div></div>
+<div class="brow"><button class="bg" onclick="go(9)">← Week 3</button><button class="bp" onclick="go(11)">Start Week 4 →</button></div>
+</div>
+
+<!-- S11 WEEK 4 -->
+<div class="screen" id="s11">
+<div class="top-bar"><div class="logo np">Week 4 — System · Days 22–28</div><div class="np" style="font-size:11px;font-weight:700" id="xp4">40 XP</div></div>
+<div id="wkn11"></div>
+<div class="sbar"><div><div class="snx np" id="sn4">1</div><div class="slb">Streak</div></div><div class="sep"></div><div style="flex:1;padding-left:16px"><div style="font-size:13px;color:rgba(255,255,255,.3);line-height:1.65">Final week. Build the system that outlasts the challenge.</div></div><div style="text-align:right;flex-shrink:0;padding-left:16px"><div class="np" style="font-family:'Poppins';font-size:32px;font-weight:900" id="xp4b">40</div><div style="font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em">XP total</div></div></div>
+<div class="ql">Days 22–28</div><div class="dgrid" id="dg4"></div>
+<div id="w4d"></div>
+<div class="brow"><button class="bg" onclick="go(10)">← Overview</button><button class="bt" onclick="go(12)">See Final Results →</button></div>
+</div>
+
+<!-- S12 FINAL + REVIEW -->
+<div class="screen" id="s12">
+<div class="top-bar"><div class="logo nt">Mission Complete</div><div class="np" style="font-size:11px;font-weight:700" id="xpf">40 XP</div></div>
+<div style="width:48px;height:2px;background:linear-gradient(90deg,var(--pk),var(--tl));margin-bottom:24px"></div>
+<div class="stitle">28 Days.<br><span class="nt">Done.</span></div>
+<p class="ssub">You completed something most people talk about and never do. Here's what changed.</p>
+<div class="ql">Before vs After</div>
+<div id="ba"></div>
+<div class="ql" style="margin-top:22px">Final score</div>
+<div class="sgrid">
+<div class="sc"><div class="scv np" id="fxp">40</div><div class="scl">XP Earned</div></div>
+<div class="sc"><div class="scv nt" id="fdays">0</div><div class="scl">Days Done</div></div>
+<div class="sc"><div class="scv" id="fstr">1</div><div class="scl">Best Streak</div></div>
+</div>
+<div class="badges" id="final-badges" style="margin-top:16px"></div>
+<div style="margin-top:36px;border-top:.5px solid rgba(255,255,255,.07);padding-top:32px">
+<div class="ql">Leave a review</div>
+<div class="stitle" style="font-size:clamp(22px,4vw,38px);margin-bottom:10px">How was<br><span class="np">your mission?</span></div>
+<p style="font-size:13px;color:rgba(255,255,255,.38);line-height:1.7;margin-bottom:22px;max-width:440px">Your feedback goes directly to Celar Marketing Lab. Takes 2 minutes.</p>
+<div id="rev-form">
+<div class="ql">Your rating</div>
+<div class="stars" id="stars"><span class="star" onclick="setRating(1)">★</span><span class="star" onclick="setRating(2)">★</span><span class="star" onclick="setRating(3)">★</span><span class="star" onclick="setRating(4)">★</span><span class="star" onclick="setRating(5)">★</span></div>
+<div class="ql">Your name (optional)</div>
+<input type="text" id="rname" placeholder="e.g. Maria S." class="qi" style="margin-bottom:14px">
+<div class="ql">Your message</div>
+<textarea id="rtext" rows="4" placeholder="What worked? What surprised you? What would you tell someone thinking about joining?" class="qi" style="resize:none;margin-bottom:8px;line-height:1.6"></textarea>
+<button class="qsend" onclick="sendRev()">Send Review →</button>
+</div>
+<div class="qok" id="rev-ok"><i class="ti ti-circle-check" style="font-size:20px;display:block;margin-bottom:8px;color:var(--tl)"></i>Review sent — thank you!<br><span style="font-size:11px;opacity:.5">Sent to kseniia@celarlab.com</span></div>
+</div>
+<div style="margin-top:28px;border-top:.5px solid rgba(255,255,255,.07);padding-top:28px">
+<div class="ql">Still have questions?</div>
+<p style="font-size:13px;color:rgba(255,255,255,.38);margin-bottom:16px;line-height:1.65">Use the chat button (bottom right) at any point to reach Celar directly.</p>
+<button class="bg" onclick="toggleQ()"><i class="ti ti-message-circle"></i> Ask a question now</button>
+</div>
+<div style="margin-top:36px;border:.5px solid var(--tb);background:var(--td);padding:22px;position:relative;overflow:hidden">
+<div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--pk),var(--tl))"></div>
+<div style="font-size:9px;color:var(--tl);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:8px">What's next</div>
+<div style="font-family:'Poppins';font-size:15px;font-weight:700;margin-bottom:8px">Your 90-day plan starts today.</div>
+<div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.75">Keep your weekly content routine. Track 3 metrics every Friday. Come back to review any day for a refresh. The challenge is over — the growth is not.</div>
+</div>
+<div style="margin-top:32px;padding-top:20px;border-top:.5px solid rgba(255,255,255,.05);text-align:center">
+  <p style="font-size:11px;color:rgba(220,220,220,.25);line-height:1.8">© Celar Marketing Lab · <a href="celarlab.com" style="color:rgba(220,220,220,.25);text-decoration:none;">celarmarketinglab.com</a> · <a href="celar_privacy.html" style="color:rgba(220,220,220,.25);text-decoration:none;">Privacy Policy</a></p>
+</div>
+
+</div><!-- /wrap -->
+</div><!-- /view-course -->
+
+<!-- QUESTION FAB (shared) -->
+<button class="qfab" onclick="toggleQ()" id="q-fab" style="display:none"><i class="ti ti-message-circle"></i></button>
+<div class="qpanel" id="q-panel">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-family:'Poppins';font-size:13px;font-weight:700">Ask Celar anything</div>
+<button onclick="toggleQ()" style="background:none;border:none;color:rgba(255,255,255,.35);cursor:pointer;font-size:20px;line-height:1">×</button>
+</div>
+<div style="font-size:11px;color:rgba(255,255,255,.3);margin-bottom:14px;line-height:1.55">Direct to kseniia@celarlab.com. Reply within 24–48 hrs.</div>
+<input type="text" id="qname" class="qi" placeholder="Your name (optional)">
+<input type="email" id="qemail" class="qi" placeholder="Your email (for reply)">
+<textarea id="qtext" class="qi" rows="3" placeholder="Your question..."></textarea>
+<button class="qsend" onclick="sendQ()">Send Question →</button>
+<div class="qok" id="qok"><i class="ti ti-circle-check" style="font-size:16px;display:block;margin-bottom:4px;color:var(--tl)"></i>Sent! Celar will reply to your email.</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// orbit preloader removed — using rocket preloader
+
+
+// ═══════════════ PRELOADER ═══════════════
+(function(){
+  // Space canvas starfield
+  var plc = document.getElementById('pl-space-canvas');
+  if(plc){
+    var px = plc.getContext('2d');
+    plc.width = window.innerWidth; plc.height = window.innerHeight;
+    px.fillStyle = '#000'; px.fillRect(0,0,plc.width,plc.height);
+    for(var i=0;i<200;i++){
+      var sx=Math.random()*plc.width, sy=Math.random()*plc.height, sr=Math.random()*.9+.1;
+      px.beginPath(); px.arc(sx,sy,sr,0,Math.PI*2);
+      px.fillStyle='rgba(255,255,255,'+(Math.random()*.5+.1)+')'; px.fill();
+    }
+  }
+  // Progress bar animation
+  var bar = document.getElementById('pl-bar');
+  var start = performance.now();
+  var dur = 2200;
+  function animBar(){
+    var p = Math.min((performance.now()-start)/dur, 1);
+    var eased = 1-Math.pow(1-p,2);
+    if(bar) bar.style.width = (eased*100)+'%';
+    if(p<1) requestAnimationFrame(animBar);
+    else {
+      setTimeout(function(){ document.getElementById('preloader').classList.add('hidden'); }, 150);
+    }
+  }
+  requestAnimationFrame(animBar);
+})();
+function skipPL(){ document.getElementById('preloader').classList.add('hidden'); }
+
+// ═══════════════ VIEW SWITCHER ═══════════════
+function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function goToStripeFromPanel() {
+  var emailInput = document.getElementById('panel-email');
+  var heroInput = document.getElementById('hero-email');
+  var email = emailInput ? emailInput.value.trim() : '';
+  if(!isValidEmail(email)) {
+    if(emailInput) { emailInput.style.borderColor='#ED3E61'; emailInput.focus(); }
+    return;
+  }
+  // Copy email to hero field too
+  if(heroInput) heroInput.value = email;
+  // Same redirect logic
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({access_key:'YOUR_WEB3FORMS_KEY',subject:'SMM Challenge checkout (panel)',email:email})
+  }).catch(function(){});
+  var link = 'https://buy.stripe.com/cNiaEW5aa6YB3VR8xz0Jq05';
+  var sep = link.includes('?') ? '&' : '?';
+  window.location.href = link + sep + 'prefilled_email=' + encodeURIComponent(email) + '&client_reference_id=smm';
+}
+
+function goToStripe() {
+  var emailInput = document.getElementById('hero-email');
+  var email = emailInput ? emailInput.value.trim() : '';
+  if(!isValidEmail(email)) {
+    if(emailInput) { emailInput.style.borderColor='#ED3E61'; emailInput.focus(); }
+    return;
+  }
+  // Fire-and-forget lead to Web3Forms
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({access_key:'YOUR_WEB3FORMS_KEY',subject:'SMM Challenge checkout',email:email,name:'Checkout'})
+  }).catch(function(){});
+  // Redirect instantly to Stripe with prefilled email
+  var link = 'https://buy.stripe.com/cNiaEW5aa6YB3VR8xz0Jq05';
+  var sep = link.includes('?') ? '&' : '?';
+  window.location.href = link + sep + 'prefilled_email=' + encodeURIComponent(email) + '&client_reference_id=smm';
+}
+
+function launchCourse() {
+  document.getElementById('view-hero').style.display='none';
+  document.getElementById('view-course').style.display='block';
+  document.getElementById('q-fab').style.display='flex';
+  drawCourseStars();
+  var hasData=load();
+  buildAllCards(); rebuildGrids();
+  if(hasData){
+    buildPr(); restoreCards(); checkBadges(); updateXP(); renderWkNav(5); buildBA();
+    var rf=document.getElementById('rev-form'), ro=document.getElementById('rev-ok');
+    if(S.revSent){ if(rf)rf.style.display='none'; if(ro)ro.style.display='block'; }
+    if(S.rating) setRating(S.rating);
+    routeOnLoad();
+  } else { go(0); }
+}
+function openPanel() {
+  var p=document.getElementById('info-panel');
+  p.style.display='flex';
+  requestAnimationFrame(function(){ p.classList.add('open'); });
+}
+function closePanel() {
+  var p=document.getElementById('info-panel');
+  p.classList.remove('open');
+  setTimeout(function(){ p.style.display='none'; }, 300);
+}
+
+// ═══════════════ THREE.JS ═══════════════
+var renderer3 = new THREE.WebGLRenderer({ canvas: document.getElementById('planet-canvas'), alpha:true, antialias:true });
+renderer3.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer3.toneMapping = THREE.ACESFilmicToneMapping;
+renderer3.toneMappingExposure = 1.2;
+var scene3 = new THREE.Scene();
+var cam3 = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 0.1, 200);
+cam3.position.z=6;
+scene3.add(new THREE.AmbientLight(0x0a0a14,0.6));
+var sun3=new THREE.DirectionalLight(0xffeedd,2.4); sun3.position.set(-6,3,5); scene3.add(sun3);
+var fill3=new THREE.DirectionalLight(0xFF2D78,0.35); fill3.position.set(6,-2,-4); scene3.add(fill3);
+var teal3=new THREE.PointLight(0x00E5CC,0.9,30); teal3.position.set(2,5,3); scene3.add(teal3);
+(function(){
+  var g=new THREE.BufferGeometry(), v=[];
+  for(var i=0;i<3000;i++) v.push((Math.random()-.5)*150,(Math.random()-.5)*150,(Math.random()-.5)*150);
+  g.setAttribute('position',new THREE.Float32BufferAttribute(v,3));
+  scene3.add(new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:.055,transparent:true,opacity:.7})));
+})();
+(function(){
+  var g=new THREE.BufferGeometry(), v=[], c=[], cols=[[1,.17,.47],[0,.9,.8],[.45,.15,.75]];
+  for(var i=0;i<450;i++){
+    v.push((Math.random()-.5)*90,(Math.random()-.5)*90,(Math.random()-.5)*90);
+    var cl=cols[Math.floor(Math.random()*3)]; c.push(cl[0],cl[1],cl[2]);
+  }
+  g.setAttribute('position',new THREE.Float32BufferAttribute(v,3));
+  g.setAttribute('color',new THREE.Float32BufferAttribute(c,3));
+  scene3.add(new THREE.Points(g,new THREE.PointsMaterial({size:.14,vertexColors:true,transparent:true,opacity:.3})));
+})();
+function mkTex(hex,opts) {
+  opts=opts||{};
+  var tc=document.createElement('canvas'); tc.width=1024; tc.height=512;
+  var x=tc.getContext('2d');
+  var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  var grd=x.createLinearGradient(0,0,1024,512);
+  grd.addColorStop(0,'rgb('+Math.min(r+40,255)+','+Math.min(g+30,255)+','+Math.min(b+30,255)+')');
+  grd.addColorStop(.4,'rgb('+r+','+g+','+b+')');
+  grd.addColorStop(1,'rgb('+Math.max(r-30,0)+','+Math.max(g-30,0)+','+Math.max(b-30,0)+')');
+  x.fillStyle=grd; x.fillRect(0,0,1024,512);
+  for(var i=0;i<18;i++){var y=Math.random()*512,h=Math.random()*18+3,a=Math.random()*.18+.04;x.fillStyle='rgba(255,255,255,'+a+')';x.fillRect(0,y,1024,h);}
+  for(var i=0;i<8;i++){x.fillStyle='rgba(0,0,0,'+(Math.random()*.12+.04)+')';x.fillRect(0,Math.random()*512,1024,Math.random()*12+2);}
+  for(var i=0;i<50;i++){
+    var cx2=Math.random()*1024,cy2=Math.random()*512,cr=Math.random()*18+3;
+    var cg=x.createRadialGradient(cx2,cy2,0,cx2,cy2,cr);
+    cg.addColorStop(0,'rgba(0,0,0,.3)'); cg.addColorStop(.7,'rgba(255,255,255,.06)'); cg.addColorStop(1,'rgba(0,0,0,0)');
+    x.fillStyle=cg; x.beginPath(); x.arc(cx2,cy2,cr,0,Math.PI*2); x.fill();
+  }
+  for(var i=0;i<35;i++){x.fillStyle='rgba(255,255,255,'+(Math.random()*.12+.03)+')';x.beginPath();x.ellipse(Math.random()*1024,Math.random()*512,Math.random()*120+20,Math.random()*16+4,0,0,Math.PI*2);x.fill();}
+  if(opts.iceCapTop){var cg=x.createLinearGradient(0,0,0,80);cg.addColorStop(0,'rgba(220,240,255,.75)');cg.addColorStop(1,'rgba(220,240,255,0)');x.fillStyle=cg;x.fillRect(0,0,1024,80);}
+  if(opts.iceCapBot){var cg=x.createLinearGradient(0,440,0,512);cg.addColorStop(0,'rgba(220,240,255,0)');cg.addColorStop(1,'rgba(220,240,255,.65)');x.fillStyle=cg;x.fillRect(0,440,1024,72);}
+  return new THREE.CanvasTexture(tc);
+}
+function mkNrm(s) {
+  var nc=document.createElement('canvas'); nc.width=s; nc.height=s;
+  var x=nc.getContext('2d'); x.fillStyle='rgb(128,128,255)'; x.fillRect(0,0,s,s);
+  for(var i=0;i<200;i++){
+    var px=Math.random()*s,py=Math.random()*s,pr=Math.random()*24+4;
+    var g=x.createRadialGradient(px,py,0,px,py,pr);
+    g.addColorStop(0,'rgba(180,180,255,.8)'); g.addColorStop(1,'rgba(128,128,255,0)');
+    x.fillStyle=g; x.beginPath(); x.arc(px,py,pr,0,Math.PI*2); x.fill();
+  }
+  return new THREE.CanvasTexture(nc);
+}
+function mkRing(col) {
+  var rc=document.createElement('canvas'); rc.width=512; rc.height=1;
+  var x=rc.getContext('2d'), g=x.createLinearGradient(0,0,512,0);
+  g.addColorStop(0,'rgba(0,0,0,0)'); g.addColorStop(.15,col+'88'); g.addColorStop(.4,col+'cc');
+  g.addColorStop(.6,col+'aa'); g.addColorStop(.8,col+'55'); g.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=g; x.fillRect(0,0,512,1);
+  var rt=new THREE.CanvasTexture(rc); rt.wrapS=THREE.RepeatWrapping; rt.repeat.set(1,1);
+  return rt;
+}
+var pGroups=[];
+function spawnP(cfg) {
+  var mat=new THREE.MeshStandardMaterial({
+    map:mkTex(cfg.color,cfg.texOpts), normalMap:mkNrm(512),
+    normalScale:new THREE.Vector2(.8,.8), roughness:cfg.roughness||.75, metalness:cfg.metalness||.05,
+    emissive:new THREE.Color(cfg.emissive||'#000000'), emissiveIntensity:cfg.emissiveInt||0
+  });
+  var mesh=new THREE.Mesh(new THREE.SphereGeometry(cfg.r,80,80),mat);
+  mesh.rotation.z=cfg.tilt||.25;
+  var atm=new THREE.Mesh(new THREE.SphereGeometry(cfg.r*1.055,32,32),
+    new THREE.MeshStandardMaterial({color:cfg.atmColor||'#334466',transparent:true,opacity:.08,side:THREE.FrontSide,depthWrite:false}));
+  var grp=new THREE.Group(); grp.add(mesh,atm); grp.position.set(cfg.x,cfg.y,cfg.z);
+  if(cfg.rings){
+    var rg=new THREE.RingGeometry(cfg.r*1.35,cfg.r*2.1,128);
+    var pos=rg.attributes.position, v3=new THREE.Vector3(), uv=[];
+    for(var i=0;i<pos.count;i++){v3.fromBufferAttribute(pos,i);var d=Math.sqrt(v3.x*v3.x+v3.y*v3.y);uv.push((d-cfg.r*1.35)/(cfg.r*.75),0);}
+    rg.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));
+    var ring=new THREE.Mesh(rg,new THREE.MeshBasicMaterial({map:mkRing(cfg.ringColor||'#888888'),side:THREE.DoubleSide,transparent:true,depthWrite:false}));
+    ring.rotation.x=Math.PI/(cfg.ringAngle||3.2); grp.add(ring);
+  }
+  if(cfg.moons){
+    cfg.moons.forEach(function(mc){
+      var moon=new THREE.Mesh(new THREE.SphereGeometry(mc.r,24,24),new THREE.MeshStandardMaterial({map:mkTex(mc.color||'#666666'),roughness:.9,metalness:.02}));
+      moon.position.set(cfg.r*mc.dist,mc.yOffset||0,0);
+      moon.userData={angle:mc.startAngle||0,speed:mc.speed||.008,dist:cfg.r*mc.dist};
+      grp.add(moon); grp.userData.moons=grp.userData.moons||[]; grp.userData.moons.push(moon);
+    });
+  }
+  scene3.add(grp); pGroups.push({grp:grp,cfg:cfg}); return grp;
+}
+spawnP({r:2.6,x:3.8,y:.4,z:-2,color:'#2a1848',emissive:'#3a0a5a',emissiveInt:.04,atmColor:'#4a1a6a',roughness:.7,metalness:.12,tilt:.3,rings:true,ringColor:'#ED3E61',ringAngle:3.5,moons:[{r:.18,dist:1.9,yOffset:.3,speed:.009,startAngle:0,color:'#888aa0'}],rotY:.0025,rotX:.0008});
+spawnP({r:1.4,x:-4.8,y:-1.2,z:-5,color:'#0a2e30',emissive:'#003a38',emissiveInt:.05,atmColor:'#00FFF0',roughness:.8,metalness:.06,texOpts:{iceCapTop:true,iceCapBot:true},tilt:.18,rotY:.005,rotX:.002});
+spawnP({r:.7,x:5.5,y:-2.8,z:-9,color:'#3a1a08',emissive:'#1a0804',emissiveInt:.02,roughness:.85,metalness:.04,tilt:.4,rotY:.009,rotX:.004});
+spawnP({r:.35,x:-2.5,y:2.8,z:-12,color:'#1a1a3a',emissive:'#080820',emissiveInt:.01,roughness:.9,metalness:.02,tilt:.2,rotY:.012,rotX:.005});
+var clk3=0;
+function anim3(){
+  requestAnimationFrame(anim3); clk3+=.005;
+  pGroups.forEach(function(p){
+    p.grp.rotation.y+=p.cfg.rotY||.003; p.grp.rotation.x+=p.cfg.rotX||.001;
+    p.grp.position.x=p.cfg.x+Math.sin(clk3*.3)*.06; p.grp.position.y=p.cfg.y+Math.cos(clk3*.2)*.05;
+    if(p.grp.userData.moons) p.grp.userData.moons.forEach(function(m){
+      m.userData.angle+=m.userData.speed;
+      m.position.x=m.userData.dist*Math.cos(m.userData.angle);
+      m.position.z=m.userData.dist*Math.sin(m.userData.angle);
+    });
+  });
+  teal3.position.x=2+Math.sin(clk3*.7)*1.5; teal3.position.y=5+Math.cos(clk3*.5)*1;
+  renderer3.render(scene3,cam3);
+}
+anim3();
+document.addEventListener('mousemove',function(e){
+  var mx=(e.clientX/window.innerWidth-.5)*2, my=(e.clientY/window.innerHeight-.5)*2;
+  cam3.position.x+=(mx*.4-cam3.position.x)*.04;
+  cam3.position.y+=(-my*.3-cam3.position.y)*.04;
+  cam3.lookAt(0,0,0);
+});
+window.addEventListener('resize',function(){
+  renderer3.setSize(window.innerWidth,window.innerHeight);
+  cam3.aspect=window.innerWidth/window.innerHeight;
+  cam3.updateProjectionMatrix();
+});
+renderer3.setSize(window.innerWidth,window.innerHeight);
+
+// ═══════════════ COURSE STARFIELD ═══════════════
+function drawCourseStars() {
+  var c=document.getElementById('cv'), x=c.getContext('2d');
+  c.width=window.innerWidth; c.height=window.innerHeight;
+  x.fillStyle='#050508'; x.fillRect(0,0,c.width,c.height);
+  for(var i=0;i<280;i++){
+    var px=Math.random()*c.width,py=Math.random()*c.height,pr=Math.random()*1.2,pa=Math.random()*.55+.08;
+    x.beginPath(); x.arc(px,py,pr,0,Math.PI*2);
+    var si=i%100; var sc=si<8?'rgba(237,62,97,'+pa*0.7+')':si<14?'rgba(0,255,240,'+pa*0.8+')':'rgba(255,255,255,'+pa+')';
+    x.fillStyle=sc; x.fill();
+  }
+  function dp(px,py,pr,c1,c2){
+    var g=x.createRadialGradient(px-pr*.35,py-pr*.35,pr*.05,px,py,pr);
+    g.addColorStop(0,c1); g.addColorStop(1,c2);
+    x.beginPath(); x.arc(px,py,pr,0,Math.PI*2); x.fillStyle=g; x.fill();
+    x.strokeStyle='rgba(255,255,255,.04)'; x.lineWidth=.5; x.stroke();
+  }
+  dp(c.width*.84,c.height*.1,90,'#2a1a4a','#100818');
+  dp(c.width*.08,c.height*.58,48,'#0a2535','#041018');
+  dp(c.width*.93,c.height*.8,28,'#2a1208','#120804');
+  x.save(); x.translate(c.width*.84,c.height*.1); x.scale(1,.26);
+  x.beginPath(); x.arc(0,0,153,0,Math.PI*2);
+  x.strokeStyle='rgba(255,45,120,.15)'; x.lineWidth=11; x.stroke(); x.restore();
+  for(var i=0;i<10;i++){
+    x.beginPath(); x.arc(Math.random()*c.width,Math.random()*c.height,Math.random()*3+1,0,Math.PI*2);
+    x.fillStyle=Math.random()>.5?'rgba(255,45,120,.18)':'rgba(0,229,204,.14)'; x.fill();
+  }
+}
+window.addEventListener('resize',function(){
+  if(document.getElementById('view-course').style.display!=='none') drawCourseStars();
+});
+
+// ═══════════════ COURSE LOGIC ═══════════════
+var DEF={goal:null,time:null,nets:[],met:{},days:{},xp:40,streak:0,best:0,rating:0,revSent:false};
+var S=JSON.parse(JSON.stringify(DEF));
+var GL={sales:'Drive Sales',brand:'Personal Brand',traffic:'Website Traffic',learn:'Learn SMM'};
+var TL={'15':'15 min/day','30':'30 min/day','60':'1 hr/day'};
+function go(n){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.getElementById('s'+n).classList.add('active');window.scrollTo(0,0);renderWkNav(n);updateXP();}
+function renderWkNav(sid){
+  [5,6,7,8,9,10,11,12].forEach(function(id){
+    var el=document.getElementById('wkn'+id); if(!el) return;
+    var ws=[{l:'W1 Foundation',s:5,w:1},{l:'W2 Content',s:7,w:2},{l:'W3 Growth',s:9,w:3},{l:'W4 System',s:11,w:4}];
+    var h='<div class="wknav">';
+    ws.forEach(function(w){
+      var done=wkDone(w.w),active=([w.s,w.s-1].indexOf(sid)!==-1);
+      var col=done?'var(--tl)':active?'var(--pk)':'rgba(255,255,255,.18)';
+      h+='<div class="wni" onclick="go('+w.s+')">'+'<div class="wnin" style="color:'+col+'">'+(done?'&#10003;':'0'+w.w)+'</div>'+'<div class="wnil" style="color:'+col+'">'+w.l+'</div></div>';
+    });
+    h+='</div>'; el.innerHTML=h;
+  });
+}
+function wkDone(w){var r={1:[1,7],2:[8,14],3:[15,21],4:[22,28]};var se=r[w];for(var d=se[0];d<=se[1];d++){if(!S.days['d'+d])return false;}return true;}
+function pick(el,k){document.querySelectorAll('#'+(k==='goal'?'go':'to')+' .opt').forEach(function(o){o.classList.remove('sel');});el.classList.add('sel');S[k]=el.dataset.v;}
+function tnet(el){if(el.classList.contains('sel')){el.classList.remove('sel');S.nets=S.nets.filter(function(v){return v!==el.dataset.v;});}else{if(S.nets.length>=3)return;el.classList.add('sel');S.nets.push(el.dataset.v);}document.getElementById('nn').textContent=S.nets.length+' of 3 selected';}
+function chk(keys,n){for(var i=0;i<keys.length;i++){if(!S[keys[i]]){alert('Please answer all questions.');return;}}go(n);}
+function chkNets(){if(!S.nets.length){alert('Select at least 1 network.');return;}buildMF();go(3);}
+function buildMF(){var el=document.getElementById('mf');el.innerHTML='';S.nets.forEach(function(net){var col=net==='Instagram'?'#ED3E61':net==='TikTok'?'#00FFF0':'rgba(220,220,220,.4)';el.innerHTML+='<div class="mrow"><div><div class="mlb">Followers</div><div class="mnet" style="color:'+col+'">'+net+'</div></div><input class="mi" type="number" min="0" placeholder="0" id="m_'+net+'_f"></div><div class="mrow"><div><div class="mlb">Last post reach</div><div class="mnet" style="color:'+col+'">'+net+'</div></div><input class="mi" type="number" min="0" placeholder="0" id="m_'+net+'_r"></div>';});}
+function saveMet(){S.nets.forEach(function(n){var f=document.getElementById('m_'+n+'_f'),r=document.getElementById('m_'+n+'_r');S.met[n]={f:parseInt(f&&f.value)||0,r:parseInt(r&&r.value)||0,f2:0,r2:0};});S.xp=40;S.streak=0;S.days={};buildPr();save();go(4);}
+function buildPr(){var el=document.getElementById('pr');if(!el)return;el.innerHTML='<div class="pbox"><div class="ptag">Mission briefing</div><div class="ptitle">Your mission is ready.</div><div class="pdesc">Goal: <strong style="color:#fff">'+(GL[S.goal]||S.goal)+'</strong><br>Pace: <strong style="color:#fff">'+(TL[S.time]||S.time)+'</strong><br>Networks: <strong style="color:#fff">'+S.nets.join(' · ')+'</strong><br><br>All 28 days tailored to your goal and platforms.</div></div>';}
+function completeDay(n,xa){
+  var key='d'+n; if(S.days[key]) return;
+  S.days[key]=true; S.xp+=xa; S.streak=(S.streak||0)+1;
+  if(S.streak>S.best) S.best=S.streak;
+  var btn=document.getElementById('tb'+n);
+  if(btn){btn.classList.add('done');btn.innerHTML='<i class="ti ti-check"></i> Day '+n+' Complete! +'+xa+' XP';}
+  var st=document.getElementById('dst'+n);
+  if(st){st.textContent='Done';st.className='wst dn';}
+  var card=document.getElementById('wc'+n);
+  if(card) card.classList.add('open');
+  save(); updateXP(); rebuildGrids(); checkBadges();
+  if(n<28){
+    var nc=document.getElementById('wc'+(n+1)); if(nc) nc.classList.remove('locked');
+    var nt=document.getElementById('tgb'+(n+1)); if(nt) nt.style.display='block';
+    var ns=document.getElementById('dst'+(n+1));
+    if(ns&&!S.days['d'+(n+1)]){ns.textContent='Today';ns.className='wst now';}
+    rebuildGrids();
+  }
+  flash('Day '+n+' Complete!','+'+xa+' XP / Streak: '+S.streak);
+}
+function updateXP(){
+  ['xpt','xp1','xp2ov','xp2','xp2b','xp3ov','xp3','xp3b','xp4ov','xp4','xp4b','xpf','fxp'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.textContent=(id==='xpt'||id.slice(-2)==='ov'||id==='xpf')?S.xp+' XP':S.xp;
+  });
+  var xb=document.getElementById('xb'); if(xb) xb.style.width=Math.min(Math.round(S.xp/10),100)+'%';
+  var xv=document.getElementById('xv'); if(xv) xv.textContent=S.xp+' XP earned';
+  ['sn1','sn2','sn3','sn4'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=S.streak||1;});
+  var fd=document.getElementById('fdays'); if(fd) fd.textContent=Object.keys(S.days).length;
+  var fs=document.getElementById('fstr'); if(fs) fs.textContent=S.best||S.streak||1;
+}
+function rebuildGrids(){buildGrid('dg1',1,7);buildGrid('dg2',8,14);buildGrid('dg3',15,21);buildGrid('dg4',22,28);}
+function buildGrid(id,from,to){
+  var el=document.getElementById(id); if(!el) return;
+  var fi=firstMiss(from,to), h='';
+  for(var i=from;i<=to;i++){
+    var done=!!S.days['d'+i], today=!done&&i===fi;
+    h+='<div class="dc'+(done?' done':'')+(today?' today':'')+'">'+i+'</div>';
+  }
+  el.innerHTML=h;
+}
+function firstMiss(from,to){for(var i=from;i<=to;i++){if(!S.days['d'+i])return i;}return null;}
+function firstMissAll(){for(var i=1;i<=28;i++){if(!S.days['d'+i])return i;}return null;}
+function checkBadges(){
+  var days=Object.keys(S.days).length;
+  if(days>=1)ab('b-streak');
+  if(wkDone(1))ab('b-w1');if(wkDone(2))ab('b-w2');if(wkDone(3))ab('b-w3');
+  if(wkDone(4)){ab('b-w4');ab('b-champ');}
+  var fb=document.getElementById('final-badges'),bl=document.getElementById('badge-list');
+  if(fb&&bl)fb.innerHTML=bl.innerHTML;
+}
+function ab(id){var el=document.getElementById(id);if(el&&!el.classList.contains('ep')&&!el.classList.contains('et'))el.classList.add('ep');}
+function togDay(n){var b=document.getElementById('db'+n),t=document.getElementById('tgb'+n);if(!b||!t)return;var v=b.style.display==='block';b.style.display=v?'none':'block';t.innerHTML=v?'Open Day '+n+' ↓':'Close ↑';}
+function toggleQ(){document.getElementById('q-panel').classList.toggle('open');}
+function sendQ(){
+  var name=document.getElementById('qname').value.trim(),email=document.getElementById('qemail').value.trim(),text=document.getElementById('qtext').value.trim();
+  if(!text){alert('Please write your question.');return;}
+  var subj=encodeURIComponent('SMM Challenge Question'+(name?' from '+name:''));
+  var body=encodeURIComponent((name?'Name: '+name+'\n':'')+(email?'Email: '+email+'\n':'')+'\nQuestion:\n'+text);
+  window.open('mailto:kseniia@celarlab.com?subject='+subj+'&body='+body,'_blank');
+  document.getElementById('qok').style.display='block';
+  setTimeout(function(){document.getElementById('qok').style.display='none';document.getElementById('qtext').value='';document.getElementById('q-panel').classList.remove('open');},3000);
+}
+function setRating(n){S.rating=n;document.querySelectorAll('.star').forEach(function(s,i){s.classList.toggle('on',i<n);});}
+function sendRev(){
+  var name=document.getElementById('rname').value.trim(),text=document.getElementById('rtext').value.trim();
+  if(!text&&!S.rating){alert('Add a rating or message.');return;}
+  var stars='★'.repeat(S.rating)+'☆'.repeat(5-S.rating);
+  var subj=encodeURIComponent('SMM Review '+(name||'Anonymous')+' '+stars);
+  var body=encodeURIComponent('Rating: '+stars+'\nName: '+(name||'Anonymous')+'\n\nReview:\n'+(text||'No message'));
+  window.open('mailto:kseniia@celarlab.com?subject='+subj+'&body='+body,'_blank');
+  S.revSent=true;save();
+  document.getElementById('rev-form').style.display='none';
+  document.getElementById('rev-ok').style.display='block';
+}
+function buildBA(){
+  var el=document.getElementById('ba'); if(!el) return;
+  var h='<div style="display:grid;gap:8px;">';
+  S.nets.forEach(function(net){
+    var m=S.met[net]||{f:0,r:0,f2:0,r2:0};
+    h+='<div style="border:.5px solid rgba(255,255,255,.1);padding:16px"><div style="font-size:11px;color:var(--pk);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">'+net+'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">'
+      +'<div><div style="font-size:10px;color:rgba(255,255,255,.3);margin-bottom:4px">Before</div><div style="font-size:20px;font-weight:900">'+m.f+'</div></div>'
+      +'<div style="display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--tl)">&#8594;</div>'
+      +'<div><div style="font-size:10px;color:var(--tl);margin-bottom:4px">Now</div><div style="font-size:20px;font-weight:900;color:var(--tl)">'+(m.f2||m.f)+'</div></div>'
+      +'</div></div>';
+  });
+  h+='</div>'; el.innerHTML=h;
+}
+function flash(title,sub){var f=document.createElement('div');f.className='fmsg';f.innerHTML=title+'<br><span style="font-size:12px;font-weight:400;opacity:.5;display:block;margin-top:4px">'+sub+'</span>';document.body.appendChild(f);setTimeout(function(){f.remove();},3000);}
+function getToken(){
+  try{
+    var p=new URLSearchParams(window.location.search);
+    return p.get('token')||localStorage.getItem('smm_access_token')||null;
+  }catch(e){return null;}
+}
+
+function save(){
+  // Always save to localStorage first (instant)
+  try{localStorage.setItem('smm_v5',JSON.stringify(Object.assign({},S,{ts:Date.now()})));}catch(e){}
+  // Then sync to server (background, non-blocking)
+  var token=getToken();
+  if(!token) return;
+  fetch('https://celarmarketinglab.com/api/save-progress',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({token:token, progress:S})
+  }).catch(function(){/* silent fail - localStorage is backup */});
+}
+
+function load(){
+  // Load from localStorage immediately (fast)
+  try{
+    var raw=localStorage.getItem('smm_v5');
+    if(raw){
+      var d=JSON.parse(raw);
+      S=Object.assign(JSON.parse(JSON.stringify(DEF)),d);
+    }
+  }catch(e){}
+  // Then try to load from server (may override localStorage with newer data)
+  var token=getToken();
+  if(!token) return !!(S.nets&&S.nets.length&&S.goal);
+  fetch('https://celarmarketinglab.com/api/load-progress?token='+token)
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(data.progress){
+        // Server has data — check if it's newer than localStorage
+        var serverTs=data.progress.ts||0;
+        var localTs=S.ts||0;
+        if(serverTs>localTs){
+          S=Object.assign(JSON.parse(JSON.stringify(DEF)),data.progress);
+          // Update localStorage with server data
+          try{localStorage.setItem('smm_v5',JSON.stringify(S));}catch(e){}
+          // Re-render UI with server data
+          buildAllCards(); rebuildGrids();
+          if(S.nets&&S.nets.length&&S.goal){
+            buildPr(); restoreCards(); checkBadges(); updateXP(); renderWkNav(5); buildBA();
+            routeOnLoad();
+          }
+        }
+      }
+    })
+    .catch(function(){/* use localStorage data */});
+  return !!(S.nets&&S.nets.length&&S.goal);
+}
+function routeOnLoad(){var days=Object.keys(S.days).length;if(days>=22)go(11);else if(days>=15)go(9);else if(days>=8)go(7);else if(days>=1)go(5);else go(4);}
+const DD={
+1:{t:'Why social media works',s:'Understand the real purpose before posting.',th:`Social media is not a shop window — it's a <strong>conversation</strong>. People buy from people they <strong>trust</strong>. Trust = consistency + value + humanity.<br><br><strong>Organic</strong> reach earns attention and keeps working after you publish. <strong>Paid</strong> reach rents attention and stops when the money stops.`,ex:{l:'Same candle brand — two approaches',bad:{tag:'Pushing to sell',txt:'"Buy our candles! 20% off this week! Limited stock."',st:{Reach:12,Saves:0}},good:{tag:'Giving value first',txt:'"I spent 3 years perfecting our lavender scent. Here\'s why most candles smell wrong after 20 minutes."',st:{Reach:'2.4K',Saves:189}}},f:{title:'The trust formula',steps:['Value first — 80% value, 20% promotion','Consistency — 3× per week beats 1× per month','Humanity — imperfect + real beats polished + corporate']},task:'Write 3 sentences: <em>"Who am I, what do I do, and why does it matter to the person reading this?"</em> — Save it. This is your North Star for 30 days.'},
+2:{t:'Who is your audience?',s:'Build an avatar that makes every post feel personal.',th:`Posting without knowing your audience is like a letter with no address. An avatar is a <strong>real person you can picture</strong>. When you write for one specific person, thousands who feel the same will respond.`,f:{title:'Customer avatar template',steps:['Name + age — "Sarah, 34, bakery owner"','Main pain — what keeps them up at night?','Desire — what do they want most?','Language — what words do they use? (check competitor comments)']},task:'Fill in: Name, Age, Main pain, Biggest desire, Phrase they use. Reference it before writing every post.'},
+3:{t:'How algorithms think',s:'No jargon. Just how the feed decides who sees you.',th:`Algorithms have one job: <strong>keep people on the platform</strong>. They show content that makes people stop, watch, react, save, and share.<br><br>Signals that matter: <strong>watch time</strong>, <strong>saves</strong>, <strong>shares</strong>, <strong>comments</strong>. Likes matter least.`,f:{title:'Algorithm cheat sheet',steps:['Post when your audience is online — check analytics → audience','Saves outweigh likes 5:1 — design for "I\'ll come back to this"','Reply to comments in the first hour — signals active content','First 3 seconds of video determine if it gets pushed']},task:'Open analytics. Find your highest-reach post from the last 3 months. Write down why you think it performed — your first real data insight.'},
+4:{t:'Content mix',s:'The 4E formula: Educate, Entertain, Engage, Empower.',th:`Accounts that only sell get unfollowed. Accounts that only educate don\'t convert. The answer is a <strong>deliberate mix</strong>.<br><br>4E: <strong>Educate</strong> (share expertise), <strong>Entertain</strong> (be human), <strong>Engage</strong> (invite conversation), <strong>Empower</strong> (make your audience feel capable).`,f:{title:'Recommended weekly mix',steps:['40% Educate — tips, how-tos, insights','30% Humanise — stories, behind the scenes','20% Engage — questions, polls, opinions','10% Promote — your product with context']},task:'Decide your content mix. Look at your last 10 posts — how close were you? What is missing?'},
+5:{t:'Brand voice',s:'Your personality in words — consistent, recognisable, yours.',th:`Brand voice is about <strong>consistency</strong>. When people see your posts without your name, they should still know it\'s you.<br><br>Choose 3 adjectives that describe how your brand <strong>feels to read</strong>.`,f:{title:'Voice examples',steps:['Expert + Approachable + Witty — knowledgeable friend who never talks down','Bold + Direct + Optimistic — confident opinions, no fluff, solution-focused','Warm + Storytelling + Grounded — personal, narrative, emotional but real']},task:'Choose your 3 voice adjectives. Write the same sentence 3 ways: formal, casual, your actual voice. Which one feels most like you?'},
+6:{t:'Visual identity without a designer',s:'Recognisable and consistent — built in Canva for free.',th:`Consistency is about <strong>recognition</strong>. Your visual style should say "that\'s them" before they read a word.<br><br>You need: 2 brand colours, 1 font, 1 consistent image tone. That\'s it.`,f:{title:'Minimal visual system',steps:['2 main colours — one dominant, one accent','1 font — Inter, Montserrat, or Playfair (all free on Canva)','Photo style: light/airy, dark/moody, natural, or clean/product','3 Canva templates for most common post types — reuse weekly']},task:'Open Canva. Build your brand kit: 2 colours, 1 font, 1 template. This one session saves 2+ hours every week.'},
+7:{t:'Week 1 complete — first post',s:'You\'ve earned the right to publish. Now do it.',th:`You now understand: why social media works, who you\'re talking to, how algorithms think, what to post, how you sound, how you look. Most people spend months on this.<br><br>Now publish. <strong>Imperfect content today</strong> beats perfect content you never post.`,f:{title:'First post formula',steps:['Hook — who you are in 1 sentence','Value — one thing your audience learns or feels','Human moment — one real detail','CTA — ask a question to invite the first comment']},task:'Write and publish your first post using the formula. Share it in the Telegram community. Week 1 complete! 🎉',xp:100},
+8:{t:'Content planning',s:'One 90-min session replaces daily stress forever.',th:`The biggest reason people quit is <strong>decision fatigue</strong>. Wondering "what do I post?" every morning kills momentum.<br><br><strong>Batching</strong>: one session per week, plan and create everything. When Monday arrives, your content is done.`,ex:{l:'Same time investment — different results',bad:{tag:'Reactive',txt:'"What should I post? Maybe a quote? I\'ll do it tonight. It\'s been 3 weeks."',st:{Posts:0.4,Stress:'High'}},good:{tag:'Batched',txt:'"Sunday 10am — plan 4 posts, done by 11:30. Rest of week: engage."',st:{Posts:'4/wk',Growth:'3×'}}},f:{title:'Weekly content template',steps:['Monday — Educate: one tip or how-to','Wednesday — Humanise: behind-the-scenes or lesson','Friday — Engage: question, poll, or opinion','Optional — Promote: one mention per week max']},task:'Fill in your content plan for the coming 3 days — topics only. A 10-minute plan beats a month of panic.'},
+9:{t:'Storytelling',s:'The 5-step structure used by every high-performing account.',th:`Facts activate 2 brain regions. Stories activate <strong>7</strong>. When you tell a story, your audience doesn\'t just understand — they <strong>feel</strong>.<br><br>Structure: <strong>Hero → Problem → Journey → Solution → Lesson</strong>`,ex:{l:'Same product — fact vs story',bad:{tag:'Fact-based',txt:'"Our face cream has 12 natural ingredients. No parabens. Dermatologist-tested."',st:{Reach:34,Saves:0}},good:{tag:'Story',txt:'"At 28, my skin was destroying my confidence. I tried everything. Then I found out why nothing worked."',st:{Reach:'4.1K',Saves:312}}},task:'Write a mini-story (150–200 words): Hero → Problem → Journey → Solution → Lesson. Post it or add it to this week\'s plan.'},
+10:{t:'Content formats',s:'Reels, Stories, carousels — different jobs, different results.',th:`Every format has a different job. Using the wrong format is like hammering a screw.<br><br><strong>Reels</strong> — reach new audiences. <strong>Carousels</strong> — education and saves. <strong>Stories</strong> — intimacy with existing followers. <strong>Static posts</strong> — brand identity.`,f:{title:'Format decision guide',steps:['Want new people? → Reel or TikTok','Want saves? → Carousel','Want trust with followers? → Story','Want visual identity? → Static photo']},task:'Pick one format you\'ve never tried. Create one piece of content in that format today. It needs to exist — not be perfect.'},
+11:{t:'Hooks — stop the scroll',s:'1.7 seconds. 7 formulas. Every time.',th:`You have <strong>1.7 seconds</strong>. Your first line is a promise: "keep reading and you\'ll get something worth your time."`,f:{title:'7 hook formulas',steps:['Bold claim: "Most businesses lose 40% of customers in 30 days."','Counterintuitive: "Posting more often is hurting your growth."','Question: "What if everything you know about reach is wrong?"','Number: "5 things every bakery should post — but almost none do."','Story opener: "Three years ago I almost shut my business down."','Relatable pain: "You spend an hour on a post. It gets 4 likes."','Direct promise: "I\'ll show you how I got 800 followers in 30 days."']},task:'Take any topic. Rewrite the first line 5 ways using different formulas. Pick the one that stops you — that\'s the one to post.'},
+12:{t:'CTAs that convert',s:'The call-to-action ladder — soft to direct.',th:`A CTA is the <strong>logical next step</strong> after consuming your content. Asking for too much too soon destroys trust.<br><br>Think of it like a first date. You don\'t propose immediately. You invite for coffee. Social media works the same way.`,f:{title:'The CTA ladder',steps:['Passive: "Save this." / "Share with someone who needs this."','Conversation: "Which do you prefer? Tell me in comments."','Curiosity: "Full guide in bio." / "Link in bio for the breakdown."','Direct: "DM me INFO." / "Book a free call — link in bio."']},task:'Write 4 CTAs for your business — one per rung. Audit your last 5 posts: which rung? If only level 4 — that\'s why engagement is low.'},
+13:{t:'Content without a face',s:'You don\'t need to appear on camera to build a massive audience.',th:`Some of the most followed accounts have never shown the owner\'s face. Faceless content that performs: <strong>product in action</strong>, <strong>process videos</strong>, <strong>text-on-screen Reels</strong>, <strong>designed carousels</strong>, <strong>voiceover storytelling</strong>.`,ex:{l:'Faceless content — wrong vs right',bad:{tag:'Wrong way',txt:'"Generic stock photo with motivational quote. No context, no personality."',st:{Reach:20,Saves:0}},good:{tag:'Right way',txt:'"Close-up of hands kneading bread. Ambient sound. No face, no voiceover. Natural, real, specific."',st:{Reach:'2.2M',Saves:'4.8K'}}},task:'Create one faceless piece: film your product/process, record a voiceover Reel, or design a carousel with no photos of you. Publish it.'},
+14:{t:'Week 2 review — analytics',s:'Two weeks of data. What are the numbers telling you?',th:`Most people check <strong>likes</strong> when they should check <strong>saves, reach, and profile visits</strong>.<br><br>Saves = valuable enough to return to. Reach = how far did it travel. Profile visits → follow rate = conversion quality.`,f:{title:'2-week analytics audit',steps:['Which post got most REACH? What made it different?','Which post got most SAVES? What type was it?','Follower change Week 2 vs Week 1?','Which hook worked best? Which CTA got most response?']},task:'Open analytics. Fill in the 4-question audit. Write 2 sentences on what you\'ll do differently in Week 3. Share your biggest insight in Telegram.',xp:100},
+15:{t:'Hashtags & SEO',s:'Be found without paying for reach.',th:`Hashtags are now <strong>search signals</strong>. Instagram, TikTok, and LinkedIn are search engines. People search your topic — your content appears if your <strong>caption, username, bio, and alt text</strong> contain the right keywords.`,f:{title:'Social SEO checklist',steps:['Add your keyword to username or display name','Bio includes 1–2 natural keyword phrases','First line of every caption — include your topic keyword','Add alt text to every photo (Instagram: Advanced Settings → Alt text)','5–10 targeted hashtags per post — mix niche + broad']},task:'Update your bio with a keyword. Set alt text on your last 3 posts. Build your 10-hashtag list for your most common topic.'},
+16:{t:'Collaborations',s:'The most underused zero-budget growth tactic.',th:`Fastest organic growth comes from appearing in front of <strong>other people\'s audiences</strong>. Find accounts in <strong>adjacent niches</strong> (not competitors) with similar audience size. Win-win: I promote you, you promote me.`,f:{title:'Outreach formula',steps:['Find 5 accounts in complementary niches with similar following','DM: "Hi [Name], I love your content on [topic]. I create content on [your topic] for a similar audience. Would you be open to a collaboration?"','Options: joint Reel, Story takeover, co-authored carousel, mutual shoutout']},task:'Find 3 adjacent accounts. Send at least 1 collaboration DM using the formula. Track the response.'},
+17:{t:'Community & engagement',s:'Turn passive followers into an active community.',th:`500 engaged followers who buy and share are worth more than 50,000 silent ones.<br><br>The <strong>10-5-3 daily method</strong>: 20 minutes per day — leave 10 meaningful comments, like 5 posts, reply to 3 Stories.`,f:{title:'Community tactics',steps:['Reply to every comment — especially in the first hour','Turn comment questions into posts: "You asked this, here\'s the full answer"','Story polls and question boxes weekly','Pin the best comment on each post']},task:'Spend 20 minutes doing the 10-5-3 method right now. Then reply to every comment from the last 3 days.'},
+18:{t:'Profile SEO audit',s:'Your profile is a landing page. Make every element work.',th:`When someone lands on your profile you have <strong>3 seconds</strong> to answer: "Who is this, is this for me, should I follow?" Most people set their profile once and never touch it again.`,f:{title:'Profile audit — 9 elements',steps:['Username: contains your main keyword','Profile photo: clear at small size','Bio line 1: what you do + who you help','Bio line 2: unique value or proof','Bio line 3: CTA with link','Link in bio: landing page not homepage','Pinned posts: your 3 best-performing pieces','Story Highlights: named, covered, updated','Grid: first 9 posts tell a clear story']},task:'Score your profile out of 9. Fix everything below 8 today.'},
+19:{t:'Viral content patterns',s:'6 triggers that make content travel without paid promotion.',th:`Viral content is not luck — it\'s <strong>predictable patterns</strong>. The same 6 triggers appear in almost every high-reach organic piece.`,f:{title:'6 viral triggers',steps:['Emotion — makes people feel strongly (inspired, amused, surprised, seen)','Practical value — immediately useful, saves time or money','Identity — "this is so me" — makes people feel understood','Counterintuitive — challenges a common belief in your niche','Controversy — a measured opinion that sparks debate','Nostalgia or timing — connects to a current moment']},task:'Create one post deliberately using 2+ triggers. Label which ones before you write. Track reach over 48 hours.'},
+20:{t:'First short video',s:'No excuses left. Film, edit, publish today.',th:`Every platform prioritises video. But short video is not dancing on TikTok — it\'s a talking head for 30 seconds, a process shot, text on screen with voiceover.<br><br><strong>Hook (0–3s)</strong> → <strong>Value (3–25s)</strong> → <strong>Twist (25–55s)</strong> → <strong>CTA (last 5s)</strong>`,f:{title:'Beginner video formula',steps:['0–3s: say or show the most interesting thing first','3–25s: deliver value fast','25–55s: one example, proof, or unexpected detail','Last 5s: one clear CTA']},task:'Film one video under 60 seconds. Rule: no more than 3 retakes. Imperfection is human. Publish it today.'},
+21:{t:'Week 3 complete — growth strategy',s:'Connect all the tactics into one repeatable strategy.',th:`You\'ve learned every major organic growth lever. Most people learn tactics and never connect them.<br><br>Your job: <strong>connect them into a repeatable weekly process</strong> that compounds over time.`,f:{title:'Weekly growth checklist',steps:['Post 3–4 times per week with keyword in caption','Daily 20 mins: 10-5-3 community method','Weekly: one new collaboration outreach','Monthly: profile audit + content repurposing']},task:'Write your personal weekly growth checklist. Write 3 sentences: what does organic growth look like for your account in 90 days?',xp:100},
+22:{t:'The 2-hour weekly system',s:'Run your entire social media in 2 focused hours per week.',th:`Burnout comes from <strong>context switching</strong> all day. The fix: <strong>time-blocking</strong>.<br><br>60 min — Create. 30 min — Schedule. 30 min — Engage. That\'s the whole operation.`,f:{title:'The 2-hour block',steps:['60 min — Create: write all posts, film if needed, design graphics','30 min — Schedule: Meta Business Suite, Later, or Buffer (all free)','30 min — Engage: reply to all comments + 10-5-3 in your niche']},task:'Set your recurring weekly social media block right now. Pick a day and time. Put it in your calendar as non-negotiable.'},
+23:{t:'Metrics that matter',s:'3 numbers that actually measure growth.',th:`Likes are the most visible metric and the least useful. A post with 200 likes but 0 profile visits did nothing for your business.<br><br>Track weekly: <strong>Reach</strong>, <strong>Saves</strong>, <strong>Profile visit → follow rate</strong>.`,f:{title:'Weekly tracking template',steps:['Reach this week: ___ (vs last week: +/−)','Best post: ___ saves, ___ reach — why?','Visit → follow rate: new followers ÷ profile visits × 100']},task:'Create a simple weekly tracking sheet. Fill it in today. Commit to every Friday for 90 days. Trends only appear over time.'},
+24:{t:'Content repurposing',s:'One idea × 5 formats = a full week from one session.',th:`Creating from scratch every day is the path to burnout. One strong idea, repurposed across 5 formats, is a full week of content.`,f:{title:'One idea → 5 formats',steps:['Original: long-form post or article','Carousel: 5–7 swipeable slides','Reel: key point in 30-second video','Story series: 3–5 slides with poll or question','Quote graphic: one powerful sentence']},task:'Take your best post from the last 4 weeks. Repurpose it into 2 other formats. Schedule both. You just created a free week of content.'},
+25:{t:'Free automation tools',s:'What to automate, what to never automate.',th:`<strong>Never automate</strong>: replies to comments or DMs — people notice and it destroys trust.<br><br><strong>Always automate</strong>: scheduling, recurring reminders, caption brainstorming.`,f:{title:'Free tool stack',steps:['Scheduling: Meta Business Suite, Later, or Buffer (all free)','Design: Canva — templates, brand kit, scheduling on free plan','Ideas: Claude or ChatGPT for brainstorming first drafts to edit','Analytics: each platform\'s native analytics is sufficient for year one']},task:'Set up your scheduling tool. Schedule at least 3 posts for next week right now.'},
+26:{t:'Organic monetisation',s:'How social media converts followers into customers.',th:`Social media doesn\'t sell directly — it <strong>creates conditions for selling</strong>. Content → trust → profile visit → link → conversion.<br><br>The mistake: optimising content while ignoring the conversion path.`,f:{title:'Conversion checklist',steps:['Bio CTA is specific: "Book free call" or "Get free guide"','Link in bio goes to a page built for social visitors','Top 3 pinned posts show or reference what you sell','Stories with direct CTAs run at least once per week','Every sales post includes proof, story, or results']},task:'Click your own link in bio. Is the landing page optimised for social visitors? Fix the 3 weakest points today.'},
+27:{t:'Burnout prevention',s:'How to keep going long after the challenge ends.',th:`Burnout comes from posting without a system, comparing to accounts with teams and budgets, and expecting overnight results from long-term work.<br><br>Define your <strong>floor</strong> — the minimum you will always maintain even on your worst week.`,f:{title:'Sustainable SMM rules',steps:['Floor: 1 post + 15 mins engagement per week minimum no matter what','Ceiling: max effort you can sustain 52 weeks without burning out','Never compare your Week 4 to someone else\'s Year 4','Take one SMM off day per week — no creating, no checking','Celebrate every win: 100 followers matters as much as 10,000']},task:'Write a letter: "In 90 days my social media will look like ___." Specific, with numbers and feelings. Save it. Open it in 90 days.'},
+28:{t:'Day 28 — Mission complete',s:'30 days. 28 skills. One system that now belongs to you.',th:`You started not knowing where to begin. You now have: a defined audience and voice, a content system, a weekly growth routine, analytics you can read, a posting habit, and a 90-day plan.<br><br>Most people who buy a course never finish it. <strong>You did.</strong>`,f:{title:'Your 90-day checklist',steps:['Post 3–4 times per week — every week, without exception','20 minutes daily: 10-5-3 community method','Track 3 metrics every Friday','One collaboration outreach per week','Review and repurpose best content monthly']},task:'Complete your before/after snapshot. Share your result in the community. You\'ve earned the SMM Champion badge. Welcome to the other side.',xp:200}
+};
+
+function buildAllCards(){
+  ['w1d','w2d','w3d','w4d'].forEach(function(id){var el=document.getElementById(id);if(el)el.innerHTML='';});
+  for(var i=1;i<=28;i++) buildCard(i,i<=7?'w1d':i<=14?'w2d':i<=21?'w3d':'w4d');
+}
+function buildCard(n,cid){
+  var el=document.getElementById(cid); if(!el) return;
+  var d=DD[n]; if(!d) return;
+  var done=!!S.days['d'+n],fi=firstMissAll(),isToday=!done&&n===fi,locked=!done&&fi!==null&&n>fi,xa=d.xp||60;
+  var nn=n<10?'0'+n:''+n;
+  var stH=done?'<div class="wst dn" id="dst'+n+'">Done &#10003;</div>'
+    :isToday?'<div class="wst now" id="dst'+n+'">Today</div>'
+    :'<div class="wst" id="dst'+n+'"><i class="ti ti-lock" style="font-size:11px"></i> Day '+n+'</div>';
+  var exH='';
+  if(d.ex){
+    var bad=d.ex.bad,good=d.ex.good;
+    exH='<div class="exs"><div class="exl">'+d.ex.l+'</div><div class="exc">'
+      +'<div class="excard"><div class="ectag bad">'+bad.tag+'</div><div class="ep2 bad">'+bad.txt+'</div>'
+      +'<div class="ests">'+Object.keys(bad.st).map(function(k){return '<div class="est"><span>'+bad.st[k]+'</span>'+k+'</div>';}).join('')+'</div></div>'
+      +'<div class="excard"><div class="ectag good">'+good.tag+'</div><div class="ep2 good">'+good.txt+'</div>'
+      +'<div class="ests">'+Object.keys(good.st).map(function(k){return '<div class="est"><span class="g">'+good.st[k]+'</span>'+k+'</div>';}).join('')+'</div></div>'
+      +'</div></div>';
+  }
+  var fH='';
+  if(d.f){fH='<div class="fbox"><div class="btg t">'+d.f.title+'</div><div class="fsteps">'+d.f.steps.map(function(s){return '<div class="fstep"><div class="fn">&#8594;</div><div>'+s+'</div></div>';}).join('')+'</div></div>';}
+  var btnTxt=done?'<i class="ti ti-check"></i> Day '+n+' Complete! +'+xa+' XP':'<i class="ti ti-check"></i> Mark Day '+n+' complete &mdash; earn '+xa+' XP';
+  el.innerHTML+='<div class="wcard'+(done?' open':'')+(locked?' locked':'')+'" id="wc'+n+'">'
+    +'<div class="whead"><div><div class="wn">'+nn+'</div><div class="wt">'+d.t+'</div></div>'+stH+'</div>'
+    +'<div class="ws">'+d.s+'</div>'
+    +'<div id="db'+n+'" style="display:none"><div class="tw">'
+    +'<div class="btg p">Theory &mdash; Day '+n+'</div><div class="tt">'+d.th+'</div>'
+    +exH+fH
+    +'<div class="btg p" style="margin-top:18px">Your Task &mdash; Day '+n+'</div>'
+    +'<div class="tblock"><div class="ttxt">'+d.task+'</div>'
+    +'<button class="dbtn'+(done?' done':'')+'" id="tb'+n+'" onclick="completeDay('+n+','+xa+')">'+btnTxt+'</button>'
+    +'</div></div></div>'
+    +'<button class="tog" id="tgb'+n+'" style="'+(done||isToday?'':'display:none')+'" onclick="togDay('+n+')">Open Day '+n+' &#8595;</button>'
+    +'</div>';
+}
+function restoreCards(){
+  Object.keys(S.days).forEach(function(key){
+    var n=parseInt(key.replace('d','')),d=DD[n]; if(!d) return; var xa=d.xp||60;
+    var btn=document.getElementById('tb'+n);
+    if(btn){btn.classList.add('done');btn.innerHTML='<i class="ti ti-check"></i> Day '+n+' Complete! +'+xa+' XP';}
+    var st=document.getElementById('dst'+n); if(st){st.textContent='Done';st.className='wst dn';}
+    var card=document.getElementById('wc'+n); if(card){card.classList.remove('locked');card.classList.add('open');}
+  });
+  var next=firstMissAll();
+  if(next){
+    var nc=document.getElementById('wc'+next); if(nc) nc.classList.remove('locked');
+    var nt=document.getElementById('tgb'+next); if(nt) nt.style.display='block';
+    var ns=document.getElementById('dst'+next);
+    if(ns&&!S.days['d'+next]){ns.textContent='Today';ns.className='wst now';}
+  }
+}
+// Auto-skip hero for returning users
+(function(){
+  try{
+    var raw=localStorage.getItem('smm_v5');
+    if(raw){var d=JSON.parse(raw);if(d&&d.nets&&d.nets.length&&d.goal)launchCourse();}
+  }catch(e){}
+})();
+</script>
+
+<!-- GDPR Cookie Banner -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(11,15,43,0.97);border-top:1px solid rgba(101,2,162,0.3);padding:14px 24px 18px;display:flex;flex-direction:column;align-items:center;gap:12px;backdrop-filter:blur(12px);transform:translateY(100%);transition:transform 0.4s ease-out;text-align:center;">
+  <p style="font-size:13px;color:rgba(220,220,220,0.65);margin:0;line-height:1.6;max-width:560px;">We use cookies to improve your experience. We never sell your data. <a href="celar_privacy.html" style="color:#00FFF0;text-decoration:none;">Privacy Policy</a> · 🇪🇺 GDPR</p>
+  <div style="display:flex;gap:10px;">
+    <button onclick="acceptCookies()" style="padding:9px 28px;border-radius:22px;border:none;cursor:pointer;border-radius:2px;background:#6502A2;color:#fff;text-shadow:0 1px 3px rgba(4,8,28,.35);font-size:13px;font-weight:600;font-family:'Poppins',sans-serif;">Accept</button>
+    <button onclick="declineCookies()" style="padding:9px 28px;border-radius:2px;cursor:pointer;background:transparent;color:rgba(220,220,220,0.5);border:1px solid rgba(220,220,220,0.2);font-size:13px;font-family:'Poppins',sans-serif;">Decline</button>
+  </div>
+</div>
+<script>
+(function(){var b=document.getElementById('cookie-banner');if(!b||localStorage.getItem('cml_cookie_consent'))return;setTimeout(function(){b.style.transform='translateY(0)';},1800);})();
+function acceptCookies(){localStorage.setItem('cml_cookie_consent','accepted');var b=document.getElementById('cookie-banner');if(b)b.style.transform='translateY(100%)';}
+function declineCookies(){localStorage.setItem('cml_cookie_consent','declined');var b=document.getElementById('cookie-banner');if(b)b.style.transform='translateY(100%)';}
+</script>
+
+<!-- Scroll to top -->
+<button id="scroll-top-btn" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:28px;right:24px;z-index:900;width:44px;height:44px;border-radius:50%;background:rgba(11,15,43,0.9);border:1px solid rgba(0,255,240,0.3);color:#00FFF0;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;box-shadow:0 4px 20px rgba(0,0,0,0.4);">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+(function(){var b=document.getElementById('scroll-top-btn');window.addEventListener('scroll',function(){b.style.opacity=window.scrollY>400?'1':'0';b.style.pointerEvents=window.scrollY>400?'auto':'none';},{passive:true});})();
+</script>
+</body>
+</html>
