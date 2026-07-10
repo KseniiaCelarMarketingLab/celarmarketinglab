@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Social Launch Strategy — Mission Control · Celar Marketing Lab</title>
+<meta name="description" content="A free 6-phase interactive tool that walks you through positioning, message and channel choice before you post a single thing. By Celar Marketing Lab."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0B0F2B;--surface:#10142e;--card:#141936;
+  --border:#ffffff14;--border-glow:#6502a244;
+  --text:#F5F5F9;--muted:#b0b3cc;--dim:#5a5e80;
+  --cyan:#00FFF0;--purple:#6502A2;--purple-l:#8b3ed8;
+  --rose:#ED3E61;--lime:#D4FF00;--silver:#DCDCDC;--white:#fff;
+  --font-d:'Space Grotesk',sans-serif;
+  --font-b:'Poppins',sans-serif;
+  --font-m:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:var(--font-b);font-size:15px;line-height:1.7;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse 90% 55% at 15% 10%,rgba(101,2,162,.18) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 90% 80%,rgba(0,255,240,.1) 0%,transparent 60%),radial-gradient(ellipse 45% 35% at 55% 105%,rgba(237,62,97,.12) 0%,transparent 60%);pointer-events:none;z-index:0}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:var(--f,.1)}to{opacity:var(--t,.8)}}
+[data-icon]>svg{display:block;width:100%;height:100%}
+
+/* ── BUTTONS (TZ spec: border-radius 2px, neon cyan, no solid fill) ── */
+.btn-p{font-family:var(--font-d);font-weight:600;font-size:14px;letter-spacing:.04em;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 28px;background:linear-gradient(135deg,rgba(0,255,240,.14),rgba(101,2,162,.12));border:1.5px solid rgba(0,255,240,.65);color:#eafffe;text-shadow:0 0 10px rgba(0,255,240,.4);box-shadow:0 0 18px rgba(0,255,240,.16),inset 0 0 16px rgba(0,255,240,.05);border-radius:2px;transition:all .25s;text-decoration:none}
+.btn-p:hover{background:linear-gradient(135deg,rgba(0,255,240,.22),rgba(101,2,162,.16));border-color:#00FFF0;box-shadow:0 0 30px rgba(0,255,240,.32),inset 0 0 20px rgba(0,255,240,.08)}
+.btn-p.lg{padding:14px 36px;font-size:15px}
+.btn-g{font-family:var(--font-d);font-weight:500;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:transparent;border:1px solid rgba(220,220,220,.22);color:var(--silver);border-radius:2px;transition:all .2s}
+.btn-g:hover{border-color:rgba(220,220,220,.45);color:var(--white)}
+.btn-g.sm{padding:7px 14px;font-size:12px}
+.btn-p.sm{padding:7px 16px;font-size:12px}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:9999;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;background:#0d1133;border-bottom:1px solid rgba(0,255,240,.22);min-height:52px}
+nav a,nav a:visited,nav a:hover,nav a:active{color:var(--white);text-decoration:none}
+.nav-logo{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--white)!important;display:flex;align-items:center;gap:10px;text-decoration:none!important}
+.orb{width:18px;height:18px;position:relative;flex-shrink:0}
+.orb .ring{position:absolute;inset:0;border:1px solid var(--cyan);border-radius:50%;opacity:.5}
+.orb .dot{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--rose);box-shadow:0 0 8px var(--rose);top:-2.5px;left:50%;margin-left:-2.5px;transform-origin:2.5px 11.5px;animation:ospin 3s linear infinite}
+@keyframes ospin{to{transform:rotate(360deg)}}
+.nav-logo small{display:block;font-family:var(--font-m);font-size:8px;letter-spacing:.16em;color:rgba(255,255,255,.45);font-weight:400}
+.nav-prog{display:flex;gap:4px;align-items:center}
+.np{width:22px;height:3px;background:rgba(255,255,255,.18);transition:all .4s;border-radius:0}
+.np.done{background:var(--cyan)}
+.np.active{background:var(--cyan);box-shadow:0 0 8px var(--cyan);width:30px}
+.nav-r{display:flex;align-items:center;gap:12px}
+.free-badge{font-family:var(--font-m);font-size:9px;letter-spacing:.12em;font-weight:700;color:#08210a;background:var(--lime);padding:3px 10px;border-radius:2px;box-shadow:0 0 12px rgba(212,255,0,.3)}
+.nav-saved{font-family:var(--font-m);font-size:9px;letter-spacing:.1em;color:var(--lime);display:flex;align-items:center;gap:5px;opacity:0;transition:opacity .4s}
+.nav-saved.show{opacity:1}
+.nav-saved .ico{width:11px;height:11px}
+
+/* ── PAGES ── */
+.page{display:none;position:relative;z-index:1;min-height:100vh;padding-top:68px;padding-bottom:96px}
+.page.active{display:block}
+.page-in{animation:fadeUp .38s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.ico{display:inline-flex;flex-shrink:0}
+
+/* ── INTRO ── */
+.intro{min-height:calc(100vh - 76px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px}
+.eyebrow{font-family:var(--font-m);font-size:11px;letter-spacing:.2em;color:var(--cyan);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px}
+.eyebrow::before,.eyebrow::after{content:'';width:36px;height:1px;background:var(--cyan);opacity:.4}
+.intro h1{font-family:var(--font-d);font-size:clamp(36px,8vw,72px);font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--white);margin-bottom:16px}
+.intro h1 em{font-style:normal;color:var(--cyan)}
+.intro-sub{font-size:15px;color:var(--muted);max-width:520px;margin:0 auto 6px;line-height:1.8}
+.intro-time{font-family:var(--font-m);font-size:10px;letter-spacing:.14em;color:var(--dim);margin-bottom:32px}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 28px;max-width:620px;width:100%}
+.so{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 14px;text-align:center}
+.so-num{font-family:var(--font-m);font-size:9px;color:var(--dim);letter-spacing:.15em;margin-bottom:12px}
+.so-icon{width:32px;height:32px;margin:0 auto 8px;color:var(--cyan)}
+.so-title{font-family:var(--font-d);font-size:12px;font-weight:600;color:var(--text)}
+.resume-strip{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid rgba(212,255,0,.3);border-radius:4px;padding:14px 20px;max-width:560px;width:100%;text-align:left;flex-wrap:wrap;margin-bottom:10px}
+.resume-strip .ri{width:18px;height:18px;color:var(--lime);flex-shrink:0}
+.resume-strip p{font-size:13px;color:var(--muted);flex:1;min-width:140px}
+.resume-strip strong{color:var(--lime)}
+.resume-actions{display:flex;gap:8px}
+.info-strip{display:flex;align-items:flex-start;gap:12px;background:var(--card);border:1px solid var(--border-glow);border-radius:4px;padding:14px 20px;max-width:560px;width:100%;text-align:left;margin-bottom:28px}
+.info-strip .ii{width:18px;height:18px;color:var(--purple-l);flex-shrink:0;margin-top:1px}
+.info-strip p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.info-strip strong{color:var(--white)}
+.intro-meta{font-family:var(--font-m);font-size:10px;color:var(--dim);letter-spacing:.12em;margin-top:16px}
+
+/* ── PHASE LAYOUT ── */
+.phwrap{max-width:760px;margin:0 auto;padding:36px 24px 0}
+.phhdr{margin-bottom:26px}
+.ph-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-m);font-size:9px;letter-spacing:.16em;color:var(--cyan);padding:5px 12px;border:1px solid rgba(0,255,240,.3);border-radius:2px;margin-bottom:14px}
+.ph-tag .ti{width:12px;height:12px}
+.phhdr h2{font-family:var(--font-d);font-size:clamp(22px,5vw,34px);font-weight:800;color:var(--white);letter-spacing:-.02em;line-height:1.15;margin-bottom:8px}
+.phhdr p{font-size:14px;color:var(--muted);line-height:1.75;max-width:580px}
+
+/* ── THEORY ── */
+.theory{background:var(--card);border:1px solid var(--border-glow);border-radius:4px;padding:20px 24px;margin-bottom:16px;position:relative;overflow:hidden}
+.theory::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--cyan),var(--purple),var(--rose))}
+.theory h4{font-family:var(--font-m);font-size:9px;letter-spacing:.15em;color:var(--cyan);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.theory h4 .ti{width:12px;height:12px}
+.theory p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.theory p:last-child{margin:0}
+.theory em{color:var(--text);font-style:normal;font-weight:500}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.tg{background:var(--surface);border-radius:3px;padding:10px 12px;border:1px solid var(--border)}
+.tg-l{font-family:var(--font-m);font-size:9px;color:var(--cyan);letter-spacing:.1em;margin-bottom:3px}
+.tg-v{font-size:12px;color:var(--text);line-height:1.5}
+.theory-hl{display:flex;align-items:flex-start;gap:8px;background:rgba(0,255,240,.08);color:var(--white);padding:9px 13px;border-radius:3px;font-size:12.5px;line-height:1.65;margin-top:10px}
+.theory-hl .ti{width:12px;height:12px;color:var(--cyan);margin-top:3px;flex-shrink:0}
+.formula{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin:12px 0}
+.fi{flex:1;padding:12px 8px;text-align:center;border-right:1px solid var(--border)}
+.fi:last-child{border-right:none}
+.fi-pct{font-family:var(--font-d);font-size:22px;font-weight:800;color:var(--cyan)}
+.fi-l{font-size:9.5px;color:var(--muted);margin-top:2px;font-family:var(--font-m);letter-spacing:.04em}
+.eu-note{display:flex;gap:12px;background:linear-gradient(135deg,rgba(101,2,162,.2),var(--card));border:1px solid rgba(139,62,216,.4);border-radius:4px;padding:14px 18px;margin-bottom:16px}
+.eu-note .ei{width:18px;height:18px;color:var(--rose);flex-shrink:0;margin-top:2px}
+.eu-note h5{font-family:var(--font-m);font-size:9px;letter-spacing:.14em;color:var(--rose);margin-bottom:5px}
+.eu-note p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.eu-note strong{color:var(--text)}
+
+/* ── FIELDS ── */
+.fg{display:grid;gap:12px;margin-bottom:12px}
+.c2{grid-template-columns:1fr 1fr}.c1{grid-template-columns:1fr}
+.field{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:14px 16px;transition:border-color .2s}
+.field:focus-within{border-color:rgba(0,255,240,.5)}
+.fl{font-family:var(--font-m);font-size:9px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.fl .fi2{width:12px;height:12px}
+.fh{font-size:11px;color:var(--dim);margin:-3px 0 8px;line-height:1.5}
+.field input,.field textarea{width:100%;background:transparent;border:none;outline:none;font-family:var(--font-b);font-size:14px;color:var(--text);line-height:1.7;resize:none}
+.field input::placeholder,.field textarea::placeholder{color:var(--dim)}
+.field.err{border-color:rgba(237,62,97,.6)!important}
+
+/* ── PLATFORMS ── */
+.plat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.pt{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px 12px;text-align:center;cursor:pointer;transition:all .2s;user-select:none}
+.pt:hover{border-color:rgba(0,255,240,.35)}
+.pt.sel{border-color:rgba(0,255,240,.7);background:rgba(0,255,240,.07);box-shadow:0 0 14px rgba(0,255,240,.1)}
+.pt .pi{width:28px;height:28px;margin:0 auto 8px;color:var(--muted)}
+.pt.sel .pi{color:var(--cyan)}
+.pt .pn{font-family:var(--font-d);font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.pt.sel .pn{color:var(--cyan)}
+.pt .pd{font-size:11px;color:var(--dim);line-height:1.4}
+
+/* ── PILLARS ── */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.pillar{border-radius:4px;padding:14px 16px;border:1px solid var(--border);background:var(--card);transition:border-color .2s}
+.pillar:focus-within{border-color:rgba(0,255,240,.4)}
+.pillar.p1{border-left:3px solid var(--cyan)}.pillar.p2{border-left:3px solid var(--purple-l)}.pillar.p3{border-left:3px solid var(--lime)}.pillar.p4{border-left:3px solid var(--rose)}
+.ph{font-family:var(--font-m);font-size:9px;letter-spacing:.1em;margin-bottom:3px;display:flex;align-items:center;gap:6px}
+.ph .pi2{width:11px;height:11px}
+.pillar.p1 .ph{color:var(--cyan)}.pillar.p2 .ph{color:var(--purple-l)}.pillar.p3 .ph{color:var(--lime)}.pillar.p4 .ph{color:var(--rose)}
+.ps{font-size:12px;color:var(--muted);margin-bottom:9px}
+.pillar textarea{width:100%;background:transparent;border:none;outline:none;font-family:var(--font-b);font-size:13px;color:var(--text);line-height:1.7;resize:none}
+.pillar textarea::placeholder{color:var(--dim)}
+
+/* ── CHIPS ── */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{padding:5px 13px;border-radius:2px;font-size:12px;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all .15s;font-family:var(--font-m);letter-spacing:.04em}
+.chip:hover{border-color:rgba(0,255,240,.35);color:var(--text)}
+.chip.sel{background:rgba(0,255,240,.1);border-color:rgba(0,255,240,.55);color:var(--cyan)}
+
+/* ── CHECKLIST ── */
+.cl{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:14px}
+.cl-hd{padding:11px 16px;border-bottom:1px solid var(--border);font-family:var(--font-m);font-size:9px;letter-spacing:.14em;color:var(--cyan);display:flex;align-items:center;gap:8px}
+.cl-hd .chi{width:12px;height:12px}
+.cl-row{display:flex;align-items:flex-start;gap:12px;padding:10px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.cl-row:last-child{border-bottom:none}
+.cl-row:hover{background:var(--surface)}
+.cl-box{width:17px;height:17px;border-radius:2px;flex-shrink:0;border:1px solid var(--dim);margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.cl-box.on{background:var(--lime);border-color:var(--lime)}
+.cl-box.on::after{content:'✓';color:#08210a;font-size:11px;font-weight:700}
+.cl-row.done span{text-decoration:line-through;color:var(--dim)}
+.cl-row span{font-size:13px;color:var(--text);line-height:1.6}
+
+/* ── CALENDAR ── */
+.cal-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:14px}
+.cal{width:100%;border-collapse:collapse;background:var(--card);border-radius:4px;overflow:hidden;border:1px solid var(--border);min-width:520px}
+.cal th{background:var(--surface);padding:9px 12px;text-align:left;font-family:var(--font-m);font-size:9px;letter-spacing:.12em;color:var(--cyan);border-bottom:1px solid var(--border)}
+.cal td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+.cal tr:last-child td{border-bottom:none}
+.cal td textarea{width:100%;background:transparent;border:none;outline:none;font-family:var(--font-b);font-size:13px;color:var(--text);resize:none;line-height:1.6;min-height:32px}
+.cal td textarea::placeholder{color:var(--dim)}
+.wk{font-family:var(--font-m);font-size:9px;letter-spacing:.1em;padding:3px 8px;border-radius:2px;font-weight:600;display:inline-block;white-space:nowrap}
+.wk-0{background:rgba(220,220,220,.1);color:var(--silver)}
+.wk-1{background:rgba(0,255,240,.12);color:var(--cyan)}
+.wk-2{background:rgba(101,2,162,.2);color:var(--purple-l)}
+.wk-3{background:rgba(237,62,97,.14);color:var(--rose)}
+.wk-4{background:rgba(212,255,0,.12);color:var(--lime)}
+
+/* ── BOTTOM NAV ── */
+.bot-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(11,15,43,.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.bn-l{display:flex;align-items:center;gap:12px}
+.bn-step{font-family:var(--font-m);font-size:10px;color:var(--dim);letter-spacing:.1em}
+
+/* ── FINAL ── */
+.final{display:flex;flex-direction:column;align-items:center;text-align:center;padding:60px 24px}
+.fin-icon{width:56px;height:56px;color:var(--cyan);margin-bottom:24px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.final h2{font-family:var(--font-d);font-size:clamp(24px,6vw,42px);font-weight:800;color:var(--white);margin-bottom:10px;letter-spacing:-.02em;line-height:1.1}
+.final h2 em{font-style:normal;color:var(--cyan)}
+.final .fsub{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 36px;line-height:1.8}
+.sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:600px;width:100%;margin-bottom:36px;text-align:left}
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:14px 16px}
+.sc-ph{font-family:var(--font-m);font-size:9px;color:var(--cyan);letter-spacing:.12em;margin-bottom:5px}
+.sc-v{font-size:13px;color:var(--text);line-height:1.6;word-break:break-word}
+.sc-v.empty{color:var(--dim);font-style:italic}
+.dl-note{display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--font-m);font-size:10px;color:var(--dim);letter-spacing:.08em;margin:10px 0 36px}
+.dl-note .ni{width:11px;height:11px;color:var(--lime)}
+.rst-btn{background:none;border:none;color:var(--dim);font-family:var(--font-m);font-size:10px;letter-spacing:.06em;text-decoration:underline;cursor:pointer;margin-top:-26px;margin-bottom:36px}
+.rst-btn:hover{color:var(--rose)}
+
+/* ── CONSULT ── */
+.consult{max-width:600px;width:100%;background:var(--card);border:1px solid var(--border-glow);border-radius:4px;overflow:hidden;text-align:left;margin-bottom:40px}
+.c-top{padding:24px 28px;border-bottom:1px solid var(--border)}
+.c-tag{font-family:var(--font-m);font-size:9px;letter-spacing:.18em;color:var(--cyan);margin-bottom:10px;display:block}
+.c-top h3{font-family:var(--font-d);font-size:19px;font-weight:700;color:var(--white);margin-bottom:7px;line-height:1.3}
+.c-top p{font-size:13px;color:var(--muted);line-height:1.7}
+.c-list{padding:18px 28px;border-bottom:1px solid var(--border)}
+.c-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);padding:6px 0;border-bottom:1px solid var(--border)}
+.c-list li:last-child{border-bottom:none}
+.c-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);flex-shrink:0;margin-top:8px;box-shadow:0 0 6px var(--cyan)}
+.c-foot{padding:18px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.c-badge{margin-left:auto;display:flex;flex-direction:column;align-items:center;padding:10px 18px;border-left:1px solid var(--border)}
+.cb-n{font-family:var(--font-d);font-size:26px;font-weight:800;color:var(--cyan);line-height:1}
+.cb-u{font-family:var(--font-m);font-size:9px;color:var(--muted);letter-spacing:.1em;margin-top:2px}
+.cb-f{font-family:var(--font-m);font-size:8px;color:var(--lime);letter-spacing:.12em;margin-top:3px}
+
+/* ── FOOTER ── */
+.sfooter{max-width:600px;width:100%;border-top:1px solid var(--border);padding-top:32px;text-align:left;margin-bottom:16px}
+.sf-logo{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--white);display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.sf-logo .orb{width:14px;height:14px}
+.sf-logo .orb .dot{width:4px;height:4px;top:-2px;margin-left:-2px;transform-origin:2px 9px}
+.sf-desc{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px}
+.sf-links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.sf-a{font-family:var(--font-m);font-size:10px;letter-spacing:.08em;color:var(--dim);text-decoration:none;padding:5px 10px;border:1px solid var(--border);border-radius:2px;transition:all .2s}
+.sf-a:hover{border-color:rgba(0,255,240,.4);color:var(--cyan)}
+.sf-copy{font-family:var(--font-m);font-size:9.5px;color:var(--dim);letter-spacing:.06em;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.free-mark{font-family:var(--font-m);font-size:9px;color:var(--lime);background:rgba(212,255,0,.1);padding:3px 8px;border-radius:2px;letter-spacing:.1em}
+
+/* ── MOBILE ── */
+@media(max-width:680px){
+  nav{padding:10px 16px}.free-badge{display:none}
+  .phwrap,.intro,.final{padding-left:16px;padding-right:16px}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .c2{grid-template-columns:1fr}.plat-grid{grid-template-columns:1fr 1fr}
+  .pgrid{grid-template-columns:1fr}.sum-grid{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:1fr}.formula{flex-direction:column}
+  .fi{border-right:none;border-bottom:1px solid var(--border)}.fi:last-child{border-bottom:none}
+  .c-foot{flex-direction:column;align-items:flex-start}
+  .c-badge{border-left:none;border-top:1px solid var(--border);padding:10px 0 0;margin-left:0;width:100%;flex-direction:row;gap:10px;align-items:center}
+  .bot-nav{padding:10px 16px}.phhdr h2{font-size:clamp(20px,6vw,28px)}
+  .resume-strip{flex-direction:column;align-items:flex-start}.sf-copy{flex-direction:column}
+}
+@media(max-width:400px){.steps-grid{grid-template-columns:1fr}.plat-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<nav>
+  <a class="nav-logo" href="celar.html">
+    <div class="orb"><div class="ring"></div><div class="dot"></div></div>
+    <div>MISSION CONTROL<small>CELAR MARKETING LAB</small></div>
+  </a>
+  <div class="nav-prog" id="navProg"></div>
+  <div class="nav-r">
+    <span class="free-badge">FREE</span>
+    <span class="nav-saved" id="navSaved">
+      <span class="ico ni" style="width:11px;height:11px;color:var(--lime)" data-icon="check"></span>SAVED
+    </span>
+  </div>
+</nav>
+<!-- ══ PAGE 0: INTRO ══ -->
+<div class="page active" id="pg-0">
+<div class="intro">
+  <div class="eyebrow">Social Launch Strategy</div>
+  <h1>Your orbit.<br/><em>Your launch.</em></h1>
+  <p class="intro-sub">A free 6-phase tool that walks you through positioning, message and channel choice — before you post a single thing, instead of guessing and fixing it later.</p>
+  <p class="intro-time">// 45–60 MINUTES · 100% FREE · NO SIGN-UP REQUIRED</p>
+  <div id="resumeStrip" class="resume-strip" style="display:none">
+    <span class="ico ri" data-icon="check" style="width:18px;height:18px"></span>
+    <p><strong>Welcome back.</strong> Mission in progress — <span id="resumePct">0%</span> complete.</p>
+    <div class="resume-actions">
+      <button class="btn-p sm" onclick="resumeMission()">Resume →</button>
+      <button class="btn-g sm" onclick="restartMission()">Start over</button>
+    </div>
+  </div>
+  <div class="steps-grid">
+    <div class="so"><div class="so-num">01</div><div class="so-icon" data-icon="audience"></div><div class="so-title">Audience</div></div>
+    <div class="so"><div class="so-num">02</div><div class="so-icon" data-icon="positioning"></div><div class="so-title">Positioning</div></div>
+    <div class="so"><div class="so-num">03</div><div class="so-icon" data-icon="message"></div><div class="so-title">Message</div></div>
+    <div class="so"><div class="so-num">04</div><div class="so-icon" data-icon="channel"></div><div class="so-title">Channel</div></div>
+    <div class="so"><div class="so-num">05</div><div class="so-icon" data-icon="pillars"></div><div class="so-title">Content Pillars</div></div>
+    <div class="so"><div class="so-num">06</div><div class="so-icon" data-icon="calicon"></div><div class="so-title">Launch Calendar</div></div>
+  </div>
+  <div class="info-strip">
+    <span class="ico ii" data-icon="lock" style="width:18px;height:18px"></span>
+    <p><strong>Your answers are yours.</strong> Everything saves automatically in your browser as you type — nothing is sent to a server. Close the tab, come back tomorrow, your progress will be here. Export your finished strategy as a branded PDF anytime.</p>
+  </div>
+  <button class="btn-p lg" onclick="goTo(1)">Begin mission <span class="ico" style="width:14px;height:14px" data-icon="arr-r"></span></button>
+  <p class="intro-meta">// 100% FREE · AUTOSAVED · PDF EXPORT INCLUDED</p>
+</div>
+</div>
+
+<!-- ══ PAGE 1: AUDIENCE ══ -->
+<div class="page" id="pg-1">
+<div class="phwrap">
+  <div class="phhdr">
+    <div class="ph-tag"><span class="ico ti" data-icon="audience"></span>PHASE 01 / 06</div>
+    <h2>Audience</h2>
+    <p>Strategy starts with people, not platforms. Before you decide what to post or where — you need to understand who you're actually talking to, with enough precision to write a post they'd stop scrolling for.</p>
+  </div>
+  <div class="theory">
+    <h4><span class="ico ti" data-icon="sparkle"></span>WHY AUDIENCE COMES FIRST</h4>
+    <p>Most founders build backwards: pick a platform, pick a format, then wonder why the content doesn't connect. Platform is distribution. <em>Audience is the strategy.</em></p>
+    <p>A post that speaks directly to one person's specific frustration will always outperform a polished post aimed at everyone. If you can describe your audience in a sentence, you haven't gone deep enough yet.</p>
+    <div class="theory-hl"><span class="ico ti" data-icon="sparkle"></span>The real question isn't "who is my audience?" — it's "what does my audience complain about at 11pm when nobody's listening?"</div>
+  </div>
+  <div class="eu-note">
+    <span class="ico ei" data-icon="globe" style="width:18px;height:18px"></span>
+    <div><h5>EU MARKET NOTE</h5><p>EU audiences — especially NL, FR and DE — are <strong>more skeptical of marketing claims</strong> and respond better to specificity and concrete social proof than to aspirational language. "Results-driven" means little. A named client, a specific number, a verifiable outcome earns trust.</p></div>
+  </div>
+  <div class="fg c2">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="audience"></span>Who is your audience?</div>
+      <div class="fh">Age, role, situation — the more specific, the better</div>
+      <textarea id="f_audience" rows="4" placeholder="e.g. Female founders aged 30–45, running service businesses in the Benelux. They work with 3–8 clients at a time and feel invisible online compared to bigger agencies."></textarea>
+    </div>
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="globe"></span>Where do they already spend time online?</div>
+      <div class="fh">Not where you want them — where they actually are</div>
+      <textarea id="f_where" rows="4" placeholder="e.g. LinkedIn for professional learning, Instagram for inspiration, local Facebook groups, Reddit communities for peer advice..."></textarea>
+    </div>
+  </div>
+  <div class="fg c2">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="frown"></span>What keeps them up at night?</div>
+      <div class="fh">The frustrations they'd admit to no one</div>
+      <textarea id="f_pains" rows="4" placeholder="1. Not knowing if their marketing is working&#10;2. Feeling like they post into a void&#10;3. No time to create content AND run the business..."></textarea>
+    </div>
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="sparkles"></span>What do they deeply want?</div>
+      <div class="fh">The aspirations behind their day-to-day frustrations</div>
+      <textarea id="f_dreams" rows="4" placeholder="e.g. To be recognized as the go-to expert. Inbound leads so they can stop cold outreach. Build something that feels like them, not a corporate template..."></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE 2: POSITIONING ══ -->
+<div class="page" id="pg-2">
+<div class="phwrap">
+  <div class="phhdr">
+    <div class="ph-tag"><span class="ico ti" data-icon="positioning"></span>PHASE 02 / 06</div>
+    <h2>Positioning</h2>
+    <p>Thousands of accounts exist in any niche. Posting more won't make you stand out. Positioning will — it's the specific, ownable place you occupy in your audience's mind.</p>
+  </div>
+  <div class="theory">
+    <h4><span class="ico ti" data-icon="sparkle"></span>DESCRIBING VS. POSITIONING</h4>
+    <p>Most founders describe what they do. Positioned brands own a specific point of view that no one else is staking out.</p>
+    <div class="tgrid">
+      <div class="tg"><div class="tg-l">DESCRIBING</div><div class="tg-v">"I'm a marketing consultant helping small businesses grow"</div></div>
+      <div class="tg"><div class="tg-l">POSITIONING</div><div class="tg-v">"I build brand systems for EU e-commerce founders who are tired of competing on price"</div></div>
+    </div>
+    <div class="theory-hl"><span class="ico ti" data-icon="sparkle"></span>A strong position attracts the right people AND repels the wrong ones. Both are valuable.</div>
+  </div>
+  <div class="eu-note">
+    <span class="ico ei" data-icon="globe" style="width:18px;height:18px"></span>
+    <div><h5>EU MARKET NOTE</h5><p>If you serve multiple language markets, keep <strong>one core positioning</strong> — but let the voice flex per market. A direct, witty tone that lands in Amsterdam can feel too informal in Paris. The strategic position stays constant; the way you express it adapts.</p></div>
+  </div>
+  <div class="fg c2">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="building"></span>Business / brand name</div>
+      <input id="f_brand" type="text" placeholder="e.g. Orbit Studio"/>
+    </div>
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="tag"></span>Industry / niche</div>
+      <input id="f_niche" type="text" placeholder="e.g. B2B SaaS, premium pet food, personal finance"/>
+    </div>
+  </div>
+  <div class="fg c1">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="positioning"></span>Brand promise — one sentence</div>
+      <div class="fh">Who you help + what they get + why it's different. If it takes two sentences, it's not ready.</div>
+      <textarea id="f_promise" rows="2" placeholder="e.g. I help e-commerce founders build a recognizable brand so they can stop competing on price."></textarea>
+    </div>
+  </div>
+  <div class="fg c2">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="crown"></span>3 things only you can claim</div>
+      <div class="fh">Claims a competitor literally cannot make — your method, story, clients, or data</div>
+      <textarea id="f_unique" rows="4" placeholder="1. &#10;2. &#10;3."></textarea>
+    </div>
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="users"></span>What is your audience doing instead?</div>
+      <div class="fh">Who / what are you really competing with?</div>
+      <textarea id="f_competitors" rows="4" placeholder="e.g. DIY with Canva tutorials. Fiverr freelancers. A generalist agency. Doing nothing and hoping word of mouth works..."></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE 3: MESSAGE ══ -->
+<div class="page" id="pg-3">
+<div class="phwrap">
+  <div class="phhdr">
+    <div class="ph-tag"><span class="ico ti" data-icon="message"></span>PHASE 03 / 06</div>
+    <h2>Message</h2>
+    <p>Even a clear position can be expressed in words that make people scroll past. Your message is how your positioning sounds in real language — the words that make the right person think "that's exactly for me."</p>
+  </div>
+  <div class="theory">
+    <h4><span class="ico ti" data-icon="sparkle"></span>THE MESSAGE STACK</h4>
+    <p>Think of your message in three layers: the <em>hook</em> (stops the scroll), the <em>core message</em> (what they remember), and the <em>voice</em> (what makes every post sound like you).</p>
+    <div class="tgrid">
+      <div class="tg"><div class="tg-l">HOOK</div><div class="tg-v">A specific claim, counter-intuitive idea, or shared frustration that stops scrolling</div></div>
+      <div class="tg"><div class="tg-l">CORE MESSAGE</div><div class="tg-v">The one idea they take away — every time, from every post</div></div>
+      <div class="tg"><div class="tg-l">VOICE</div><div class="tg-v">The consistent personality that makes your content recognizable without your name</div></div>
+      <div class="tg"><div class="tg-l">OBJECTION BRIDGE</div><div class="tg-v">The real reason they haven't taken the step yet — addressed through content</div></div>
+    </div>
+    <div class="theory-hl"><span class="ico ti" data-icon="sparkle"></span>Test: read 10 of your posts with the name removed. Can someone identify they're from you? That's the voice test.</div>
+  </div>
+  <div class="eu-note">
+    <span class="ico ei" data-icon="globe" style="width:18px;height:18px"></span>
+    <div><h5>EU MARKET NOTE</h5><p>American-style urgency copy ("DM me NOW!") underperforms in EU markets. <strong>Dutch</strong> audiences prefer direct honesty without hype. <strong>French</strong> audiences respond to sophistication and nuance. Build your message without manufactured pressure — add concrete social proof instead of urgency triggers.</p></div>
+  </div>
+  <div class="fg c1">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="message"></span>Core message — the one idea behind everything you post</div>
+      <div class="fh">Not your tagline. The strategic belief you want to own in your niche.</div>
+      <textarea id="f_message" rows="2" placeholder="e.g. Most small businesses are invisible online not because they post too little, but because they've never defined who they're talking to."></textarea>
+    </div>
+  </div>
+  <div class="fg c2">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="mic"></span>Brand voice — how you sound</div>
+      <div class="fh">3 adjectives, then: "sounds like / doesn't sound like"</div>
+      <textarea id="f_voice" rows="4" placeholder="e.g. Direct, warm, no-nonsense.&#10;Sounds like: a smart friend who knows marketing.&#10;Doesn't sound like: a corporate agency or a hype coach."></textarea>
+    </div>
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="shield"></span>What objections does your audience have?</div>
+      <div class="fh">Why haven't they worked with someone like you yet?</div>
+      <textarea id="f_objections" rows="4" placeholder="e.g. 'I can't afford an agency.' / 'I tried social before, it didn't work.' / 'I don't know what to post.' / 'I don't have time.'"></textarea>
+    </div>
+  </div>
+  <div class="fg c1">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="bolt"></span>Your hook formula — what stops the scroll?</div>
+      <div class="fh">A counter-intuitive idea, a specific number, a direct challenge. What makes someone pause on your content?</div>
+      <textarea id="f_hook" rows="2" placeholder="e.g. 'You don't need 10k followers to get clients from Instagram.' / 'Stop posting more. Start positioning better.'"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE 4: CHANNEL ══ -->
+<div class="page" id="pg-4">
+<div class="phwrap">
+  <div class="phhdr">
+    <div class="ph-tag"><span class="ico ti" data-icon="channel"></span>PHASE 04 / 06</div>
+    <h2>Channel</h2>
+    <p>Not all platforms are equal — and you don't have time to be everywhere. The right channel is where your audience already lives, with a format that matches your content strengths.</p>
+  </div>
+  <div class="theory">
+    <h4><span class="ico ti" data-icon="sparkle"></span>CHANNEL IS A STRATEGIC DECISION</h4>
+    <p>The most common mistake: choosing a platform because you use it personally, or because a competitor is there. Channel choice should follow your audience research from Phase 1 — not your preferences.</p>
+    <div class="tgrid">
+      <div class="tg"><div class="tg-l">INSTAGRAM</div><div class="tg-v">Visual B2C, lifestyle, products, emotional stories, 20–42</div></div>
+      <div class="tg"><div class="tg-l">LINKEDIN</div><div class="tg-v">B2B, professional services, SaaS, thought leadership, 28–55</div></div>
+      <div class="tg"><div class="tg-l">TIKTOK</div><div class="tg-v">Gen Z + millennial, entertainment-first, viral reach, fast iteration</div></div>
+      <div class="tg"><div class="tg-l">YOUTUBE</div><div class="tg-v">SEO longevity, deep trust via long-form, all ages who research before buying</div></div>
+    </div>
+    <div class="theory-hl"><span class="ico ti" data-icon="sparkle"></span>Rule: own 1–2 platforms completely before expanding. Mediocre presence everywhere is worse than excellent presence somewhere.</div>
+  </div>
+  <div class="eu-note">
+    <span class="ico ei" data-icon="globe" style="width:18px;height:18px"></span>
+    <div><h5>EU MARKET NOTE</h5><p>LinkedIn over-indexes for B2B across Benelux and DACH. Instagram leads B2C in NL, FR and BE. Facebook remains relevant for 35+ in FR/DE community groups. GDPR consent rules limit ad-pixel tracking — <strong>organic saves, shares and DMs are your most reliable signal here</strong>, more so than paid reach metrics.</p></div>
+  </div>
+  <div class="fl" style="margin-bottom:10px;font-family:var(--font-m);font-size:9px;letter-spacing:.14em;color:var(--cyan);display:flex;align-items:center;gap:6px">
+    <span class="ico" style="width:12px;height:12px" data-icon="channel"></span>SELECT YOUR PRIORITY PLATFORMS (1–2 recommended)
+  </div>
+  <div class="plat-grid" id="platGrid">
+    <div class="pt" data-plat="Instagram" onclick="togglePlat(this,'Instagram')"><div class="pi" data-icon="camera"></div><div class="pn">Instagram</div><div class="pd">Visual, B2C, lifestyle</div></div>
+    <div class="pt" data-plat="LinkedIn" onclick="togglePlat(this,'LinkedIn')"><div class="pi" data-icon="briefcase"></div><div class="pn">LinkedIn</div><div class="pd">B2B, professionals</div></div>
+    <div class="pt" data-plat="TikTok" onclick="togglePlat(this,'TikTok')"><div class="pi" data-icon="music-note"></div><div class="pn">TikTok</div><div class="pd">Gen Z, viral reach</div></div>
+    <div class="pt" data-plat="Facebook" onclick="togglePlat(this,'Facebook')"><div class="pi" data-icon="users"></div><div class="pn">Facebook</div><div class="pd">Communities, 35–55+</div></div>
+    <div class="pt" data-plat="YouTube" onclick="togglePlat(this,'YouTube')"><div class="pi" data-icon="play-c"></div><div class="pn">YouTube</div><div class="pd">Long-form, SEO</div></div>
+    <div class="pt" data-plat="X/Twitter" onclick="togglePlat(this,'X/Twitter')"><div class="pi" data-icon="x-soc"></div><div class="pn">X / Twitter</div><div class="pd">Real-time, professional</div></div>
+  </div>
+  <div class="fg c2">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="positioning"></span>Why this channel for your goal?</div>
+      <div class="fh">What makes this platform the right fit for your audience and content type?</div>
+      <textarea id="f_channel_why" rows="3" placeholder="e.g. My B2B audience (NL founders) is active on LinkedIn 3× a week. Carousels and thought leadership posts get organic reach without ad spend..."></textarea>
+    </div>
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="pencil"></span>Content format that works here</div>
+      <div class="fh">Match the format to the platform's native behaviour</div>
+      <textarea id="f_channel_format" rows="3" placeholder="e.g. LinkedIn: long-form text posts + carousels. No Reels — wrong platform. Focus on insight-first posts, 3× per week..."></textarea>
+    </div>
+  </div>
+  <div class="fg c1">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="clock"></span>Realistic posting frequency</div>
+      <div class="fh">Under-promise to yourself, over-deliver to your audience. 3×/week for 6 months beats 7×/week for 3 weeks.</div>
+      <textarea id="f_frequency" rows="2" placeholder="e.g. LinkedIn: 3× per week (Mon, Wed, Fri). Instagram Stories daily. One Reel per week."></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE 5: CONTENT PILLARS ══ -->
+<div class="page" id="pg-5">
+<div class="phwrap">
+  <div class="phhdr">
+    <div class="ph-tag"><span class="ico ti" data-icon="pillars"></span>PHASE 05 / 06</div>
+    <h2>Content Pillars</h2>
+    <p>Pillars are your editorial categories — the recurring themes that give your audience a reason to keep following you. Without them, every post is a decision from scratch. With them, you have a system.</p>
+  </div>
+  <div class="theory">
+    <h4><span class="ico ti" data-icon="sparkle"></span>THE 70 / 20 / 10 BALANCE</h4>
+    <p>Social is a relationship channel, not a broadcast channel. A brand that only sells is like someone who walks into a party and immediately pitches everyone in the room.</p>
+    <div class="formula">
+      <div class="fi"><div class="fi-pct">70%</div><div class="fi-l">EDUCATE + ENTERTAIN</div></div>
+      <div class="fi"><div class="fi-pct">20%</div><div class="fi-l">COMMUNITY + ENGAGE</div></div>
+      <div class="fi"><div class="fi-pct">10%</div><div class="fi-l">SELL + CONVERT</div></div>
+    </div>
+    <div class="theory-hl"><span class="ico ti" data-icon="sparkle"></span>The goal is not followers. The goal is an audience that trusts you enough to buy — when the time is right for them.</div>
+  </div>
+  <div class="eu-note">
+    <span class="ico ei" data-icon="globe" style="width:18px;height:18px"></span>
+    <div><h5>EU MARKET NOTE</h5><p>Don't translate pillar examples across language markets. A "Trust" post citing a Dutch case study won't resonate the same way in France — the case study itself needs to be local. Keep the <strong>pillar structure consistent</strong>; localize the content examples inside it per market.</p></div>
+  </div>
+  <div class="pgrid">
+    <div class="pillar p1">
+      <div class="ph"><span class="ico pi2" data-icon="book"></span>PILLAR 1 — EDUCATE</div>
+      <div class="ps">Share knowledge that solves real problems</div>
+      <textarea id="f_p1" rows="4" placeholder="What can you teach that your audience doesn't know they need to know?&#10;e.g. How-to guides, myths debunked, step-by-step tutorials, industry misunderstandings..."></textarea>
+    </div>
+    <div class="pillar p2">
+      <div class="ph"><span class="ico pi2" data-icon="shield"></span>PILLAR 2 — BUILD TRUST</div>
+      <div class="ps">Prove you know your stuff — without stating it</div>
+      <textarea id="f_p2" rows="4" placeholder="What shows expertise without you claiming it?&#10;e.g. Client results with numbers, behind-the-scenes process, case studies, your founder story..."></textarea>
+    </div>
+    <div class="pillar p3">
+      <div class="ph"><span class="ico pi2" data-icon="sparkles"></span>PILLAR 3 — ENTERTAIN</div>
+      <div class="ps">Make them feel something — connection, curiosity, recognition</div>
+      <textarea id="f_p3" rows="4" placeholder="What makes your audience relate or react?&#10;e.g. Hot takes, founder mistakes, day-in-the-life, personal stories, polls..."></textarea>
+    </div>
+    <div class="pillar p4">
+      <div class="ph"><span class="ico pi2" data-icon="cart"></span>PILLAR 4 — CONVERT</div>
+      <div class="ps">Invite — without pressure</div>
+      <textarea id="f_p4" rows="4" placeholder="How do you present your offer without it feeling like a pitch?&#10;e.g. Problem→solution posts, client testimonials, soft CTAs, FAQ about your offer..."></textarea>
+    </div>
+  </div>
+  <div class="field" style="margin-bottom:12px">
+    <div class="fl"><span class="ico fi2" data-icon="pencil"></span>Content formats you'll use</div>
+    <div class="chips" id="formatChips">
+      <span class="chip" onclick="toggleChip(this)">Short video / Reels</span>
+      <span class="chip" onclick="toggleChip(this)">Carousels</span>
+      <span class="chip" onclick="toggleChip(this)">Single images</span>
+      <span class="chip" onclick="toggleChip(this)">Stories</span>
+      <span class="chip" onclick="toggleChip(this)">Long-form posts</span>
+      <span class="chip" onclick="toggleChip(this)">Podcasts / Audio</span>
+      <span class="chip" onclick="toggleChip(this)">Live sessions</span>
+      <span class="chip" onclick="toggleChip(this)">Polls / Q&amp;As</span>
+      <span class="chip" onclick="toggleChip(this)">Newsletters</span>
+    </div>
+  </div>
+  <div class="fg c1">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="repeat"></span>Recurring content series</div>
+      <div class="fh">A named, recurring format builds habit. Your audience knows when to expect it.</div>
+      <textarea id="f_series" rows="2" placeholder="e.g. 'Monday Myth-bust: one marketing misconception per week' / 'Friday win: one client result every Friday' / '#AskMe Thursdays'"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE 6: LAUNCH CALENDAR ══ -->
+<div class="page" id="pg-6">
+<div class="phwrap">
+  <div class="phhdr">
+    <div class="ph-tag"><span class="ico ti" data-icon="calicon"></span>PHASE 06 / 06</div>
+    <h2>Launch Calendar</h2>
+    <p>The difference between a launch and "just posting" is intentional sequencing. The first 30 days set the algorithm, establish your tone, and turn strangers into returning readers. Don't wing it.</p>
+  </div>
+  <div class="theory">
+    <h4><span class="ico ti" data-icon="sparkle"></span>THE 4-WEEK LAUNCH SEQUENCE</h4>
+    <p>Every launch benefits from a warm-up before the public announcement. Tell your network before you tell strangers. Get 10–20 people to engage on Day 1 — the algorithm rewards early momentum.</p>
+    <div class="tgrid">
+      <div class="tg"><div class="tg-l">WEEK -1 (PRE-LAUNCH)</div><div class="tg-v">First 9 posts ready, profile optimized, 20 contacts briefed</div></div>
+      <div class="tg"><div class="tg-l">WEEK 1 (LAUNCH)</div><div class="tg-v">Post hero content, supporters engage within first hour</div></div>
+      <div class="tg"><div class="tg-l">WEEK 2 (BUILD)</div><div class="tg-v">Post daily, respond to every comment, follow 10 relevant accounts/day</div></div>
+      <div class="tg"><div class="tg-l">WEEKS 3–4 (FIND RHYTHM)</div><div class="tg-v">Drop to sustainable cadence, test formats, cut what isn't working</div></div>
+    </div>
+    <div class="theory-hl"><span class="ico ti" data-icon="sparkle"></span>The 90-day rule: accounts that become destinations posted consistently for 90 days before they "got lucky." Don't audit results before week 8.</div>
+  </div>
+  <div class="eu-note">
+    <span class="ico ei" data-icon="globe" style="width:18px;height:18px"></span>
+    <div><h5>EU MARKET NOTE</h5><p>Local hashtags (#amsterdamondernemer, #marketingfr) reach a tighter, more relevant audience than broad global tags. Schedule in <strong>CET/CEST</strong>, not your tool's default UTC — a 1-hour drift quietly moves every post out of the commute window. Metricool and Later keep data EU-based, useful context if clients ask about GDPR-compliant tooling.</p></div>
+  </div>
+  <div class="cl">
+    <div class="cl-hd"><span class="ico chi" data-icon="checklist"></span>PRE-LAUNCH CHECKLIST</div>
+    <div class="cl-row" onclick="toggleCL(this)"><div class="cl-box"></div><span>Bio optimized — who you help, what they get, a CTA or link</span></div>
+    <div class="cl-row" onclick="toggleCL(this)"><div class="cl-box"></div><span>Profile photo and cover — professional, consistent across platforms</span></div>
+    <div class="cl-row" onclick="toggleCL(this)"><div class="cl-box"></div><span>First 9 posts prepared (Instagram grid) or 6 posts ready (other platforms)</span></div>
+    <div class="cl-row" onclick="toggleCL(this)"><div class="cl-box"></div><span>Pinned post or highlight strategy defined</span></div>
+    <div class="cl-row" onclick="toggleCL(this)"><div class="cl-box"></div><span>Hashtag and keyword research done — niche + mid + broad tags</span></div>
+    <div class="cl-row" onclick="toggleCL(this)"><div class="cl-box"></div><span>Link-in-bio or landing page set up and tested</span></div>
+    <div class="cl-row" onclick="toggleCL(this)"><div class="cl-box"></div><span>Content for first 2 weeks batched and scheduled in advance</span></div>
+    <div class="cl-row" onclick="toggleCL(this)"><div class="cl-box"></div><span>20 personal contacts briefed and committed to engage on Day 1</span></div>
+  </div>
+  <div style="font-family:var(--font-m);font-size:9px;letter-spacing:.14em;color:var(--cyan);margin-bottom:10px;display:flex;align-items:center;gap:6px">
+    <span class="ico" style="width:12px;height:12px" data-icon="calicon"></span>WEEK-BY-WEEK PLAN
+  </div>
+  <div class="cal-wrap">
+    <table class="cal">
+      <thead><tr><th>WEEK</th><th>FOCUS / THEME</th><th>CONTENT TYPES</th><th>PLATFORM(S)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="wk wk-0">WK -1</span></td><td><textarea id="c_pre" placeholder="Setup, optimize, prep first posts"></textarea></td><td><textarea id="c_pre_t" placeholder="Behind-the-scenes tease"></textarea></td><td><textarea id="c_pre_p" placeholder="All"></textarea></td></tr>
+        <tr><td><span class="wk wk-1">WK 1</span></td><td><textarea id="c_w1" placeholder="Launch + establish positioning"></textarea></td><td><textarea id="c_w1_t" placeholder="Hero post, intro carousel"></textarea></td><td><textarea id="c_w1_p" placeholder="Instagram + LinkedIn"></textarea></td></tr>
+        <tr><td><span class="wk wk-2">WK 2</span></td><td><textarea id="c_w2" placeholder="Education — show expertise"></textarea></td><td><textarea id="c_w2_t" placeholder="3 education posts, 1 trust post"></textarea></td><td><textarea id="c_w2_p" placeholder="Instagram"></textarea></td></tr>
+        <tr><td><span class="wk wk-3">WK 3</span></td><td><textarea id="c_w3" placeholder="Build community + entertain"></textarea></td><td><textarea id="c_w3_t" placeholder="Story poll, Reel, personal post"></textarea></td><td><textarea id="c_w3_p" placeholder="Stories"></textarea></td></tr>
+        <tr><td><span class="wk wk-4">WK 4</span></td><td><textarea id="c_w4" placeholder="First soft CTA + review results"></textarea></td><td><textarea id="c_w4_t" placeholder="Convert post, testimonial, FAQ"></textarea></td><td><textarea id="c_w4_p" placeholder="All platforms"></textarea></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fg c2">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="megaphone"></span>Announcement plan</div>
+      <textarea id="f_announce" rows="3" placeholder="e.g. Email list (Day -3), WhatsApp contacts (Day -1), personal post (Day 1). Ask 5 people specifically to comment in the first hour."></textarea>
+    </div>
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="gift"></span>Lead magnet or launch hook</div>
+      <textarea id="f_magnet" rows="3" placeholder="e.g. Free PDF guide for first 50 followers. Live Q&amp;A in Week 1. Discount for 72 hours post-launch."></textarea>
+    </div>
+  </div>
+  <div class="fg c1">
+    <div class="field">
+      <div class="fl"><span class="ico fi2" data-icon="flag"></span>90-day goal — specific and measurable</div>
+      <textarea id="f_goal" rows="2" placeholder="e.g. 500 Instagram followers by Week 12. 3 inbound DM inquiries per month. 40 warm leads via lead magnet."></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ PAGE 7: FINAL ══ -->
+<div class="page" id="pg-7">
+<div class="final wrap">
+  <div class="fin-icon" data-icon="rocket"></div>
+  <h2>Strategy complete.<br/><em>Ready for launch.</em></h2>
+  <p class="fsub">Your 6-phase social launch strategy is done. Download it as a branded PDF — then book a free call to review it together and map out next steps.</p>
+  <div class="sum-grid" id="summaryCards"></div>
+  <button class="btn-p lg" onclick="generatePDF()">
+    <span class="ico" style="width:16px;height:16px" data-icon="download"></span>Download strategy PDF
+  </button>
+  <p class="dl-note"><span class="ico ni" style="width:11px;height:11px" data-icon="lock"></span>YOUR DATA STAYS IN YOUR BROWSER · 100% FREE, NO CATCH</p>
+  <button class="rst-btn" onclick="restartMission()">Clear answers and start a new mission</button>
+  <div class="consult">
+    <div class="c-top">
+      <span class="c-tag">// NEXT STEP</span>
+      <h3>Want us to implement this strategy for you?</h3>
+      <p>Book a free 20-minute call — we'll review your strategy together, spot the gaps, and tell you exactly what to prioritize first. No pitch. Pure strategic value.</p>
+    </div>
+    <ul class="c-list">
+      <li><span class="c-dot"></span>Review your positioning, message and channel fit</li>
+      <li><span class="c-dot"></span>Identify the 1–2 moves that will have the highest impact first</li>
+      <li><span class="c-dot"></span>Tell you honestly what will and won't work for your specific market</li>
+      <li><span class="c-dot"></span>No sales pressure — you leave with a clear action plan regardless</li>
+    </ul>
+    <div class="c-foot">
+      <div>
+        <a class="btn-p" href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" rel="noopener">Book free 20-min call →</a>
+        <p style="font-family:var(--font-m);font-size:10px;color:var(--dim);margin-top:10px;letter-spacing:.06em">No prep needed. Bring your PDF and your questions.</p>
+      </div>
+      <div class="c-badge">
+        <div class="cb-n">20</div><div class="cb-u">MINUTES</div><div class="cb-f">100% FREE</div>
+      </div>
+    </div>
+  </div>
+  <div class="sfooter">
+    <div class="sf-logo"><div class="orb"><div class="ring"></div><div class="dot"></div></div>CELAR MARKETING LAB</div>
+    <p class="sf-desc">We build brand universes for EU founders and small businesses — from positioning to launch. Strategy-first, aesthetic-obsessed, results-measured.</p>
+    <div class="sf-links">
+      <a class="sf-a" href="celar.html">← Back to site</a>
+      <a class="sf-a" href="celar_privacy.html" target="_blank">Privacy Policy</a>
+      <a class="sf-a" href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" rel="noopener">Book a call</a>
+      <a class="sf-a" href="https://wa.me/31629475620" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="sf-a" href="https://t.me/+31629475620" target="_blank" rel="noopener">Telegram</a>
+      <a class="sf-a" href="https://www.instagram.com/celar_marketing_lab" target="_blank" rel="noopener">Instagram</a>
+      <a class="sf-a" href="https://www.linkedin.com/company/celar-marketing-lab/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="sf-copy">
+      <span>© 2026 Celar Marketing Lab · celarmarketinglab.com</span>
+      <span class="free-mark">FREE TOOL · NO SIGN-UP REQUIRED</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══ BOTTOM NAV ══ -->
+<div class="bot-nav" id="botNav" style="display:none">
+  <div class="bn-l">
+    <button class="btn-g" id="btnBack" onclick="goBack()"><span class="ico" style="width:12px;height:12px" data-icon="arr-l"></span>Back</button>
+    <span class="bn-step" id="bnStep"></span>
+  </div>
+  <button class="btn-p" id="btnNext" onclick="goNext()">Continue <span class="ico" style="width:12px;height:12px" data-icon="arr-r"></span></button>
+</div>
+<script>
+// ══ ICONS: viewBox 0 0 64 64, orbital SVG system ══
+const ICONS={
+'audience':'<ellipse cx="32" cy="38" rx="26" ry="9" stroke-width="1.5"/><circle cx="32" cy="19" r="8" stroke-width="1.5"/><circle cx="6" cy="38" r="3.5" fill="currentColor" stroke="none"/><circle cx="58" cy="38" r="3.5" fill="currentColor" stroke="none"/><circle cx="32" cy="47" r="3.5" fill="currentColor" stroke="none"/>',
+'positioning':'<circle cx="32" cy="32" r="27" stroke-width="1.5" stroke-dasharray="2 6"/><circle cx="32" cy="32" r="14" stroke-width="1.5"/><circle cx="32" cy="32" r="4" fill="currentColor" stroke="none"/><path d="M32 5v8M32 51v8M5 32h8M51 32h8" stroke-width="1.5"/>',
+'message':'<path d="M12 36Q12 14 32 14Q52 14 52 36" stroke-width="1.5"/><path d="M6 44Q6 8 32 8Q58 8 58 44" stroke-width="1.5" stroke-dasharray="2 5"/><path d="M18 42Q18 22 32 22Q46 22 46 42" stroke-width="1.5"/><circle cx="32" cy="49" r="5" fill="currentColor" stroke="none"/>',
+'channel':'<circle cx="32" cy="32" r="27" stroke-width="1.5" stroke-dasharray="2 5"/><path d="M14 50Q14 14 50 14" stroke-width="2"/><circle cx="50" cy="14" r="5" fill="currentColor" stroke="none"/><circle cx="14" cy="50" r="3" fill="currentColor" stroke="none"/><path d="M32 32L50 14" stroke-width="1" opacity="0.35"/>',
+'pillars':'<circle cx="32" cy="32" r="25" stroke-width="1.5"/><circle cx="32" cy="7" r="4" fill="currentColor" stroke="none"/><circle cx="57" cy="32" r="4" fill="currentColor" stroke="none"/><circle cx="32" cy="57" r="4" fill="currentColor" stroke="none"/><circle cx="7" cy="32" r="4" fill="currentColor" stroke="none"/><circle cx="32" cy="32" r="3.5" stroke-width="1.5"/><path d="M32 28.5V11M35.5 32H53M32 35.5V53M28.5 32H11" stroke-width="1" opacity="0.35"/>',
+'calicon':'<rect x="10" y="16" width="44" height="38" rx="3" stroke-width="1.5"/><path d="M10 26h44" stroke-width="1.5"/><path d="M22 10v12M42 10v12" stroke-width="1.5"/><path d="M18 35h5M30 35h5M42 35h5M18 44h5M30 44h5" stroke-width="1.5"/><path d="M48 8Q60 8 60 20" stroke-width="1.5"/><circle cx="48" cy="8" r="3" fill="currentColor" stroke="none"/>',
+'arr-r':'<path d="M13 32h38M38 18l14 14-14 14" stroke-width="3"/>',
+'arr-l':'<path d="M51 32H13M26 18L12 32l14 14" stroke-width="3"/>',
+'check':'<path d="M10 32l14 14L54 18" stroke-width="3"/>',
+'lock':'<rect x="16" y="28" width="32" height="26" rx="4" stroke-width="2"/><path d="M22 28v-6a10 10 0 0 1 20 0v6" stroke-width="2"/>',
+'download':'<path d="M32 8v32M20 30l12 12 12-12M10 50h44" stroke-width="3"/>',
+'rocket':'<path d="M32 6c8 4 14 14 14 24 0 5-2.5 9-2.5 9l-4 13-3-9h-9l-3 9-4-13S18 35 18 30c0-10 6-20 14-24Z" stroke-width="2"/><circle cx="32" cy="28" r="5" stroke-width="2"/><path d="M18 40c-5 1.5-7 5-7 10 4 0 7.5-1.5 9-7M46 40c5 1.5 7 5 7 10-4 0-7.5-1.5-9-7" stroke-width="2"/>',
+'sparkle':'<path d="M32 8v8M32 48v8M8 32h8M48 32h8M17.5 17.5l5.5 5.5M41 41l5.5 5.5M46.5 17.5l-5.5 5.5M23 41l-5.5 5.5" stroke-width="2.5"/>',
+'sparkles':'<path d="M22 6l-2.5 8-8 2.5 8 2.5 2.5 8 2.5-8 8-2.5-8-2.5Z" stroke-width="1.5"/><path d="M46 32l-2 6-6 2 6 2 2 6 2-6 6-2-6-2Z" stroke-width="1.5"/>',
+'globe':'<circle cx="32" cy="32" r="24" stroke-width="2"/><ellipse cx="32" cy="32" rx="10" ry="24" stroke-width="2"/><path d="M8 32h48M10 21h44M10 43h44" stroke-width="1.5"/>',
+'bolt':'<path d="M36 4L20 26h12l-8 34 22-30H34Z" stroke-width="2"/>',
+'building':'<rect x="12" y="8" width="40" height="48" rx="2" stroke-width="2"/><path d="M20 20h6M38 20h6M20 30h6M38 30h6M24 56V40h16v16" stroke-width="1.5"/>',
+'tag':'<path d="M8 28L32 4h20a4 4 0 0 1 4 4v20L32 52a3 3 0 0 1-4.2 0L8 32a3 3 0 0 1 0-4Z" stroke-width="2"/><circle cx="44" cy="16" r="3.5" fill="currentColor" stroke="none"/>',
+'crown':'<path d="M8 42h48l4-24-14 10-14-22-14 22-14-10 4 24ZM8 48h48" stroke-width="2"/>',
+'users':'<circle cx="22" cy="20" r="8" stroke-width="2"/><path d="M6 48c0-8 7-14 16-14s16 6 16 14" stroke-width="2"/><circle cx="44" cy="22" r="6" stroke-width="2"/><path d="M44 34c5 0 12 4 14 14" stroke-width="2"/>',
+'mic':'<rect x="22" y="6" width="20" height="26" rx="10" stroke-width="2"/><path d="M14 28a18 18 0 0 0 36 0" stroke-width="2"/><path d="M32 46v10M24 56h16" stroke-width="2"/>',
+'shield':'<path d="M32 6L8 14v14c0 12 10 22 24 28 14-6 24-16 24-28V14Z" stroke-width="2"/><path d="M22 32l6 6 14-14" stroke-width="2"/>',
+'book':'<path d="M8 12c6-3 14-3 24 0v36c-10-3-18-3-24 0ZM56 12c-6-3-14-3-24 0v36c10-3 18-3 24 0Z" stroke-width="2"/>',
+'cart':'<path d="M6 10h8l6 30h24l6-20H18" stroke-width="2"/><circle cx="26" cy="50" r="4" fill="currentColor" stroke="none"/><circle cx="44" cy="50" r="4" fill="currentColor" stroke="none"/>',
+'pencil':'<path d="M8 52l3.5-14L42 8l14 14L16 52ZM36 14l14 14" stroke-width="2"/>',
+'repeat':'<path d="M10 20h32a10 10 0 0 1 10 10v4M46 12l6 8-6 8" stroke-width="2"/><path d="M54 44H22a10 10 0 0 1-10-10v-4M18 36l-6 8 6 8" stroke-width="2"/>',
+'clock':'<circle cx="32" cy="32" r="24" stroke-width="2"/><path d="M32 18v16l8 6" stroke-width="2"/>',
+'megaphone':'<path d="M10 24v16l8 2V52a4 4 0 0 0 8 0V42l24 6V16ZM54 24v16" stroke-width="2"/>',
+'gift':'<rect x="10" y="26" width="44" height="28" rx="3" stroke-width="2"/><path d="M10 26h44M32 26v28" stroke-width="2"/><path d="M32 26c-7 0-12-4-12-9a6 6 0 0 1 12 0 6 6 0 0 1 12 0c0 5-5 9-12 9Z" stroke-width="2"/>',
+'flag':'<path d="M16 56V12" stroke-width="2"/><path d="M16 14h28l-6 10 6 10H16" stroke-width="2"/>',
+'frown':'<circle cx="32" cy="32" r="24" stroke-width="2"/><circle cx="23" cy="28" r="2.5" fill="currentColor" stroke="none"/><circle cx="41" cy="28" r="2.5" fill="currentColor" stroke="none"/><path d="M22 44c3-4 6.5-7 10-7s7 3 10 7" stroke-width="2"/>',
+'checklist':'<rect x="12" y="10" width="40" height="46" rx="3" stroke-width="2"/><path d="M22 10V6M42 10V6" stroke-width="2"/><path d="M20 30l6 6 14-14" stroke-width="2"/><path d="M20 46h24" stroke-width="2"/>',
+'camera':'<rect x="6" y="16" width="52" height="36" rx="6" stroke-width="2"/><circle cx="32" cy="34" r="10" stroke-width="2"/><path d="M22 16l4-6h12l4 6" stroke-width="2"/><circle cx="48" cy="24" r="2" fill="currentColor" stroke="none"/>',
+'briefcase':'<rect x="8" y="18" width="48" height="34" rx="4" stroke-width="2"/><path d="M21 18V14a4 4 0 0 1 4-4h14a4 4 0 0 1 4 4v4M8 32h48" stroke-width="2"/>',
+'music-note':'<path d="M24 44a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke-width="2"/><path d="M30 38V14l20-4v10" stroke-width="2"/><path d="M44 40a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke-width="2"/>',
+'play-c':'<circle cx="32" cy="32" r="25" stroke-width="2"/><path d="M26 20l20 12-20 12V20Z" stroke-width="2"/>',
+'x-soc':'<path d="M14 14l36 36M50 14L14 50" stroke-width="3"/>',
+};
+const VB='viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"';
+function mountIcons(){
+  document.querySelectorAll('[data-icon]').forEach(el=>{
+    const k=el.getAttribute('data-icon');
+    if(ICONS[k])el.innerHTML=`<svg ${VB}>${ICONS[k]}</svg>`;
+  });
+}
+mountIcons();
+
+// ── STARS ──
+(function(){
+  const s=document.getElementById('stars');
+  const pal=['#ffffff','#ffffff','#ffffff','#00FFF0','#ED3E61'];
+  for(let i=0;i<120;i++){
+    const d=document.createElement('div');d.className='star';
+    const sz=Math.random()*2+0.5;
+    d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;background:${pal[Math.floor(Math.random()*pal.length)]};--d:${2+Math.random()*4}s;--f:${.05+Math.random()*.15};--t:${.4+Math.random()*.5};animation-delay:${Math.random()*4}s`;
+    s.appendChild(d);
+  }
+})();
+
+// ── STATE ──
+let current=0;
+const PAGES=8;
+const LABELS=['INTRO','AUDIENCE','POSITIONING','MESSAGE','CHANNEL','CONTENT PILLARS','LAUNCH CALENDAR','COMPLETE'];
+let selectedPlatforms=[];
+let selectedFormats=[];
+const KEY='cml_slp_v2';
+const FIDS=['f_audience','f_where','f_pains','f_dreams','f_brand','f_niche','f_promise','f_unique','f_competitors','f_message','f_voice','f_objections','f_hook','f_channel_why','f_channel_format','f_frequency','f_p1','f_p2','f_p3','f_p4','f_series','c_pre','c_pre_t','c_pre_p','c_w1','c_w1_t','c_w1_p','c_w2','c_w2_t','c_w2_p','c_w3','c_w3_t','c_w3_p','c_w4','c_w4_t','c_w4_p','f_announce','f_magnet','f_goal'];
+let saveTimer=null;
+
+// ── PERSISTENCE ──
+function gv(id){const el=document.getElementById(id);return el?el.value:''}
+function collectState(){
+  const d={f:{},plat:selectedPlatforms.slice(),fmt:selectedFormats.slice(),cl:[],pg:current};
+  FIDS.forEach(id=>{d.f[id]=gv(id)});
+  document.querySelectorAll('.cl-row').forEach((el,i)=>{d.cl[i]=el.classList.contains('done')});
+  return d;
+}
+function saveState(){
+  try{localStorage.setItem(KEY,JSON.stringify(collectState()));flashSaved();}catch(e){}
+}
+let flashT;
+function flashSaved(){
+  const el=document.getElementById('navSaved');
+  el.classList.add('show');
+  clearTimeout(flashT);
+  flashT=setTimeout(()=>el.classList.remove('show'),1500);
+}
+function scheduleSave(){clearTimeout(saveTimer);saveTimer=setTimeout(saveState,600);}
+function loadState(){try{const r=localStorage.getItem(KEY);return r?JSON.parse(r):null;}catch(e){return null;}}
+function pct(d){
+  if(!d)return 0;
+  let n=0;
+  FIDS.forEach(id=>{if(d.f&&d.f[id]&&d.f[id].trim())n++;});
+  return Math.round(n/FIDS.length*100);
+}
+function applyState(d){
+  if(!d)return;
+  FIDS.forEach(id=>{const el=document.getElementById(id);if(el&&d.f&&d.f[id]!==undefined)el.value=d.f[id];});
+  if(d.plat){
+    selectedPlatforms=d.plat.slice();
+    document.querySelectorAll('.pt').forEach(t=>{if(selectedPlatforms.includes(t.dataset.plat))t.classList.add('sel');});
+  }
+  if(d.fmt){
+    selectedFormats=d.fmt.slice();
+    document.querySelectorAll('#formatChips .chip').forEach(c=>{if(selectedFormats.includes(c.textContent))c.classList.add('sel');});
+  }
+  if(d.cl){
+    document.querySelectorAll('.cl-row').forEach((el,i)=>{
+      if(d.cl[i]){el.classList.add('done');el.querySelector('.cl-box').classList.add('on');}
+    });
+  }
+}
+function resumeMission(){
+  const d=loadState();
+  applyState(d);
+  goTo(d&&typeof d.pg==='number'&&d.pg>0?d.pg:1);
+  document.getElementById('resumeStrip').style.display='none';
+}
+function restartMission(){
+  if(confirm('Clear all answers and start a new mission?')){
+    try{localStorage.removeItem(KEY);}catch(e){}
+    location.reload();
+  }
+}
+
+// ── NAV ──
+function buildNav(){
+  const np=document.getElementById('navProg');
+  np.innerHTML='';
+  for(let i=1;i<=6;i++){
+    const d=document.createElement('div');
+    d.className='np'+(i<current?' done':i===current?' active':'');
+    np.appendChild(d);
+  }
+}
+function updateBotNav(){
+  const nav=document.getElementById('botNav');
+  const back=document.getElementById('btnBack');
+  const next=document.getElementById('btnNext');
+  const step=document.getElementById('bnStep');
+  if(current===0){nav.style.display='none';return;}
+  nav.style.display='flex';
+  back.style.opacity=current<=1?'.3':'1';
+  back.style.pointerEvents=current<=1?'none':'auto';
+  if(current===7){next.style.display='none';step.textContent='// MISSION COMPLETE';}
+  else{next.style.display='inline-flex';next.innerHTML='Continue <span class="ico" style="width:12px;height:12px" data-icon="arr-r"></span>';mountIcons();step.textContent=`// STEP ${current} OF 6`;}
+}
+
+// ── NAVIGATION ──
+function goTo(n){
+  if(n<0||n>=PAGES)return;
+  document.getElementById('pg-'+current).classList.remove('active');
+  current=n;
+  const pg=document.getElementById('pg-'+current);
+  pg.classList.add('active','page-in');
+  setTimeout(()=>pg.classList.remove('page-in'),400);
+  window.scrollTo({top:0,behavior:'smooth'});
+  buildNav();
+  updateBotNav();
+  if(current===7)buildSummary();
+  scheduleSave();
+}
+const REQUIRED={1:['f_audience'],2:['f_brand','f_promise'],3:['f_message'],4:[],5:['f_p1'],6:[]};
+function goNext(){
+  const req=REQUIRED[current]||[];
+  let ok=true;
+  req.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const f=el.closest('.field');
+    if(!el.value.trim()){if(f)f.classList.add('err');ok=false;}
+    else if(f)f.classList.remove('err');
+  });
+  if(!ok){const first=document.querySelector('.err');if(first)first.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  goTo(current+1);
+}
+function goBack(){goTo(current-1);}
+
+// ── INTERACTIONS ──
+function togglePlat(el,name){
+  el.classList.toggle('sel');
+  selectedPlatforms=selectedPlatforms.includes(name)?selectedPlatforms.filter(p=>p!==name):[...selectedPlatforms,name];
+  scheduleSave();
+}
+function toggleChip(el){
+  el.classList.toggle('sel');
+  const v=el.textContent;
+  selectedFormats=selectedFormats.includes(v)?selectedFormats.filter(f=>f!==v):[...selectedFormats,v];
+  scheduleSave();
+}
+function toggleCL(el){
+  el.querySelector('.cl-box').classList.toggle('on');
+  el.classList.toggle('done');
+  scheduleSave();
+}
+document.querySelectorAll('.field input,.field textarea,.pillar textarea').forEach(el=>{
+  el.addEventListener('input',()=>{
+    const f=el.closest('.field,.pillar');
+    if(f)f.classList.remove('err');
+    scheduleSave();
+  });
+});
+
+// ── SUMMARY ──
+function g(id){const el=document.getElementById(id);return el?el.value.trim():'';}
+function buildSummary(){
+  const cards=[
+    {ph:'Brand',val:g('f_brand')+(g('f_niche')?(' · '+g('f_niche')):'')},
+    {ph:'Brand Promise',val:g('f_promise')},
+    {ph:'Audience',val:g('f_audience')},
+    {ph:'Core Message',val:g('f_message')},
+    {ph:'Priority Channel(s)',val:selectedPlatforms.length?selectedPlatforms.join(', '):'—'},
+    {ph:'Content Pillars',val:[g('f_p1'),g('f_p2'),g('f_p3'),g('f_p4')].filter(Boolean).map((p,i)=>`P${i+1}: ${p.split('\n')[0].substring(0,60)}${p.length>60?'…':''}`).join(' ')},
+    {ph:'90-Day Goal',val:g('f_goal')},
+    {ph:'Launch Week 1',val:g('c_w1')},
+  ];
+  document.getElementById('summaryCards').innerHTML=cards.map(c=>`
+    <div class="sum-card">
+      <div class="sc-ph">${c.ph}</div>
+      <div class="sc-v ${c.val?'':'empty'}">${c.val||'Not filled'}</div>
+    </div>`).join('');
+}
+
+// ── PDF GENERATION ──
+function generatePDF(){
+  const{jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const W=210,ML=16,MR=16,TW=W-ML-MR;
+  let y=18;
+  function chk(n=20){if(y+n>278){doc.addPage();bg();y=18;}}
+  function bg(){doc.setFillColor(250,249,255);doc.rect(0,0,210,297,'F');doc.setFillColor(101,2,162);doc.rect(0,0,3.5,297,'F');}
+  function phdr(num,title,col){
+    chk(24);doc.setFillColor(...col);doc.rect(ML,y,TW,11,'F');
+    doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(255,255,255);
+    doc.text(`${num}  ${title}`,ML+4,y+7.5);y+=15;doc.setTextColor(20,20,40);
+  }
+  function lbl(t){chk(8);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(101,2,162);doc.text(t.toUpperCase(),ML,y);y+=5;}
+  function val(t){
+    if(!t||!t.trim())return;
+    chk(8);doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(30,30,50);
+    doc.splitTextToSize(t,TW).forEach(l=>{chk(6);doc.text(l,ML,y);y+=5.5;});y+=2;
+  }
+  function div(){chk(6);doc.setDrawColor(210,200,240);doc.setLineWidth(.25);doc.line(ML,y,ML+TW,y);y+=6;}
+
+  // COVER
+  doc.setFillColor(11,15,43);doc.rect(0,0,210,297,'F');
+  for(let i=0;i<90;i++){
+    const sx=Math.random()*210,sy=Math.random()*297,sr=Math.random()*.7+.15;
+    doc.setFillColor(Math.random()>.85?237:Math.random()>.7?0:255,Math.random()>.85?62:Math.random()>.7?255:255,Math.random()>.85?97:Math.random()>.7?240:255);
+    doc.circle(sx,sy,sr,'F');
+  }
+  doc.setFillColor(101,2,162,55);doc.ellipse(48,80,80,48,'F');
+  doc.setFillColor(0,255,240,25);doc.ellipse(165,200,68,44,'F');
+  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(0,255,240);
+  doc.text('SOCIAL MEDIA LAUNCH STRATEGY',105,85,{align:'center'});
+  doc.setFontSize(28);doc.setTextColor(245,245,249);
+  doc.text('Mission Control',105,104,{align:'center'});
+  doc.setFontSize(14);doc.setTextColor(180,140,220);
+  doc.text(g('f_brand')||'Your Brand',105,116,{align:'center'});
+  doc.setFontSize(8);doc.setTextColor(90,85,130);
+  doc.text('6-PHASE SOCIAL LAUNCH STRATEGY — CELAR MARKETING LAB',105,148,{align:'center'});
+  doc.text(new Date().toLocaleDateString('en-GB',{year:'numeric',month:'long',day:'numeric'}),105,156,{align:'center'});
+  doc.text('100% FREE TOOL — celarmarketinglab.com',105,270,{align:'center'});
+
+  doc.addPage();bg();
+  phdr('01','Audience',[20,160,150]);
+  lbl('Who is your audience?');val(g('f_audience'));
+  lbl('Where they spend time online');val(g('f_where'));
+  lbl('Pain points');val(g('f_pains'));
+  lbl('Desired outcomes');val(g('f_dreams'));
+  div();
+  phdr('02','Positioning',[101,2,162]);
+  lbl('Brand');val(g('f_brand')+(g('f_niche')?' · '+g('f_niche'):''));
+  lbl('Brand promise');val(g('f_promise'));
+  lbl('Unique claims');val(g('f_unique'));
+  lbl('Real competition');val(g('f_competitors'));
+  div();
+  phdr('03','Message',[200,60,110]);
+  lbl('Core message');val(g('f_message'));
+  lbl('Brand voice');val(g('f_voice'));
+  lbl('Audience objections');val(g('f_objections'));
+  lbl('Hook formula');val(g('f_hook'));
+  div();
+
+  doc.addPage();bg();
+  phdr('04','Channel',[55,90,200]);
+  lbl('Priority platforms');val(selectedPlatforms.length?selectedPlatforms.join(' · '):'—');
+  lbl('Why this channel');val(g('f_channel_why'));
+  lbl('Content format');val(g('f_channel_format'));
+  lbl('Posting frequency');val(g('f_frequency'));
+  div();
+  phdr('05','Content Pillars',[180,160,10]);
+  lbl('Pillar 1 — Educate');val(g('f_p1'));
+  lbl('Pillar 2 — Build Trust');val(g('f_p2'));
+  lbl('Pillar 3 — Entertain');val(g('f_p3'));
+  lbl('Pillar 4 — Convert');val(g('f_p4'));
+  lbl('Formats');val(selectedFormats.length?selectedFormats.join(', '):'—');
+  lbl('Recurring series');val(g('f_series'));
+  div();
+  phdr('06','Launch Calendar',[237,62,97]);
+  [['WK -1',g('c_pre'),g('c_pre_t'),g('c_pre_p')],['WK 1',g('c_w1'),g('c_w1_t'),g('c_w1_p')],['WK 2',g('c_w2'),g('c_w2_t'),g('c_w2_p')],['WK 3',g('c_w3'),g('c_w3_t'),g('c_w3_p')],['WK 4',g('c_w4'),g('c_w4_t'),g('c_w4_p')]].forEach(([wk,focus,types,plat])=>{
+    if(focus||types){
+      chk(10);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(101,2,162);doc.text(wk+':',ML,y);
+      doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(30,30,50);
+      const det=[focus,types,plat].filter(Boolean).join(' · ');
+      doc.splitTextToSize(det,TW-20).forEach(l=>{doc.text(l,ML+20,y);y+=5;});y+=2;
+    }
+  });
+  lbl('Announcement plan');val(g('f_announce'));
+  lbl('Lead magnet');val(g('f_magnet'));
+  lbl('90-day goal');val(g('f_goal'));
+  const cl=document.querySelectorAll('.cl-row');
+  let done=0;cl.forEach(c=>{if(c.classList.contains('done'))done++;});
+  lbl('Pre-launch checklist');val(`${done}/${cl.length} items completed`);
+
+  // BACK COVER
+  doc.addPage();
+  doc.setFillColor(11,15,43);doc.rect(0,0,210,297,'F');
+  for(let i=0;i<50;i++){doc.setFillColor(255,255,255);doc.circle(Math.random()*210,Math.random()*297,Math.random()*.5+.2,'F');}
+  doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(0,255,240);
+  doc.text('MISSION BRIEFING COMPLETE',105,118,{align:'center'});
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(150,140,190);
+  doc.text('Review your strategy every 2 weeks.',105,132,{align:'center'});
+  doc.text('What gets measured gets improved.',105,139,{align:'center'});
+  doc.setFontSize(8.5);doc.setTextColor(100,90,150);
+  doc.text('Book a free 20-min review call:',105,183,{align:'center'});
+  doc.setTextColor(0,255,240);
+  doc.text('calendly.com/kseniia-kklsh/20-min-free-consultation',105,191,{align:'center'});
+  doc.setTextColor(90,80,130);doc.setFontSize(7.5);
+  doc.text('Celar Marketing Lab · celarmarketinglab.com · Free tool, no catch.',105,268,{align:'center'});
+
+  const fname=(g('f_brand')||'brand').replace(/\s+/g,'-').toLowerCase()+'-social-strategy.pdf';
+  doc.save(fname);
+}
+
+// ── INIT ──
+buildNav();
+updateBotNav();
+(function init(){
+  const d=loadState();
+  if(d&&pct(d)>0){
+    document.getElementById('resumePct').textContent=pct(d)+'%';
+    document.getElementById('resumeStrip').style.display='flex';
+  }
+})();
+</script>
+</body>
+</html>
