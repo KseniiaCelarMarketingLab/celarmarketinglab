@@ -1,5 +1,21 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/celar.html" }
+    { "source": "/", "destination": "/celar.html" },
+    { "source": "/course", "destination": "/smm-challenge-cml.html" }
+  ],
+  "headers": [
+    {
+      "source": "/course",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
   ]
 }
