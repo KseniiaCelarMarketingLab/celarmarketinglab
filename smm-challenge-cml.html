@@ -1057,7 +1057,7 @@ function goToStripeFromPanel() {
   fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({access_key:'YOUR_WEB3FORMS_KEY',subject:'SMM Challenge checkout (panel)',email:email})
   }).catch(function(){});
-  var link = 'https://buy.stripe.com/cNiaEW5aa6YB3VR8xz0Jq05';
+  var link = 'https://buy.stripe.com/8x24gyeKK4QteAvbJL0Jq0e';
   var sep = link.includes('?') ? '&' : '?';
   window.location.href = link + sep + 'prefilled_email=' + encodeURIComponent(email) + '&client_reference_id=smm';
 }
@@ -1074,7 +1074,7 @@ function goToStripe() {
     body:JSON.stringify({access_key:'YOUR_WEB3FORMS_KEY',subject:'SMM Challenge checkout',email:email,name:'Checkout'})
   }).catch(function(){});
   // Redirect instantly to Stripe with prefilled email
-  var link = 'https://buy.stripe.com/cNiaEW5aa6YB3VR8xz0Jq05';
+  var link = 'https://buy.stripe.com/8x24gyeKK4QteAvbJL0Jq0e';
   var sep = link.includes('?') ? '&' : '?';
   window.location.href = link + sep + 'prefilled_email=' + encodeURIComponent(email) + '&client_reference_id=smm';
 }
