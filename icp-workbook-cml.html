@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ICP Workbook — Celar Marketing Lab</title>
+<meta name="description" content="Define your ideal customer profile using behavioral science — not demographics. A guided workbook by Celar Marketing Lab.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B0F2B; --navy2:#12173f; --cyan:#00FFF0; --purple:#6502A2; --rose:#ED3E61; --lime:#D4FF00; --silver:#DCDCDC;
+  --ink:#F5F5F7; --dim:rgba(255,255,255,.7); --line:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:var(--ink);font-family:'Poppins',sans-serif;overflow-x:hidden}
+body{min-height:100vh;position:relative}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 78% 8%, rgba(0,255,240,.55), transparent),
+    radial-gradient(1.5px 1.5px at 33% 68%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px 1px at 91% 44%, rgba(237,62,97,.5), transparent),
+    radial-gradient(1px 1px at 60% 82%, rgba(255,255,255,.35), transparent),
+    radial-gradient(1.5px 1.5px at 15% 90%, rgba(0,255,240,.4), transparent),
+    radial-gradient(1px 1px at 48% 30%, rgba(255,255,255,.3), transparent);
+  background-size:100% 100%;
+}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 900px 600px at 50% 0%, rgba(101,2,162,.16), transparent 70%);}
+.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:28px 22px 90px}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.01em}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* nav */
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:6px 0 22px;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;color:#fff;text-transform:uppercase;line-height:1.15}
+.logo-text span{display:block;font-size:7.5px;font-weight:400;letter-spacing:.16em;color:rgba(255,255,255,.6)}
+.step-pips{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.pip{width:14px;height:3px;border-radius:2px;background:rgba(255,255,255,.14)}
+.pip.on{background:var(--cyan)}
+.pip.done{background:rgba(0,255,240,.42)}
+
+/* screens */
+.screen{display:none;animation:fu .5s ease forwards}
+.screen.active{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* hero */
+.eyebrow{font-size:9px;letter-spacing:.24em;color:rgba(255,255,255,.72);text-transform:uppercase;margin-bottom:14px}
+.eyebrow b{color:var(--cyan);font-weight:600}
+.htitle{font-size:clamp(34px,9vw,50px);font-weight:700;line-height:.98;text-transform:uppercase;margin-bottom:16px}
+.htitle .g{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.45)}
+.hsub{font-size:14px;line-height:1.75;color:#F0F0F2;max-width:460px;margin-bottom:26px}
+.stats-row{display:flex;gap:28px;margin-bottom:28px;flex-wrap:wrap}
+.stat-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:#fff}
+.stat-lbl{font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,.6);text-transform:uppercase;margin-top:2px}
+.phase-list{display:flex;flex-direction:column;gap:14px;margin-bottom:30px}
+.hi-row{display:flex;gap:14px;align-items:flex-start}
+.hi-num{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--cyan);border:1px solid rgba(0,255,240,.35);border-radius:50%;width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.hi-txt{font-size:13px;line-height:1.6;color:#F0F0F2}
+.hi-txt b{color:#fff}
+.hi-txt .steps-in-phase{display:block;font-size:11px;color:rgba(255,255,255,.55);margin-top:2px}
+
+/* buttons */
+.btn{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border-radius:2px;padding:15px 30px;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:9px;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,rgba(0,255,240,.16),rgba(101,2,162,.14));border:1.5px solid rgba(0,255,240,.65);color:#eafffe;text-shadow:0 0 10px rgba(0,255,240,.4);box-shadow:0 0 18px rgba(0,255,240,.16),inset 0 0 16px rgba(0,255,240,.05)}
+.btn-primary:hover{box-shadow:0 0 26px rgba(0,255,240,.3),inset 0 0 20px rgba(0,255,240,.08)}
+.btn-ghost{background:transparent;border:1px solid rgba(220,220,220,.28);color:#EDEDED}
+.btn-ghost:hover{border-color:var(--cyan);color:#eafffe}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+
+/* q blocks */
+.step-head{margin-bottom:20px}
+.step-eyebrow{font-size:9px;letter-spacing:.2em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px}
+.step-title{font-size:clamp(24px,6vw,32px);font-weight:700;text-transform:uppercase;margin-bottom:10px}
+.step-sub{font-size:13px;color:#F0F0F2;line-height:1.7;max-width:480px}
+
+.q{margin-bottom:24px}
+.q-label{font-size:13.5px;font-weight:600;color:#fff;margin-bottom:5px;line-height:1.5}
+.q-hint{font-size:11.5px;color:rgba(255,255,255,.62);margin-bottom:10px;line-height:1.55}
+textarea,input[type=text]{width:100%;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:2px;color:#F2F2F2;font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;padding:13px 14px;resize:vertical;outline:none;transition:border-color .2s}
+textarea:focus,input[type=text]:focus{border-color:rgba(0,255,240,.5)}
+textarea::placeholder,input::placeholder{color:rgba(255,255,255,.4)}
+
+/* theory / plain-language explainer */
+.theory{display:flex;gap:10px;align-items:flex-start;border-left:2px solid var(--cyan);background:rgba(0,255,240,.05);border-radius:0 2px 2px 0;padding:10px 14px;margin-bottom:12px}
+.theory-ico{flex-shrink:0;width:16px;height:16px;margin-top:1px;color:var(--cyan)}
+.theory-txt{font-size:12px;line-height:1.62;color:#F2F2F4}
+.theory-txt b{color:#eafffe}
+.theory.top{margin-bottom:20px}
+
+/* chips */
+.chip-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.chip{font-size:12px;padding:9px 14px;border:1px solid var(--line);border-radius:2px;cursor:pointer;color:#EDEDF0;transition:all .18s;user-select:none}
+.chip:hover{border-color:rgba(0,255,240,.35)}
+.chip.on{background:rgba(0,255,240,.09);border-color:rgba(0,255,240,.55);color:#eafffe}
+.chip.rose.on{background:rgba(237,62,97,.1);border-color:rgba(237,62,97,.55);color:#ffe1e6}
+
+.obj-block{border:1px solid var(--line);border-radius:2px;padding:14px 16px;margin-bottom:10px;transition:border-color .2s}
+.obj-block.on{border-color:rgba(237,62,97,.4);background:rgba(237,62,97,.03)}
+.obj-head{display:flex;align-items:center;gap:10px;cursor:pointer}
+.obj-box{width:16px;height:16px;border:1.5px solid rgba(220,220,220,.4);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.obj-box.on{background:var(--rose);border-color:var(--rose)}
+.obj-txt{font-size:13px;color:#eee}
+.obj-reply{margin-top:10px;display:none}
+.obj-block.on .obj-reply{display:block}
+
+/* dossier (final brief) */
+.dossier{border:1px solid rgba(0,255,240,.28);border-radius:2px;background:rgba(255,255,255,.02);padding:26px 22px;position:relative;margin-bottom:24px}
+.dossier::before{content:'CONFIDENTIAL · ICP BRIEF';position:absolute;top:-10px;left:18px;background:var(--navy);padding:0 8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;color:var(--rose)}
+.d-section{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--rose);text-transform:uppercase;margin:22px 0 12px}
+.d-section:first-child{margin-top:0}
+.d-field{margin-bottom:16px}
+.d-field:last-child{margin-bottom:0}
+.d-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:6px}
+.d-val{font-size:13px;line-height:1.65;color:#F5F5F7;white-space:pre-wrap}
+.d-val.empty{color:rgba(255,255,255,.5);font-style:italic}
+.d-rule{border-top:1px dashed rgba(255,255,255,.1);margin:18px 0}
+
+.foot-nav{display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
+.copy-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(0,255,240,.12);border:1px solid rgba(0,255,240,.5);color:#eafffe;font-size:12px;padding:10px 20px;border-radius:2px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:99}
+.copy-toast.show{opacity:1}
+
+@media print{
+  body{background:#fff !important;color:#111 !important}
+  body::before,body::after{display:none}
+  .topnav,.foot-nav,.no-print{display:none !important}
+  .screen{display:none !important}
+  #s-print-brief{display:block !important}
+  .dossier{border-color:#999;background:#fff;color:#111}
+  .dossier::before{background:#fff;color:#a11}
+  .d-label{color:#065}
+  .d-section{color:#a11}
+  .d-val{color:#111}
+  .wrap{max-width:100%;padding:0}
+}
+#s-print-brief{display:none}
+</style>
+</head>
+<body>
+
+<!-- Token validation — runs before anything else -->
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+
+  function showMessage(title, sub){
+    document.addEventListener('DOMContentLoaded', function(){
+      var row = document.getElementById('heroBtnRow');
+      if(row){
+        row.innerHTML = '<div style="background:rgba(0,255,240,.07);border:1.5px solid rgba(0,255,240,.4);border-radius:2px;padding:20px 24px;text-align:center;width:100%">'
+          + '<div style="font-size:16px;font-weight:700;color:#eafffe;margin-bottom:8px">' + title + '</div>'
+          + '<div style="font-size:13px;color:#F0F0F2">' + sub + '</div>'
+          + '</div>';
+      }
+    });
+  }
+
+  function saveTokenAndClean(token){
+    try{ localStorage.setItem('icp_access_token', token); }catch(e){}
+    // Strip session_id/token from the visible URL without reloading
+    var clean = window.location.pathname;
+    window.history.replaceState({}, document.title, clean);
+  }
+
+  var sessionId = params.get('session_id');
+  if(sessionId){
+    // Just came back from Stripe — verify the session directly and unlock immediately
+    fetch('https://celarmarketinglab.com/api/icp-session-token?session_id=' + encodeURIComponent(sessionId))
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if(data.ok && data.token){
+          saveTokenAndClean(data.token);
+          showMessage('Payment confirmed — you\'re all set', 'Your workbook is unlocked. A copy of this link was also sent to your email.');
+        } else if(data.reason === 'not_paid'){
+          showMessage('Finishing up your payment…', 'This can take a few seconds. Refresh in a moment, or check your email for the access link.');
+        } else {
+          showMessage('Payment received — check your email', 'Your access link is on its way. Check your inbox (and spam folder).');
+        }
+      })
+      .catch(function(){
+        showMessage('Payment received — check your email', 'Your access link is on its way. Check your inbox (and spam folder).');
+      });
+    return;
+  }
+
+  var token = params.get('token');
+  if(!token) token = localStorage.getItem('icp_access_token');
+
+  if(!token || !/^[a-f0-9]{64}$/.test(token)){
+    window.location.replace('https://celarmarketinglab.com/celar_products.html#modal-icp');
+    return;
+  }
+
+  try{ localStorage.setItem('icp_access_token', token); }catch(e){}
+
+  // Show the tool immediately, validate in background (fail open on network errors)
+  fetch('https://celarmarketinglab.com/api/icp-validate-token?token=' + token)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(!data.valid){
+        localStorage.removeItem('icp_access_token');
+        window.location.replace('https://celarmarketinglab.com/celar_products.html#modal-icp');
+      }
+    })
+    .catch(function(){ /* network error — don't block a real buyer */ });
+})();
+</script>
+
+<div class="copy-toast" id="toast">Copied to clipboard</div>
+
+<div class="wrap">
+
+  <div class="topnav no-print">
+    <a class="logo" href="celar_products.html">
+      <svg width="30" height="30" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="url(#g1)" stroke-width="1.5"/><circle cx="18" cy="18" r="10" stroke="url(#g2)" stroke-width="1.5"/><circle cx="18" cy="18" r="4" stroke="url(#g3)" stroke-width="1.5"/><circle cx="18" cy="18" r="1.5" fill="#00FFF0"/><defs><linearGradient id="g1" x1="2" y1="2" x2="34" y2="34"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient><linearGradient id="g2" x1="8" y1="8" x2="28" y2="28"><stop offset="0%" stop-color="#00FFF0" stop-opacity=".7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity=".7"/></linearGradient><linearGradient id="g3" x1="14" y1="14" x2="22" y2="22"><stop offset="0%" stop-color="#00FFF0" stop-opacity=".5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity=".5"/></linearGradient></defs></svg>
+      <div class="logo-text">ICP Workbook<span>Celar Marketing Lab</span></div>
+    </a>
+    <div class="step-pips" id="pips">
+      <div class="pip" data-p="1"></div><div class="pip" data-p="2"></div><div class="pip" data-p="3"></div><div class="pip" data-p="4"></div><div class="pip" data-p="5"></div><div class="pip" data-p="6"></div><div class="pip" data-p="7"></div><div class="pip" data-p="8"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN 0 — HERO -->
+  <div class="screen active" id="s0">
+    <div class="eyebrow">By Celar Marketing Lab · <b>Behavioral ICP</b>, not a persona template</div>
+    <h1 class="htitle">ICP<br>Work<span class="g">book</span></h1>
+    <p class="hsub">Build your ideal customer profile in one working session — the full structure, not just a demographic sketch. Eight short steps, from raw context to a one-page brief you can hand to anyone on your team.</p>
+
+    <div class="stats-row">
+      <div><div class="stat-val">8</div><div class="stat-lbl">steps</div></div>
+      <div><div class="stat-val">~25</div><div class="stat-lbl">minutes</div></div>
+      <div><div class="stat-val">1</div><div class="stat-lbl">page brief</div></div>
+    </div>
+
+    <div class="phase-list">
+      <div class="hi-row"><div class="hi-num">A</div><div class="hi-txt"><b>Foundation</b> — your business context and one real best-fit customer<span class="steps-in-phase">Steps 1–2</span></div></div>
+      <div class="hi-row"><div class="hi-num">B</div><div class="hi-txt"><b>Filters &amp; triggers</b> — the hard qualifiers, and what actually makes someone act<span class="steps-in-phase">Steps 3–4</span></div></div>
+      <div class="hi-row"><div class="hi-num">C</div><div class="hi-txt"><b>Objections &amp; exclusions</b> — hesitations, decision process, and who to say no to<span class="steps-in-phase">Steps 5–6</span></div></div>
+      <div class="hi-row"><div class="hi-num">D</div><div class="hi-txt"><b>Message</b> — the words, channels and tone that fit this exact customer<span class="steps-in-phase">Step 7</span></div></div>
+      <div class="hi-row"><div class="hi-num">E</div><div class="hi-txt"><b>Brief</b> — everything compiled into one page, exportable as a PDF<span class="steps-in-phase">Step 8</span></div></div>
+    </div>
+
+    <div class="btn-row" id="heroBtnRow">
+      <button class="btn btn-primary" onclick="goTo(1)">Start the workbook →</button>
+      <button class="btn btn-ghost" id="resumeBtn" style="display:none" onclick="restoreAndGo()">Resume where I left off</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 1 — BUSINESS CONTEXT -->
+  <div class="screen" id="s1">
+    <div class="step-head">
+      <div class="step-eyebrow">Step 1 / 8 · Foundation</div>
+      <h2 class="step-title">Your business, right now</h2>
+      <p class="step-sub">Before defining who you're chasing, ground this in who you already serve. An ICP isn't invented — it's found in the pattern of people who already buy from you.</p>
+    </div>
+
+    <div class="theory top">
+      <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+      <div class="theory-txt"><b>What does "ICP" actually mean?</b> ICP stands for Ideal Customer Profile — a clear, specific description of the type of customer who gets the most value from what you offer, and who is the easiest and most profitable for you to serve. It's not a wish list of dream clients; it's a working definition built from real patterns in your own customer base.</div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">1. In one sentence, what do you sell and to whom?</div>
+      <div class="q-hint">Plain language — no jargon, as if explaining it to a stranger at a dinner party</div>
+      <textarea rows="2" id="bizOneLiner" placeholder="We help ... do ... so that ..."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">2. List your current top 3–5 customers or customer types</div>
+      <div class="q-hint">No analysis yet — just names or short descriptions. You'll look for the pattern in the next step.</div>
+      <textarea rows="3" id="bizCustomers" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
+    </div>
+
+    <div class="foot-nav">
+      <button class="btn btn-ghost" onclick="goTo(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2 — BEST CUSTOMER (BEHAVIORAL) -->
+  <div class="screen" id="s2">
+    <div class="step-head">
+      <div class="step-eyebrow">Step 2 / 8 · Foundation</div>
+      <h2 class="step-title">Your best customer</h2>
+      <p class="step-sub">Pick one real customer from your list above — not your biggest, your best fit. Answer in their words, not yours.</p>
+    </div>
+
+    <div class="theory top">
+      <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+      <div class="theory-txt"><b>Why not just "age, industry, company size"?</b> Demographics tell you who someone is. They don't tell you why someone buys. Two companies can look identical on paper — same size, same industry — and one of them will never become your customer. This step is built around <b>behavior</b>: the real moment, frustration or event that pushed a real person to act.</div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">1. What was happening in their business right before they reached out to you?</div>
+      <div class="q-hint">e.g. new hire, lost a client, launch coming up, leadership pressure</div>
+      <textarea rows="3" id="q1" placeholder="Write freely — this doesn't need to be polished."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">2. What specific moment, deadline or frustration made them act now — instead of putting it off another month?</div>
+      <div class="theory">
+        <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+        <div class="theory-txt"><b>What's a "trigger"?</b> A trigger is not the underlying problem — it's the specific moment that pushes someone from thinking about something to actually acting on it. A business can have a marketing problem for years. The trigger is what makes them call you this Tuesday instead of next year: a lost deal, a new hire, a deadline, a bad experience with someone else.</div>
+      </div>
+      <textarea rows="3" id="q2" placeholder="The trigger, not the general problem."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">3. What had they already tried before they found you?</div>
+      <div class="q-hint">Another agency, a freelancer, doing it themselves, nothing at all</div>
+      <textarea rows="2" id="q3" placeholder="..."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">4. In their own words — how do they describe the problem?</div>
+      <div class="theory">
+        <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+        <div class="theory-txt"><b>Why does exact wording matter?</b> The words a customer uses themselves are usually more persuasive than the words a marketer would choose. If they say "I'm tired of posting into silence," that phrase belongs in your ads and your website — not a polished rewrite of it. Marketers call this <b>voice of customer</b>.</div>
+      </div>
+      <div class="q-hint">Write it exactly as they'd say it out loud, not how you'd phrase it for a brief</div>
+      <textarea rows="2" id="q4" placeholder="&quot;...&quot;"></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">5. If they'd done nothing for another 6 months — what would that have cost them?</div>
+      <div class="q-hint">Lost revenue, lost time, a competitor pulling ahead, low morale — be specific if you can</div>
+      <textarea rows="2" id="q5" placeholder="..."></textarea>
+    </div>
+
+    <div class="foot-nav">
+      <button class="btn btn-ghost" onclick="goTo(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 3 — FIRMOGRAPHICS / HARD FILTERS -->
+  <div class="screen" id="s3">
+    <div class="step-head">
+      <div class="step-eyebrow">Step 3 / 8 · Filters &amp; triggers</div>
+      <h2 class="step-title">The hard filters</h2>
+      <p class="step-sub">Behavior explains why someone buys. These structural traits explain who can realistically buy at all.</p>
+    </div>
+
+    <div class="theory top">
+      <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+      <div class="theory-txt"><b>What's "firmographics"?</b> It's the company-level equivalent of demographics: size, industry, budget, location, structure. On their own these traits don't explain motivation — but they're the fastest way to filter out obvious mismatches before you spend time on anyone. A company with the right pain but no budget or authority to act still isn't a fit today.</div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Typical company size — employees, revenue, or both</div>
+      <textarea rows="2" id="sizeRange" placeholder="e.g. 5–30 employees, or €200k–€2M revenue"></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">Industries or business types that keep showing up</div>
+      <textarea rows="2" id="industries" placeholder="e.g. D2C skincare brands, B2B SaaS founders, boutique hospitality..."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">Realistic budget range they need to have to work with you</div>
+      <div class="q-hint">Not your price list — the minimum a prospect needs to be able to invest for this to make sense for both sides</div>
+      <textarea rows="2" id="budgetRange" placeholder="..."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">Where are they located — which countries or regions do you actually want to serve?</div>
+      <textarea rows="2" id="geography" placeholder="e.g. NL, BE, FR — remote-friendly across the EU"></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">What language(s) do they operate in day to day?</div>
+      <textarea rows="1" id="languages" placeholder="e.g. English and Dutch"></textarea>
+    </div>
+
+    <div class="foot-nav">
+      <button class="btn btn-ghost" onclick="goTo(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(4)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 4 — BUYING TRIGGERS -->
+  <div class="screen" id="s4">
+    <div class="step-head">
+      <div class="step-eyebrow">Step 4 / 8 · Filters &amp; triggers</div>
+      <h2 class="step-title">Buying triggers, at scale</h2>
+      <p class="step-sub">Same idea as Step 2, now across your whole customer base rather than one person.</p>
+    </div>
+
+    <div class="theory top">
+      <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+      <div class="theory-txt">Which of these events, across most of your customers, tends to start the conversation? Pick the patterns you actually recognize from real deals — not the ones that simply sound impressive on a slide.</div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Buying triggers — what usually pushes them to act?</div>
+      <div class="q-hint">Select all that apply</div>
+      <div class="chip-grid" id="triggerChips"></div>
+      <input type="text" id="triggerOther" placeholder="Other trigger (optional)">
+    </div>
+
+    <div class="foot-nav">
+      <button class="btn btn-ghost" onclick="goTo(3)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(5)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 5 — OBJECTIONS & DECISION PROCESS -->
+  <div class="screen" id="s5">
+    <div class="step-head">
+      <div class="step-eyebrow">Step 5 / 8 · Objections &amp; exclusions</div>
+      <h2 class="step-title">Objections &amp; decision process</h2>
+      <p class="step-sub">The reasons they hesitate, and who actually has to say yes.</p>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Objections &amp; hesitations</div>
+      <div class="theory">
+        <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+        <div class="theory-txt"><b>What's an "objection"?</b> An objection is the reason someone hesitates or says no — separate from the trigger that brought them to you. Someone can genuinely need what you offer and still stall on price, trust, or timing. Preparing a real answer in advance, instead of improvising in the moment, is what this section is for.</div>
+      </div>
+      <div class="q-hint">Select the ones you actually hear — then write your best response to each</div>
+      <div id="objList"></div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Who makes the final call — the person you talk to, or someone else?</div>
+      <div class="theory">
+        <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+        <div class="theory-txt"><b>Why ask this separately?</b> In many small and mid-sized EU businesses, the person you speak with isn't always the one who signs off — a partner, a board, or a co-founder often has to agree first. Marketers call this the difference between the <b>user</b> and the <b>economic buyer</b>. If you don't know who the buyer is, you can't prepare the right proof for them.</div>
+      </div>
+      <textarea rows="2" id="q6" placeholder="..."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">What do they need to see or hear before they say yes?</div>
+      <textarea rows="2" id="q7" placeholder="Proof, price clarity, a case study, a specific person's approval..."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">Typically, how long from first contact to decision?</div>
+      <div class="chip-grid" id="timelineChips"></div>
+    </div>
+
+    <div class="foot-nav">
+      <button class="btn btn-ghost" onclick="goTo(4)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(6)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 6 — ANTI-ICP / RED FLAGS -->
+  <div class="screen" id="s6">
+    <div class="step-head">
+      <div class="step-eyebrow">Step 6 / 8 · Objections &amp; exclusions</div>
+      <h2 class="step-title">Who's <em style="font-style:normal;color:var(--rose)">not</em> your customer</h2>
+      <p class="step-sub">Defining who to say no to is as valuable as defining who to say yes to.</p>
+    </div>
+
+    <div class="theory top">
+      <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+      <div class="theory-txt"><b>What's an "anti-ICP"?</b> It's the mirror image of your ideal customer — the type of lead that looks promising on paper but consistently turns into a slow, exhausting, or unprofitable project. Every hour spent on a bad-fit client is an hour not spent finding or serving a good one, and a bad case study can quietly attract more of the wrong leads through referrals and your own portfolio.</div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">Describe a lead that looked promising but turned into a bad-fit client</div>
+      <textarea rows="3" id="antiPattern" placeholder="What did they look like at first? What went wrong?"></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">Common red flags — select what you recognize</div>
+      <div class="chip-grid" id="redFlagChips"></div>
+      <input type="text" id="redFlagOther" placeholder="Other red flag (optional)">
+    </div>
+    <div class="q">
+      <div class="q-label">What does it actually cost you when you take on a bad-fit client?</div>
+      <div class="q-hint">Time, team morale, cash flow, the quality of referrals you get afterward</div>
+      <textarea rows="2" id="antiCost" placeholder="..."></textarea>
+    </div>
+
+    <div class="foot-nav">
+      <button class="btn btn-ghost" onclick="goTo(5)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(7)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 7 — MESSAGING & CHANNELS -->
+  <div class="screen" id="s7">
+    <div class="step-head">
+      <div class="step-eyebrow">Step 7 / 8 · Message</div>
+      <h2 class="step-title">How to talk to them</h2>
+      <p class="step-sub">Translate everything you've mapped so far into concrete words, channels and tone.</p>
+    </div>
+
+    <div class="theory top">
+      <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+      <div class="theory-txt"><b>What's a "value proposition"?</b> It's a one-sentence answer to "why should this exact customer choose you, in their own terms" — built from the trigger, the words and the transformation you already described, not a generic list of features.</div>
+    </div>
+
+    <div class="q">
+      <div class="q-label">In one sentence, what's the transformation you deliver for this exact customer?</div>
+      <div class="q-hint">Before → after. Use their language from Step 2, not marketing-speak.</div>
+      <textarea rows="2" id="transformation" placeholder="Before: ... → After: ..."></textarea>
+    </div>
+    <div class="q">
+      <div class="q-label">Where do they spend time professionally?</div>
+      <div class="theory">
+        <svg class="theory-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.2" stroke-linecap="round"/><circle cx="12" cy="7.6" r=".9" fill="currentColor" stroke="none"/></svg>
+        <div class="theory-txt">These are your <b>channels</b> — the specific places worth showing up consistently, instead of spreading effort thin across everywhere at once.</div>
+      </div>
+      <div class="chip-grid" id="channelChips"></div>
+      <input type="text" id="channelOther" placeholder="Other channel (optional)">
+    </div>
+    <div class="q">
+      <div class="q-label">What tone resonates with them?</div>
+      <div class="chip-grid" id="toneChips"></div>
+    </div>
+    <div class="q">
+      <div class="q-label">What's the one myth or misconception you need to break before they'll trust you?</div>
+      <textarea rows="2" id="myth" placeholder="e.g. &quot;marketing agencies are only for big brands with big budgets&quot;"></textarea>
+    </div>
+
+    <div class="foot-nav">
+      <button class="btn btn-ghost" onclick="goTo(6)">← Back</button>
+      <button class="btn btn-primary" onclick="buildBrief();goTo(8)">Generate brief →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 8 — ONE PAGE BRIEF -->
+  <div class="screen" id="s8">
+    <div class="step-head">
+      <div class="step-eyebrow">Step 8 / 8 · Brief</div>
+      <h2 class="step-title">Your ICP brief</h2>
+      <p class="step-sub">One page, eight steps compiled. Hand this to any designer, copywriter or media buyer — no context call needed.</p>
+    </div>
+
+    <div class="dossier" id="briefBox"></div>
+
+    <div class="btn-row no-print" style="margin-bottom:10px">
+      <button class="btn btn-primary" onclick="window.print()">Export as PDF ↓</button>
+      <button class="btn btn-ghost" onclick="copyBrief()">Copy brief text</button>
+    </div>
+    <div class="foot-nav no-print">
+      <button class="btn btn-ghost" onclick="goTo(7)">← Back</button>
+      <button class="btn btn-ghost" onclick="startOver()">Start over</button>
+    </div>
+  </div>
+
+  <!-- print-only copy of the brief (kept out of normal flow so print CSS can target it cleanly) -->
+  <div id="s-print-brief"><div class="dossier" id="briefBoxPrint"></div></div>
+
+</div>
+
+<script>
+var TRIGGERS = ['New budget cycle','Lost a client or a deal','Bad experience with a previous agency','Growth has plateaued','New leadership pushing for change','A competitor visibly moved ahead','Launch, event or seasonal deadline'];
+var TIMELINES = ['Same week','A few weeks','1–2 months','3+ months, slow-moving'];
+var OBJECTIONS = [
+  "It's too expensive for where we are right now",
+  "How do we know you'll actually deliver?",
+  "We've been burned before by an agency or freelancer",
+  "Now isn't the right time",
+  "I need buy-in from a partner, board or team first",
+  "We could probably do this ourselves"
+];
+var REDFLAGS = [
+  'Expects results immediately, no ramp-up',
+  'Unwilling to invest in strategy before execution',
+  'No real decision-making authority',
+  'Budget below your minimum',
+  'Wants to control every execution detail',
+  'Constantly changes scope or goals'
+];
+var CHANNELS = ['LinkedIn','Instagram','Industry events / conferences','Referrals / word of mouth','Google search','Facebook groups / communities','Email newsletters'];
+var TONES = ['Direct & data-driven','Warm & relationship-first','Bold & provocative','Calm & reassuring'];
+
+var TEXT_FIELDS = ['bizOneLiner','bizCustomers','q1','q2','q3','q4','q5','sizeRange','industries','budgetRange','geography','languages','q6','q7','antiPattern','antiCost','transformation','myth'];
+
+var state = {
+  bizOneLiner:'',bizCustomers:'',
+  q1:'',q2:'',q3:'',q4:'',q5:'',
+  sizeRange:'',industries:'',budgetRange:'',geography:'',languages:'',
+  triggers:[],triggerOther:'',
+  objections:{},q6:'',q7:'',timeline:'',
+  antiPattern:'',redFlags:[],redFlagOther:'',antiCost:'',
+  transformation:'',channels:[],channelOther:'',tone:'',myth:''
+};
+var KEY = 'icp_workbook_v2';
+
+function saveState(){
+  TEXT_FIELDS.forEach(function(id){ var el=document.getElementById(id); if(el) state[id]=el.value; });
+  var to = document.getElementById('triggerOther'); if(to) state.triggerOther = to.value;
+  var ro = document.getElementById('redFlagOther'); if(ro) state.redFlagOther = ro.value;
+  var co = document.getElementById('channelOther'); if(co) state.channelOther = co.value;
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+}
+
+function buildChips(containerId, list, groupKey, single){
+  var el = document.getElementById(containerId); if(!el) return; el.innerHTML='';
+  list.forEach(function(label){
+    var d = document.createElement('div');
+    d.className = 'chip';
+    d.textContent = label;
+    d.onclick = function(){
+      if(single){
+        state[groupKey] = state[groupKey] === label ? '' : label;
+        Array.prototype.forEach.call(el.children, function(c){c.classList.remove('on');});
+        if(state[groupKey]) d.classList.add('on');
+      } else {
+        var i = state[groupKey].indexOf(label);
+        if(i>-1){ state[groupKey].splice(i,1); d.classList.remove('on'); }
+        else { state[groupKey].push(label); d.classList.add('on'); }
+      }
+      saveState();
+    };
+    el.appendChild(d);
+  });
+}
+
+function buildObjections(){
+  var el = document.getElementById('objList'); el.innerHTML='';
+  OBJECTIONS.forEach(function(text, idx){
+    var wrap = document.createElement('div');
+    wrap.className = 'obj-block';
+    wrap.id = 'obj'+idx;
+    wrap.innerHTML =
+      '<div class="obj-head" onclick="toggleObj('+idx+')">'
+      + '<div class="obj-box" id="objbox'+idx+'"></div>'
+      + '<div class="obj-txt">'+text+'</div>'
+      + '</div>'
+      + '<div class="obj-reply"><textarea rows="2" placeholder="Your best response to this..." id="objreply'+idx+'" oninput="onObjReply('+idx+')"></textarea></div>';
+    el.appendChild(wrap);
+  });
+}
+function toggleObj(idx){
+  var on = !!state.objections[idx];
+  if(on){ delete state.objections[idx]; }
+  else { state.objections[idx] = state.objections[idx] || ''; }
+  document.getElementById('obj'+idx).classList.toggle('on', !on);
+  document.getElementById('objbox'+idx).classList.toggle('on', !on);
+  saveState();
+}
+function onObjReply(idx){
+  state.objections[idx] = document.getElementById('objreply'+idx).value;
+  saveState();
+}
+
+function goTo(n){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('s'+n).classList.add('active');
+  document.querySelectorAll('#pips .pip').forEach(function(p){
+    var i = parseInt(p.dataset.p);
+    p.classList.toggle('on', i===n);
+    p.classList.toggle('done', i<n);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  saveState();
+}
+
+function esc(s){ return (s||'').replace(/[&<>]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+function field(label, value){
+  return '<div class="d-field"><div class="d-label">'+label+'</div><div class="d-val'+(value?'':' empty')+'">'+(value?esc(value):'Not answered')+'</div></div>';
+}
+function section(label){ return '<div class="d-section">'+label+'</div>'; }
+
+function buildBrief(){
+  saveState();
+  var trig = state.triggers.slice(); if(state.triggerOther) trig.push(state.triggerOther);
+  var flags = state.redFlags.slice(); if(state.redFlagOther) flags.push(state.redFlagOther);
+  var chans = state.channels.slice(); if(state.channelOther) chans.push(state.channelOther);
+  var objLines = Object.keys(state.objections).map(function(idx){
+    var q = OBJECTIONS[idx], a = state.objections[idx];
+    return '"'+q+'"\n→ '+(a || 'Response not written yet');
+  }).join('\n\n');
+
+  var html = ''
+    + section('Business context')
+    + field('What you sell, to whom', state.bizOneLiner)
+    + field('Current top customers', state.bizCustomers)
+
+    + section('Behavioral profile')
+    + field('Trigger event', state.q1)
+    + field('What made them act now', state.q2)
+    + field('What they tried before finding you', state.q3)
+    + field('Their words for the problem', state.q4 ? '"'+state.q4+'"' : '')
+    + field('Cost of doing nothing', state.q5)
+
+    + section('Firmographic filters')
+    + field('Company size', state.sizeRange)
+    + field('Industries', state.industries)
+    + field('Budget range', state.budgetRange)
+    + field('Geography', state.geography)
+    + field('Language(s)', state.languages)
+
+    + section('Buying triggers')
+    + field('Common triggers across customers', trig.join(', '))
+
+    + section('Objections & responses')
+    + field('Objections you hear, and your answers', objLines)
+
+    + section('Decision process')
+    + field('Decision maker', state.q6)
+    + field('What they need before saying yes', state.q7)
+    + field('Typical decision timeline', state.timeline)
+
+    + section('Anti-ICP — who to avoid')
+    + field('Pattern to watch for', state.antiPattern)
+    + field('Red flags', flags.join(', '))
+    + field('Real cost of a bad-fit client', state.antiCost)
+
+    + section('Messaging & channels')
+    + field('Transformation (before → after)', state.transformation)
+    + field('Channels', chans.join(', '))
+    + field('Tone', state.tone)
+    + field('Myth to break', state.myth);
+
+  document.getElementById('briefBox').innerHTML = html;
+  document.getElementById('briefBoxPrint').innerHTML = html;
+}
+
+function copyBrief(){
+  var text = document.getElementById('briefBox').innerText;
+  navigator.clipboard.writeText(text).then(function(){
+    var t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 1800);
+  });
+}
+
+function startOver(){
+  if(!confirm('Clear everything and start a new brief?')) return;
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  location.reload();
+}
+
+function restoreAndGo(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(raw){
+      var d = JSON.parse(raw);
+      state = Object.assign(state, d);
+      TEXT_FIELDS.forEach(function(id){ var el=document.getElementById(id); if(el) el.value = state[id]||''; });
+      var to=document.getElementById('triggerOther'); if(to) to.value = state.triggerOther||'';
+      var ro=document.getElementById('redFlagOther'); if(ro) ro.value = state.redFlagOther||'';
+      var co=document.getElementById('channelOther'); if(co) co.value = state.channelOther||'';
+    }
+  }catch(e){}
+  refreshChipSelections();
+  goTo(1);
+}
+
+function refreshChipSelections(){
+  function syncGroup(containerId, groupKey, single){
+    var el = document.getElementById(containerId); if(!el) return;
+    Array.prototype.forEach.call(el.children, function(c){
+      var match = single ? (state[groupKey]===c.textContent) : (state[groupKey].indexOf(c.textContent)>-1);
+      c.classList.toggle('on', match);
+    });
+  }
+  syncGroup('triggerChips','triggers',false);
+  syncGroup('timelineChips','timeline',true);
+  syncGroup('redFlagChips','redFlags',false);
+  syncGroup('channelChips','channels',false);
+  syncGroup('toneChips','tone',true);
+  Object.keys(state.objections).forEach(function(idx){
+    var block = document.getElementById('obj'+idx);
+    if(block){ block.classList.add('on'); document.getElementById('objbox'+idx).classList.add('on'); }
+    var r = document.getElementById('objreply'+idx);
+    if(r) r.value = state.objections[idx]||'';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  buildChips('triggerChips', TRIGGERS, 'triggers', false);
+  buildChips('timelineChips', TIMELINES, 'timeline', true);
+  buildChips('redFlagChips', REDFLAGS, 'redFlags', false);
+  buildChips('channelChips', CHANNELS, 'channels', false);
+  buildChips('toneChips', TONES, 'tone', true);
+  buildObjections();
+
+  TEXT_FIELDS.concat(['triggerOther','redFlagOther','channelOther']).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('input', saveState);
+  });
+
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(raw){
+      var d = JSON.parse(raw);
+      var hasContent = d && (d.bizOneLiner || d.q1 || d.q2 || (d.triggers && d.triggers.length));
+      if(hasContent) document.getElementById('resumeBtn').style.display = 'inline-flex';
+    }
+  }catch(e){}
+});
+</script>
+</body>
+</html>
