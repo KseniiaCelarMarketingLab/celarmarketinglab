@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU Market Entry Checklist — Celar Marketing Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B0F2B;
+  --navy2:#0E1333;
+  --cyan:#00FFF0;
+  --purple:#6502A2;
+  --rose:#ED3E61;
+  --lime:#D4FF00;
+  --silver:#DCDCDC;
+  --white:#F5F5F5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);
+  color:var(--white);
+  font-family:'Poppins',sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+#starfield{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 24px 120px}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(11,15,43,.9);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-inner{max-width:960px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-mark{width:28px;height:28px;flex-shrink:0}
+.nav-logo-text{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--white);letter-spacing:.01em}
+.nav-logo-text span{color:rgba(220,220,220,.45);font-weight:400}
+.nav-tabs{display:flex;gap:4px;list-style:none;flex-wrap:wrap}
+.nav-tab{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(220,220,220,.5);background:transparent;border:1px solid transparent;
+  padding:8px 14px;border-radius:2px;cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.nav-tab:hover{color:var(--white)}
+.nav-tab.active{color:var(--cyan);border-color:rgba(0,255,240,.35);background:rgba(0,255,240,.05)}
+
+/* ── HERO ── */
+.hero{padding:56px 0 40px;border-bottom:1px solid rgba(255,255,255,.07)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:16px}
+.h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,5vw,46px);font-weight:700;line-height:1.1;margin-bottom:18px}
+.h1 .ghost{color:transparent;-webkit-text-stroke:1px rgba(0,255,240,.6)}
+.hero-sub{font-size:16px;color:rgba(220,220,220,.65);max-width:600px;line-height:1.7;margin-bottom:28px}
+.stats-row{display:flex;gap:32px;flex-wrap:wrap;margin-bottom:8px}
+.stat{}
+.stat-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:var(--cyan)}
+.stat-lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(220,220,220,.4);margin-top:2px}
+
+/* ── BUTTONS ── */
+.btn{
+  font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;
+  padding:14px 26px;border-radius:2px;cursor:pointer;transition:all .2s;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary{background:rgba(0,255,240,.08);border-color:rgba(0,255,240,.5);color:var(--cyan)}
+.btn-primary:hover{background:rgba(0,255,240,.14);box-shadow:0 0 24px rgba(0,255,240,.15)}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.2);color:var(--white)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+
+/* ── SECTIONS ── */
+.section{padding:44px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.section:last-child{border-bottom:none}
+.sec-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);font-weight:700;margin-bottom:10px;font-family:'Space Grotesk',sans-serif}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;margin-bottom:10px}
+.sec-sub{font-size:14px;color:rgba(220,220,220,.5);max-width:640px;line-height:1.7;margin-bottom:24px}
+
+/* ── MARKET PICKER ── */
+.region-label{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(220,220,220,.35);margin:20px 0 10px}
+.region-label:first-child{margin-top:0}
+.market-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:6px}
+.market-card{
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.015);
+  padding:16px;border-radius:2px;cursor:pointer;transition:all .2s;position:relative;
+}
+.market-card:hover{border-color:rgba(0,255,240,.3)}
+.market-card.on{border-color:var(--cyan);background:rgba(0,255,240,.05)}
+.mc-flag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(220,220,220,.4);margin-bottom:6px}
+.mc-name{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin-bottom:3px}
+.mc-tag{font-size:10.5px;color:rgba(220,220,220,.45);line-height:1.4}
+.mc-check{position:absolute;top:14px;right:14px;width:16px;height:16px;border:1.5px solid rgba(255,255,255,.25);border-radius:2px}
+.market-card.on .mc-check{border-color:var(--cyan);background:var(--cyan)}
+.market-card.on .mc-check svg{display:block}
+.mc-check svg{display:none;width:100%;height:100%;stroke:var(--navy);stroke-width:3}
+.market-actions{display:flex;gap:16px;margin-top:14px}
+.market-link{font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(0,255,240,.6);cursor:pointer;background:none;border:none}
+.market-link:hover{color:var(--cyan)}
+
+/* ── PROFILE QUESTIONS ── */
+.q-block{margin-bottom:28px}
+.q-label{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px}
+.q-hint{font-size:11.5px;color:rgba(220,220,220,.4);margin-bottom:12px}
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.choice-card{
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.015);
+  padding:14px 16px;border-radius:2px;cursor:pointer;transition:all .2s;position:relative;
+}
+.choice-card:hover{border-color:rgba(0,255,240,.3)}
+.choice-card.on{border-color:var(--cyan);background:rgba(0,255,240,.05)}
+.cc-radio{position:absolute;top:14px;right:14px;width:15px;height:15px;border:1.5px solid rgba(255,255,255,.25);border-radius:50%}
+.choice-card.on .cc-radio{border-color:var(--cyan)}
+.choice-card.on .cc-radio::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--cyan)}
+.cc-label{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:3px;padding-right:22px}
+.cc-desc{font-size:11px;color:rgba(220,220,220,.45);line-height:1.4}
+
+.profile-bar{
+  border:1px solid rgba(0,255,240,.2);background:rgba(0,255,240,.03);border-radius:2px;
+  padding:14px 18px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.profile-bar-text{font-size:12.5px;color:rgba(220,220,220,.75);line-height:1.6}
+.profile-bar-text strong{color:var(--cyan);font-weight:600}
+.profile-bar-actions{display:flex;gap:14px;flex-shrink:0}
+.profile-note{border-left:2px solid var(--lime);background:rgba(212,255,0,.03);padding:14px 16px;margin-bottom:20px;border-radius:2px}
+.profile-note .box-tag{color:var(--lime)}
+.profile-note-txt{font-size:13px;color:rgba(220,220,220,.78);line-height:1.75}
+
+/* ── PROGRESS ── */
+.progress-bar-wrap{background:rgba(255,255,255,.06);height:6px;border-radius:2px;overflow:hidden;margin-bottom:8px}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--rose),var(--cyan));transition:width .4s;border-radius:2px}
+.progress-label{font-size:11px;color:rgba(220,220,220,.5);display:flex;justify-content:space-between}
+
+/* ── PITFALLS ── */
+.pit-list{display:flex;flex-direction:column;gap:10px}
+.pit-row{display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.012);padding:14px 16px;border-radius:2px}
+.pit-num{font-family:'Space Grotesk',sans-serif;font-size:11px;color:var(--rose);border:1px solid rgba(237,62,97,.4);width:24px;height:24px;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+.pit-txt{font-size:13px;color:rgba(220,220,220,.75);line-height:1.65}
+
+/* ── HOW IT WORKS ── */
+.how-grid{display:flex;flex-direction:column;gap:16px}
+.how-row{display:flex;gap:16px;align-items:flex-start}
+.how-num{font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--cyan);border:1px solid rgba(0,255,240,.4);width:28px;height:28px;border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+.how-txt{font-size:14px;color:rgba(220,220,220,.7);line-height:1.7;padding-top:4px}
+
+/* ── CATEGORY CARDS ── */
+.cat{border:1px solid rgba(255,255,255,.08);margin-bottom:14px;background:rgba(255,255,255,.012);border-radius:2px;overflow:hidden}
+.cat-head{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none}
+.cat-head:hover{background:rgba(255,255,255,.02)}
+.cat-title-wrap{display:flex;align-items:center;gap:12px}
+.cat-icon{width:20px;height:20px;flex-shrink:0;stroke:var(--cyan);fill:none;stroke-width:1.6}
+.cat-title{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700}
+.cat-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(220,220,220,.4)}
+.cat-chev{width:14px;height:14px;stroke:rgba(220,220,220,.4);fill:none;stroke-width:2;transition:transform .25s}
+.cat.open .cat-chev{transform:rotate(180deg)}
+.cat-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.cat.open .cat-body{max-height:8000px}
+.cat-body-inner{padding:2px 20px 20px}
+
+.theory-box{border-left:2px solid rgba(0,255,240,.35);background:rgba(0,255,240,.03);padding:14px 16px;margin-bottom:14px;border-radius:2px}
+.box-tag{font-family:'Space Grotesk',sans-serif;font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--cyan);margin-bottom:7px}
+.theory-txt{font-size:13px;color:rgba(220,220,220,.78);line-height:1.75}
+.theory-txt strong{color:var(--white)}
+
+.task-box{border-left:2px solid rgba(237,62,97,.4);background:rgba(237,62,97,.04);padding:14px 16px;margin-bottom:18px;border-radius:2px}
+.task-box .box-tag{color:var(--rose)}
+.task-txt{font-size:13px;color:rgba(230,230,230,.85);line-height:1.7}
+
+.item{display:flex;gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.05)}
+.item:first-child{border-top:none}
+.item-check{
+  width:20px;height:20px;border:1.5px solid rgba(255,255,255,.3);border-radius:2px;flex-shrink:0;cursor:pointer;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.item-check.on{border-color:var(--cyan);background:var(--cyan)}
+.item-check svg{display:none;width:12px;height:12px;stroke:var(--navy);stroke-width:3}
+.item-check.on svg{display:block}
+.item-body{flex:1}
+.item-top{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin-bottom:3px}
+.item-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.06em;padding:2px 6px;border-radius:2px;border:1px solid;flex-shrink:0}
+.tag-NL{color:#FF8A3D;border-color:rgba(255,138,61,.4)}
+.tag-BE{color:var(--lime);border-color:rgba(212,255,0,.4)}
+.tag-DE{color:var(--rose);border-color:rgba(237,62,97,.4)}
+.tag-FR{color:var(--cyan);border-color:rgba(0,255,240,.4)}
+.tag-ES{color:#FFC93D;border-color:rgba(255,201,61,.4)}
+.tag-IT{color:#6EE7B7;border-color:rgba(110,231,183,.4)}
+.tag-PL{color:#C77DFF;border-color:rgba(199,125,255,.4)}
+.tag-AT{color:#FF7096;border-color:rgba(255,112,150,.4)}
+.tag-PT{color:#7DD3FC;border-color:rgba(125,211,252,.4)}
+.tag-IE{color:#A3E635;border-color:rgba(163,230,53,.4)}
+.tag-ALL{color:var(--silver);border-color:rgba(220,220,220,.35)}
+.item-text{font-size:13.5px;color:rgba(230,230,230,.88);line-height:1.6}
+.item-text.done{color:rgba(220,220,220,.35);text-decoration:line-through}
+.item-detail{font-size:12px;color:rgba(220,220,220,.45);line-height:1.6;margin-top:6px;padding-top:6px;border-top:.5px dashed rgba(255,255,255,.08);display:none}
+.item-detail.show{display:block}
+.item-why{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(0,255,240,.5);cursor:pointer;margin-top:5px;display:inline-block}
+.item-why:hover{color:var(--cyan)}
+
+/* ── BRIEF / SUMMARY ── */
+.brief-card{border:1px solid rgba(0,255,240,.2);background:rgba(0,255,240,.03);padding:24px;border-radius:2px;margin-bottom:20px}
+.brief-market{margin-bottom:26px}
+.brief-market-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--cyan);margin-bottom:10px;padding-bottom:8px;border-bottom:.5px solid rgba(0,255,240,.2)}
+.brief-cat-title{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:rgba(220,220,220,.55);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.brief-item{font-size:13px;color:rgba(220,220,220,.75);padding:5px 0;display:flex;gap:8px}
+.brief-item .bi-mark{color:var(--lime);flex-shrink:0}
+.brief-task{font-size:12.5px;color:rgba(237,62,97,.85);padding:5px 0 5px 22px;line-height:1.6}
+
+/* ── FAQ ── */
+.faq-item{border-bottom:.5px solid rgba(255,255,255,.08);padding:16px 0}
+.faq-q{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:6px}
+.faq-a{font-size:13px;color:rgba(220,220,220,.55);line-height:1.7}
+
+/* ── DISCLAIMER ── */
+.disclaimer{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02);padding:16px 18px;font-size:12px;color:rgba(220,220,220,.45);line-height:1.7;border-radius:2px}
+.disclaimer strong{color:rgba(220,220,220,.7)}
+
+/* ── FOOTER ── */
+footer{max-width:960px;margin:0 auto;padding:32px 24px;text-align:center;border-top:.5px solid rgba(255,255,255,.06)}
+footer p{font-size:11px;color:rgba(220,220,220,.35)}
+footer a{color:rgba(220,220,220,.5);text-decoration:none}
+
+/* ── VIEW SWITCHING ── */
+.view{display:none}
+.view.active{display:block}
+
+/* ── PRINT ── */
+@media print{
+  nav,footer,.no-print,.btn{display:none !important}
+  body{background:#fff;color:#000}
+  .view{display:block !important}
+  #starfield{display:none}
+  .cat-body{max-height:none !important}
+  .item-detail{display:block !important}
+}
+
+@media(max-width:640px){
+  .nav-inner{flex-direction:column;align-items:flex-start;gap:10px}
+  .nav-tabs{width:100%;overflow-x:auto}
+  .stats-row{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <svg class="nav-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="16" stroke="url(#lg1)" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="10" stroke="url(#lg2)" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="4" stroke="url(#lg3)" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+        <defs>
+          <linearGradient id="lg1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+          <linearGradient id="lg2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.7"/></linearGradient>
+          <linearGradient id="lg3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.5"/></linearGradient>
+        </defs>
+      </svg>
+      <div class="nav-logo-text">Celar<span> · EU Market Entry</span></div>
+    </a>
+    <ul class="nav-tabs">
+      <li class="nav-tab active" data-view="overview">Overview</li>
+      <li class="nav-tab" data-view="checklist">Checklist</li>
+      <li class="nav-tab" data-view="brief">Your Brief</li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ═══════ OVERVIEW ═══════ -->
+<div class="view active" id="view-overview">
+
+  <div class="hero">
+    <div class="eyebrow">EU Market Entry Checklist</div>
+    <h1 class="h1">Launch across Europe<br>without the<br><span class="ghost">expensive surprise</span></h1>
+    <p class="hero-sub">A market-by-market working system for 10 European markets — legal registration, VAT, consumer rights, payments, language, channels, trust signals and logistics — with the theory behind every check and a practical task to act on it, so a missed local requirement doesn't turn up after you've already spent the budget.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">10</div><div class="stat-lbl">European markets</div></div>
+      <div class="stat"><div class="stat-val">8</div><div class="stat-lbl">Checklist categories</div></div>
+      <div class="stat"><div class="stat-val">90+</div><div class="stat-lbl">Concrete checks</div></div>
+      <div class="stat"><div class="stat-val">3</div><div class="stat-lbl">Questions to personalise it</div></div>
+    </div>
+    <div class="no-print" style="margin-top:24px">
+      <button class="btn btn-primary" onclick="goTo('checklist')">Start the checklist →</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-eyebrow">Why Europe ≠ one market</div>
+    <div class="sec-title">Localisation pitfalls most non-EU brands miss</div>
+    <div class="sec-sub">This is the pattern behind almost every failed European launch we've audited: treating ten countries with ten languages, distinct legal frameworks and distinct payment habits as if they were one "European market."</div>
+    <div class="pit-list" id="pitfalls-list"></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-eyebrow">How it works</div>
+    <div class="sec-title">Four steps to a launch-ready market brief</div>
+    <div class="how-grid">
+      <div class="how-row"><div class="how-num">1</div><div class="how-txt">Answer three quick questions about your business — what you sell, who you sell to, and your team size — then pick your target market(s). Every category adjusts to show only what's relevant to your combination.</div></div>
+      <div class="how-row"><div class="how-num">2</div><div class="how-txt">Read the theory behind each category first — why it matters commercially, not just legally — then work through the checks tailored to your business type and markets.</div></div>
+      <div class="how-row"><div class="how-num">3</div><div class="how-txt">Do the practical task at the end of each category. These are concrete actions — write the page, request the quote, test the checkout — not more reading.</div></div>
+      <div class="how-row"><div class="how-num">4</div><div class="how-txt">Open Your Brief for a compiled, printable summary tailored to your business profile, plus your outstanding tasks — then launch knowing what actually needs to be different.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-eyebrow">Common questions</div>
+    <div class="faq-item">
+      <div class="faq-q">Does this replace legal advice?</div>
+      <div class="faq-a">No — this is a marketing and localisation checklist, not legal counsel. It flags what to check and why it matters commercially, not a substitute for a lawyer or accountant. VAT rates, consumer-rights wording and mandatory disclosures should always be confirmed with a qualified professional in each market before you launch.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does the business-type personalisation work?</div>
+      <div class="faq-a">Three short questions — what you sell, who you sell to, and your team size — adjust which checks appear. A SaaS business sees VAT reverse-charge and data-processing guidance instead of local checkout methods; a physical-goods retailer sees the reverse. Legal and language checks that apply to everyone always stay visible. You can skip this and see every check for every business type at any time.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I need to complete every item for every market?</div>
+      <div class="faq-a">No. Select only the markets you're actually entering. Some checks apply everywhere in the EU (GDPR, the 14-day right of withdrawal, the €10,000 OSS threshold); others are specific to one country — the tool separates the two clearly, tagged by market.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Should I launch all my markets at once?</div>
+      <div class="faq-a">Usually not. The most common pattern among successful non-EU (and non-local) entrants is to prove the model in one market, fix what breaks, then adapt and sequence the rest — rather than translating everything at once and finding out what's wrong in ten places simultaneously.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does my progress save?</div>
+      <div class="faq-a">Yes — your market selection and ticked items are saved in this browser automatically, so you can come back and pick up where you left off.</div>
+    </div>
+  </div>
+
+  <div class="section" style="border-bottom:none">
+    <div class="disclaimer"><strong>Not legal or tax advice.</strong> This checklist reflects general EU/European marketing, e-commerce and localisation practice as understood at time of writing. Regulations, thresholds and rates change — always confirm current requirements with a qualified lawyer or accountant in each market before launch.</div>
+  </div>
+
+</div>
+
+<!-- ═══════ CHECKLIST ═══════ -->
+<div class="view" id="view-checklist">
+
+  <div class="section" style="padding-top:36px">
+    <div class="sec-eyebrow">Step 1</div>
+    <div class="sec-title">Tell us about your business</div>
+    <div class="sec-sub">This tailors which checks and payment methods actually apply to you — a SaaS business and a physical-goods retailer need different priorities in the same market. Optional: skip to see every check for every business type.</div>
+
+    <div class="q-block">
+      <div class="q-label">What does your business primarily sell?</div>
+      <div class="q-hint">Pick the closest match — you can change this any time.</div>
+      <div class="choice-grid" id="q-type"></div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-label">Who do you primarily sell to?</div>
+      <div class="choice-grid" id="q-audience"></div>
+    </div>
+
+    <div class="q-block" style="margin-bottom:8px">
+      <div class="q-label">Team size</div>
+      <div class="q-hint">Used to tailor the recommendations in your final brief.</div>
+      <div class="choice-grid" id="q-size"></div>
+    </div>
+
+    <div class="market-actions no-print">
+      <button class="market-link" onclick="skipProfile()">Skip — show everything, regardless of business type</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-eyebrow">Step 2</div>
+    <div class="sec-title">Pick your target market(s)</div>
+    <div class="sec-sub">Select every country you're planning to launch in. The checklist below will show the shared EU-wide essentials plus everything specific to your selection.</div>
+    <div class="market-actions no-print">
+      <button class="market-link" onclick="selectAll()">Select all 10</button>
+      <button class="market-link" onclick="clearAll()">Clear selection</button>
+    </div>
+    <div id="market-groups"></div>
+  </div>
+
+  <div class="section no-print" id="progress-section" style="display:none">
+    <div class="progress-label"><span id="progress-text">0 of 0 checked</span><span id="progress-pct">0%</span></div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+  </div>
+
+  <div class="section" id="checklist-section" style="display:none;border-bottom:none">
+    <div class="sec-eyebrow">Step 3</div>
+    <div class="sec-title">Work through each category</div>
+    <div class="sec-sub">Every category opens with the theory (why this matters commercially), the market-specific checks tailored to your business profile, and a practical task to act on right now.</div>
+    <div id="profile-bar-wrap"></div>
+    <div id="cat-list"></div>
+  </div>
+
+  <div class="section no-print" id="empty-state" style="text-align:center;padding:60px 0">
+    <div style="font-size:13px;color:rgba(220,220,220,.4)">Select at least one market above to build your checklist.</div>
+  </div>
+
+</div>
+
+<!-- ═══════ BRIEF ═══════ -->
+<div class="view" id="view-brief">
+  <div class="section" style="padding-top:36px;border-bottom:none">
+    <div class="sec-eyebrow">Step 4</div>
+    <div class="sec-title">Your launch brief</div>
+    <div class="sec-sub">A compiled summary of what changes per market, based on your selection and progress, plus the practical tasks still outstanding. Print or save as PDF to share with your team.</div>
+    <div class="no-print" style="margin-bottom:24px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="window.print()">Print / save as PDF</button>
+      <button class="btn btn-ghost" onclick="goTo('checklist')">← Back to checklist</button>
+    </div>
+    <div id="brief-content"></div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p>© Celar Marketing Lab · <a href="https://celarmarketinglab.com">celarmarketinglab.com</a> · <a href="celar_privacy.html">Privacy Policy</a></p>
+</footer>
+
+<script>
+/* ═══════════════ DATA: MARKETS ═══════════════ */
+var REGIONS = ['Benelux','DACH','Western Europe','Southern Europe','Central & Eastern Europe','Northwestern Europe'];
+var MARKETS = {
+  NL:{name:'Netherlands', flag:'NL', region:'Benelux', tag:'Dutch · direct, value-led'},
+  BE:{name:'Belgium', flag:'BE', region:'Benelux', tag:'Dutch + French · dual market'},
+  DE:{name:'Germany', flag:'DE', region:'DACH', tag:'German · formal, compliance-strict'},
+  AT:{name:'Austria', flag:'AT', region:'DACH', tag:'German · warmer register than DE'},
+  FR:{name:'France', flag:'FR', region:'Western Europe', tag:'French · editorial, polished'},
+  IE:{name:'Ireland', flag:'IE', region:'Northwestern Europe', tag:'English · personal, community-led'},
+  ES:{name:'Spain', flag:'ES', region:'Southern Europe', tag:'Spanish · warm, relationship-led'},
+  IT:{name:'Italy', flag:'IT', region:'Southern Europe', tag:'Italian · expressive, design-conscious'},
+  PT:{name:'Portugal', flag:'PT', region:'Southern Europe', tag:'Portuguese · warm, community-led'},
+  PL:{name:'Poland', flag:'PL', region:'Central & Eastern Europe', tag:'Polish · practical, value-focused'}
+};
+
+var BIZ_TYPES = {
+  ecommerce:{label:'Physical products', desc:'E-commerce, retail, D2C goods'},
+  saas:{label:'Software / digital services', desc:'SaaS, apps, digital products, online courses'},
+  services:{label:'Professional services', desc:'Consulting, agencies, B2B services'},
+  mixed:{label:'A mix of these', desc:'Physical goods plus services or software'}
+};
+var AUDIENCES = {
+  b2c:{label:'Consumers (B2C)', desc:''},
+  b2b:{label:'Businesses (B2B)', desc:''},
+  both:{label:'Both B2C and B2B', desc:''}
+};
+var SIZES = {
+  solo:{label:'Solo founder / freelancer', desc:''},
+  small:{label:'Small team (2–10)', desc:''},
+  growing:{label:'Growing team (11–50)', desc:''},
+  large:{label:'50+ employees', desc:''}
+};
+
+var PITFALLS = [
+  'Reusing Dutch copy for Belgian Flemish audiences, or France-French copy for Wallonia — Flemish Dutch and Walloon French each need their own commissioned copy, not a straight reuse.',
+  'Shipping a German or Austrian launch with machine-translated copy and no Impressum — the missing legal notice is one of the most common reasons foreign sites receive a formal warning letter (Abmahnung) in both markets.',
+  'Offering only card payments and quietly losing most Dutch (iDEAL), Belgian (Bancontact), Austrian (EPS) and Polish (BLIK) buyers at checkout — each of these methods clears the majority of local online transactions in its market.',
+  'Carrying US-style urgency and hard-sell language into France or Italy, where it reads as aggressive and can cheapen a brand rather than convert it.',
+  'Ignoring formal/informal address — using "du" where German or Austrian B2B expects "Sie", or "tu" where French expects "vous".',
+  'Assuming Ireland is "the same as the UK" because both are English-speaking — Irish consumer law, VAT and cultural tone all differ, and reused UK ad copy often reads as slightly off.',
+  'Reusing Brazilian Portuguese copy for the Portuguese market, or assuming Spanish from Spain covers Catalan- or Basque-speaking regions without adjustment.',
+  'Treating "Europe" as a single legal market instead of ten countries with ten distinct mandatory disclosures: KVK (NL), KBO/BCE (BE), Impressum (DE/AT), mentions légales (FR), Aviso Legal (ES), P.IVA/REA (IT), NIP/REGON (PL), NIPC (PT), CRO number (IE).',
+  'Launching in every market on day one instead of sequencing — most successful entrants prove the model in one market before adapting and expanding to the rest.'
+];
+
+/* ═══════════════ DATA: CHECKLIST CATEGORIES ═══════════════ */
+var CATS = [
+  {id:'legal', title:'Business & Legal Registration', icon:'legal',
+    theory:'Every European market requires a specific set of business identifiers and legal disclosures to be visible on your website and invoices — and each country names and enforces this differently. This is the single most-skipped category by non-EU entrants, because it feels like paperwork rather than marketing. In practice, it is the first thing a cautious B2B buyer or a compliance-aware consumer checks before they trust a new site, and its absence is what triggers formal warning letters in markets like Germany and Austria.',
+    task:'Open your own homepage right now on a phone. Scroll to the footer. If you cannot find your registration number and legal entity details within 5 seconds, that is the first fix to make before anything else on this list.',
+    items:[
+      {scope:'ALL', text:'Confirm your business entity can legally invoice EU consumers in euros, and that a valid VAT number appears on every invoice.'},
+      {market:'NL', text:'Display your KVK (Chamber of Commerce) number and registered address in the site footer and on invoices.'},
+      {market:'BE', text:'Display your KBO/BCE enterprise number in the footer and on invoices — required for both Flemish and Walloon audiences.'},
+      {market:'DE', text:'Publish a complete Impressum on every page: legal name, entity type, registered address, register court, VAT ID and a genuine contact route.', detail:'A missing or incomplete Impressum is one of the most common reasons foreign websites receive an Abmahnung (formal warning letter) in Germany — it is a legal requirement, not a nice-to-have.'},
+      {market:'AT', text:'Publish an Impressum meeting Austrian §5 ECG requirements: company name, Firmenbuchnummer (company register number), UID (VAT ID) and registered address.', detail:'Austria enforces this similarly to Germany — do not assume a German Impressum automatically satisfies Austrian requirements without checking the specific fields.'},
+      {market:'FR', text:'Publish a "mentions légales" page with your SIRET/SIREN number, registered address and hosting provider details.'},
+      {market:'ES', text:'Publish an "Aviso Legal" page under LSSI-CE: company name, NIF/CIF tax ID, registered address, commercial registry entry and a contact email.'},
+      {market:'IT', text:'Display your P.IVA (VAT number), registered office and REA (Repertorio Economico Amministrativo) number on the site, per Italian e-commerce disclosure rules.'},
+      {market:'PL', text:'Display your NIP (tax ID), REGON and, if applicable, KRS company register number on your site and invoices.'},
+      {market:'PT', text:'Display your NIPC (company registration number) and publish a legal notice per Portuguese e-commerce law (Decreto-Lei do Comércio Eletrónico).'},
+      {market:'IE', text:'Display your CRO (Companies Registration Office) number and VAT number (if registered) on your site and invoices.'},
+      {scope:'ALL', biz:['saas'], text:'If you sell software or digital services, publish a Terms of Service and a Data Processing Agreement (DPA) alongside your privacy policy — B2B customers in regulated industries will often ask for this before signing, in any market.'}
+    ]
+  },
+  {id:'vat', title:'VAT & Cross-Border Tax', icon:'vat',
+    theory:'VAT is the category founders most often get wrong by assuming it works like a single "EU tax." It doesn\'t. There is one EU-wide threshold that decides whether you charge home-country or destination-country VAT, and then ten different national rates on top of that decision. Getting the threshold logic right matters more than memorising every rate — the rate you actually owe depends entirely on which side of that threshold your combined EU cross-border sales sit.',
+    task:'Add up your total cross-border B2C sales to EU consumers over the last 12 months, combined across all countries. Write down that single number. That number — not your revenue per country — is what decides your VAT obligations.',
+    items:[
+      {scope:'ALL', text:'Check whether your combined EU-wide cross-border B2C sales are above or below €10,000/year — this single EU-wide figure decides your VAT rules, not each country separately.', detail:'Below €10,000 combined, you can generally keep charging your home-country VAT rate on cross-border EU sales. Above it, you must charge each destination country\'s VAT rate and either register for the OSS (One-Stop-Shop) scheme or register for VAT separately in each country you sell into.'},
+      {market:'NL', text:'Standard VAT rate 21%, reduced rate 9%.'},
+      {market:'BE', text:'Standard VAT rate 21%, reduced rates 6% and 12%.'},
+      {market:'DE', text:'Standard VAT rate 19%, reduced rate 7%.'},
+      {market:'AT', text:'Standard VAT rate 20%, reduced rates 13% and 10%.'},
+      {market:'FR', text:'Standard VAT rate 20%, reduced rates 5.5% and 10%.'},
+      {market:'ES', text:'Standard VAT rate 21%, reduced rates 10% and 4%.'},
+      {market:'IT', text:'Standard VAT rate 22%, reduced rates 10%, 5% and 4%.'},
+      {market:'PL', text:'Standard VAT rate 23%, reduced rates 8% and 5%.'},
+      {market:'PT', text:'Standard VAT rate 23%, reduced rates 13% and 6%.'},
+      {market:'IE', text:'Standard VAT rate 23%, reduced rates 13.5%, 9% and 4.8%.'},
+      {scope:'ALL', text:'Confirm your specific VAT and OSS obligations with an accountant before launch — this checklist is orientation, not tax advice, and rates and thresholds do change.'},
+      {scope:'ALL', biz:['saas'], audience:['b2b'], text:'If you sell digital services or software to EU business customers, most transactions use the reverse-charge mechanism — verify your customer\'s VAT ID via the VIES system, and the sale is typically zero-rated on your side with the customer accounting for VAT themselves.', detail:'You still need to report these as intra-Community supplies on your EC Sales List, even though you don\'t charge VAT — this is a common gap that only surfaces at your first VAT audit.'},
+      {scope:'ALL', biz:['saas'], audience:['b2c'], text:'If you sell digital services or downloads directly to EU consumers (SaaS subscriptions, e-books, online courses, apps), they are taxed at the customer\'s location from the very first sale — the €10,000 combined threshold covers digital services together with physical goods, it is not a separate allowance.'},
+      {scope:'ALL', biz:['services'], audience:['b2b'], text:'Professional and consulting services sold B2B within the EU are also generally covered by the reverse-charge mechanism — confirm this per client country with your accountant, since exceptions exist for services tied to immovable property, events, or work requiring physical presence.'}
+    ]
+  },
+  {id:'consumer', title:'Consumer Rights & Website Legal Text', icon:'consumer',
+    theory:'Consumer-protection law across the EU shares a common backbone — the 14-day right of withdrawal is real in every market on this list — but enforcement style and the specific disclosures expected on your site vary sharply. Germany and Poland enforce distance-selling disclosure with particular strictness; France has specific rules for influencer marketing; and treating consumer rights as boilerplate legal text rather than a trust signal is a missed opportunity as much as a compliance risk.',
+    task:'Find your current returns/withdrawal policy page. Read it as if you were a first-time customer in your most important target market. If it reads like a generic template rather than something written for that country, rewrite the top three lines today.',
+    items:[
+      {scope:'ALL', text:'Publish a clear 14-day right-of-withdrawal policy (droit de rétractation / herroepingsrecht / Widerrufsrecht / derecho de desistimiento / diritto di recesso) — this is EU law in all ten markets, not optional.'},
+      {market:'DE', text:'Include the standard EU model withdrawal form on your site.', detail:'German enforcement of distance-selling disclosure requirements is particularly strict, and missing the model form is a common compliance gap for foreign sellers.'},
+      {market:'ES', text:'Ensure pre-contractual disclosures meet the Ley General para la Defensa de los Consumidores y Usuarios — price, delivery terms and withdrawal rights stated clearly before purchase.'},
+      {market:'IT', text:'Meet Codice del Consumo requirements: clear pre-contractual information and explicit "diritto di recesso" wording, not just a generic returns page.'},
+      {market:'PL', text:'Publish clear terms and conditions in Polish — UOKiK (the Polish consumer protection authority) is notably active in enforcement against unclear or foreign-language-only terms.'},
+      {market:'FR', text:'If working with influencers, disclose paid collaborations clearly per ARPP guidelines (e.g. "collaboration commerciale").'},
+      {market:'IE', text:'Note that Irish consumer law is EU-aligned but drafted and enforced in a common-law style closer to the UK than to continental Europe — don\'t assume EU boilerplate reads naturally to an Irish audience.'},
+      {scope:'ALL', text:'Make shipping costs, delivery times and your return policy visible before checkout, not only at the payment step.'},
+      {scope:'ALL', text:'Use a real cookie consent banner with genuine accept/reject choice — no pre-ticked boxes — linking to a privacy policy written in the local language.'},
+      {scope:'ALL', biz:['saas','services'], audience:['b2b'], text:'If you sell only B2B, most consumer-protection disclosures (14-day withdrawal, checkout cookie consent) don\'t apply to your signed contracts — but they still apply to your marketing site and any lead-gen forms if individuals can sign up or buy there directly.'},
+      {scope:'ALL', biz:['services'], text:'Use clear, written scope-of-work agreements in the local language for each market — payment-term norms and how binding a verbal agreement feels vary meaningfully across Europe: 30-day terms are standard in Germany and the Netherlands, while 60–90 day terms are far more common in parts of Southern Europe.'}
+    ]
+  },
+  {id:'payments', title:'Payment Methods Customers Actually Use', icon:'payments',
+    theory:'This is the category with the most direct, measurable impact on conversion. Card-only checkouts quietly lose the majority of buyers in several of these markets, because a dominant local payment method — not cards — is how most people actually pay online there. This isn\'t a nice-to-have localisation detail; it is often the single highest-leverage fix in this entire checklist.',
+    task:'Check your payment provider\'s dashboard right now. List which of the local methods below you currently support for each market you\'ve selected. Anywhere the answer is "none," that is your next integration priority — ahead of any content or campaign work.',
+    items:[
+      {scope:'ALL', biz:['saas','services'], text:'If you sell services or subscriptions rather than one-off physical products, local instant-payment rails matter far less than reliable recurring billing — prioritise SEPA Direct Debit mandates and a subscription billing platform (e.g. Stripe Billing, Chargebee) over checkout localisation.', detail:'The country-specific payment methods listed below are written for point-of-sale conversion on physical or one-off digital goods — they matter far less if your primary product is a recurring service.'},
+      {market:'NL', biz:['ecommerce','mixed'], text:'Offer iDEAL at checkout.', detail:'iDEAL accounts for the large majority of Dutch online transactions. A checkout without it will quietly lose most Dutch buyers at the final step.'},
+      {market:'BE', biz:['ecommerce','mixed'], text:'Offer Bancontact at checkout — the Belgian equivalent of iDEAL, and expected by most local shoppers.'},
+      {market:'DE', biz:['ecommerce','mixed'], text:'Offer SEPA direct debit (Lastschrift) and purchase-on-invoice (Rechnungskauf) alongside cards.', detail:'German shoppers are markedly less card-first than Dutch, Belgian or French buyers — card-only checkouts underperform here.'},
+      {market:'AT', biz:['ecommerce','mixed'], text:'Offer EPS (bank transfer) — supported by over 80% of Austrian online merchants and treated as a default option by local shoppers, alongside growing Klarna BNPL usage.'},
+      {market:'FR', biz:['ecommerce','mixed'], text:'Offer Carte Bancaire (CB) specifically, and consider Apple Pay and BNPL (e.g. Alma) — French card culture is strong, but tied to the CB network, not just a generic "credit card" label.'},
+      {market:'ES', biz:['ecommerce','mixed'], text:'Offer Bizum alongside cards — Bizum has become a mainstream instant-payment option in Spain for both P2P and e-commerce, alongside PayPal.'},
+      {market:'IT', biz:['ecommerce','mixed'], text:'Support major card types (Bancomat, Visa, Mastercard) and PayPal as the baseline; consider emerging local wallets like Satispay for younger, mobile-first segments.'},
+      {market:'PL', biz:['ecommerce','mixed'], text:'Offer BLIK and Przelewy24 (P24) — BLIK alone now clears the majority of Polish e-commerce checkouts, with P24 aggregating bank-transfer options across 165+ Polish banks.'},
+      {market:'PT', biz:['ecommerce','mixed'], text:'Offer Multibanco and MB WAY.', detail:'The large majority of Portuguese online shoppers use Multibanco or MB WAY when available — a card-only checkout is a significant handicap in this market.'},
+      {market:'IE', biz:['ecommerce','mixed'], text:'Cards (including Apple Pay and Google Pay) are the dominant method, similar to the UK — prioritise a fast, well-optimised card checkout over local alternative methods.'},
+      {scope:'ALL', text:'Add PayPal as a safe secondary option — it converts reasonably across all ten markets.'}
+    ]
+  },
+  {id:'language', title:'Language & Tone', icon:'language',
+    theory:'Translation and localisation are not the same activity, and conflating them is the single most common reason European marketing underperforms. A literal translation preserves meaning; localisation adapts register, formality, humour and directness to what that specific audience actually responds to. The same product benefit, worded identically in ten languages, will land as confident in one market, arrogant in another, and simply flat in a third.',
+    task:'Take your best-performing headline in your home market. Have it reviewed — not machine-translated — by a native speaker in your top target market, and ask them one question: "does this sound like a real local brand, or a translated one?" Fix it until the answer changes.',
+    items:[
+      {market:'NL', text:'Keep Dutch copy direct and low-hype — plain value and straightforwardness outperform aggressive sales language here.'},
+      {market:'BE', text:'Commission separate Flemish Dutch and Walloon French copy — do not reuse NL Dutch or France French as-is.'},
+      {market:'DE', text:'Use formal address (Sie) as the default for B2B and most B2C, with professional native translation rather than a literal pass of your Dutch or English copy.'},
+      {market:'AT', text:'Use German copy adapted for Austrian register and vocabulary — Austrian German is warmer and less rigid than standard German-German, and a straight German import can read as slightly cold.'},
+      {market:'FR', text:'Write to an editorial standard — French audiences respond to polish and narrative craft; direct translation typically reads flat or overly salesy.'},
+      {market:'ES', text:'Use a warmer, more relationship-oriented tone than Northern European copy — and confirm whether regional language (Catalan, Basque, Galician) matters for your specific city or region.'},
+      {market:'IT', text:'Lean into expressive, design-conscious language — Italian audiences, like French ones, respond to aesthetic and craft narrative, often with a warmer, more personal register.'},
+      {market:'PT', text:'Write in European Portuguese, not Brazilian Portuguese — the vocabulary, spelling and tone differ noticeably, and Portuguese readers notice a Brazilian-flavoured translation immediately.'},
+      {market:'PL', text:'Keep tone practical and value-focused, but respect formality — Polish B2B and much B2C still defaults to the polite "Pan/Pani" form rather than casual address.'},
+      {market:'IE', text:'Write in Irish-market English with local idiom, not reused UK copy — Irish audiences respond to a more personal, community-oriented tone than typical UK corporate messaging.'},
+      {scope:'ALL', text:'Never assume "Europe" is one language or one tone — plan for genuinely distinct voices per market, not one translated master copy.'}
+    ]
+  },
+  {id:'channels', title:'Channels & Platform Norms', icon:'channels',
+    theory:'Platform usage and channel expectations vary by market far more than most non-EU marketers assume — not just which network is popular, but what customers expect to happen on it. A WhatsApp Business inbox that Dutch or Portuguese customers expect to reach a real person on can be entirely absent from customer expectations in Ireland, where email and phone still dominate.',
+    task:'Pick your single most important target market from your selection. Open your own social profiles as if you were a first-time customer there. Note the one channel or behaviour (a DM reply, a WhatsApp number, a review count) you\'re missing that locals would expect.',
+    items:[
+      {market:'NL', text:'Prioritise LinkedIn for B2B; treat WhatsApp Business as an expected customer-service channel, not an optional extra.'},
+      {market:'BE', text:'Keep Facebook in the mix alongside Instagram, and plan media/influencer outreach separately for Flemish and Walloon audiences.'},
+      {market:'DE', text:'Use LinkedIn and Xing for B2B, and keep targeting language conservative — German audiences are highly privacy-sensitive and respond poorly to anything that reads as invasive.'},
+      {market:'AT', text:'Expect meaningful overlap with German media consumption and e-commerce habits — many Austrians shop on German platforms — but don\'t assume an Austrian audience is simply "small Germany" in tone.'},
+      {market:'FR', text:'Lead with Instagram across age groups; keep Facebook active for the 35+ segment.'},
+      {market:'ES', text:'Instagram and WhatsApp Business both carry real weight for customer communication; TikTok is strong among younger audiences.'},
+      {market:'IT', text:'Instagram is dominant; Facebook still matters for local and regional businesses; WhatsApp Business is a widely expected customer-service channel.'},
+      {market:'PT', text:'Instagram and Facebook both remain relevant; WhatsApp Business is a common, expected contact channel.'},
+      {market:'PL', text:'Facebook retains unusually high penetration compared to Western Europe; Instagram is growing steadily and TikTok is the fastest-growing channel among younger audiences.'},
+      {market:'IE', text:'Instagram and LinkedIn dominate; English-language content can often be adapted from UK campaigns with lighter localisation than any other market on this list.'},
+      {scope:'ALL', biz:['services'], audience:['b2b'], text:'If you sell B2B services, weight LinkedIn and direct outreach far more heavily than the consumer social channels above — the platform norms in this category are written primarily for consumer-facing brands.'}
+    ]
+  },
+  {id:'trust', title:'Cultural Trust Signals & Positioning', icon:'trust',
+    theory:'The same trust-building move — a certification badge, a customer review, a founder story — converts very differently depending on the market, because what "credible" looks like is culturally specific. Northern European audiences trust demonstrable proof and transparent pricing; Southern European audiences often trust personal relationship and local presence more than a global brand claim; German-speaking markets trust formal certification. Applying one market\'s trust signals everywhere is a quiet but consistent source of underperformance.',
+    task:'List the three trust signals currently most visible on your homepage (reviews, certifications, founder story, pricing transparency, etc). For your top target market, check whether those are actually the signals that market responds to — or whether you\'re leading with a Northern European trust cue in a Southern European market, or vice versa.',
+    items:[
+      {market:'NL', text:'Lead with transparent pricing and demonstrable proof (reviews, case studies, specifics) — Dutch audiences are skeptical of vague claims.'},
+      {market:'DE', text:'Use recognised certifications and trust seals (e.g. Trusted Shops) and detailed product specifications — German buyers want precision, not just reassurance.'},
+      {market:'AT', text:'Apply similar trust markers to Germany, but expect the audience to respond well to a slightly warmer, less rigid presentation than a German-German campaign.'},
+      {market:'FR', text:'Lead with editorial credibility, aesthetic polish and storytelling — French audiences read visual and narrative quality itself as a trust signal.'},
+      {market:'ES', text:'Personal relationship, warmth and local testimonials often outweigh global brand claims — a recognisable local presence matters more here than in Northern Europe.'},
+      {market:'IT', text:'As in Spain, personal connection and local presence carry real weight — pair this with the aesthetic/design credibility Italian audiences also expect.'},
+      {market:'PT', text:'Community trust and personal relationship matter more than corporate scale — local presence and word-of-mouth carry disproportionate weight.'},
+      {market:'PL', text:'Price transparency and demonstrable practical value resonate strongly; Polish audiences tend to be skeptical of large claims that aren\'t backed by visible proof.'},
+      {market:'IE', text:'A personal, community-oriented and humour-tolerant tone consistently outperforms overly corporate messaging.'},
+      {market:'BE', text:'Apply a dual approach — pragmatic, proof-based trust cues for Flemish audiences, more relationship- and aesthetic-driven cues for Walloon audiences.'},
+      {scope:'ALL', biz:['saas'], text:'For software and digital services, security and compliance certifications (ISO 27001, SOC 2, a clear GDPR compliance statement) function as the primary trust signal across every market, ahead of the cultural nuances above.'}
+    ]
+  },
+  {id:'logistics', title:'Logistics & Customer Service Expectations', icon:'logistics',
+    theory:'Localisation doesn\'t stop at the checkout — it continues into how customers expect to be served after they\'ve paid. Delivery-tracking expectations, preference for human contact over chatbots, and even whether cash-on-delivery is still meaningful all vary by market, and each is a real driver of repeat purchase and refund/complaint rates.',
+    task:'Walk through your own post-purchase flow end to end — order confirmation, tracking, and a support contact — as a customer in your top target market would experience it. Note the first point where the experience feels generic rather than built for that market, and fix that one point first.',
+    items:[
+      {scope:'ALL', biz:['ecommerce','mixed'], text:'Display shipping costs and delivery time estimates before checkout, and make your return policy easy to find — this is a conversion factor as much as a legal one.'},
+      {market:'DE', biz:['ecommerce','mixed'], text:'Provide precise delivery estimates and proactive tracking communication — German and Austrian customers check tracking closely and expect accuracy, not vague windows.'},
+      {market:'AT', biz:['ecommerce','mixed'], text:'Apply the same precision and proactive communication standard as Germany.'},
+      {market:'FR', text:'Offer a genuine human contact channel (phone or WhatsApp) alongside email/chat — French customers still value being able to reach a person, not only a bot.'},
+      {market:'IT', text:'As in France, keep a human support channel available — Italian customers commonly expect phone or WhatsApp contact for anything beyond a simple order status.'},
+      {market:'ES', text:'Offer a human support channel via phone or WhatsApp — Spanish customers place similar weight on being able to reach someone directly.'},
+      {market:'PL', biz:['ecommerce','mixed'], text:'Decide deliberately whether to support cash-on-delivery — it remains meaningfully used by a segment of Polish online shoppers who are cautious about paying before receiving goods.'},
+      {market:'PT', biz:['ecommerce','mixed'], text:'Test your Multibanco/MB WAY checkout flow end-to-end before launch — these methods are often tied to specific UX steps that differ from a standard card flow.'},
+      {market:'IE', biz:['ecommerce','mixed'], text:'If shipping via UK-based logistics providers, confirm the goods movement doesn\'t trigger unexpected import VAT or customs handling post-Brexit — cross-border routing through Great Britain is not the same as shipping directly within the EU.'},
+      {scope:'ALL', biz:['saas','services'], text:'If you don\'t ship physical goods, treat onboarding as your equivalent of delivery: confirm your onboarding emails, support SLAs, and renewal or cancellation flow are localised per market — a confusing cancellation flow drives complaints and chargebacks just as much as a late parcel does.'}
+    ]
+  }
+];
+
+var ICONS = {
+  legal:'<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"/>',
+  vat:'<circle cx="12" cy="12" r="8"/><path d="M9 15l6-6M9.5 10a.5.5 0 100-1 .5.5 0 000 1zM14.5 15a.5.5 0 100-1 .5.5 0 000 1z"/>',
+  consumer:'<path d="M4 4h16v12H8l-4 4V4z"/><path d="M8 9h8M8 12h5"/>',
+  payments:'<rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 10h18"/>',
+  language:'<path d="M4 6h9M8 4v2M4 8c1.5 3 4 5 7 6M13 6c-1 3.5-4 6.5-9 8M14 20l4-9 4 9M15.3 17h5.4"/>',
+  channels:'<circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.2 10.8L15.8 7.2M8.2 13.2L15.8 16.8"/>',
+  trust:'<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/>',
+  logistics:'<rect x="2" y="7" width="13" height="10" rx="1"/><path d="M15 10h3l3 3v4h-6z"/><circle cx="6.5" cy="18.5" r="1.6"/><circle cx="17.5" cy="18.5" r="1.6"/>'
+};
+
+/* ═══════════════ STATE ═══════════════ */
+var S = {markets:[], checked:{}, profile:{type:null, audience:null, size:null}, ignoreProfile:false};
+function load(){
+  try{
+    var raw = localStorage.getItem('emc_state_v3');
+    if(raw) S = JSON.parse(raw);
+    else{
+      var old = localStorage.getItem('emc_state_v2') || localStorage.getItem('emc_state');
+      if(old){ var o = JSON.parse(old); S.markets = o.markets||[]; S.checked = o.checked||{}; }
+    }
+  }catch(e){}
+  if(!S.markets) S.markets=[];
+  if(!S.checked) S.checked={};
+  if(!S.profile) S.profile={type:null, audience:null, size:null};
+  if(typeof S.ignoreProfile!=='boolean') S.ignoreProfile=false;
+}
+function save(){
+  try{ localStorage.setItem('emc_state_v3', JSON.stringify(S)); }catch(e){}
+}
+
+/* ═══════════════ NAV ═══════════════ */
+function goTo(view){
+  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active')});
+  document.getElementById('view-'+view).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(function(t){
+    t.classList.toggle('active', t.dataset.view===view);
+  });
+  if(view==='brief') buildBrief();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav-tab').forEach(function(t){
+  t.addEventListener('click', function(){ goTo(t.dataset.view); });
+});
+
+/* ═══════════════ BUILD: PITFALLS ═══════════════ */
+function buildPitfalls(){
+  var el = document.getElementById('pitfalls-list');
+  el.innerHTML = PITFALLS.map(function(p,i){
+    return '<div class="pit-row"><div class="pit-num">'+(i+1)+'</div><div class="pit-txt">'+p+'</div></div>';
+  }).join('');
+}
+
+/* ═══════════════ BUILD: MARKET GRID ═══════════════ */
+function buildMarketGrid(){
+  var el = document.getElementById('market-groups');
+  var html = '';
+  REGIONS.forEach(function(region){
+    var keys = Object.keys(MARKETS).filter(function(k){ return MARKETS[k].region===region; });
+    if(!keys.length) return;
+    html += '<div class="region-label">'+region+'</div><div class="market-grid">';
+    keys.forEach(function(k){
+      var m = MARKETS[k];
+      var on = S.markets.indexOf(k) > -1;
+      html += '<div class="market-card'+(on?' on':'')+'" data-m="'+k+'" onclick="toggleMarket(\''+k+'\')">'
+        +'<div class="mc-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="4 12 9 17 20 6"/></svg></div>'
+        +'<div class="mc-flag">'+m.flag+'</div>'
+        +'<div class="mc-name">'+m.name+'</div>'
+        +'<div class="mc-tag">'+m.tag+'</div>'
+        +'</div>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
+}
+function toggleMarket(k){
+  var i = S.markets.indexOf(k);
+  if(i>-1) S.markets.splice(i,1); else S.markets.push(k);
+  save();
+  buildMarketGrid();
+  buildChecklist();
+}
+function selectAll(){
+  S.markets = Object.keys(MARKETS);
+  save(); buildMarketGrid(); buildChecklist();
+}
+function clearAll(){
+  S.markets = [];
+  save(); buildMarketGrid(); buildChecklist();
+}
+
+/* ═══════════════ BUILD: BUSINESS PROFILE ═══════════════ */
+function buildProfileGroup(elId, data, groupKey){
+  var el = document.getElementById(elId);
+  el.innerHTML = Object.keys(data).map(function(k){
+    var d = data[k];
+    var on = S.profile[groupKey]===k;
+    return '<div class="choice-card'+(on?' on':'')+'" onclick="setProfile(\''+groupKey+'\',\''+k+'\')">'
+      +'<div class="cc-radio"></div>'
+      +'<div class="cc-label">'+d.label+'</div>'
+      +(d.desc?'<div class="cc-desc">'+d.desc+'</div>':'')
+      +'</div>';
+  }).join('');
+}
+function buildProfileUI(){
+  buildProfileGroup('q-type', BIZ_TYPES, 'type');
+  buildProfileGroup('q-audience', AUDIENCES, 'audience');
+  buildProfileGroup('q-size', SIZES, 'size');
+}
+function setProfile(groupKey, k){
+  S.profile[groupKey] = (S.profile[groupKey]===k) ? null : k;
+  S.ignoreProfile = false;
+  save();
+  buildProfileUI();
+  buildChecklist();
+}
+function skipProfile(){
+  S.profile = {type:null, audience:null, size:null};
+  S.ignoreProfile = true;
+  save();
+  buildProfileUI();
+  buildChecklist();
+}
+function toggleIgnoreProfile(val){
+  S.ignoreProfile = val;
+  save();
+  buildChecklist();
+}
+function profileLabel(){
+  var parts = [];
+  if(S.profile.type) parts.push(BIZ_TYPES[S.profile.type].label);
+  if(S.profile.audience) parts.push(AUDIENCES[S.profile.audience].label);
+  if(S.profile.size) parts.push(SIZES[S.profile.size].label);
+  return parts.join(' · ');
+}
+
+/* ═══════════════ BUILD: CHECKLIST ═══════════════ */
+function marketMatch(item){
+  if(item.scope==='ALL') return S.markets.length>0;
+  return S.markets.indexOf(item.market) > -1;
+}
+function marketMatchFor(item, mk){
+  return item.scope==='ALL' || item.market===mk;
+}
+function profileMatch(item){
+  if(S.ignoreProfile) return true;
+  if(item.biz && S.profile.type && item.biz.indexOf(S.profile.type)===-1) return false;
+  if(item.audience && S.profile.audience && S.profile.audience!=='both' && item.audience.indexOf(S.profile.audience)===-1) return false;
+  return true;
+}
+function itemApplies(item){
+  return marketMatch(item) && profileMatch(item);
+}
+function itemId(catId, idx){
+  return catId+'_'+idx;
+}
+function buildChecklist(){
+  var hasMarkets = S.markets.length>0;
+  document.getElementById('checklist-section').style.display = hasMarkets?'block':'none';
+  document.getElementById('progress-section').style.display = hasMarkets?'block':'none';
+  document.getElementById('empty-state').style.display = hasMarkets?'none':'block';
+  if(!hasMarkets){ updateProgress(); return; }
+
+  var barEl = document.getElementById('profile-bar-wrap');
+  var hasProfile = !!(S.profile.type || S.profile.audience || S.profile.size);
+  var hiddenCount = 0;
+  CATS.forEach(function(cat){
+    cat.items.forEach(function(item){
+      if(marketMatch(item) && !profileMatch(item)) hiddenCount++;
+    });
+  });
+  if(barEl){
+    if(hasProfile || S.ignoreProfile){
+      var txt = hasProfile
+        ? 'Personalised for: <strong>'+profileLabel()+'</strong>'
+        : 'Showing every check for every business type.';
+      var hiddenTxt = hiddenCount>0 ? (' · '+hiddenCount+' checks hidden as not relevant to your profile') : '';
+      barEl.innerHTML = '<div class="profile-bar no-print"><div class="profile-bar-text">'+txt+hiddenTxt+'</div>'
+        +'<div class="profile-bar-actions">'
+        +(hiddenCount>0 && !S.ignoreProfile ? '<button class="market-link" onclick="toggleIgnoreProfile(true)">Show all</button>' : '')
+        +(S.ignoreProfile ? '<button class="market-link" onclick="toggleIgnoreProfile(false)">Use my profile again</button>' : '')
+        +'<button class="market-link" onclick="goTo(\'checklist\');window.scrollTo({top:0,behavior:\'smooth\'})">Edit profile ↑</button>'
+        +'</div></div>';
+    } else {
+      barEl.innerHTML = '';
+    }
+  }
+
+  var el = document.getElementById('cat-list');
+  var html = '';
+  CATS.forEach(function(cat){
+    var rows = '';
+    var count = 0;
+    cat.items.forEach(function(item, idx){
+      if(!itemApplies(item)) return;
+      count++;
+      var id = itemId(cat.id, idx);
+      var checked = !!S.checked[id];
+      var tag = item.scope==='ALL' ? 'ALL' : item.market;
+      var hasDetail = !!item.detail;
+      rows += '<div class="item">'
+        +'<div class="item-check'+(checked?' on':'')+'" onclick="toggleItem(\''+id+'\')"><svg viewBox="0 0 24 24" fill="none"><polyline points="4 12 9 17 20 6"/></svg></div>'
+        +'<div class="item-body">'
+        +'<div class="item-top"><span class="item-tag tag-'+tag+'">'+tag+'</span></div>'
+        +'<div class="item-text'+(checked?' done':'')+'">'+item.text+'</div>'
+        +(hasDetail?'<span class="item-why" onclick="toggleDetail(this)">Why this matters</span><div class="item-detail">'+item.detail+'</div>':'')
+        +'</div></div>';
+    });
+    if(count===0) return;
+    html += '<div class="cat" id="cat-'+cat.id+'">'
+      +'<div class="cat-head" onclick="toggleCat(\''+cat.id+'\')">'
+      +'<div class="cat-title-wrap"><svg class="cat-icon" viewBox="0 0 24 24">'+ICONS[cat.icon]+'</svg><div class="cat-title">'+cat.title+'</div></div>'
+      +'<div style="display:flex;align-items:center;gap:10px"><span class="cat-count">'+count+' checks</span><svg class="cat-chev" viewBox="0 0 24 24" fill="none"><polyline points="6 9 12 15 18 9"/></svg></div>'
+      +'</div>'
+      +'<div class="cat-body"><div class="cat-body-inner">'
+      +'<div class="theory-box"><div class="box-tag">Theory</div><div class="theory-txt">'+cat.theory+'</div></div>'
+      +rows
+      +'<div class="task-box"><div class="box-tag">Practical task</div><div class="task-txt">'+cat.task+'</div></div>'
+      +'</div></div>'
+      +'</div>';
+  });
+  el.innerHTML = html;
+  // open first category by default
+  var first = el.querySelector('.cat');
+  if(first) first.classList.add('open');
+  updateProgress();
+}
+function toggleCat(id){
+  document.getElementById('cat-'+id).classList.toggle('open');
+}
+function toggleDetail(el){
+  el.nextElementSibling.classList.toggle('show');
+}
+function toggleItem(id){
+  S.checked[id] = !S.checked[id];
+  save();
+  buildChecklist();
+}
+
+function updateProgress(){
+  var total=0, done=0;
+  CATS.forEach(function(cat){
+    cat.items.forEach(function(item, idx){
+      if(!itemApplies(item)) return;
+      total++;
+      if(S.checked[itemId(cat.id, idx)]) done++;
+    });
+  });
+  var pct = total? Math.round(done/total*100) : 0;
+  document.getElementById('progress-text').textContent = done+' of '+total+' checked';
+  document.getElementById('progress-pct').textContent = pct+'%';
+  document.getElementById('progress-bar').style.width = pct+'%';
+}
+
+/* ═══════════════ BUILD: BRIEF ═══════════════ */
+function profileNote(){
+  var lines = [];
+  var t = S.profile.type, a = S.profile.audience, sz = S.profile.size;
+  if(S.ignoreProfile || (!t && !a && !sz)) return '';
+  if(t==='ecommerce') lines.push('As a physical-goods business, treat Payments and Logistics as your highest-leverage categories — checkout localisation and delivery experience affect conversion and repeat purchase directly.');
+  if(t==='saas') lines.push('As a software/digital-services business, VAT reverse-charge rules (B2B) or destination-based digital VAT (B2C), plus a Data Processing Agreement, matter more than local checkout rails — prioritise those over payment-method localisation.');
+  if(t==='services') lines.push('As a professional-services business, contract terms, payment-term norms and formal address in each market matter more than consumer-rights or checkout details, which mostly won\'t apply to B2B work.');
+  if(t==='mixed') lines.push('With a mixed offer, apply the physical-goods checks to your product lines and the services/software checks to the rest of your business — don\'t assume one playbook covers both.');
+  if(a==='b2b') lines.push('Selling B2B, most consumer-protection disclosures narrow to your marketing site rather than your contracts — but VAT reverse-charge and formal-tone requirements still apply in full.');
+  if(a==='b2c') lines.push('Selling direct to consumers, the payment-method and consumer-rights categories are not optional in any market you\'ve selected.');
+  if(sz==='solo' || sz==='small') lines.push('With a small team, resist doing everything before launch — clear Legal & Registration and Payments for your top one or two markets first, then expand.');
+  if(sz==='growing' || sz==='large') lines.push('With a larger team, assign one owner per category rather than treating this as a single person\'s checklist — legal, payments and localisation typically need different owners.');
+  return lines.join(' ');
+}
+function buildBrief(){
+  var el = document.getElementById('brief-content');
+  if(S.markets.length===0){
+    el.innerHTML = '<div class="disclaimer">No markets selected yet. Go to the Checklist tab and pick at least one market to generate your brief.</div>';
+    return;
+  }
+  var html = '<div class="brief-card"><div style="font-family:\'Space Grotesk\',sans-serif;font-size:13px;color:rgba(220,220,220,.5);margin-bottom:4px">Markets selected</div><div style="font-size:16px;font-weight:700;margin-bottom:'+(profileLabel()?'10px':'0')+'">'+S.markets.map(function(k){return MARKETS[k].name}).join(' · ')+'</div>'
+    +(profileLabel() && !S.ignoreProfile ? '<div style="font-size:12px;color:rgba(220,220,220,.5)">Business profile: <strong style="color:var(--cyan)">'+profileLabel()+'</strong></div>' : '')
+    +'</div>';
+
+  var note = profileNote();
+  if(note){
+    html += '<div class="profile-note"><div class="box-tag">For your business profile</div><div class="profile-note-txt">'+note+'</div></div>';
+  }
+
+  S.markets.forEach(function(mk){
+    var rows = '';
+    CATS.forEach(function(cat){
+      var catRows = '';
+      cat.items.forEach(function(item, idx){
+        if(!marketMatchFor(item, mk)) return;
+        if(!profileMatch(item)) return;
+        var id = itemId(cat.id, idx);
+        var checked = !!S.checked[id];
+        catRows += '<div class="brief-item"><span class="bi-mark">'+(checked?'✓':'○')+'</span><span>'+item.text+'</span></div>';
+      });
+      if(catRows){
+        rows += '<div class="brief-cat-title">'+cat.title+'</div>'+catRows;
+      }
+    });
+    html += '<div class="brief-market"><div class="brief-market-title">'+MARKETS[mk].name+'</div>'+rows+'</div>';
+  });
+
+  html += '<div class="brief-market"><div class="brief-market-title" style="color:var(--rose);border-color:rgba(237,62,97,.2)">Outstanding practical tasks</div>';
+  CATS.forEach(function(cat){
+    var hasRelevant = cat.items.some(function(item){ return itemApplies(item); });
+    if(hasRelevant){
+      html += '<div class="brief-task"><strong style="color:rgba(230,230,230,.9)">'+cat.title+':</strong> '+cat.task+'</div>';
+    }
+  });
+  html += '</div>';
+
+  html += '<div class="disclaimer"><strong>Not legal or tax advice.</strong> Confirm current VAT rates, consumer-rights wording and mandatory disclosures with a qualified lawyer or accountant in each market before launch.</div>';
+  el.innerHTML = html;
+}
+
+/* ═══════════════ STARFIELD ═══════════════ */
+function initStarfield(){
+  var c = document.getElementById('starfield');
+  var ctx = c.getContext('2d');
+  var stars = [];
+  function resize(){
+    c.width = window.innerWidth;
+    c.height = document.body.scrollHeight;
+  }
+  function build(){
+    stars = [];
+    var n = Math.floor((c.width*c.height)/9000);
+    for(var i=0;i<n;i++){
+      var r = Math.random();
+      var color = r<0.06?'rgba(0,255,240,':(r<0.12?'rgba(237,62,97,':'rgba(220,220,220,');
+      stars.push({x:Math.random()*c.width, y:Math.random()*c.height, r:Math.random()*1.2+0.3, a:Math.random()*0.5+0.15, color:color});
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    stars.forEach(function(s){
+      ctx.beginPath();
+      ctx.fillStyle = s.color+s.a+')';
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fill();
+    });
+  }
+  resize(); build(); draw();
+  window.addEventListener('resize', function(){ resize(); build(); draw(); });
+  var ro = new ResizeObserver(function(){ resize(); build(); draw(); });
+  ro.observe(document.body);
+}
+
+/* ═══════════════ INIT ═══════════════ */
+load();
+buildPitfalls();
+buildProfileUI();
+buildMarketGrid();
+buildChecklist();
+try{ initStarfield(); }catch(e){}
+</script>
+</body>
+</html>
