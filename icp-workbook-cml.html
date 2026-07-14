@@ -190,7 +190,7 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,.4)}
   if(!token) token = localStorage.getItem('icp_access_token');
 
   if(!token || !/^[a-f0-9]{64}$/.test(token)){
-    window.location.replace('https://celarmarketinglab.com/celar_products.html');
+    window.location.replace('https://celarmarketinglab.com/celar_products.html#modal-icp');
     return;
   }
 
@@ -202,7 +202,7 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,.4)}
     .then(function(data){
       if(!data.valid){
         localStorage.removeItem('icp_access_token');
-        window.location.replace('https://celarmarketinglab.com/celar_products.html');
+        window.location.replace('https://celarmarketinglab.com/celar_products.html#modal-icp');
       }
     })
     .catch(function(){ /* network error — don't block a real buyer */ });
