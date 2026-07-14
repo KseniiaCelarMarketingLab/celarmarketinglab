@@ -65,7 +65,7 @@ export default async function handler(req, res) {
       console.error('Could not verify line items:', err.message);
       // fail open on Stripe API errors — don't block a legitimate buyer
     }
-  } else if (session.client_reference_id && session.client_reference_id !== 'icp-workbook') {
+  } else if (session.client_reference_id && session.client_reference_id !== 'icp') {
     return res.status(200).json({ received: true, skipped: 'not_icp_reference' });
   }
 

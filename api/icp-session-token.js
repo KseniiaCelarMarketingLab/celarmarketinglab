@@ -37,7 +37,7 @@ export default async function handler(req, res) {
   if (expectedPriceId) {
     const matches = (session.line_items?.data || []).some(li => li.price?.id === expectedPriceId);
     if (!matches) return res.status(200).json({ ok: false, reason: 'wrong_product' });
-  } else if (session.client_reference_id && session.client_reference_id !== 'icp-workbook') {
+  } else if (session.client_reference_id && session.client_reference_id !== 'icp') {
     return res.status(200).json({ ok: false, reason: 'wrong_product' });
   }
 
