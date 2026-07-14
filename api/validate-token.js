@@ -1,28 +1,29 @@
-// api/validate-token.js
-import { Redis } from '@upstash/redis';
+// ═══════════════════════════════════════════════════════════
+// Called client-side by every gated product page to confirm a
+// token is real. Same endpoint your SMM Challenge page already
+// calls — no change needed on that page.
+// ═══════════════════════════════════════════════════════════
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+const { redis } = require('../lib/redis');
 
-export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://celarlab.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
+module.exports = async (req, res) => {
+  const token = (req.query.token || '').toString();
 
-  if (req.method !== 'GET') return res.status(405).end();
-
-  const { token } = req.query;
-
-  if (!token || typeof token !== 'string' || !/^[a-f0-9]{64}$/.test(token)) {
+  if (!token || !/^[a-f0-9]{64}$/.test(token)) {
     return res.status(200).json({ valid: false });
   }
 
   try {
-    const data = await redis.get(`smm_token:${token}`);
-    return res.status(200).json({ valid: !!data });
+    const raw = await redis.get(`token:${token}`);
+    if (!raw) return res.status(200).json({ valid: false });
+
+    const data = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    return res.status(200).json({ valid: true, product: data.product });
   } catch (err) {
-    console.error('Redis error:', err);
-    return res.status(200).json({ valid: false, error: true });
+    console.error('validate-token error:', err);
+    // Fail closed here (this is the endpoint that decides access) —
+    // the product pages themselves fail OPEN on network errors so a
+    // real customer never gets blocked by a flaky request.
+    return res.status(200).json({ valid: false, error: 'lookup_failed' });
   }
-}
+};
