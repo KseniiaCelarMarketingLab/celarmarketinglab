@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Content Audit Template — Celar Marketing Lab</title>
+<meta name="description" content="Score everything you've published against the CML framework. Find your recurring gaps. Walk away with a prioritised fix list — not just a diagnosis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B0F2B;
+  --navy2:#0E1333;
+  --cyan:#00FFF0;
+  --purple:#6502A2;
+  --rose:#ED3E61;
+  --lime:#D4FF00;
+  --silver:#DCDCDC;
+  --line:rgba(255,255,255,.09);
+  --panel:rgba(255,255,255,.025);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:var(--silver);font-family:'Poppins',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;color:#F5F5F5}
+.mono{font-family:'JetBrains Mono',monospace}
+a{color:inherit}
+button{font-family:'Poppins',sans-serif;cursor:pointer}
+::selection{background:rgba(0,255,240,.25)}
+
+#star-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+.wrap{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:0 20px 80px;min-height:100vh}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0 18px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:#F5F5F5;letter-spacing:.01em}
+.logo-text span{color:var(--cyan);font-weight:500}
+.exit{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(220,220,220,.5);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:2px;transition:all .2s}
+.exit:hover{color:var(--cyan);border-color:rgba(0,255,240,.35)}
+
+/* PROGRESS */
+.progress{display:flex;gap:6px;margin-bottom:34px}
+.progress-seg{flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.progress-seg i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--rose));transition:width .3s}
+.progress-labels{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(220,220,220,.35);margin-top:8px;margin-bottom:30px}
+.progress-labels span.on{color:var(--cyan)}
+
+/* STEP */
+.step{display:none}
+.step.active{display:block;animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(0,255,240,.55);margin-bottom:14px;font-weight:600}
+.step h1{font-size:clamp(28px,7vw,38px);font-weight:700;line-height:1.05;letter-spacing:-.01em;margin-bottom:14px}
+.step h1 .ghost{color:transparent;-webkit-text-stroke:1.3px rgba(0,255,240,.65)}
+.step .sub{font-size:14px;color:#EBEBEB;line-height:1.7;margin-bottom:26px;max-width:480px}
+.accent{width:36px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--rose));margin-bottom:22px}
+
+/* CARD / PANEL */
+.card{border:1px solid var(--line);background:var(--panel);border-radius:2px;padding:20px;margin-bottom:16px}
+.card-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:#F5F5F5;margin-bottom:4px}
+.card-sub{font-size:12px;color:rgba(220,220,220,.55);margin-bottom:14px;line-height:1.5}
+
+/* BUTTONS */
+.btn{border-radius:2px;border:none;padding:14px 22px;font-size:13px;font-weight:600;letter-spacing:.03em;transition:all .2s;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.btn-primary{background:rgba(0,255,240,.08);border:1.5px solid var(--cyan);color:var(--cyan)}
+.btn-primary:hover{background:rgba(0,255,240,.15);box-shadow:0 0 24px rgba(0,255,240,.18)}
+.btn-primary:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--silver)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-full{width:100%}
+.btn-row{display:flex;gap:10px;margin-top:8px}
+.btn-row .btn{flex:1}
+.btn-text{background:none;border:none;color:rgba(220,220,220,.55);font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.btn-text:hover{color:var(--cyan)}
+
+/* NAV FOOTER (prev/next) */
+.step-nav{display:flex;gap:10px;margin-top:28px}
+.step-nav .btn{flex:1}
+
+/* GOAL CARDS */
+.goal-opt{border:1px solid var(--line);background:var(--panel);padding:18px;border-radius:2px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+.goal-opt:hover{border-color:rgba(255,255,255,.3)}
+.goal-opt.sel{border-color:var(--cyan);background:rgba(0,255,240,.06)}
+.goal-t{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:#F5F5F5;margin-bottom:4px}
+.goal-d{font-size:12px;color:rgba(220,220,220,.6);line-height:1.5}
+
+/* POST ROW (log step) */
+.post-row{border:1px solid var(--line);background:var(--panel);border-radius:2px;padding:16px;margin-bottom:12px;position:relative}
+.post-row-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.post-idx{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,255,240,.6);font-weight:700}
+.post-del{background:none;border:none;color:rgba(220,220,220,.4);font-size:16px;line-height:1;padding:2px 6px}
+.post-del:hover{color:var(--rose)}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:rgba(220,220,220,.45);margin-bottom:5px}
+.field input[type=text],.field select,.field input[type=number]{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.14);color:#F5F5F5;padding:10px 12px;font-size:13px;border-radius:2px;outline:none;font-family:'Poppins',sans-serif}
+.field input:focus,.field select:focus{border-color:var(--cyan)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field-row3{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px}
+.hint{font-size:10.5px;color:rgba(220,220,220,.4);margin-top:10px;line-height:1.5}
+
+/* SCORE UI */
+.score-block{margin-bottom:22px}
+.score-q{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#F5F5F5;margin-bottom:3px}
+.score-rubric{font-size:11.5px;color:rgba(220,220,220,.5);margin-bottom:10px;line-height:1.55}
+.score-row{display:flex;gap:8px}
+.score-btn{flex:1;height:42px;border:1px solid rgba(255,255,255,.15);border-radius:2px;background:rgba(255,255,255,.02);color:rgba(220,220,220,.6);font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.score-btn:hover{border-color:rgba(255,255,255,.35)}
+.score-btn.sel{border-color:var(--cyan);background:rgba(0,255,240,.12);color:var(--cyan)}
+.post-ref{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02);border-radius:2px;padding:14px 16px;margin-bottom:24px}
+.post-ref-label{font-size:13px;color:#F5F5F5;font-weight:600;margin-bottom:6px}
+.post-ref-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:rgba(220,220,220,.5)}
+.post-ref-meta b{color:var(--silver);font-family:'JetBrains Mono',monospace}
+.post-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.post-nav-count{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(220,220,220,.5)}
+.post-nav-btn{background:none;border:1px solid var(--line);color:var(--silver);width:34px;height:34px;border-radius:2px;display:flex;align-items:center;justify-content:center}
+.post-nav-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.post-nav-btn:disabled{opacity:.25;cursor:not-allowed}
+.post-dots{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:20px}
+.post-dot{width:26px;height:4px;border-radius:2px;background:rgba(255,255,255,.12)}
+.post-dot.done{background:var(--cyan)}
+.post-dot.current{background:var(--rose)}
+
+/* DIAGNOSIS */
+.score-big{font-family:'Space Grotesk',sans-serif;font-size:56px;font-weight:700;color:#F5F5F5;line-height:1}
+.score-big span{font-size:22px;color:rgba(220,220,220,.4);font-weight:500}
+.score-tag{font-size:12px;color:var(--cyan);margin-top:6px;font-weight:600}
+.dim-row{display:grid;grid-template-columns:110px 1fr 34px;align-items:center;gap:10px;margin-bottom:12px}
+.dim-label{font-size:12px;color:#F5F5F5}
+.bar-track{height:7px;background:rgba(255,255,255,.08);border-radius:2px;position:relative;overflow:visible}
+.bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--cyan),var(--rose))}
+.bar-target{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--lime)}
+.dim-val{font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(220,220,220,.7);text-align:right}
+.legend{display:flex;gap:16px;font-size:10px;color:rgba(220,220,220,.45);margin:6px 0 20px;align-items:center}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:1px;margin-right:5px;vertical-align:middle}
+.best-worst{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
+.bw-card{border:1px solid var(--line);border-radius:2px;padding:14px;background:var(--panel)}
+.bw-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.bw-card.best .bw-tag{color:var(--cyan)}
+.bw-card.worst .bw-tag{color:var(--rose)}
+.bw-label{font-size:12.5px;color:#F5F5F5;font-weight:600;margin-bottom:2px}
+.bw-score{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(220,220,220,.55)}
+
+/* FIX LIST */
+.fix-item{border:1px solid var(--line);background:var(--panel);border-radius:2px;padding:16px;margin-bottom:12px;display:flex;gap:14px}
+.fix-rank{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:rgba(0,255,240,.35);flex-shrink:0;width:26px}
+.fix-check{flex-shrink:0;width:20px;height:20px;border:1.5px solid rgba(255,255,255,.25);border-radius:2px;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.fix-check.done{background:rgba(0,255,240,.15);border-color:var(--cyan)}
+.fix-check.done:after{content:'✓';color:var(--cyan);font-size:13px;font-weight:700}
+.fix-body.done .fix-title,.fix-body.done .fix-text{opacity:.4;text-decoration:line-through}
+.fix-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#F5F5F5;margin-bottom:5px}
+.fix-text{font-size:12.5px;color:rgba(220,220,220,.65);line-height:1.6}
+
+.cta-panel{border:1px solid rgba(0,255,240,.25);background:rgba(0,255,240,.04);border-radius:2px;padding:22px;margin-top:28px;position:relative;overflow:hidden}
+.cta-panel:before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--rose))}
+.cta-panel-tag{font-size:9px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;font-weight:700;margin-bottom:9px}
+.cta-panel-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;color:#F5F5F5}
+.cta-panel-text{font-size:12.5px;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:16px}
+
+.resume-banner{border:1px solid rgba(212,255,0,.3);background:rgba(212,255,0,.05);border-radius:2px;padding:14px 16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.resume-banner span{font-size:12px;color:#F5F5F5}
+
+.check-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.check-list li{font-size:13px;color:#EBEBEB;display:flex;gap:10px}
+.check-list li:before{content:'→';color:var(--cyan);flex-shrink:0}
+
+footer{text-align:center;padding-top:30px;border-top:1px solid var(--line);margin-top:40px}
+footer p{font-size:11px;color:rgba(220,220,220,.4);line-height:1.8}
+footer a{color:rgba(220,220,220,.6);text-decoration:none}
+footer a:hover{color:var(--cyan)}
+
+@media print{
+  #star-canvas,nav,.progress,.progress-labels,.step-nav,.exit,.no-print{display:none!important}
+  body{background:#fff;color:#111}
+  .step{display:none!important}
+  #print-view{display:block!important}
+}
+#print-view{display:none}
+
+@media (max-width:400px){
+  .field-row3{grid-template-columns:1fr 1fr}
+  .best-worst{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ ACCESS GATE — runs before anything renders ═══ -->
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+
+  function redirectToBuy(){
+    window.location.replace('https://celarmarketinglab.com/celar_products.html');
+  }
+  function cleanUrl(){
+    try{ window.history.replaceState({}, document.title, window.location.pathname); }catch(e){}
+  }
+  function showConfirm(){
+    window.__auditPaymentConfirmed = true;
+  }
+
+  var sessionId = params.get('session_id');
+  var token = params.get('token');
+  if(!token) token = localStorage.getItem('audit_access_token');
+
+  if(sessionId){
+    // Just came back from Stripe — verify directly and unlock instantly
+    fetch('https://celarmarketinglab.com/api/session-token?session_id=' + encodeURIComponent(sessionId))
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if(data.ok && data.token){
+          try{ localStorage.setItem('audit_access_token', data.token); }catch(e){}
+          cleanUrl();
+          showConfirm();
+          window.__auditGateReady = true;
+          document.dispatchEvent(new Event('audit-gate-ready'));
+        } else if(data.reason === 'not_paid'){
+          // Payment still finalising — give it a moment then fall back to email
+          setTimeout(redirectToBuy, 4000);
+        } else {
+          redirectToBuy();
+        }
+      })
+      .catch(function(){
+        // Network hiccup — don't lock out a real buyer, try localStorage token if any
+        if(token && /^[a-f0-9]{64}$/.test(token)){
+          window.__auditGateReady = true;
+          document.dispatchEvent(new Event('audit-gate-ready'));
+        } else {
+          redirectToBuy();
+        }
+      });
+    return;
+  }
+
+  if(!token || !/^[a-f0-9]{64}$/.test(token)){
+    redirectToBuy();
+    return;
+  }
+
+  try{ localStorage.setItem('audit_access_token', token); }catch(e){}
+  if(params.get('token')) cleanUrl();
+
+  // Show the tool immediately (fail open), validate in background
+  window.__auditGateReady = true;
+  document.dispatchEvent(new Event('audit-gate-ready'));
+  fetch('https://celarmarketinglab.com/api/validate-token?token=' + token)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(!data.valid){
+        localStorage.removeItem('audit_access_token');
+        redirectToBuy();
+      }
+    })
+    .catch(function(){ /* network error — don't block a real buyer */ });
+})();
+</script>
+
+<canvas id="star-canvas"></canvas>
+
+<div class="wrap">
+  <nav>
+    <a class="logo" href="celar_products.html">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="16" stroke="url(#g1)" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="10" stroke="url(#g2)" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="4" stroke="url(#g3)" stroke-width="1.5"/>
+        <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+        <defs>
+          <linearGradient id="g1" x1="2" y1="2" x2="34" y2="34"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+          <linearGradient id="g2" x1="8" y1="8" x2="28" y2="28"><stop offset="0%" stop-color="#00FFF0" stop-opacity=".7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity=".7"/></linearGradient>
+          <linearGradient id="g3" x1="14" y1="14" x2="22" y2="22"><stop offset="0%" stop-color="#00FFF0" stop-opacity=".5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity=".5"/></linearGradient>
+        </defs>
+      </svg>
+      <div class="logo-text">Celar<span>Marketing Lab</span></div>
+    </a>
+    <a class="exit" href="celar_products.html">Exit</a>
+  </nav>
+
+  <div class="progress" id="progress-bar"></div>
+  <div class="progress-labels" id="progress-labels"></div>
+
+  <div id="resume-slot"></div>
+
+  <!-- STEP 0 — WELCOME -->
+  <div class="step" id="step-0">
+    <div class="eyebrow">Content Audit Template · Celar Marketing Lab</div>
+    <h1>Score what you've<br>already <span class="ghost">published</span>.</h1>
+    <div class="accent"></div>
+    <p class="sub">A structured framework to audit everything you've posted — and find out exactly what's working, what isn't, and why. No analytics dashboard needed, no guesswork. 15–20 minutes.</p>
+
+    <div class="card">
+      <div class="card-title">What you get</div>
+      <ul class="check-list" style="margin-bottom:0">
+        <li>A scoring framework across hook, message, format fit and CTA</li>
+        <li>A gap-analysis read-out of your actual content mix vs. what converts</li>
+        <li>A prioritised fix list — not just a diagnosis</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">How it works</div>
+      <ul class="check-list" style="margin-bottom:0">
+        <li>Log your last 10–20 posts with their public metrics</li>
+        <li>Score each one against the CML framework</li>
+        <li>Get your gap map and a ranked list of what to fix first</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-color:rgba(255,255,255,.06)">
+      <div class="card-title">Do I need analytics access?</div>
+      <div class="card-sub" style="margin-bottom:0">Basic public metrics are enough — likes, views, comments. No backend access required.</div>
+    </div>
+
+    <button class="btn btn-primary btn-full" onclick="App.start()">Start the audit →</button>
+  </div>
+
+  <!-- STEP 1 — GOAL -->
+  <div class="step" id="step-1">
+    <div class="eyebrow">Step 1 of 5 · Setup</div>
+    <h1>What's this content<br>meant to <span class="ghost">do</span> right now?</h1>
+    <p class="sub">This decides what "good" looks like when we score your format choices later. Pick the one that's true today — not the one that sounds best.</p>
+
+    <div class="goal-opt" data-goal="growth" onclick="App.selectGoal('growth')">
+      <div class="goal-t">Growth — reach new people</div>
+      <div class="goal-d">You need more of the right people finding you. Reach and new followers matter most right now.</div>
+    </div>
+    <div class="goal-opt" data-goal="trust" onclick="App.selectGoal('trust')">
+      <div class="goal-t">Trust — deepen with people who already follow you</div>
+      <div class="goal-d">You have an audience but weak relationships. Comments, replies and returning viewers matter most.</div>
+    </div>
+    <div class="goal-opt" data-goal="sales" onclick="App.selectGoal('sales')">
+      <div class="goal-t">Sales — convert a warm audience</div>
+      <div class="goal-d">People know you. Now you need the content to actually move them toward buying.</div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn btn-ghost" onclick="App.prev()">Back</button>
+      <button class="btn btn-primary" id="btn-step1-next" onclick="App.next()" disabled>Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 — LOG POSTS -->
+  <div class="step" id="step-2">
+    <div class="eyebrow">Step 2 of 5 · Log</div>
+    <h1>Add your last<br>10–20 <span class="ghost">posts</span>.</h1>
+    <p class="sub">One line per post. Pull the numbers straight from the app — likes, comments and saves are usually all public. Reach is optional if you can see it.</p>
+
+    <div id="posts-list"></div>
+    <button class="btn btn-ghost btn-full" onclick="App.addPost()">+ Add a post</button>
+    <p class="hint" id="post-count-hint"></p>
+
+    <div class="step-nav">
+      <button class="btn btn-ghost" onclick="App.prev()">Back</button>
+      <button class="btn btn-primary" id="btn-step2-next" onclick="App.next()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 — SCORE POSTS -->
+  <div class="step" id="step-3">
+    <div class="eyebrow">Step 3 of 5 · Score</div>
+    <h1>Score each post<br>against the <span class="ghost">framework</span>.</h1>
+    <p class="sub">Be honest, not kind. This only works if the scores reflect reality.</p>
+
+    <div class="post-nav">
+      <button class="post-nav-btn" id="post-prev" onclick="App.scorePrev()">‹</button>
+      <div class="post-nav-count mono" id="post-nav-count">Post 1 of 1</div>
+      <button class="post-nav-btn" id="post-next" onclick="App.scoreNext()">›</button>
+    </div>
+    <div class="post-dots" id="post-dots"></div>
+
+    <div class="post-ref" id="post-ref"></div>
+
+    <div id="score-fields"></div>
+
+    <div class="step-nav">
+      <button class="btn btn-ghost" onclick="App.prev()">Back</button>
+      <button class="btn btn-primary" id="btn-step3-next" onclick="App.next()">See my diagnosis →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 — DIAGNOSIS -->
+  <div class="step" id="step-4">
+    <div class="eyebrow">Step 4 of 5 · Diagnose</div>
+    <h1>Your gap <span class="ghost">map</span>.</h1>
+    <p class="sub" id="diag-sub">Here's what the numbers actually say.</p>
+
+    <div class="card">
+      <div class="card-title">Overall audit score</div>
+      <div class="score-big" id="score-big">— <span>/ 100</span></div>
+      <div class="score-tag" id="score-tag"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dimension breakdown</div>
+      <div class="card-sub">Average score across every post you logged, out of 5.</div>
+      <div id="dim-rows"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Content mix</div>
+      <div class="card-sub">Your actual split vs. the recommended weekly mix. The lime marker is the target.</div>
+      <div id="mix-rows"></div>
+      <div class="legend"><i style="background:linear-gradient(90deg,#00FFF0,#ED3E61)"></i>Your actual mix &nbsp;&nbsp;<i style="background:#D4FF00"></i>Recommended target</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Format distribution</div>
+      <div class="card-sub" id="format-sub"></div>
+      <div id="format-rows"></div>
+    </div>
+
+    <div class="card" style="border-color:rgba(255,255,255,.06)">
+      <div class="card-title">Strongest vs. weakest post</div>
+      <div class="best-worst" id="best-worst"></div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn btn-ghost" onclick="App.prev()">Back</button>
+      <button class="btn btn-primary" onclick="App.next()">Get my fix list →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5 — FIX LIST -->
+  <div class="step" id="step-5">
+    <div class="eyebrow">Step 5 of 5 · Fix</div>
+    <h1>Fix these <span class="ghost">first</span>.</h1>
+    <p class="sub">Ranked by impact — highest-leverage fix at the top. Check them off as you make each change.</p>
+
+    <div class="btn-row no-print" style="margin-bottom:20px">
+      <button class="btn btn-ghost" onclick="window.print()">Print / Save as PDF</button>
+      <button class="btn btn-ghost" onclick="App.restart()">Start a new audit</button>
+    </div>
+
+    <div id="fix-list"></div>
+
+    <div class="cta-panel">
+      <div class="cta-panel-tag">Want it done for you</div>
+      <div class="cta-panel-title">A second pair of eyes finds what you can't.</div>
+      <div class="cta-panel-text">This audit shows you the pattern. A free 20-minute call with Celar tells you exactly what to change first, in your specific market — no pitch, just a straight read.</div>
+      <a class="btn btn-primary btn-full" href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" target="_blank" style="text-decoration:none">Book a free consultation →</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© Celar Marketing Lab · <a href="https://celarmarketinglab.com">celarmarketinglab.com</a> · <a href="celar_privacy.html">Privacy Policy</a></p>
+  </footer>
+</div>
+
+<script>
+/* ============ STAR CANVAS ============ */
+(function(){
+  const c=document.getElementById('star-canvas'),ctx=c.getContext('2d');
+  let stars=[],w,h;
+  function resize(){w=c.width=innerWidth;h=c.height=document.documentElement.scrollHeight;}
+  function build(){
+    stars=[];
+    const n=Math.floor((w*h)/9000);
+    for(let i=0;i<n;i++){
+      let color='rgba(255,255,255,';
+      const r=Math.random();
+      if(r<0.08)color='rgba(237,62,97,';
+      else if(r<0.14)color='rgba(0,255,240,';
+      stars.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+.3,a:Math.random()*.6+.2,s:Math.random()*.02+.005,dir:Math.random()<.5?1:-1,color});
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    stars.forEach(st=>{
+      st.a+=st.s*st.dir;
+      if(st.a<=.15||st.a>=.85)st.dir*=-1;
+      ctx.beginPath();
+      ctx.arc(st.x,st.y,st.r,0,7);
+      ctx.fillStyle=st.color+st.a+')';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  resize();build();draw();
+  window.addEventListener('resize',()=>{resize();build();});
+  new ResizeObserver(()=>{resize();build();}).observe(document.body);
+})();
+
+/* ============ DATA ============ */
+const FORMATS=['Reel','Carousel','Story','Static'];
+const PILLARS=['Educate','Humanise','Engage','Promote'];
+const PILLAR_TARGET={Educate:40,Humanise:30,Engage:20,Promote:10};
+const HOOKS=['Bold claim','Counterintuitive','Question','Number','Story opener','Relatable pain','Direct promise','None / generic'];
+const GOAL_FORMAT_BIAS={growth:'Reel',trust:'Story',sales:'Carousel'};
+const GOAL_LABEL={growth:'Growth — reach new people',trust:'Trust — deepen with existing followers',sales:'Sales — convert a warm audience'};
+
+const DIMENSIONS=[
+  {key:'hook',label:'Hook',q:'Does the first line stop the scroll in 3 seconds?',rubric:'1 = generic opener, no reason to keep reading · 3 = mentions the topic but creates no curiosity · 5 = uses a proven hook formula, impossible to scroll past'},
+  {key:'message',label:'Message',q:'Is there one clear, valuable takeaway?',rubric:'1 = no clear point, just vibes · 3 = a point exists but it\'s buried or vague · 5 = one sharp, specific takeaway stated in the first few lines'},
+  {key:'format',label:'Format fit',q:'Is this the right format for the job?',rubric:'1 = wrong format for the goal · 3 = works, but not optimal · 5 = matched precisely — Reel for reach, Carousel for saves, Story for trust, Static for identity'},
+  {key:'cta',label:'CTA',q:'Is the ask matched to how warm the audience is?',rubric:'1 = no CTA, or mismatched (selling on a cold post) · 3 = generic CTA, no real rung · 5 = deliberate ladder rung matched to the moment — passive → conversation → curiosity → direct'}
+];
+
+const STEPS=['Setup','Log','Score','Diagnose','Fix'];
+
+/* ============ STATE ============ */
+const DEFAULT_STATE={step:0,goal:null,posts:[],scoreIdx:0,fixDone:{}};
+let S=JSON.parse(JSON.stringify(DEFAULT_STATE));
+const STORAGE_KEY='cml_content_audit_v1';
+
+function getToken(){
+  try{ return localStorage.getItem('audit_access_token'); }catch(e){ return null; }
+}
+function save(){
+  // Instant local write first
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(Object.assign({}, S, {ts: Date.now()}))); }catch(e){}
+  // Background cloud sync — silent fail, localStorage is the source of truth if this fails
+  const token=getToken();
+  if(!token) return;
+  fetch('https://celarmarketinglab.com/api/audit-progress',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({token:token, progress:S})
+  }).catch(function(){});
+}
+function load(){
+  let local=null;
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(raw){const d=JSON.parse(raw); if(d && d.posts) local=d;}
+  }catch(e){}
+  const token=getToken();
+  if(token){
+    fetch('https://celarmarketinglab.com/api/audit-progress?action=load&token='+token)
+      .then(function(r){return r.json();})
+      .then(function(data){
+        if(data.progress && data.progress.posts){
+          const serverTs=data.progress.ts||0;
+          const localTs=(local&&local.ts)||0;
+          if(serverTs>localTs){
+            S=Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)),data.progress);
+            try{localStorage.setItem(STORAGE_KEY,JSON.stringify(S));}catch(e){}
+            App.goTo(S.step,true);
+          }
+        }
+      })
+      .catch(function(){/* use localStorage data */});
+  }
+  return local;
+}
+function uid(){return 'p'+Math.random().toString(36).slice(2,9);}
+function blankPost(){return {id:uid(),label:'',format:'Reel',pillar:'Educate',hook:'None / generic',likes:'',comments:'',saves:'',reach:'',scores:{hook:0,message:0,format:0,cta:0}};}
+
+/* ============ APP ============ */
+const App={
+  init(){
+    if(window.__auditPaymentConfirmed){
+      document.getElementById('resume-slot').innerHTML=
+        '<div class="resume-banner" style="border-color:rgba(0,255,240,.35);background:rgba(0,255,240,.06)"><span>Payment confirmed — your Content Audit Template is unlocked. A copy of this link was also sent to your email.</span></div>';
+    }
+    const saved=load();
+    if(saved && saved.posts.length){
+      document.getElementById('resume-slot').innerHTML=
+        '<div class="resume-banner"><span>You have a saved audit in progress ('+saved.posts.length+' posts logged).</span>'+
+        '<div style="display:flex;gap:8px"><button class="btn btn-ghost" style="padding:8px 12px;font-size:11px" onclick="App.discardSaved()">Discard</button>'+
+        '<button class="btn btn-primary" style="padding:8px 12px;font-size:11px" onclick="App.resume()">Continue →</button></div></div>';
+    }
+    if(!S.posts.length) S.posts=[blankPost(),blankPost(),blankPost()];
+    this.renderProgress();
+    this.goTo(0,true);
+  },
+  resume(){
+    S=load();
+    document.getElementById('resume-slot').innerHTML='';
+    this.renderProgress();
+    this.goTo(S.step,true);
+  },
+  discardSaved(){
+    try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+    document.getElementById('resume-slot').innerHTML='';
+  },
+  restart(){
+    if(!confirm('Start a brand new audit? This clears your current progress.')) return;
+    try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+    S=JSON.parse(JSON.stringify(DEFAULT_STATE));
+    S.posts=[blankPost(),blankPost(),blankPost()];
+    this.goTo(0,true);
+  },
+  start(){this.next();},
+  goTo(n,skipSave){
+    S.step=n;
+    document.querySelectorAll('.step').forEach(el=>el.classList.remove('active'));
+    document.getElementById('step-'+n).classList.add('active');
+    this.renderProgress();
+    if(n===1) this.renderGoal();
+    if(n===2) this.renderPosts();
+    if(n===3) this.renderScore();
+    if(n===4) this.renderDiagnosis();
+    if(n===5) this.renderFixList();
+    window.scrollTo({top:0,behavior:'instant'});
+    if(!skipSave) save();
+  },
+  next(){
+    if(S.step===2 && this.validPostCount()<3){alert('Log at least 3 posts before scoring — 10–20 gives the most reliable read.');return;}
+    if(S.step===3 && !this.allScored()){alert('Score every post on all four dimensions before continuing.');return;}
+    this.goTo(Math.min(S.step+1,5));
+  },
+  prev(){this.goTo(Math.max(S.step-1,0));},
+
+  renderProgress(){
+    const bar=document.getElementById('progress-bar');
+    const labels=document.getElementById('progress-labels');
+    bar.innerHTML='';labels.innerHTML='';
+    STEPS.forEach((l,i)=>{
+      const seg=document.createElement('div');seg.className='progress-seg';
+      const fill=document.createElement('i');fill.style.width=(i<S.step?'100%':(i===S.step?'50%':'0%'));
+      seg.appendChild(fill);bar.appendChild(seg);
+      const lab=document.createElement('span');lab.textContent=l;if(i<=S.step)lab.className='on';
+      labels.appendChild(lab);
+    });
+  },
+
+  /* STEP 1 — GOAL */
+  selectGoal(g){
+    S.goal=g;
+    document.querySelectorAll('.goal-opt').forEach(el=>el.classList.toggle('sel',el.dataset.goal===g));
+    document.getElementById('btn-step1-next').disabled=false;
+    save();
+  },
+  renderGoal(){
+    document.querySelectorAll('.goal-opt').forEach(el=>el.classList.toggle('sel',el.dataset.goal===S.goal));
+    document.getElementById('btn-step1-next').disabled=!S.goal;
+  },
+
+  /* STEP 2 — LOG POSTS */
+  validPostCount(){return S.posts.filter(p=>p.label.trim().length>0).length;},
+  addPost(){S.posts.push(blankPost());this.renderPosts();save();},
+  removePost(id){
+    if(S.posts.length<=1)return;
+    S.posts=S.posts.filter(p=>p.id!==id);
+    this.renderPosts();save();
+  },
+  updatePost(id,field,val){
+    const p=S.posts.find(p=>p.id===id); if(!p)return;
+    p[field]=val; save();
+    document.getElementById('post-count-hint').textContent=this.hintText();
+  },
+  hintText(){
+    const n=this.validPostCount();
+    if(n<3)return n+' post(s) logged — add at least 3 to continue.';
+    if(n<10)return n+' posts logged. 10–20 gives the most reliable read, but you can continue now.';
+    return n+' posts logged. Good sample size.';
+  },
+  renderPosts(){
+    const list=document.getElementById('posts-list');
+    list.innerHTML='';
+    S.posts.forEach((p,i)=>{
+      const row=document.createElement('div');row.className='post-row';
+      row.innerHTML=
+        '<div class="post-row-top"><span class="post-idx">Post '+(i+1)+'</span>'+
+        '<button class="post-del" onclick="App.removePost(\''+p.id+'\')" title="Remove">✕</button></div>'+
+        '<div class="field"><label>What is it (short label)</label>'+
+        '<input type="text" placeholder="e.g. Reel — behind the scenes of the studio" value="'+p.label.replace(/"/g,'&quot;')+'" onchange="App.updatePost(\''+p.id+'\',\'label\',this.value)"></div>'+
+        '<div class="field-row">'+
+          '<div class="field"><label>Format</label><select onchange="App.updatePost(\''+p.id+'\',\'format\',this.value)">'+
+            FORMATS.map(f=>'<option value="'+f+'" '+(p.format===f?'selected':'')+'>'+f+'</option>').join('')+
+          '</select></div>'+
+          '<div class="field"><label>Content pillar</label><select onchange="App.updatePost(\''+p.id+'\',\'pillar\',this.value)">'+
+            PILLARS.map(pl=>'<option value="'+pl+'" '+(p.pillar===pl?'selected':'')+'>'+pl+'</option>').join('')+
+          '</select></div>'+
+        '</div>'+
+        '<div class="field"><label>Hook style used</label><select onchange="App.updatePost(\''+p.id+'\',\'hook\',this.value)">'+
+          HOOKS.map(h=>'<option value="'+h+'" '+(p.hook===h?'selected':'')+'>'+h+'</option>').join('')+
+        '</select></div>'+
+        '<div class="field-row3">'+
+          '<div class="field"><label>Likes</label><input type="number" min="0" value="'+p.likes+'" onchange="App.updatePost(\''+p.id+'\',\'likes\',this.value)"></div>'+
+          '<div class="field"><label>Comments</label><input type="number" min="0" value="'+p.comments+'" onchange="App.updatePost(\''+p.id+'\',\'comments\',this.value)"></div>'+
+          '<div class="field"><label>Saves</label><input type="number" min="0" value="'+p.saves+'" onchange="App.updatePost(\''+p.id+'\',\'saves\',this.value)"></div>'+
+          '<div class="field"><label>Reach</label><input type="number" min="0" value="'+p.reach+'" onchange="App.updatePost(\''+p.id+'\',\'reach\',this.value)"></div>'+
+        '</div>';
+      list.appendChild(row);
+    });
+    document.getElementById('post-count-hint').textContent=this.hintText();
+  },
+
+  /* STEP 3 — SCORE */
+  renderScore(){
+    if(S.scoreIdx>=S.posts.length) S.scoreIdx=0;
+    const total=S.posts.length;
+    document.getElementById('post-nav-count').textContent='Post '+(S.scoreIdx+1)+' of '+total;
+    document.getElementById('post-prev').disabled=S.scoreIdx===0;
+    document.getElementById('post-next').disabled=S.scoreIdx===total-1;
+
+    const dots=document.getElementById('post-dots');dots.innerHTML='';
+    S.posts.forEach((p,i)=>{
+      const done=DIMENSIONS.every(d=>p.scores[d.key]>0);
+      const dot=document.createElement('div');
+      dot.className='post-dot'+(i===S.scoreIdx?' current':(done?' done':''));
+      dot.style.cursor='pointer';
+      dot.onclick=()=>{S.scoreIdx=i;App.renderScore();};
+      dots.appendChild(dot);
+    });
+
+    const p=S.posts[S.scoreIdx];
+    document.getElementById('post-ref').innerHTML=
+      '<div class="post-ref-label">'+(p.label||'(untitled post)')+'</div>'+
+      '<div class="post-ref-meta">'+
+        '<span>'+p.format+'</span><span>'+p.pillar+'</span>'+
+        '<span>Likes <b>'+(p.likes||0)+'</b></span>'+
+        '<span>Comments <b>'+(p.comments||0)+'</b></span>'+
+        '<span>Saves <b>'+(p.saves||0)+'</b></span>'+
+        (p.reach?('<span>Reach <b>'+p.reach+'</b></span>'):'')+
+      '</div>';
+
+    const container=document.getElementById('score-fields');
+    container.innerHTML='';
+    DIMENSIONS.forEach(dim=>{
+      const block=document.createElement('div');block.className='score-block';
+      const buttons=[1,2,3,4,5].map(n=>
+        '<div class="score-btn'+(p.scores[dim.key]===n?' sel':'')+'" onclick="App.setScore(\''+dim.key+'\','+n+')">'+n+'</div>'
+      ).join('');
+      block.innerHTML='<div class="score-q">'+dim.label+' — '+dim.q+'</div>'+
+        '<div class="score-rubric">'+dim.rubric+'</div>'+
+        '<div class="score-row">'+buttons+'</div>';
+      container.appendChild(block);
+    });
+  },
+  setScore(key,val){
+    S.posts[S.scoreIdx].scores[key]=val;
+    save();this.renderScore();
+  },
+  scorePrev(){if(S.scoreIdx>0){S.scoreIdx--;save();this.renderScore();}},
+  scoreNext(){if(S.scoreIdx<S.posts.length-1){S.scoreIdx++;save();this.renderScore();}},
+  allScored(){return S.posts.every(p=>DIMENSIONS.every(d=>p.scores[d.key]>0));},
+
+  /* DIAGNOSIS CALC */
+  computeDiagnosis(){
+    const posts=S.posts;
+    const dims={};
+    DIMENSIONS.forEach(d=>{dims[d.key]=posts.reduce((s,p)=>s+p.scores[d.key],0)/posts.length;});
+    const overall=Math.round((Object.values(dims).reduce((a,b)=>a+b,0)/DIMENSIONS.length)*20);
+
+    const mixCounts={};PILLARS.forEach(p=>mixCounts[p]=0);
+    posts.forEach(p=>mixCounts[p.pillar]++);
+    const mix={};PILLARS.forEach(p=>mix[p]=Math.round((mixCounts[p]/posts.length)*100));
+
+    const formatCounts={};FORMATS.forEach(f=>formatCounts[f]=0);
+    posts.forEach(p=>formatCounts[p.format]++);
+
+    let best=posts[0],worst=posts[0];
+    posts.forEach(p=>{
+      const avg=(p.scores.hook+p.scores.message+p.scores.format+p.scores.cta)/4;
+      const bestAvg=(best.scores.hook+best.scores.message+best.scores.format+best.scores.cta)/4;
+      const worstAvg=(worst.scores.hook+worst.scores.message+worst.scores.format+worst.scores.cta)/4;
+      if(avg>bestAvg)best=p;
+      if(avg<worstAvg)worst=p;
+    });
+
+    return {overall,dims,mix,formatCounts,best,worst};
+  },
+
+  renderDiagnosis(){
+    const diag=this.computeDiagnosis();
+    S._diag=diag;
+    document.getElementById('score-big').innerHTML=diag.overall+' <span>/ 100</span>';
+    let tag='Needs a rebuild — most posts are working against you.';
+    if(diag.overall>=80)tag='Strong foundation — you\'re close to compounding.';
+    else if(diag.overall>=60)tag='Solid foundation, clear gaps.';
+    else if(diag.overall>=40)tag='Inconsistent — some posts work, most don\'t know why.';
+    document.getElementById('score-tag').textContent=tag;
+    document.getElementById('diag-sub').textContent='Goal: '+GOAL_LABEL[S.goal]+'. Here\'s what your '+S.posts.length+' posts actually say.';
+
+    const dimRows=document.getElementById('dim-rows');dimRows.innerHTML='';
+    DIMENSIONS.forEach(d=>{
+      const val=diag.dims[d.key];
+      const pct=(val/5)*100;
+      const row=document.createElement('div');row.className='dim-row';
+      row.innerHTML='<div class="dim-label">'+d.label+'</div>'+
+        '<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div>'+
+        '<div class="dim-val">'+val.toFixed(1)+'</div>';
+      dimRows.appendChild(row);
+    });
+
+    const mixRows=document.getElementById('mix-rows');mixRows.innerHTML='';
+    PILLARS.forEach(p=>{
+      const actual=diag.mix[p],target=PILLAR_TARGET[p];
+      const row=document.createElement('div');row.className='dim-row';
+      row.innerHTML='<div class="dim-label">'+p+'</div>'+
+        '<div class="bar-track"><div class="bar-fill" style="width:'+actual+'%"></div><div class="bar-target" style="left:'+target+'%"></div></div>'+
+        '<div class="dim-val">'+actual+'%</div>';
+      mixRows.appendChild(row);
+    });
+
+    const biasFormat=GOAL_FORMAT_BIAS[S.goal];
+    document.getElementById('format-sub').textContent='Your goal ('+GOAL_LABEL[S.goal].split(' — ')[0]+') is best served by more '+biasFormat+' posts.';
+    const formatRows=document.getElementById('format-rows');formatRows.innerHTML='';
+    const maxCount=Math.max(...Object.values(diag.formatCounts),1);
+    FORMATS.forEach(f=>{
+      const count=diag.formatCounts[f];
+      const pct=(count/maxCount)*100;
+      const row=document.createElement('div');row.className='dim-row';
+      row.innerHTML='<div class="dim-label">'+f+(f===biasFormat?' ★':'')+'</div>'+
+        '<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div>'+
+        '<div class="dim-val">'+count+'</div>';
+      formatRows.appendChild(row);
+    });
+
+    const avgOf=p=>((p.scores.hook+p.scores.message+p.scores.format+p.scores.cta)/4).toFixed(1);
+    document.getElementById('best-worst').innerHTML=
+      '<div class="bw-card best"><div class="bw-tag">Strongest</div><div class="bw-label">'+(diag.best.label||'Untitled post')+'</div><div class="bw-score mono">Avg '+avgOf(diag.best)+' / 5</div></div>'+
+      '<div class="bw-card worst"><div class="bw-tag">Weakest</div><div class="bw-label">'+(diag.worst.label||'Untitled post')+'</div><div class="bw-score mono">Avg '+avgOf(diag.worst)+' / 5</div></div>';
+  },
+
+  /* FIX LIST GENERATION */
+  generateActions(){
+    const diag=S._diag || this.computeDiagnosis();
+    const actions=[];
+    const dimMeta={
+      hook:{label:'Fix your hooks',text:'Your hooks are the weakest link. Swap generic openers for one of the 7 proven formulas — bold claim, counterintuitive statement, question, number, story opener, relatable pain, or direct promise. Rewrite your next post\'s first line three different ways before picking one.'},
+      message:{label:'Sharpen the message',text:'Your posts don\'t land one clear takeaway. Before writing, finish this sentence: "After reading this, they will know or feel ___." If you can\'t finish it in one line, the post isn\'t ready to publish.'},
+      format:{label:'Match format to the job',text:'You\'re reaching for the wrong format for what you need. Reels earn new reach, carousels earn saves, stories build intimacy with people who already follow you, static posts build identity. Pick the format for the outcome, not the habit.'},
+      cta:{label:'Fix your CTAs',text:'Your calls to action don\'t match how warm the audience is. Use the ladder — passive (save/share) for cold posts, conversation (ask a question) to warm up, curiosity (link in bio) once engaged, direct asks (book a call, DM me) only for your warmest content.'}
+    };
+    const dimOrder=Object.keys(diag.dims).sort((a,b)=>diag.dims[a]-diag.dims[b]);
+    dimOrder.forEach(k=>{ if(diag.dims[k]<4) actions.push({id:'dim-'+k,title:dimMeta[k].label,text:dimMeta[k].text,score:diag.dims[k]}); });
+
+    PILLARS.forEach(p=>{
+      const gap=diag.mix[p]-PILLAR_TARGET[p];
+      if(Math.abs(gap)>=15){
+        actions.push({
+          id:'mix-'+p,
+          title:'Rebalance your content mix — '+p,
+          text: gap>0
+            ? 'You\'re posting '+diag.mix[p]+'% '+p+' content against a recommended '+PILLAR_TARGET[p]+'%. That\'s crowding out the rest of your mix — dial it back.'
+            : 'You\'re posting only '+diag.mix[p]+'% '+p+' content against a recommended '+PILLAR_TARGET[p]+'%. This is a recurring gap, not a one-off.'
+        });
+      }
+    });
+
+    const biasFormat=GOAL_FORMAT_BIAS[S.goal];
+    const total=S.posts.length;
+    const biasCount=diag.formatCounts[biasFormat];
+    const biasPct=Math.round((biasCount/total)*100);
+    const neededPct = S.goal==='trust' ? 30 : 30;
+    if(biasPct<neededPct){
+      actions.push({
+        id:'format-goal',
+        title:'Post more '+biasFormat+'s for your stated goal',
+        text:'Your goal is '+GOAL_LABEL[S.goal].split(' — ')[0].toLowerCase()+', but only '+biasPct+'% of your logged posts are '+biasFormat+'s. That format is what actually drives this outcome — the rest of your content mix should support it, not replace it.'
+      });
+    }
+
+    if(actions.length===0){
+      actions.push({id:'general',title:'Keep doing what\'s working',text:'Nothing here is scoring below a healthy threshold. Your next move is consistency, not a rebuild — protect the posting rhythm that got you here.'});
+    }
+
+    return actions.slice(0,6);
+  },
+
+  renderFixList(){
+    const actions=this.generateActions();
+    const list=document.getElementById('fix-list');
+    list.innerHTML='';
+    actions.forEach((a,i)=>{
+      const done=!!S.fixDone[a.id];
+      const item=document.createElement('div');item.className='fix-item';
+      item.innerHTML='<div class="fix-rank mono">0'+(i+1)+'</div>'+
+        '<div class="fix-check'+(done?' done':'')+'" onclick="App.toggleFix(\''+a.id+'\')"></div>'+
+        '<div class="fix-body'+(done?' done':'')+'"><div class="fix-title">'+a.title+'</div><div class="fix-text">'+a.text+'</div></div>';
+      list.appendChild(item);
+    });
+  },
+  toggleFix(id){
+    S.fixDone[id]=!S.fixDone[id];
+    save();this.renderFixList();
+  }
+};
+
+if(window.__auditGateReady){ App.init(); }
+else{ document.addEventListener('audit-gate-ready', function(){ App.init(); }, {once:true}); }
+</script>
+</body>
+</html>
