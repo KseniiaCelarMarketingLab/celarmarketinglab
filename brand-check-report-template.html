@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Express Brand Check — {{CLIENT_NAME}} | Celar Marketing Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Poppins:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B0F2B; --cyan:#00FFF0; --purple:#6502A2; --rose:#ED3E61; --lime:#D4FF00; --silver:#DCDCDC;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--navy);color:var(--silver);font-family:'Poppins',sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:clamp(28px,6vw,64px) clamp(20px,5vw,32px) 90px}
+
+/* ── HEADER ── */
+.header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:38px;flex-wrap:wrap;gap:16px}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;letter-spacing:.02em}
+.logo span{color:var(--cyan)}
+.meta{text-align:right;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(220,220,220,.45);letter-spacing:.04em;line-height:1.8}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;color:rgba(0,255,240,.55);text-transform:uppercase;margin-bottom:14px}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,5vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.1;text-transform:uppercase;margin-bottom:8px}
+.for-line{font-size:13px;color:rgba(220,220,220,.5);margin-bottom:44px}
+.for-line b{color:var(--silver)}
+
+/* ── ANSWER BLOCK ── */
+.answer-block{border:1px solid rgba(0,255,240,.28);background:rgba(0,255,240,.035);padding:24px 26px;margin-bottom:48px;position:relative}
+.answer-block .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.answer-block .q{font-size:13px;color:rgba(220,220,220,.55);font-style:italic;margin-bottom:12px}
+.answer-block .a{font-size:15px;line-height:1.75;color:var(--silver)}
+
+/* ── SIGNAL CHANNELS (signature element) ── */
+.channel{margin-bottom:44px}
+.channel-head{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.signal-bars{display:flex;align-items:flex-end;gap:3px;height:20px}
+.signal-bars i{display:block;width:5px;border-radius:1px;background:rgba(255,255,255,.12)}
+.signal-bars i:nth-child(1){height:7px}
+.signal-bars i:nth-child(2){height:13px}
+.signal-bars i:nth-child(3){height:20px}
+.sig-strong i{background:var(--cyan);box-shadow:0 0 8px rgba(0,255,240,.5)}
+.sig-mixed i:nth-child(1),.sig-mixed i:nth-child(2){background:var(--lime)}
+.sig-weak i:nth-child(1){background:var(--rose);box-shadow:0 0 8px rgba(237,62,97,.5)}
+
+.channel-title{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
+.channel-status{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-left:auto}
+.status-strong{color:var(--cyan)}
+.status-mixed{color:var(--lime)}
+.status-weak{color:var(--rose)}
+
+.channel-body{font-size:14px;line-height:1.8;color:rgba(220,220,220,.78);padding-left:36px;border-left:1px solid rgba(255,255,255,.06)}
+.channel-body p{margin-bottom:12px}
+.channel-body .observation{margin-top:14px;padding:14px 16px;background:rgba(255,255,255,.02);border-left:2px solid var(--cyan);font-size:13px;color:var(--silver)}
+.channel-body .observation b{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+
+/* ── TOP FIXES ── */
+.fixes-title{font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,255,240,.6);margin-bottom:22px;padding-top:8px;border-top:1px solid rgba(255,255,255,.08)}
+.fix{display:flex;gap:18px;margin-bottom:26px}
+.fix-num{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:transparent;-webkit-text-stroke:1.3px rgba(0,255,240,.55);flex-shrink:0;line-height:1}
+.fix-content{flex:1}
+.fix-problem{font-size:14px;font-weight:600;color:var(--silver);margin-bottom:6px;line-height:1.5}
+.fix-why{font-size:13px;color:rgba(220,220,220,.55);line-height:1.7;margin-bottom:8px}
+.fix-action{font-size:13px;color:var(--cyan);line-height:1.6}
+.fix-action b{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-right:6px;color:rgba(0,255,240,.6)}
+
+/* ── NEXT STEP ── */
+.next{margin-top:56px;border:1px solid rgba(101,2,162,.4);background:rgba(101,2,162,.08);padding:26px 28px;position:relative;overflow:hidden}
+.next::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.next .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(0,255,240,.7);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.next p{font-size:13.5px;line-height:1.75;color:rgba(220,220,220,.8);margin-bottom:16px}
+.next .personal-note{font-size:13px;line-height:1.75;color:var(--silver);padding:14px 16px;background:rgba(255,255,255,.03);border-left:2px solid var(--rose);margin-bottom:18px;display:none}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,240,.08);border:1.5px solid var(--cyan);border-radius:2px;color:#eafffe;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 24px;text-decoration:none;transition:all .25s}
+.cta-btn:hover{background:rgba(0,255,240,.16);box-shadow:0 0 22px rgba(0,255,240,.28)}
+
+/* ── FOOTER ── */
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);text-align:center}
+.footer p{font-size:11px;color:rgba(220,220,220,.35);line-height:1.8}
+.footer a{color:rgba(0,255,240,.5);text-decoration:none}
+.guarantee{font-size:11px;color:rgba(220,220,220,.45);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo">Celar<span>MarketingLab</span></div>
+    <div class="meta">Express Brand Check<br>{{DATE}}</div>
+  </div>
+
+  <div class="eyebrow">Signal report</div>
+  <h1>Brand Check<br>Findings</h1>
+  <p class="for-line">Prepared for <b>{{CLIENT_NAME}}</b> — {{DOMAIN}}</p>
+
+  <!-- ═══ 0. ANSWER TO CLIENT'S KEY QUESTION (delete this block if none was submitted) ═══ -->
+  <div class="answer-block">
+    <div class="tag">Your question, answered first</div>
+    <div class="q">"{{CLIENT_QUESTION}}"</div>
+    <div class="a">{{DIRECT_ANSWER — 2–3 sentences, straight, no hedging}}</div>
+  </div>
+
+  <!-- ═══ 1. POSITIONING ═══ -->
+  <div class="channel">
+    <div class="channel-head">
+      <!-- swap class: sig-strong / sig-mixed / sig-weak -->
+      <div class="signal-bars sig-mixed"><i></i><i></i><i></i></div>
+      <div class="channel-title">Positioning</div>
+      <!-- swap class: status-strong / status-mixed / status-weak -->
+      <div class="channel-status status-mixed">Mixed signal</div>
+    </div>
+    <div class="channel-body">
+      <p>{{What's visible right now — one factual sentence, no judgment}}</p>
+      <p>{{Why this works or doesn't for the target client}}</p>
+      <div class="observation">
+        <b>What you couldn't see from inside</b>
+        {{One specific, non-generic observation}}
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 2. VISUAL CONSISTENCY ═══ -->
+  <div class="channel">
+    <div class="channel-head">
+      <div class="signal-bars sig-strong"><i></i><i></i><i></i></div>
+      <div class="channel-title">Visual Consistency</div>
+      <div class="channel-status status-strong">Strong signal</div>
+    </div>
+    <div class="channel-body">
+      <p>{{What's visible right now}}</p>
+      <p>{{Why this works or doesn't}}</p>
+      <div class="observation">
+        <b>What you couldn't see from inside</b>
+        {{One specific observation}}
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 3. MESSAGING & CTA ═══ -->
+  <div class="channel">
+    <div class="channel-head">
+      <div class="signal-bars sig-weak"><i></i><i></i><i></i></div>
+      <div class="channel-title">Messaging &amp; CTA</div>
+      <div class="channel-status status-weak">Weak signal</div>
+    </div>
+    <div class="channel-body">
+      <p>{{What's visible right now}}</p>
+      <p>{{Why this works or doesn't}}</p>
+      <div class="observation">
+        <b>What you couldn't see from inside</b>
+        {{One specific observation}}
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TOP 3 PRIORITY FIXES ═══ -->
+  <div class="fixes-title">Top 3 priority fixes — ranked by impact</div>
+
+  <div class="fix">
+    <div class="fix-num">01</div>
+    <div class="fix-content">
+      <div class="fix-problem">{{Problem, named plainly}}</div>
+      <div class="fix-why">{{Why this costs the business trust or customers — concrete, not abstract}}</div>
+      <div class="fix-action"><b>First step</b>{{One action, doable in a day}}</div>
+    </div>
+  </div>
+
+  <div class="fix">
+    <div class="fix-num">02</div>
+    <div class="fix-content">
+      <div class="fix-problem">{{Problem}}</div>
+      <div class="fix-why">{{Why it matters}}</div>
+      <div class="fix-action"><b>First step</b>{{Action}}</div>
+    </div>
+  </div>
+
+  <div class="fix">
+    <div class="fix-num">03</div>
+    <div class="fix-content">
+      <div class="fix-problem">{{Problem}}</div>
+      <div class="fix-why">{{Why it matters}}</div>
+      <div class="fix-action"><b>First step</b>{{Action}}</div>
+    </div>
+  </div>
+
+  <!-- ═══ NEXT STEP / ORBIT 1 BRIDGE ═══ -->
+  <div class="next">
+    <div class="tag">What this check doesn't cover</div>
+    <p>This is a focused read on positioning, visual consistency, and messaging — not the full funnel from first touch to sale, a competitor breakdown, or a 90-day plan. That's what's covered in Orbit 1, our full Marketing Audit.</p>
+
+    <!-- Show this personal-note div (set display:block) only if a channel scored weak/mixed and warrants a direct nudge -->
+    <div class="personal-note">{{Optional: 1 personal sentence — "Given [specific finding], I'd recommend starting with Orbit 1 rather than isolated fixes — happy to explain why on a free call."}}</div>
+
+    <a href="https://calendly.com/kseniia-kklsh/20-min-free-consultation" class="cta-btn" target="_blank">Book a free call →</a>
+  </div>
+
+  <div class="footer">
+    <p>© Celar Marketing Lab · <a href="https://celarmarketinglab.com">celarmarketinglab.com</a> · <a href="mailto:kseniia.kklsh@gmail.com">kseniia.kklsh@gmail.com</a></p>
+    <p class="guarantee">If this report didn't give you one new thought about your brand — reply and we'll refund it. No questions asked.</p>
+  </div>
+
+</div>
+</body>
+</html>
