@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checked The Market Size. Not What Changes Per Country - EU Market Entry Checklist | Celar Marketing Lab</title>
+<meta name="description" content="A market-by-market checklist for NL, BE, DE and FR - so you find the local requirement before launch, not after the budget's spent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B0F2B; --navy2:#111533;
+  --cyan:#00FFF0; --purple:#6502A2; --rose:#ED3E61; --lime:#D4FF00;
+  --silver:#DCDCDC; --dim:rgba(220,220,220,.55); --faint:rgba(220,220,220,.28);
+}
+*{box-sizing:border-box; margin:0; padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy); color:var(--silver); font-family:'Poppins',sans-serif; overflow-x:hidden}
+::selection{background:var(--cyan); color:var(--navy)}
+a{color:inherit}
+.wrap{max-width:720px; margin:0 auto; padding:0 28px; position:relative}
+h1,h2{font-family:'Space Grotesk',sans-serif; text-transform:uppercase; line-height:1.02; letter-spacing:-.02em}
+.divider{width:40px; height:2px; background:linear-gradient(90deg,var(--cyan),var(--rose)); margin:20px 0}
+.btn{display:inline-flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:16px 34px; border-radius:2px; cursor:pointer; text-decoration:none; border:1.5px solid rgba(0,255,240,.65); transition:all .25s}
+.btn-primary{background:linear-gradient(135deg,rgba(0,255,240,.14),rgba(101,2,162,.12)); color:#eafffe; text-shadow:0 0 10px rgba(0,255,240,.4); box-shadow:0 0 18px rgba(0,255,240,.16), inset 0 0 16px rgba(0,255,240,.05)}
+.btn-primary:hover{background:linear-gradient(135deg,rgba(0,255,240,.24),rgba(101,2,162,.2)); box-shadow:0 0 28px rgba(0,255,240,.28), inset 0 0 20px rgba(0,255,240,.08)}
+
+/* ── HERO ── */
+.hero{min-height:100vh; display:flex; align-items:center; position:relative; padding:120px 0 80px; overflow:hidden}
+.hero-inner{position:relative; z-index:2; max-width:540px}
+.hero-tag{font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--dim); margin-bottom:22px}
+.hero h1{font-size:clamp(26px,5.2vw,46px); font-weight:700; margin-bottom:26px}
+.hero p.lede{font-size:16px; line-height:1.9; color:#EDEDED; max-width:480px; margin-bottom:36px}
+.scroll-cue{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); display:inline-flex; align-items:center; gap:8px}
+.scroll-cue svg{animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ── ROUTE VISUAL ── */
+.route-visual{position:absolute; top:50%; right:-6%; transform:translateY(-50%); width:clamp(300px,44vw,440px); z-index:1; opacity:.95; pointer-events:none}
+.route-visual svg{width:100%; height:auto; display:block}
+@media(max-width:820px){
+  .route-visual{right:-10%; opacity:.5; width:clamp(240px,62vw,340px)}
+  .hero{padding-top:150px}
+}
+
+/* ── SITE NAV ── */
+.site-nav{position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:18px 28px; background:rgba(11,15,43,.72); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-logo{display:flex; align-items:center; gap:10px; text-decoration:none}
+.nav-logo svg{width:26px; height:26px}
+.nav-logo-text{font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--silver); text-transform:uppercase}
+.nav-links{display:flex; align-items:center; gap:22px}
+.nav-links a{font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); text-decoration:none; transition:color .2s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-back{display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#eafffe !important; border:1px solid rgba(0,255,240,.4); border-radius:2px; padding:8px 16px; transition:all .2s}
+.nav-back:hover{background:rgba(0,255,240,.1); border-color:rgba(0,255,240,.7)}
+@media(max-width:640px){ .nav-links a:not(.nav-back){display:none} .site-nav{padding:14px 18px} }
+
+/* ── SIGNATURE ── */
+.spend-block{margin:18px 0 12px}
+.chart-caption{font-size:13px; color:var(--dim); margin-top:10px; line-height:1.8}
+.chart-caption b{color:#eafffe; font-weight:600}
+
+/* ── SECTIONS ── */
+section{padding:64px 0}
+.chapter-num{font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--rose); margin-bottom:14px; font-weight:700}
+h2{font-size:clamp(22px,3.4vw,32px); font-weight:700; margin-bottom:18px}
+p{font-size:15px; line-height:1.85; color:#E4E4E4}
+p + p{margin-top:14px}
+.pull{font-family:'Space Grotesk',sans-serif; font-size:clamp(18px,2.6vw,24px); font-weight:700; text-transform:none; line-height:1.5; color:#eafffe; margin:22px 0; padding-left:20px; border-left:2px solid var(--cyan)}
+
+.turn{text-align:center; padding:80px 0; position:relative}
+.turn .divider{margin:0 auto 24px}
+.turn h2{font-size:clamp(22px,3.6vw,32px); text-transform:none}
+.turn p{max-width:460px; margin:14px auto 0}
+
+.included{display:grid; gap:12px; margin-top:24px}
+.inc-item{border:1px solid rgba(255,255,255,.08); border-radius:2px; padding:18px 20px; position:relative}
+.inc-item::before{content:'';position:absolute; top:0; left:0; width:2px; height:100%; background:var(--cyan); opacity:.5}
+.inc-n{font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em; color:var(--cyan); text-transform:uppercase; margin-bottom:6px}
+.inc-t{font-size:14px; color:#EDEDED; line-height:1.6}
+
+.how-steps{margin-top:16px; display:flex; flex-direction:column; gap:9px}
+.how-step{display:flex; gap:14px; align-items:flex-start; font-size:14px; color:#E4E4E4; line-height:1.7}
+.how-num{font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:var(--cyan); flex-shrink:0}
+
+.note{border:1px solid rgba(0,255,240,.18); background:rgba(0,255,240,.03); border-radius:2px; padding:24px 26px; margin-top:14px}
+.note-eyebrow{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--cyan); margin-bottom:10px}
+.note p{font-style:italic; color:#EDEDED}
+.note .sig{margin-top:12px; font-size:12px; color:var(--dim); font-style:normal}
+
+.faq-item{border-top:1px solid rgba(255,255,255,.08); padding:18px 0}
+.faq-q{font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:#eafffe; margin-bottom:8px; text-transform:none}
+.faq-a{font-size:13px; color:var(--dim); line-height:1.8}
+
+.final{text-align:center; padding:90px 0 110px; border-top:1px solid rgba(255,255,255,.08); position:relative}
+.final h2{font-size:clamp(24px,4.2vw,36px); text-transform:none}
+.final p{max-width:400px; margin:14px auto 30px}
+.price-line{font-size:12px; color:var(--dim); margin-top:16px}
+.guarantee{font-size:11px; color:var(--dim); margin-top:10px}
+
+.checkout-row{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:26px auto 0; max-width:460px}
+.checkout-input{flex:1; min-width:200px; background:rgba(255,255,255,.05); border:1.5px solid rgba(0,255,240,.3); border-radius:2px; color:#eafffe; font-family:'Poppins',sans-serif; font-size:13px; padding:15px 16px; outline:none; transition:border-color .2s}
+.checkout-input:focus{border-color:rgba(0,255,240,.65)}
+
+footer{padding:30px 0 50px; text-align:center; font-size:11px; color:var(--faint)}
+footer a{color:var(--faint); text-decoration:none}
+
+/* ── STARFIELD ── */
+#starfield{position:fixed; inset:0; z-index:0; pointer-events:none}
+body > *:not(#starfield){position:relative; z-index:1}
+
+/* ── COSMIC ACCENTS (ship on arc + cleared badge) ── */
+.cosmic-accent{position:absolute; z-index:0; pointer-events:none; opacity:.55; overflow:visible}
+.cosmic-accent svg{width:100%; height:auto; display:block; overflow:visible}
+.cosmic-accent-1{left:-40px; top:-10px; width:200px; height:140px}
+.cosmic-accent-2{right:-40px; bottom:-20px; width:150px}
+@media(max-width:640px){ .cosmic-accent{opacity:.32} .cosmic-accent-1{width:150px} .cosmic-accent-2{width:110px} }
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="site-nav">
+  <a href="https://celarmarketinglab.com/celar.html" class="nav-logo">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="16" stroke="url(#ng1)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="10" stroke="url(#ng2)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="4" stroke="url(#ng3)" stroke-width="1.5"/>
+      <circle cx="18" cy="18" r="1.5" fill="#00FFF0"/>
+      <defs>
+        <linearGradient id="ng1" x1="2" y1="2" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0"/><stop offset="100%" stop-color="#ED3E61"/></linearGradient>
+        <linearGradient id="ng2" x1="8" y1="8" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.7"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.7"/></linearGradient>
+        <linearGradient id="ng3" x1="14" y1="14" x2="22" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00FFF0" stop-opacity="0.5"/><stop offset="100%" stop-color="#ED3E61" stop-opacity="0.5"/></linearGradient>
+      </defs>
+    </svg>
+    <span class="nav-logo-text">Celar Marketing Lab</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://celarmarketinglab.com/celar_services.html">Services</a>
+    <a href="https://celarmarketinglab.com/celar_cases.html">Cases</a>
+    <a href="https://celarmarketinglab.com/celar_products.html" class="nav-back">&larr; Back to Products</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="route-visual" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <defs>
+        <filter id="wGlow" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="6"/>
+        </filter>
+      </defs>
+
+      <!-- route lines, drawing in sequentially -->
+      <g fill="none" stroke="rgba(0,255,240,.5)" stroke-width="1.4" stroke-linecap="round">
+        <line x1="95" y1="120" x2="150" y2="205" stroke-dasharray="105" stroke-dashoffset="105">
+          <animate attributeName="stroke-dashoffset" from="105" to="0" dur=".7s" begin="0.3s" fill="freeze"/>
+        </line>
+        <line x1="150" y1="205" x2="270" y2="150" stroke-dasharray="135" stroke-dashoffset="135">
+          <animate attributeName="stroke-dashoffset" from="135" to="0" dur=".7s" begin="1.1s" fill="freeze"/>
+        </line>
+        <line x1="270" y1="150" x2="210" y2="280" stroke-dasharray="145" stroke-dashoffset="145">
+          <animate attributeName="stroke-dashoffset" from="145" to="0" dur=".7s" begin="1.9s" fill="freeze"/>
+        </line>
+      </g>
+
+      <!-- waypoints, each checked off as the route reaches it -->
+      <!-- NL -->
+      <circle cx="95" cy="120" r="5" fill="#00FFF0" opacity=".9"/>
+      <text x="95" y="105" text-anchor="middle" font-size="11" fill="#eafffe" font-family="Space Grotesk" font-weight="700">NL</text>
+      <path d="M87,120 L93,126 L104,113" fill="none" stroke="#00FFF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26">
+        <animate attributeName="stroke-dashoffset" from="26" to="0" dur=".3s" begin="0.15s" fill="freeze"/>
+      </path>
+
+      <!-- BE -->
+      <circle cx="150" cy="205" r="5" fill="#00FFF0" opacity="0">
+        <animate attributeName="opacity" from="0" to=".9" dur=".3s" begin="1s" fill="freeze"/>
+      </circle>
+      <text x="150" y="190" text-anchor="middle" font-size="11" fill="#eafffe" font-family="Space Grotesk" font-weight="700" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur=".3s" begin="1s" fill="freeze"/>BE
+      </text>
+      <path d="M142,205 L148,211 L159,198" fill="none" stroke="#00FFF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26">
+        <animate attributeName="stroke-dashoffset" from="26" to="0" dur=".3s" begin="1.05s" fill="freeze"/>
+      </path>
+
+      <!-- DE -->
+      <circle cx="270" cy="150" r="5" fill="#00FFF0" opacity="0">
+        <animate attributeName="opacity" from="0" to=".9" dur=".3s" begin="1.8s" fill="freeze"/>
+      </circle>
+      <text x="270" y="135" text-anchor="middle" font-size="11" fill="#eafffe" font-family="Space Grotesk" font-weight="700" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur=".3s" begin="1.8s" fill="freeze"/>DE
+      </text>
+      <path d="M262,150 L268,156 L279,143" fill="none" stroke="#00FFF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26">
+        <animate attributeName="stroke-dashoffset" from="26" to="0" dur=".3s" begin="1.85s" fill="freeze"/>
+      </path>
+
+      <!-- FR - final, cleared for launch -->
+      <circle cx="210" cy="280" r="6" fill="#00FFF0" opacity="0" filter="url(#wGlow)">
+        <animate attributeName="opacity" from="0" to=".7" dur=".4s" begin="2.6s" fill="freeze"/>
+      </circle>
+      <circle cx="210" cy="280" r="5" fill="#eafffe" opacity="0">
+        <animate attributeName="opacity" from="0" to=".95" dur=".3s" begin="2.6s" fill="freeze"/>
+      </circle>
+      <text x="210" y="265" text-anchor="middle" font-size="11" fill="#eafffe" font-family="Space Grotesk" font-weight="700" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur=".3s" begin="2.6s" fill="freeze"/>FR
+      </text>
+      <path d="M202,280 L208,286 L219,273" fill="none" stroke="#00FFF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26">
+        <animate attributeName="stroke-dashoffset" from="26" to="0" dur=".3s" begin="2.65s" fill="freeze"/>
+      </path>
+      <text x="210" y="310" text-anchor="middle" font-size="9" fill="rgba(0,255,240,.7)" font-family="Poppins" font-weight="700" opacity="0" letter-spacing="1">
+        <animate attributeName="opacity" from="0" to="1" dur=".4s" begin="3s" fill="freeze"/>CLEARED
+      </text>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-tag">For founders expanding into NL, BE, DE or FR without a local team</div>
+      <h1>You checked the market size. You didn't check what actually changes per country.</h1>
+      <p class="lede">A launch budget already spent is a hard thing to get back once you find the requirement you missed.</p>
+      <a href="#chapter1" class="scroll-cue">Keep reading
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="chapter1">
+    <div class="chapter-num">Chapter 1</div>
+    <h2>Found out too late</h2>
+    <p>Same campaign, four markets, one language file - and only after launch does someone mention the local language law, or that the platform everyone uses in one country barely gets touched in the next, or that the tone that works in one market reads as arrogant in another.</p>
+
+    <div class="spend-block">
+      <svg viewBox="0 0 500 110" style="width:100%;height:auto">
+        <line x1="0" y1="90" x2="500" y2="90" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+        <rect x="20" y="30" width="380" height="14" fill="#00FFF0" opacity=".7"/>
+        <rect x="20" y="30" width="380" height="14" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+        <line x1="360" y1="15" x2="360" y2="55" stroke="#ED3E61" stroke-width="2"/>
+        <text x="360" y="10" text-anchor="middle" font-size="10" fill="#ED3E61" font-family="Poppins" font-weight="700">Requirement found here</text>
+        <text x="20" y="70" font-size="9" fill="rgba(220,220,220,.4)" font-family="Poppins">Budget spent →</text>
+      </svg>
+    </div>
+    <p class="chart-caption">Most of the budget was already gone by the time this got <b>noticed</b>.</p>
+  </section>
+
+  <div class="turn">
+    <div class="cosmic-accent cosmic-accent-1" aria-hidden="true">
+      <svg viewBox="0 0 200 140">
+        <path id="shipArc" d="M10,120 Q100,10 190,110" fill="none" stroke="rgba(237,62,97,.2)" stroke-width="1"/>
+        <g>
+          <path d="M0,0 L10,4 L0,8 L3,4 Z" fill="#ED3E61" style="filter:drop-shadow(0 0 4px #ED3E61)"/>
+          <animateMotion dur="9s" repeatCount="indefinite" rotate="auto">
+            <mpath href="#shipArc"/>
+          </animateMotion>
+        </g>
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <h2>This isn't about translation.</h2>
+    <p>It's about what's actually different per market - compliance, tone, and which platforms people even use there.</p>
+  </div>
+
+  <section id="chapter2">
+    <div class="chapter-num">Chapter 2</div>
+    <h2>EU Market Entry Checklist</h2>
+    <p class="pull">Everything to check before you launch across NL, BE, DE or FR - not after.</p>
+    <p>A market-by-market checklist built for founders entering the EU without a local team in every country.</p>
+
+    <div class="included">
+      <div class="inc-item">
+        <div class="inc-n">Market-by-market</div>
+        <div class="inc-t">NL, BE, DE, FR - language, compliance, channel norms, one checklist each.</div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-n">Localisation pitfalls</div>
+        <div class="inc-t">The mistakes most non-EU brands miss, flagged before launch.</div>
+      </div>
+      <div class="inc-item">
+        <div class="inc-n">Channel notes</div>
+        <div class="inc-t">What actually works per market, platform by platform.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:30px">
+      <div class="chapter-num" style="margin-bottom:6px">How it works</div>
+      <div class="how-steps">
+        <div class="how-step"><span class="how-num">01</span>Pick your target market(s) from the checklist.</div>
+        <div class="how-step"><span class="how-num">02</span>Work through each localisation and compliance point.</div>
+        <div class="how-step"><span class="how-num">03</span>Launch knowing what actually needs to change per market.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="note">
+      <div class="note-eyebrow">Why this exists</div>
+      <p>"I kept seeing the same campaign launched in four markets with one language file, and the same pitfalls every time. So I wrote them down, market by market."</p>
+      <div class="sig">- Kseniia, Founder, Celar Marketing Lab</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="chapter-num">Before you start</div>
+    <h2 style="font-size:20px; text-transform:none">A couple of honest questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Does this replace legal advice?</div>
+      <div class="faq-a">No - it's a marketing and localisation checklist, not legal counsel. It flags what to check, not a substitute for a lawyer.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if it's not for me?</div>
+      <div class="faq-a">7-day money-back guarantee, no questions asked.</div>
+    </div>
+  </section>
+
+  <div class="final">
+    <div class="cosmic-accent cosmic-accent-2" aria-hidden="true">
+      <svg viewBox="0 0 150 150">
+        <circle cx="75" cy="75" r="30" fill="none" stroke="#00FFF0" stroke-width="1.4" opacity=".6"/>
+        <path d="M60,76 L70,86 L92,62" fill="none" stroke="#00FFF0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <animate attributeName="opacity" values="1;.4;1" dur="2.6s" repeatCount="indefinite"/>
+        </path>
+      </svg>
+    </div>
+    <div class="divider" style="margin:0 auto 22px"></div>
+    <h2>Launch knowing what's different, market by market.</h2>
+    <p>Check it before you spend the budget, not after.</p>
+
+    <div class="checkout-row">
+      <input id="story-email" type="email" placeholder="your@email.com" class="checkout-input"
+        onkeydown="if(event.key==='Enter')goToStripeStory()" />
+      <button class="btn btn-primary" onclick="goToStripeStory()">Get Full Access - €49 →</button>
+    </div>
+
+    <div class="price-line">One-time payment - your checklist link sent to your email within minutes</div>
+    <div class="guarantee">7-day money-back guarantee - no questions asked</div>
+  </div>
+
+</div>
+
+<footer>
+  © Celar Marketing Lab · <a href="https://celarmarketinglab.com">celarmarketinglab.com</a> · <a href="https://celarmarketinglab.com/celar_privacy.html">Privacy Policy</a>
+</footer>
+
+<script>
+(function(){
+  var c = document.getElementById('starfield');
+  if(c){
+    var ctx = c.getContext('2d');
+    var stars = [];
+    function sizeCanvas(){ c.width = window.innerWidth; c.height = document.body.scrollHeight; }
+    function makeStars(){
+      stars = [];
+      var count = Math.floor((c.width * c.height) / 9000);
+      for(var i=0; i<count; i++){
+        stars.push({ x: Math.random()*c.width, y: Math.random()*c.height, r: Math.random()*1.1 + .2, base: Math.random()*.5 + .15, phase: Math.random()*Math.PI*2 });
+      }
+    }
+    function draw(t){
+      ctx.clearRect(0,0,c.width,c.height);
+      for(var i=0; i<stars.length; i++){
+        var s = stars[i];
+        var tw = s.base + Math.sin(t/1800 + s.phase) * .18;
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(255,255,255,' + Math.max(tw,0) + ')'; ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    sizeCanvas(); makeStars();
+    window.addEventListener('resize', function(){ sizeCanvas(); makeStars(); });
+    requestAnimationFrame(draw);
+  }
+})();
+
+function isValidEmailStory(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function goToStripeStory(){
+  var emailInput = document.getElementById('story-email');
+  var email = emailInput ? emailInput.value.trim() : '';
+  if(!isValidEmailStory(email)){
+    if(emailInput){ emailInput.style.borderColor = '#ED3E61'; emailInput.focus(); }
+    return;
+  }
+  fetch('https://api.web3forms.com/submit', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({access_key:'YOUR_WEB3FORMS_KEY', subject:'EU Market Entry Checklist checkout (story landing)', email: email, name:'Checkout'})
+  }).catch(function(){});
+  var link = 'https://buy.stripe.com/dRm8wO5aa4Qtcsn1570Jq0i';
+  var sep = link.indexOf('?') > -1 ? '&' : '?';
+  window.location.href = link + sep + 'prefilled_email=' + encodeURIComponent(email) + '&client_reference_id=eu-checklist';
+}
+</script>
+
+</body>
+</html>
