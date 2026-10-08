@@ -1,0 +1,57 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog-:slug.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/celar.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/celar_services.html",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/celar_products.html",
+      "destination": "/academy",
+      "permanent": true
+    },
+    {
+      "source": "/celar_cases.html",
+      "destination": "/cases",
+      "permanent": true
+    },
+    {
+      "source": "/celar_blog.html",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/celar_privacy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/celar_(.*)_story.html",
+      "destination": "/academy",
+      "permanent": true
+    },
+    {
+      "source": "/blog-:slug",
+      "destination": "/blog/:slug",
+      "permanent": true
+    }
+  ]
+}
