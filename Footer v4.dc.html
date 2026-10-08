@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>@keyframes celarDraw{0%{stroke-dashoffset:300;opacity:0}15%{opacity:1}55%{stroke-dashoffset:0;opacity:1}85%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}@keyframes celarTwinkle{0%,100%{opacity:.35}50%{opacity:1}}@keyframes celarComet{0%{transform:translate(-120px,-60px);opacity:0}10%{opacity:1}40%{transform:translate(520px,200px);opacity:0}100%{transform:translate(520px,200px);opacity:0}}</style></helmet>
+<footer style="position:relative;overflow:hidden;background:#0b1024;color:#f4f1ea;font-family:'Chakra Petch',Helvetica,Arial,sans-serif">
+<div style="position:absolute;left:50%;bottom:-400px;width:1400px;height:900px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse at 50% 0%,rgba(110,200,255,.5),rgba(140,90,255,.25) 30%,transparent 60%);pointer-events:none"></div>
+<div style="position:absolute;left:50%;bottom:-600px;width:1300px;height:1100px;transform:translateX(-50%);border-radius:50%;background:#0b1024;box-shadow:0 -2px 0 rgba(170,235,255,.85),0 -20px 80px rgba(110,150,255,.35);pointer-events:none"></div>
+<div style="max-width:1320px;margin:0 auto;padding:140px 32px 48px;position:relative;display:flex;flex-direction:column;gap:120px">
+<div id="contact" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px 64px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:24px">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(36px,5vw,68px);line-height:1;letter-spacing:-.02em;text-wrap:balance">Let’s talk about your marketing.</h2>
+<p style="margin:0;font-size:19px;line-height:1.55;color:#c9ccd6;max-width:480px">Tell us about your business and what you need. We reply within one working day with a first suggestion and a time for a free 20-minute call.</p>
+<div style="position:relative;width:100%;max-width:420px;aspect-ratio:1/1;margin-top:8px">{{ orbit }}</div>
+</div>
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{ submit }}" style="border-radius:28px;padding:32px;background:rgba(11,16,36,.7);backdrop-filter:blur(10px);border:1px solid rgba(94,231,255,.35);box-shadow:0 0 60px rgba(94,231,255,.1);display:flex;flex-direction:column;gap:16px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px">
+<label style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:#c9ccd6">Name<input required="{{ true }}" name="name" value="{{ f.name }}" onChange="{{ set.name }}" style="font-family:'Chakra Petch',sans-serif;font-size:16px;color:#f4f1ea;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px 16px;outline:none" style-focus="border-color:#5ee7ff"></input></label>
+<label style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:#c9ccd6">Email<input required="{{ true }}" type="email" name="email" value="{{ f.email }}" onChange="{{ set.email }}" style="font-family:'Chakra Petch',sans-serif;font-size:16px;color:#f4f1ea;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px 16px;outline:none" style-focus="border-color:#5ee7ff"></input></label>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:#c9ccd6">What do you need?
+<div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ topics }}" as="t" hint-placeholder-count="7"><button type="button" onClick="{{ t.toggle }}" style="font-family:'Chakra Petch',sans-serif;font-size:14px;font-weight:500;cursor:pointer;padding:9px 14px;border-radius:999px;border:1px solid {{ t.line }};background:{{ t.bg }};color:{{ t.ink }}">{{ t.label }}</button></sc-for></div>
+</div>
+<label style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:#c9ccd6">Tell us a bit more<textarea name="message" rows="4" value="{{ f.message }}" onChange="{{ set.message }}" style="font-family:'Chakra Petch',sans-serif;font-size:16px;color:#f4f1ea;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px 16px;outline:none;resize:vertical" style-focus="border-color:#5ee7ff"></textarea></label>
+<sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;color:#ff8fcf">Something went wrong. Please try again.</span></sc-if>
+<button type="submit" disabled="{{ sending }}" style="font-family:'Chakra Petch',sans-serif;font-size:16px;font-weight:600;cursor:pointer;color:#03141c;background:#5ee7ff;border:0;padding:16px 28px;border-radius:999px;box-shadow:0 0 30px rgba(94,231,255,.5);align-self:flex-start">{{ btnLabel }}</button>
+<span style="font-size:13px;line-height:1.5;color:#a3a7b5">We use your details only to reply to your request. <a href="https://celarmarketinglab.com/celar_privacy.html" target="_blank">Privacy policy</a></span>
+</form>
+</sc-if>
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+<div style="border-radius:28px;padding:40px;background:rgba(11,16,36,.7);border:1px solid rgba(94,231,255,.5);display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+<span style="width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#f2fdff,#7fe9ff 30%,#1a5f8c 82%);box-shadow:0 0 30px rgba(94,231,255,.6)"></span>
+<span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:28px">Thank you!</span>
+<span style="font-size:16px;line-height:1.6;color:#d6d8e0">Your request is on its way. We’ll reply within one working day.</span>
+</div>
+</sc-if>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:36px;padding-top:36px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;line-height:1.9">
+<div style="display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><img src="celar-mark.png" alt="" style="width:28px;height:auto"><span style="font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:700;letter-spacing:.14em">CELAR</span></div><span style="color:#e4e6ee;line-height:1.6">Marketing studio in the Netherlands, working with brands across Europe.</span></div>
+<div style="display:flex;flex-direction:column"><span style="color:#e4e6ee;margin-bottom:6px">Studio</span><a href="Services v4.dc.html" style="color:#f4f1ea;text-decoration:none">Services</a><a href="Blog v4.dc.html" style="color:#f4f1ea;text-decoration:none">Blog</a><a href="Cases v4.dc.html" style="color:#f4f1ea;text-decoration:none">Cases</a><a href="EU Market Entry v4.dc.html" style="color:#f4f1ea;text-decoration:none">EU Market Entry</a><a href="About v4.dc.html" style="color:#f4f1ea;text-decoration:none">About</a></div>
+<div style="display:flex;flex-direction:column"><span style="color:#e4e6ee;margin-bottom:6px">Elsewhere</span><a href="Academy v4.dc.html" style="color:#f4f1ea;text-decoration:none">Celar Academy</a><a href="https://kseniiamarketing.eu/" style="color:#f4f1ea;text-decoration:none">Work 1:1</a><a href="https://www.linkedin.com/company/celar-marketing-lab/" style="color:#f4f1ea;text-decoration:none">LinkedIn</a><a href="https://www.instagram.com/celar_marketing_lab" style="color:#f4f1ea;text-decoration:none">Instagram</a></div>
+<div style="display:flex;flex-direction:column;color:#e4e6ee;font-size:13px;line-height:1.8"><span style="margin-bottom:6px;font-size:14px">Company</span><span>Celar Marketing Lab</span><span>Utrecht, The Netherlands</span><a href="mailto:kseniia.kklsh@gmail.com" style="color:#e4e6ee">kseniia.kklsh@gmail.com</a></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px 28px;font-size:13px;color:#e4e6ee"><span>© 2026 Celar Marketing Lab</span><a href="https://celarmarketinglab.com/celar_privacy.html" style="color:#e4e6ee">Privacy</a></div>
+</div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1320px&quot;,&quot;height&quot;:&quot;760px&quot;}}">class Component extends DCLogic {
+  state = { f: { name:"", email:"", message:"" }, topics: [], status: "idle" };
+  onService = (e) => this.setState(st => ({ f: { ...st.f, message: "I’m interested in: " + e.detail + ". " } }));
+  componentDidMount() { window.addEventListener("celar-service", this.onService); }
+  componentWillUnmount() { window.removeEventListener("celar-service", this.onService); }
+  topicList = ["Audit","Strategy","Social media","Production","Ads & website","Analytics","EU market entry","Not sure yet"];
+  async send(e) {
+    e.preventDefault();
+    this.setState({ status: "sending" });
+    try {
+      const r = await fetch("https://formsubmit.co/ajax/kseniia.kklsh@gmail.com", {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...this.state.f, needs: this.state.topics.join(", ") || "—", _subject: "New request from celarmarketinglab.com", _template: "table" })
+      });
+      this.setState({ status: r.ok ? "sent" : "error" });
+    } catch (err) { this.setState({ status: "error" }); }
+  }
+  buildOrbit() {
+    const e = React.createElement;
+    const P = [[60,300],[120,210],[95,120],[190,160],[230,80],[270,230],[330,140],[350,290],[210,320],[160,250]];
+    const C = ['#5ee7ff','#b88cff','#ffc85e','#ff8fcf'];
+    const L = [[0,1],[1,2],[1,3],[2,3],[3,4],[3,5],[4,6],[5,6],[5,7],[5,8],[8,9],[9,1],[6,7]];
+    const lines = L.map(([a,b],i) => {
+      const [x1,y1]=P[a],[x2,y2]=P[b];
+      return e('g',{key:'l'+i},
+        e('line',{x1,y1,x2,y2,stroke:'rgba(160,200,255,.14)',strokeWidth:1}),
+        e('line',{x1,y1,x2,y2,stroke:C[i%4],strokeWidth:1.4,strokeLinecap:'round',strokeDasharray:300,style:{animation:`celarDraw 7s ease-in-out ${(i*0.45).toFixed(2)}s infinite`,filter:`drop-shadow(0 0 4px ${C[i%4]})`}}),
+        i%3===0 ? e('circle',{r:2.5,fill:'#fff',style:{filter:'drop-shadow(0 0 6px #fff)'}}, e('animateMotion',{path:`M${x1},${y1} L${x2},${y2}`,dur:(2.5+i%4*.6)+'s',repeatCount:'indefinite',begin:(i*.3)+'s'})) : null);
+    });
+    const stars = P.map(([x,y],i) => e('g',{key:'s'+i},
+      e('circle',{cx:x,cy:y,r:i===5?9:5,fill:'none',stroke:C[i%4],strokeOpacity:.5,style:{animation:`celarTwinkle ${2+i%3}s ease-in-out ${i*.3}s infinite`}}),
+      e('circle',{cx:x,cy:y,r:i===5?4:2.6,fill:i===5?'#fff':C[i%4],style:{filter:`drop-shadow(0 0 6px ${C[i%4]})`}})));
+    let seed = 7; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
+    const dust = Array.from({length:40},(_,i)=>e('circle',{key:'d'+i,cx:rnd()*400,cy:rnd()*400,r:rnd()*1.1+.3,fill:'#dfe8ff',style:{animation:`celarTwinkle ${2+rnd()*4}s ease-in-out ${rnd()*4}s infinite`}}));
+    const comets = [0,1].map(i => e('g',{key:'c'+i,style:{animation:`celarComet ${9+i*4}s linear ${i*4.5}s infinite`}},
+      e('line',{x1:0,y1:30+i*90,x2:-70,y2:30+i*90-35,stroke:'url(#celarTail)',strokeWidth:2,strokeLinecap:'round'}),
+      e('circle',{cx:0,cy:30+i*90,r:2.2,fill:'#fff',style:{filter:'drop-shadow(0 0 6px #5ee7ff)'}})));
+    return e('svg',{viewBox:'0 0 400 400',width:'100%',height:'100%',style:{overflow:'visible'}},
+      e('defs',null,e('linearGradient',{id:'celarTail',x1:'1',y1:'0',x2:'0',y2:'0'},e('stop',{offset:'0',stopColor:'#5ee7ff',stopOpacity:0.9}),e('stop',{offset:'1',stopColor:'#5ee7ff',stopOpacity:0}))),
+      dust, comets, lines, stars,
+      e('text',{x:282,y:236,fill:'#e4e6ee',fontSize:11,fontFamily:'Chakra Petch, sans-serif',letterSpacing:2},'YOU'));
+  }
+  renderVals() {
+    const { f, topics, status } = this.state;
+    const field = (k) => (e) => { const v = e.target.value; this.setState(s => ({ f: { ...s.f, [k]: v } })); };
+    return {
+      orbit: this._orbit || (this._orbit = this.buildOrbit()),
+      f, notSent: status !== "sent", sent: status === "sent", hasError: status === "error", sending: status === "sending",
+      btnLabel: status === "sending" ? "Sending…" : "Send request",
+      submit: (e) => this.send(e),
+      set: { name: field("name"), email: field("email"), message: field("message") },
+      topics: this.topicList.map(t => { const on = topics.includes(t); return { label: t, bg: on ? "#5ee7ff" : "rgba(255,255,255,.04)", ink: on ? "#03141c" : "#f4f1ea", line: on ? "#5ee7ff" : "rgba(255,255,255,.16)",
+        toggle: () => this.setState(s => ({ topics: s.topics.includes(t) ? s.topics.filter(x => x !== t) : [...s.topics, t] })) }; })
+    };
+  }
+}</script>
+</body>
+</html>

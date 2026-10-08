@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Celar Marketing Lab</title>
+<meta name="description" content="Celar Marketing Lab is a marketing studio in Utrecht, the Netherlands. Audits, strategy, social media, production, ads and EU market entry for growing brands.">
+<link rel="icon" type="image/png" href="celar-mark.png">
+<meta property="og:title" content="Celar Marketing Lab">
+<meta property="og:description" content="Celar Marketing Lab is a marketing studio in Utrecht, the Netherlands. Audits, strategy, social media, production, ads and EU market entry for growing brands.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="celar-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="./blog-articles.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0b1024;color:#f4f1ea;font-family:'Chakra Petch',Helvetica,Arial,sans-serif;overflow-x:hidden}
+a{color:#5ee7ff}
+a:hover{color:#a6f3ff}
+html{overflow-x:clip}
+html,body{height:auto!important}
+#dc-root,#dc-root>.sc-host{height:auto!important;min-height:100%}
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0b1024"></rect><circle cx="50" cy="50" r="20" fill="none" stroke="#5ee7ff" stroke-width="4"></circle></svg></template>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0b1024"></rect><circle cx="50" cy="50" r="20" fill="none" stroke="#5ee7ff" stroke-width="4"></circle><ellipse cx="50" cy="50" rx="34" ry="9" fill="none" stroke="#ff7fb8" stroke-width="3"></ellipse></svg></template>
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}"><dc-import name="Home v4" hint-size="100%,100vh"></dc-import></sc-if>
+<sc-if value="{{ isServices }}" hint-placeholder-val="{{ false }}"><dc-import name="Services v4" hint-size="100%,100vh"></dc-import></sc-if>
+<sc-if value="{{ isCases }}" hint-placeholder-val="{{ false }}"><dc-import name="Cases v4" hint-size="100%,100vh"></dc-import></sc-if>
+<sc-if value="{{ isEu }}" hint-placeholder-val="{{ false }}"><dc-import name="EU Market Entry v4" hint-size="100%,100vh"></dc-import></sc-if>
+<sc-if value="{{ isAcademy }}" hint-placeholder-val="{{ false }}"><dc-import name="Academy v4" hint-size="100%,100vh"></dc-import></sc-if>
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}"><dc-import name="About v4" hint-size="100%,100vh"></dc-import></sc-if>
+<sc-if value="{{ isBlog }}" hint-placeholder-val="{{ false }}"><dc-import name="Blog v4" hint-size="100%,100vh"></dc-import></sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  pages = { "Home v4":"home", "Services v4":"services", "Cases v4":"cases", "EU Market Entry v4":"eu", "Academy v4":"academy", "About v4":"about", "Blog v4":"blog" };
+  state = { page: this.fromHash() };
+  fromHash() { const m = location.hash.match(/^#\/(\w+)/); return m && this.pages && Object.values(this.pages).includes(m[1]) ? m[1] : "home"; }
+  scrollToId(id) {
+    let n = 0; const go = () => { const el = document.getElementById(id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 70, behavior: "smooth" }); else if (n++ < 30) setTimeout(go, 100); };
+    go();
+  }
+  onClick = (e) => {
+    const a = e.target.closest && e.target.closest("a[href]"); if (!a) return;
+    const raw = a.getAttribute("href"); if (!raw || a.target === "_blank" || /^(https?:|mailto:|tel:)/.test(raw)) return;
+    if (raw.startsWith("#")) { e.preventDefault(); this.scrollToId(raw.slice(1)); return; }
+    const m = decodeURIComponent(raw).match(/^\.?\/?(.+?)\.dc\.html(\?[^#]*)?(#.*)?$/); if (!m || !this.pages[m[1]]) return;
+    e.preventDefault();
+    const page = this.pages[m[1]], q = m[2] || "", anchor = m[3] ? m[3].slice(1) : "";
+    location.hash = "#/" + page + q;
+    if (anchor) setTimeout(() => this.scrollToId(anchor), 50); else window.scrollTo(0, 0);
+  };
+  meta = { home:["Celar Marketing Lab · Marketing studio, Netherlands","Home v4"], services:["Services and prices · Celar Marketing Lab","Services v4"], cases:["Case studies · Celar Marketing Lab","Cases v4"], eu:["EU Market Entry · Celar Marketing Lab","EU Market Entry v4"], academy:["Celar Marketing Academy","Academy v4"], about:["About · Celar Marketing Lab","About v4"], blog:["Blog · Celar Marketing Lab","Blog v4"] };
+  desc = {"Home v4":"Celar Marketing Lab is a marketing studio in Utrecht, the Netherlands. Audits, strategy, social media, production, ads and EU market entry for growing brands.","Services v4":"Marketing services and prices: audits, strategy, social media, production, ads, websites and analytics. Fixed prices, excl. VAT.","Cases v4":"Case studies from Celar Marketing Lab: strategy, social media and EU market entry projects with real results.","EU Market Entry v4":"Launch your brand in a new European market: research, local positioning and an 8-week launch plan.","Academy v4":"Celar Marketing Academy: free daily tips, lessons, templates and courses for business owners and experts. Join the waitlist.","About v4":"About Celar Marketing Lab, a marketing studio from the Netherlands led by its founder with specialist partners.","Blog v4":"Articles on customer research, positioning, content and AI search from Celar Marketing Lab."};
+  applyMeta() {
+    const p = this.state.page, m = this.meta[p] || this.meta.home;
+    let title = m[0];
+    if (p === "blog") { const sl = (location.hash.match(/[?&]a=([\w-]+)/) || [])[1]; const a = sl && (window.CELAR_ARTICLES || []).find(x => x.slug === sl); if (a) title = a.title + " · Celar Blog"; }
+    document.title = title;
+    const d = document.querySelector('meta[name="description"]'); if (d) d.setAttribute("content", this.desc[m[1]] || "");
+  }
+  componentDidUpdate() { this.applyMeta(); }
+  onHash = () => { const next = this.fromHash(); if (next !== this.state.page) window.scrollTo(0, 0); this.setState({ page: next }); this.applyMeta(); };
+  componentDidMount() { this.applyMeta(); document.addEventListener("click", this.onClick, true); window.addEventListener("hashchange", this.onHash); }
+  componentWillUnmount() { document.removeEventListener("click", this.onClick, true); window.removeEventListener("hashchange", this.onHash); }
+  renderVals() {
+    const p = this.state.page;
+    return { isHome: p === "home", isServices: p === "services", isCases: p === "cases", isEu: p === "eu", isAcademy: p === "academy", isAbout: p === "about", isBlog: p === "blog" };
+  }
+}
+</script>
+</body>
+</html>

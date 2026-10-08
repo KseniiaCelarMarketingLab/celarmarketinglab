@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Services and prices · Celar Marketing Lab</title>
+<meta name="description" content="Marketing services and prices: audits, strategy, social media, production, ads, websites and analytics. Fixed prices, excl. VAT.">
+<link rel="icon" type="image/png" href="celar-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0b1024;color:#f4f1ea;font-family:'Chakra Petch',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#5ee7ff}
+a:hover{color:#a6f3ff}
+html{overflow-x:clip}
+html,body{height:auto!important}
+#dc-root,#dc-root>.sc-host{height:auto!important;min-height:100%}
+</style>
+</helmet>
+<dc-import name="Header v4" active="services" hint-size="100%,70px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<section style="position:relative;z-index:0;overflow:hidden;background:radial-gradient(ellipse 60% 70% at 85% 30%,rgba(94,231,255,.14),transparent 70%)">
+<div style="position:absolute;right:-120px;top:40px;z-index:-1;width:420px;height:420px;pointer-events:none"><dc-import name="Planet v4" kind="ringed" size="420" hint-size="420px,420px" style="width:420px;height:420px;flex:none"></dc-import></div>
+<div style="position:absolute;right:-200px;top:200px;width:580px;height:110px;border-radius:50%;border:2px solid rgba(240,230,195,.55);transform:rotate(-14deg);z-index:-1"></div>
+<div style="position:absolute;left:44%;top:70px;z-index:-1;width:22px;height:22px;pointer-events:none"><dc-import name="Planet v4" kind="star" size="22" hint-size="22px,22px" style="width:22px;height:22px;flex:none"></dc-import></div>
+<div style="max-width:1320px;margin:0 auto;padding:110px 32px 80px;display:flex;flex-direction:column;gap:30px">
+<h1 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(40px,6vw,88px);line-height:.95;letter-spacing:-.035em;max-width:820px">Services <span style="color:#5ee7ff;text-shadow:0 0 40px rgba(94,231,255,.5)">and prices</span></h1>
+<p style="margin:0;font-size:19px;line-height:1.55;color:#d6d8e0;max-width:560px">Every service has a fixed scope, timeline and price. Order one, or combine several into a package and pay less. Prices exclude VAT.</p>
+<nav style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="6"><a href="#{{ g.id }}" style="font-size:15px;font-weight:500;text-decoration:none;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(11,16,36,.5);color:#f4f1ea;display:flex;align-items:center;gap:10px" style-hover="border-color:#5ee7ff"><span style="width:12px;height:12px;border-radius:50%;background:{{ g.color }}"></span>{{ g.name }}</a></sc-for>
+<a href="#packages" style="font-size:15px;font-weight:600;text-decoration:none;padding:10px 18px;border-radius:999px;background:#5ee7ff;color:#03141c">Packages</a>
+</nav>
+</div>
+</section>
+
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+<section id="{{ g.id }}" style="max-width:1320px;margin:0 auto;padding:72px 32px;border-top:1px solid rgba(255,255,255,.08);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:40px 56px">
+<div style="display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;align-items:center;gap:18px"><dc-import name="Planet v4" kind="{{ g.kind }}" size="64" hint-size="64px,64px" style="width:64px;height:64px;flex:none"></dc-import><span style="font-size:14px;color:#5ee7ff">{{ g.n }} / 06</span></div>
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:34px;line-height:1.05;letter-spacing:-.02em">{{ g.name }}</h2>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#a3a7b5">{{ g.text }}</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px;grid-column:span 2;min-width:0">
+<sc-for list="{{ g.items }}" as="s" hint-placeholder-count="4">
+<div onClick="{{ s.open }}" role="button" tabIndex="0" style="cursor:pointer;border-radius:20px;padding:24px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);display:flex;flex-direction:column;gap:10px" style-hover="border-color:rgba(94,231,255,.5);background:rgba(94,231,255,.05)">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span style="font-size:18px;font-weight:600">{{ s.name }}</span><span style="font-size:13px;color:#a3a7b5;white-space:nowrap">{{ s.time }}</span></div>
+<span style="font-size:14px;line-height:1.55;color:#a3a7b5">{{ s.text }}</span>
+<sc-if value="{{ s.ex }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px"><span style="color:#a3a7b5">Examples:</span><sc-for list="{{ s.ex }}" as="x" hint-placeholder-count="2"><a href="{{ x.h }}" target="_blank" onClick="{{ stop }}" style="color:#5ee7ff">{{ x.l }}</a></sc-for></div></sc-if>
+<span style="margin-top:auto;padding-top:12px;font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:22px;color:#5ee7ff">{{ s.price }}</span>
+<span style="font-size:14px;color:#c9ccd6">Details →</span>
+</div>
+</sc-for>
+</div>
+</section>
+</sc-for>
+
+<sc-if value="{{ sel }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ close }}" style="position:fixed;inset:0;z-index:100;background:rgba(4,7,18,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px">
+<div onClick="{{ stop }}" role="dialog" aria-modal="true" style="position:relative;width:100%;max-width:620px;max-height:calc(100vh - 40px);overflow:auto;box-sizing:border-box;border-radius:24px;padding:36px;background:#0f1530;border:1px solid rgba(94,231,255,.35);box-shadow:0 0 80px rgba(94,231,255,.12);display:flex;flex-direction:column;gap:20px;font-family:'Chakra Petch',sans-serif">
+<button type="button" onClick="{{ close }}" aria-label="Close" style="position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;color:#f4f1ea;font-size:16px;cursor:pointer">✕</button>
+<span style="font-size:14px;color:#a3a7b5">{{ sel.group }}</span>
+<h3 style="margin:-8px 0 0;padding-right:40px;font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:32px;line-height:1.05;letter-spacing:-.02em">{{ sel.name }}</h3>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#d6d8e0;text-wrap:pretty">{{ sel.about }}</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:14px;color:#a3a7b5">What you get</span>
+<ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.75;color:#d6d8e0"><sc-for list="{{ sel.get }}" as="i" hint-placeholder-count="4"><li>{{ i }}</li></sc-for></ul>
+</div>
+<sc-if value="{{ sel.ex }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-wrap:wrap;gap:6px 14px;font-size:15px"><span style="color:#a3a7b5">Examples:</span><sc-for list="{{ sel.ex }}" as="x" hint-placeholder-count="2"><a href="{{ x.h }}" target="_blank" style="color:#5ee7ff">{{ x.l }}</a></sc-for></div></sc-if>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:28px;color:#5ee7ff">{{ sel.price }}</span><span style="font-size:14px;color:#a3a7b5">{{ sel.time }} · excl. VAT</span></div>
+<a href="#contact" onClick="{{ request }}" style="font-size:16px;font-weight:600;text-align:center;text-decoration:none;color:#03141c;background:#5ee7ff;padding:16px 24px;border-radius:999px;box-shadow:0 0 24px rgba(94,231,255,.4)" style-hover="background:#a6f3ff">Learn more</a>
+</div>
+</div>
+</sc-if>
+
+<section id="packages" style="position:relative;z-index:0;overflow:hidden;border-top:1px solid rgba(255,255,255,.08);background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(120,80,255,.16),transparent 70%)">
+<div style="max-width:1320px;margin:0 auto;padding:120px 32px;display:flex;flex-direction:column;gap:48px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px 56px;align-items:end">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.03em">Packages</h2>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#a3a7b5">Several services combined. Cheaper than ordering them one by one.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+<sc-for list="{{ packages }}" as="p" hint-placeholder-count="4">
+<div style="border-radius:24px;padding:30px;background:{{ p.bg }};border:1px solid {{ p.line }};display:flex;flex-direction:column;gap:16px">
+<div style="height:110px;display:flex;align-items:center"><dc-import name="Planet v4" kind="{{ p.kind }}" size="{{ p.px }}" hint-size="100px,100px" style="flex:none"></dc-import></div>
+<span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:23px">{{ p.name }}</span>
+<ul style="margin:0;padding-left:18px;font-size:15px;line-height:1.75;color:#d6d8e0"><sc-for list="{{ p.inc }}" as="i" hint-placeholder-count="4"><li>{{ i }}</li></sc-for></ul>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:30px">{{ p.price }}</span><span style="font-size:14px;color:#a3a7b5">{{ p.time }}</span></div>
+<sc-if value="{{ p.was }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#a3a7b5;margin-top:-8px">{{ p.was }}</span></sc-if>
+<a href="https://calendly.com/kseniia-kklsh/free-consultation-cml" target="_blank" style="font-size:15px;font-weight:600;text-align:center;text-decoration:none;padding:13px;border-radius:999px;border:1px solid rgba(94,231,255,.5);color:#f4f1ea" style-hover="background:#5ee7ff;color:#03141c">Discuss this package</a>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="max-width:1320px;margin:0 auto;padding:40px 32px 120px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:20px">
+<div style="border-radius:24px;padding:34px;background:rgba(94,231,255,.06);border:1px solid rgba(94,231,255,.3);display:flex;flex-direction:column;gap:14px"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">We’re a good fit if</span><ul style="margin:0;padding-left:18px;font-size:16px;line-height:1.8;color:#d6d8e0"><li>Your product or service is already on the market</li><li>You want a clear plan, not just more posts</li><li>You can make a decision within two weeks</li></ul></div>
+<div style="border-radius:24px;padding:34px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:14px"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">Probably not, if</span><ul style="margin:0;padding-left:18px;font-size:16px;line-height:1.8;color:#d6d8e0"><li>You only need someone to post on Instagram</li><li>There is no product yet, only an idea</li></ul><span style="font-size:15px;color:#a3a7b5">Then Celar Academy is a better start. Opening soon.</span></div>
+</section>
+
+<dc-import name="Footer v4" hint-size="100%,760px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sel: null };
+  details = {"Express Audit":["A fast outside look at one channel or your website, so you know what to fix first.",["Review of one channel or website","Top 5 issues ranked by impact","Concrete fix for each issue","30-minute call to walk through it"]],"Marketing Audit":["A full check of your marketing today: what brings clients, what wastes money and what is missing.",["Review of channels, content and positioning","Funnel check from first contact to sale","Written report with findings","90-day action plan"]],"Competitor Research":["See how 5–7 competitors position themselves, price and talk to clients, and where you can stand out.",["Analysis of 5–7 competitors","Positioning, pricing and channel comparison","Gaps and opportunities","Summary with recommendations"]],"Audience Research":["Understand who buys from you and why, based on interviews and data, not guesses.",["Customer interviews","Data and review analysis","2–3 customer profiles","Key needs, objections and triggers"]],"Strategy Session":["90 minutes focused on one marketing decision you need to make now.",["Short brief before the call","90-minute session","Call recording","Written summary with next steps"]],"Brand & Positioning":["Define how your brand is different and how it should sound, so all your marketing says the same thing.",["Positioning statement","Customer profile","Tone of voice guide","Key messages for site and social"]],"Marketing Strategy":["A plan for 6–12 months: where to go, which channels to use and how to measure progress.",["Goals and KPIs","Channel mix and budget split","Content plan","Quarterly roadmap"]],"Content System Setup":["A content system your team can run without starting from zero every week.",["Content pillars and formats","3-month content plan","Post and story templates","Short handover session"]],"Channel Launch":["One social channel set up and launched from zero, with a team trained to keep it going.",["Channel strategy","Profile and visual style","First 12 posts","Team training"]],"SMM Management":["We run one social channel for you every month.",["Monthly content plan","Posts and stories","Community replies","Monthly report"]],"LinkedIn for Founders":["A LinkedIn presence for the founder, written in their voice.",["Profile rewrite","Ghostwritten posts","Monthly topic plan","Performance check"]],"Reels Pack":["8 short videos ready to post, from idea to final cut.",["8 scripts","Editing","Captions and subtitles","Covers"]],"Design Templates":["Templates in your brand style so your team can publish fast and stay consistent.",["Post templates","Story templates","Carousel templates","Delivered in Canva or Figma"]],"Content Shoot Day":["A half-day photo and video shoot planned around your content needs.",["Shot list planning","Half-day shoot","Edited photos","Short video clips"]],"Copywriting":["Clear texts for your website, products, newsletters and articles.",["Brief and research","Text written in your tone of voice","One round of edits","Priced per page or item"]],"Ads Setup":["Your first Meta or LinkedIn campaign set up properly, with tracking in place.",["Audience setup","Ad creatives and copy","Pixel and conversion tracking","First campaign launched"]],"Ads Management":["Campaigns run and improved every month. Ad budget is paid separately.",["Campaign management","Creative and audience tests","Budget optimisation","Monthly report"]],"Quick Website Design":["A simple, clean website with light animation, designed and ready in up to 10 days.",["Simple site structure","Clean design in your style","Light animation","Ready in up to 10 days"]],"Landing Page":["One page built to turn visitors into enquiries.",["Page structure","Copywriting","Design","Contact form or booking"]],"Funnel & Email":["A clear path from first contact to sale, with emails that do part of the work.",["Customer journey map","Lead magnet","Email sequence","Setup in your email tool"]],"Analytics Audit":["Check if your tracking works and what data you are missing.",["GA4 review","Pixel and tag check","List of tracking issues","Fix list by priority"]],"Tracking & Dashboard":["See which channels bring results, in one live dashboard.",["GA4 and conversion setup","UTM structure","One live dashboard","Short training"]],"Monthly Reporting":["All channels in one report every month, with clear priorities for the next one.",["Monthly report","Channel comparison","Key insights","Next-month priorities"]]};
+  onKey = (e) => { if (e.key === "Escape") this.setState({ sel: null }); };
+  componentDidMount() { window.addEventListener("keydown", this.onKey); }
+  componentWillUnmount() { window.removeEventListener("keydown", this.onKey); }
+  renderVals() {
+    const G = ["radial-gradient(circle at 30% 30%,#f2fdff,#7fe9ff 30%,#1a5f8c 82%)","radial-gradient(circle at 30% 30%,#fff8de,#f3dc9c 30%,#a88d4a 82%)","radial-gradient(circle at 30% 30%,#f3ecff,#a98bff 30%,#35207a 82%)","radial-gradient(circle at 30% 30%,#fff0f8,#ff8fcf 30%,#7a1f5c 82%)","radial-gradient(circle at 30% 30%,#eef3ff,#7f9dff 30%,#1f2f7a 82%)","radial-gradient(circle at 30% 30%,#fff8de,#f3dc9c 30%,#a88d4a 82%)"];
+    const groups = [
+      { id:"audit", name:"Audit & Research", text:"Find out what works, what doesn’t and why, before spending more.", items:[
+        { name:"Express Audit", text:"One channel or your website reviewed, with the top 5 fixes.", price:"€190", time:"3 days" },
+        { name:"Marketing Audit", text:"Channels, content, positioning and funnel, with a 90-day plan.", price:"€350", time:"5 days" },
+        { name:"Competitor Research", text:"How 5–7 competitors position, price and communicate.", price:"€450", time:"1 week" },
+        { name:"Audience Research", text:"Interviews and data to define who buys and why.", price:"€590", time:"2 weeks" } ] },
+      { id:"strategy", name:"Strategy", text:"Who you sell to, what you say and which channels to use.", items:[
+        { name:"Strategy Session", text:"90 minutes on one decision. Recording and written summary.", price:"€150", time:"90 min" },
+        { name:"Brand & Positioning", text:"Positioning, customer profile, tone of voice, key messages.", price:"€990", time:"2–3 weeks" },
+        { name:"Marketing Strategy", text:"Goals, channels, budget, content plan and KPIs for 6–12 months.", price:"€1,290", time:"3 weeks" } ] },
+      { id:"smm", name:"Social Media", text:"Instagram and LinkedIn run with a plan and a monthly report.", items:[
+        { name:"Content System Setup", text:"Content pillars, formats, 3-month plan and templates.", price:"€790", time:"2 weeks", was:"€950 if ordered separately" },
+        { name:"Channel Launch", text:"One channel from zero: strategy, visuals, first 12 posts, training.", price:"€1,490", time:"3 weeks" },
+        { name:"SMM Management", text:"One channel fully run: posts, stories, community, report.", price:"from €690/mo", time:"monthly" },
+        { name:"LinkedIn for Founders", text:"Profile rewrite and ghostwritten posts for the founder.", price:"from €590/mo", time:"monthly" } ] },
+      { id:"production", name:"Production", text:"Photo, video, copy and templates in your brand style.", items:[
+        { name:"Reels Pack", text:"8 short videos with scripts, editing, captions and covers.", price:"€350", time:"1 week" },
+        { name:"Design Templates", text:"Post, story and carousel templates in Canva or Figma.", price:"€390", time:"1 week" },
+        { name:"Content Shoot Day", text:"Half-day photo and video shoot with a planned shot list.", price:"from €450", time:"1 day" },
+        { name:"Copywriting", text:"Website pages, product texts, newsletters, articles.", price:"from €90/page", time:"per item" } ] },
+      { id:"ads", name:"Ads & Web", text:"Paid campaigns and pages that turn attention into enquiries.", items:[
+        { name:"Ads Setup", text:"Meta or LinkedIn: audiences, creatives, tracking, first campaign.", price:"€490", time:"1 week" },
+        { name:"Ads Management", text:"Campaigns run and improved every month. Ad budget separate.", price:"from €450/mo", time:"monthly" },
+        { name:"Quick Website Design", text:"A simple website with light animation, ready in up to 10 days.", price:"€200", time:"up to 10 days", ex:[{l:"Yardsmith Stables",h:"https://yardsmithstables.com/"},{l:"Veronika Albero",h:"https://veronikaalbero.com/"}] },
+        { name:"Landing Page", text:"One page built to convert: structure, copy, design.", price:"from €890", time:"2 weeks" },
+        { name:"Funnel & Email", text:"Customer journey, lead magnet and email sequence.", price:"€1,190", time:"2 weeks" } ] },
+      { id:"analytics", name:"Analytics", text:"See which channels bring results and where budget is lost.", items:[
+        { name:"Analytics Audit", text:"Check of GA4, pixels and tracking, with a fix list.", price:"€190", time:"3 days" },
+        { name:"Tracking & Dashboard", text:"GA4, conversions, UTM structure and one live dashboard.", price:"€590", time:"1–2 weeks" },
+        { name:"Monthly Reporting", text:"All channels in one report with next-month priorities.", price:"from €190/mo", time:"monthly" } ] }
+    ].map((g, i) => ({ ...g, n: "0" + (i + 1), color: G[i], kind: ["ice","ringed","gas","star","rocky","aurora"][i],
+      items: g.items.map(it => { const d = this.details[it.name] || [it.text, []]; const full = { ...it, group: g.name, about: d[0], get: d[1] }; return { ...it, open: () => this.setState({ sel: full }) }; }) }));
+    const sel = this.state.sel;
+    const base = { bg:"rgba(255,255,255,.035)", line:"rgba(255,255,255,.1)" }, hot = { bg:"linear-gradient(170deg,rgba(94,231,255,.16),rgba(255,255,255,.03) 55%)", line:"rgba(94,231,255,.6)" };
+    return { groups, sel, stop: (e) => e.stopPropagation(), close: () => this.setState({ sel: null }),
+      request: () => { if (sel) { try { sessionStorage.setItem("celarService", sel.name + " (" + sel.price + ")"); } catch (e) {} window.dispatchEvent(new CustomEvent("celar-service", { detail: sel.name + " (" + sel.price + ")" })); } this.setState({ sel: null }); },
+      packages: [
+      { ...base, px:60, kind:"gas", name:"Clarity", inc:["Marketing Audit","Competitor Research","Strategy Session"], price:"€790", time:"2 weeks", was:"€950 if ordered separately" },
+      { ...base, px:76, kind:"ringed", name:"Monthly Team", inc:["Monthly strategy session","One channel managed","Content production","Monthly report"], price:"€1,900", time:"per month" },
+      { ...hot, px:92, kind:"star", name:"Launch System", inc:["Audit and competitor analysis","Brand & positioning","Content system","One channel launched, 2 follow-ups"], price:"€2,900", time:"6 weeks", was:"€4,070 if ordered separately" },
+      { ...base, px:106, kind:"ice", name:"EU Market Entry", inc:["Everything in Launch System","Positioning for the new market","Local competitor analysis","Channel and partner plan"], price:"from €3,900", time:"8 weeks", was:"Final price depends on the market" }
+    ]};
+  }
+}
+</script>
+</body>
+</html>

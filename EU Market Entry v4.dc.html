@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>EU Market Entry · Celar Marketing Lab</title>
+<meta name="description" content="Launch your brand in a new European market: research, local positioning and an 8-week launch plan.">
+<link rel="icon" type="image/png" href="celar-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0b1024;color:#f4f1ea;font-family:'Chakra Petch',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#5ee7ff}
+a:hover{color:#a6f3ff}
+@media (max-width:1100px){#eu-traj{opacity:.22}}@keyframes euSpin{to{transform:rotate(360deg)}}@keyframes euRun{0%{left:-15%}100%{left:105%}}@keyframes euGlow{0%,100%{box-shadow:0 0 30px rgba(255,200,94,.6),0 0 80px rgba(255,140,60,.3)}50%{box-shadow:0 0 50px rgba(255,200,94,.9),0 0 120px rgba(255,140,60,.5)}}@keyframes euDash{to{stroke-dashoffset:-40}}@keyframes euGrow{0%{stroke-dashoffset:1000}60%,100%{stroke-dashoffset:0}}@keyframes euPulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}@keyframes euTw{0%,100%{opacity:.3}50%{opacity:1}}
+html{overflow-x:clip}
+html,body{height:auto!important}
+#dc-root,#dc-root>.sc-host{height:auto!important;min-height:100%}
+</style>
+</helmet>
+<dc-import name="Header v4" active="eu" hint-size="100%,70px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<section style="position:relative;z-index:0;overflow:hidden;min-height:calc(100svh - 70px);display:flex;align-items:center;background:radial-gradient(ellipse 55% 70% at 78% 50%,rgba(94,231,255,.16),transparent 70%)">
+<div id="eu-traj" style="position:absolute;right:max(-60px,calc(50% - 720px));top:50%;width:min(640px,70vw);aspect-ratio:1/1;transform:translateY(-50%);z-index:-1">{{ trajectory }}</div>
+<div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,16,36,.9) 0%,rgba(11,16,36,.7) min(620px,60%),rgba(11,16,36,0) min(880px,85%));z-index:-1"></div>
+<div style="max-width:1320px;width:100%;margin:0 auto;padding:40px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:28px">
+<h1 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(38px,5.6vw,84px);line-height:.96;letter-spacing:-.035em;max-width:880px">Launch your brand in a new <span style="color:#5ee7ff;text-shadow:0 0 40px rgba(94,231,255,.5)">European market.</span></h1>
+<p style="margin:0;font-size:19px;line-height:1.55;color:#d6d8e0;max-width:540px">We research the market, adapt your positioning and messages for local buyers and plan the launch. For any EU country.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center"><a href="https://calendly.com/kseniia-kklsh/free-consultation-cml" target="_blank" style="font-size:16px;font-weight:600;text-decoration:none;color:#03141c;background:#5ee7ff;padding:17px 30px;border-radius:999px;box-shadow:0 0 34px rgba(94,231,255,.5)">Discuss your launch</a><div style="display:flex;align-items:stretch;gap:24px;margin-left:16px"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;color:#c9ccd6">Duration</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:22px;color:#f4f1ea">8 weeks</span></div><span style="width:1px;background:rgba(255,255,255,.18)"></span><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;color:#c9ccd6">Price</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:22px;color:#f4f1ea">from €3,900 <span style="font-family:'Chakra Petch',sans-serif;font-weight:500;font-size:13px;color:#c9ccd6">excl. VAT</span></span></div></div></div>
+</div>
+</section>
+
+<section style="max-width:1320px;margin:0 auto;padding:120px 32px;display:flex;flex-direction:column;gap:48px">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(32px,4.2vw,56px);line-height:1;letter-spacing:-.03em;max-width:820px">Why a translated website isn’t enough</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
+<div style="border-radius:24px;padding:30px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:14px"><span style="font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:40px;color:#5ee7ff">01</span><span style="font-size:20px;font-weight:600">Different competitors</span><span style="font-size:15px;line-height:1.6;color:#a3a7b5">Local buyers compare you with brands they already know. Your offer has to stand out against them.</span></div>
+<div style="border-radius:24px;padding:30px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:14px"><span style="font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:40px;color:#b388ff">02</span><span style="font-size:20px;font-weight:600">Different expectations</span><span style="font-size:15px;line-height:1.6;color:#a3a7b5">Tone, level of formality and the proof people need before buying change from country to country.</span></div>
+<div style="border-radius:24px;padding:30px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:14px"><span style="font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:40px;color:#ff7fb8">03</span><span style="font-size:20px;font-weight:600">Different channels</span><span style="font-size:15px;line-height:1.6;color:#a3a7b5">Where your audience spends time, and which partners matter, depends on the market.</span></div>
+</div>
+</section>
+
+<section style="background:linear-gradient(180deg,#0b1024,#141c40 50%,#0b1024)">
+<div style="max-width:1320px;margin:0 auto;padding:120px 32px;display:flex;flex-direction:column;gap:56px">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(32px,4.2vw,56px);line-height:1;letter-spacing:-.03em">8 weeks, 4 stages</h2>
+<div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px">
+<div style="position:absolute;left:60px;right:0;top:59px;height:2px;background:linear-gradient(90deg,#5ee7ff,#b88cff,#ff8fcf,#ffc85e);opacity:.55"></div>
+<div style="position:absolute;left:60px;right:0;top:56px;height:8px;overflow:hidden">{{ pulse }}</div>
+<div style="display:flex;flex-direction:column;gap:14px;position:relative"><div style="width:120px;height:120px;position:relative"><dc-import name="Planet v4" look="line" kind="ice" size="120" hint-size="120px,120px" style="width:120px;height:120px"></dc-import></div><span style="font-size:14px;letter-spacing:.06em;color:#5ee7ff">Weeks 1–2</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:22px">Research</span><span style="font-size:15px;line-height:1.55;color:#d6d8e0">Your current marketing, local competitors and target buyers.</span></div>
+<div style="display:flex;flex-direction:column;gap:14px;position:relative"><div style="width:120px;height:120px;position:relative"><dc-import name="Planet v4" look="line" kind="ringed" size="120" hint-size="120px,120px" style="width:120px;height:120px"></dc-import></div><span style="font-size:14px;letter-spacing:.06em;color:#b88cff">Weeks 3–4</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:22px">Positioning</span><span style="font-size:15px;line-height:1.55;color:#d6d8e0">Positioning, customer profile and key messages for the new market.</span></div>
+<div style="display:flex;flex-direction:column;gap:14px;position:relative"><div style="width:120px;height:120px;position:relative"><dc-import name="Planet v4" look="line" kind="gas" size="120" hint-size="120px,120px" style="width:120px;height:120px"></dc-import></div><span style="font-size:14px;letter-spacing:.06em;color:#ff8fcf">Weeks 5–6</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:22px">Content</span><span style="font-size:15px;line-height:1.55;color:#d6d8e0">Content plan, templates and tone of voice in the local language.</span></div>
+<div style="display:flex;flex-direction:column;gap:14px;position:relative"><div style="width:120px;height:120px;position:relative"><dc-import name="Planet v4" look="line" kind="star" size="120" hint-size="120px,120px" style="width:120px;height:120px"></dc-import></div><span style="font-size:14px;letter-spacing:.06em;color:#ffc85e">Weeks 7–8</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:22px">Launch</span><span style="font-size:15px;line-height:1.55;color:#d6d8e0">First channel live, partner list, playbooks and two follow-up sessions.</span></div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1320px;margin:0 auto;padding:120px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px">
+<div style="border-radius:28px;padding:40px;background:linear-gradient(160deg,rgba(94,231,255,.14),rgba(255,255,255,.03) 55%);border:1px solid rgba(94,231,255,.5);display:flex;flex-direction:column;gap:20px">
+<span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:26px">What’s included</span>
+<div style="display:flex;flex-direction:column;gap:12px;font-size:16px;color:#d6d8e0">
+<span style="display:flex;gap:12px"><span style="color:#5ee7ff">✓</span>Audit of your current marketing</span>
+<span style="display:flex;gap:12px"><span style="color:#5ee7ff">✓</span>Competitor analysis in the target market</span>
+<span style="display:flex;gap:12px"><span style="color:#5ee7ff">✓</span>Positioning and messages for local buyers</span>
+<span style="display:flex;gap:12px"><span style="color:#5ee7ff">✓</span>Content system in the local language</span>
+<span style="display:flex;gap:12px"><span style="color:#5ee7ff">✓</span>One channel launched</span>
+<span style="display:flex;gap:12px"><span style="color:#5ee7ff">✓</span>Channel and partner recommendations</span>
+<span style="display:flex;gap:12px"><span style="color:#5ee7ff">✓</span>Two follow-up sessions after launch</span>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:20px;border-top:1px solid rgba(255,255,255,.12)"><span style="font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:40px"><span style="font-size:18px;font-weight:600">from </span>€3,900</span><span style="font-size:14px;color:#a3a7b5">excl. VAT · 8 weeks · one market</span></div>
+</div>
+<div style="border-radius:28px;overflow:hidden;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:18px;padding:40px">
+<span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:30px;line-height:1.1">Vigor &amp; Sage: three markets, one recognisable brand</span>
+<span style="font-size:16px;line-height:1.6;color:#a3a7b5">One content core with local versions for the Netherlands, France and a Europe-wide account. A shared tone-of-voice guide kept all three recognisable as one brand.</span>
+<a href="Cases v4.dc.html?case=vigor" style="font-size:16px;font-weight:500;margin-top:auto">Read the case →</a>
+</div>
+</section>
+
+<dc-import name="Footer v4" hint-size="100%,760px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>class Component extends DCLogic {
+  build() {
+    const e = React.createElement;
+    const D = 'M40,560 Q120,520 200,440 T330,310 T450,180 T570,60';
+    const W = [[200,440,'01','Research','#5ee7ff'],[330,310,'02','Positioning','#b88cff'],[450,180,'03','Launch plan','#ff8fcf'],[570,60,'04','Go live','#ffc85e']];
+    let seed = 11; const r = () => (seed = (seed*9301+49297)%233280)/233280;
+    const stars = Array.from({length:60},(_,i)=>e('circle',{key:'s'+i,cx:r()*640,cy:r()*640,r:r()*1.2+.3,fill:'#e6ecff',style:{animation:`euTw ${2+r()*4}s ease-in-out ${r()*4}s infinite`}}));
+    const grid = Array.from({length:9},(_,i)=>e('line',{key:'g'+i,x1:i*80,y1:640,x2:320+(i*80-320)*0.25,y2:470,stroke:'rgba(140,180,255,.12)'}))
+      .concat([500,530,570,620].map((y,i)=>e('line',{key:'h'+i,x1:0,y1:y,x2:640,y2:y,stroke:'rgba(140,180,255,.1)'})));
+    const pts = W.map(([x,y,n,l,c],i)=>e('g',{key:'w'+i},
+      e('circle',{cx:x,cy:y,r:12,fill:'none',stroke:c,strokeWidth:1.5,style:{transformOrigin:`${x}px ${y}px`,animation:`euPulse 2.4s ease-out ${i*.6}s infinite`}}),
+      e('rect',{x:x-7,y:y-7,width:14,height:14,fill:'#0b1024',stroke:c,strokeWidth:2,transform:`rotate(45 ${x} ${y})`,style:{filter:`drop-shadow(0 0 8px ${c})`}}),
+      e('text',{x:i>1?x-22:x+20,y:y+4,textAnchor:i>1?'end':'start',fontFamily:'Chakra Petch,sans-serif'},
+        e('tspan',{fill:c,fontSize:12,letterSpacing:2},i>1?'':n+'  '),
+        e('tspan',{fill:'#f4f1ea',fontSize:15,fontWeight:500},l),
+        e('tspan',{fill:c,fontSize:12,letterSpacing:2},i>1?'  '+n:''))));
+    return e('svg',{viewBox:'0 0 640 640',width:'100%',height:'100%',style:{overflow:'visible'}},
+      e('defs',null,e('linearGradient',{id:'euG',x1:'0',y1:'1',x2:'1',y2:'0'},e('stop',{offset:'0',stopColor:'#5ee7ff'}),e('stop',{offset:'.5',stopColor:'#b88cff'}),e('stop',{offset:'1',stopColor:'#ffc85e'}))),
+      stars, grid,
+      e('path',{d:D,fill:'none',stroke:'rgba(255,255,255,.22)',strokeWidth:1.5,strokeDasharray:'4 8',style:{animation:'euDash 2s linear infinite'}}),
+      e('path',{d:D,fill:'none',stroke:'url(#euG)',strokeWidth:3,strokeLinecap:'round',strokeDasharray:1000,style:{animation:'euGrow 6s ease-in-out infinite',filter:'drop-shadow(0 0 10px rgba(94,231,255,.6))'}}),
+      e('circle',{cx:40,cy:560,r:5,fill:'#5ee7ff'}),
+      e('text',{x:56,y:578,fill:'#c9ccd6',fontSize:12,fontFamily:'Chakra Petch,sans-serif',letterSpacing:2},'WEEK 0'),
+      pts,
+      e('g',null, e('polygon',{points:'0,-7 16,0 0,7 4,0',fill:'#fff',style:{filter:'drop-shadow(0 0 8px #5ee7ff)'}}),
+        e('animateMotion',{path:D,dur:'6s',repeatCount:'indefinite',rotate:'auto',keyPoints:'0;1;1',keyTimes:'0;.6;1',calcMode:'linear'})));
+  }
+  stages() {
+    const e = React.createElement;
+    const abs = (st, ...k) => e('div', { style: Object.assign({ position:'absolute' }, st) }, ...k);
+    const ball = (size, bg, glow, extra) => abs(Object.assign({ left:'50%', top:'50%', width:size, height:size, marginLeft:-size/2, marginTop:-size/2, borderRadius:'50%', background:bg, boxShadow:glow, overflow:'hidden' }, extra||{}));
+    const orbit = (d, dur, moon, mc, tilt, rev) => abs({ left:'50%', top:'50%', width:d, height:d, marginLeft:-d/2, marginTop:-d/2, borderRadius:'50%', border:'1px dashed rgba(255,255,255,.18)', animation:`euSpin ${dur}s linear infinite${rev?' reverse':''}` },
+      abs({ top:-moon/2, left:'50%', marginLeft:-moon/2, width:moon, height:moon, borderRadius:'50%', background:mc, boxShadow:'0 0 10px '+mc }));
+    // 1 Research: ice planet + radar sweep
+    const p0 = abs({ inset:0 },
+      orbit(116, 9, 8, '#c8f8ff'),
+      ball(70, 'radial-gradient(circle at 32% 30%,#f2fdff,#7fe9ff 25%,#1b6f9c 70%,#0b2a4a)', '0 0 34px rgba(94,231,255,.55),inset -10px -10px 20px rgba(0,10,30,.6)'),
+      abs({ left:'50%', top:'50%', width:70, height:70, marginLeft:-35, marginTop:-35, borderRadius:'50%', background:'conic-gradient(from 0deg,rgba(255,255,255,.55),transparent 22%)', mixBlendMode:'screen', animation:'euSpin 3s linear infinite' }));
+    // 2 Positioning: violet ringed planet + moon
+    const p1 = abs({ inset:0 },
+      orbit(112, 12, 10, '#e6d6ff', 0, true),
+      ball(64, 'radial-gradient(circle at 32% 30%,#f5ecff,#b88cff 30%,#4a2a9c 80%)', '0 0 34px rgba(184,140,255,.55),inset -10px -10px 20px rgba(10,0,30,.55)'),
+      abs({ left:'50%', top:'50%', width:112, height:26, marginLeft:-56, marginTop:-13, borderRadius:'50%', border:'3px solid rgba(220,200,255,.75)', borderTopColor:'transparent', transform:'rotate(-18deg)', boxShadow:'0 0 14px rgba(184,140,255,.6)' }));
+    // 3 Content: banded pink gas giant + two moons
+    const p2 = abs({ inset:0 },
+      orbit(104, 7, 7, '#ffd6ec'), orbit(120, 13, 5, '#fff', 0, true),
+      ball(72, 'repeating-linear-gradient(165deg,#ff8fcf 0 8px,#d2569c 8px 13px,#ffc1e3 13px 18px,#a83a7a 18px 22px)', '0 0 34px rgba(255,143,207,.55)', {}),
+      abs({ left:'50%', top:'50%', width:72, height:72, marginLeft:-36, marginTop:-36, borderRadius:'50%', background:'radial-gradient(circle at 32% 28%,rgba(255,255,255,.55),transparent 35%,rgba(20,0,20,.55) 85%)' }));
+    // 4 Launch: gold star with corona
+    const p3 = abs({ inset:0 },
+      abs({ left:'50%', top:'50%', width:116, height:116, marginLeft:-58, marginTop:-58, borderRadius:'50%', background:'repeating-conic-gradient(rgba(255,200,94,.55) 0 4deg,transparent 4deg 18deg)', WebkitMaskImage:'radial-gradient(circle,transparent 34%,#000 36%,transparent 70%)', maskImage:'radial-gradient(circle,transparent 34%,#000 36%,transparent 70%)', animation:'euSpin 20s linear infinite' }),
+      ball(66, 'radial-gradient(circle at 40% 38%,#fffbe8,#ffe08a 30%,#ffb03a 65%,#e0701e)', '0 0 40px rgba(255,200,94,.7)', { animation:'euGlow 3s ease-in-out infinite' }));
+    const pulse = abs({ top:0, width:'15%', height:8, borderRadius:4, background:'linear-gradient(90deg,transparent,#fff,transparent)', filter:'blur(2px)', animation:'euRun 5s linear infinite' });
+    return { p0, p1, p2, p3, pulse };
+  }
+  renderVals() { this._s = this._s || this.stages(); return Object.assign({ trajectory: this._t || (this._t = this.build()) }, this._s); }
+}</script>
+</body>
+</html>

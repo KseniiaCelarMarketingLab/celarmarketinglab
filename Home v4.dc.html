@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Celar Marketing Lab · Marketing studio, Netherlands</title>
+<meta name="description" content="Celar Marketing Lab is a marketing studio in Utrecht, the Netherlands. Audits, strategy, social media, production, ads and EU market entry for growing brands.">
+<link rel="icon" type="image/png" href="celar-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0b1024;color:#f4f1ea;font-family:'Chakra Petch',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#5ee7ff}
+a:hover{color:#a6f3ff}
+@keyframes cOrbit{to{offset-distance:100%}}
+@keyframes cDrift{to{transform:translateX(-200px)}}
+@keyframes cTwinkle{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes cBreath{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.04);opacity:1}}
+@keyframes cSpin{to{transform:rotate(360deg)}}
+@keyframes cSpinRev{to{transform:rotate(-360deg)}}
+html{overflow-x:clip}
+html,body{height:auto!important}
+#dc-root,#dc-root>.sc-host{height:auto!important;min-height:100%}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<dc-import name="Header v4" hint-size="100%,70px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<section style="position:relative;overflow:hidden;min-height:calc(100svh - 70px);display:flex;align-items:center">
+{{ heroScene }}
+<div style="position:relative;z-index:2;max-width:1320px;width:100%;margin:0 auto;padding:40px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:30px">
+<h1 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(40px,6vw,92px);line-height:.95;letter-spacing:-.035em;max-width:960px">Marketing that grows your business <span style="color:#5ee7ff;text-shadow:0 0 40px rgba(94,231,255,.55)">in Europe.</span></h1>
+<p style="margin:0;font-size:20px;line-height:1.55;color:#d6d8e0;max-width:540px;text-wrap:pretty">We plan, create and run your marketing: audit, strategy, social media, content, ads and analytics. One studio instead of five freelancers.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<a href="https://calendly.com/kseniia-kklsh/free-consultation-cml" target="_blank" style="font-size:16px;font-weight:600;text-decoration:none;color:#03141c;background:#5ee7ff;padding:17px 30px;border-radius:999px;box-shadow:0 0 34px rgba(94,231,255,.55)" style-hover="background:#a6f3ff">Book a free call</a>
+<a href="#services" style="font-size:16px;text-decoration:none;color:#f4f1ea;padding:17px 30px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(11,16,36,.4);backdrop-filter:blur(6px)" style-hover="border-color:#fff">Explore services</a>
+</div>
+</div>
+</section>
+<div style="position:relative;height:0;z-index:0;pointer-events:none"><div style="position:absolute;left:-300px;top:-110px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle at 75% 22%,#2e2c34 0%,#161a33 45%,#0e1228 72%);box-shadow:inset -22px 18px 34px -8px rgba(243,220,156,.8),inset -3px 3px 0 rgba(255,240,200,.55),0 0 70px rgba(243,220,156,.2)"></div></div>
+
+<section style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(11,16,36,.35)">
+<div style="max-width:1320px;margin:0 auto;padding:44px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px">
+<div style="display:flex;align-items:center;gap:18px"><span style="font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:52px;color:#b388ff;text-shadow:0 0 24px rgba(179,136,255,.45)">6</span><span style="font-size:16px;line-height:1.4;color:#d6d8e0">services<br>in one studio</span></div>
+<div style="display:flex;align-items:center;gap:18px"><span style="font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:52px;color:#ff7fb8;text-shadow:0 0 24px rgba(255,110,180,.45)">EU</span><span style="font-size:16px;line-height:1.4;color:#d6d8e0">launch support for<br>any European market</span></div>
+<div style="display:flex;align-items:center;gap:18px"><span style="font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:52px;color:#5ee7ff;text-shadow:0 0 24px rgba(94,231,255,.45)">Free</span><span style="font-size:16px;line-height:1.4;color:#d6d8e0">first call,<br>20 minutes</span></div>
+</div>
+</section>
+
+<section id="quiz" style="position:relative;z-index:1;max-width:1320px;width:100%;margin:0 auto;padding:120px 32px 0;box-sizing:border-box">
+<div style="border-radius:32px;border:1px solid rgba(94,231,255,.35);background:linear-gradient(160deg,rgba(94,231,255,.08),rgba(255,255,255,.02) 45%);box-shadow:0 0 60px rgba(94,231,255,.08);padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 64px;align-items:start">
+<div style="display:flex;flex-direction:column;gap:20px">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.03em">Not sure where to start?</h2>
+<p style="margin:0;font-size:17px;line-height:1.6;color:#a3a7b5;max-width:440px;text-wrap:pretty">Answer five questions. We suggest the service or package that fits your stage, plus a case study from a similar client.</p>
+<div style="display:flex;gap:8px;padding-top:8px"><sc-for list="{{ qDots }}" as="d" hint-placeholder-count="5"><span style="flex:1;max-width:64px;height:4px;border-radius:999px;background:{{ d.bg }};box-shadow:{{ d.glow }}"></span></sc-for></div>
+</div>
+<sc-if value="{{ qActive }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:16px"><span style="font-size:14px;color:#a3a7b5">Question {{ qNum }} of 5</span><sc-if value="{{ qCanBack }}" hint-placeholder-val="{{ false }}"><button onClick="{{ qBack }}" style="font-family:'Chakra Petch',sans-serif;font-size:14px;color:#c9ccd6;background:none;border:0;cursor:pointer;padding:4px 0" style-hover="color:#5ee7ff">← Back</button></sc-if></div>
+<span style="font-family:'Archivo',sans-serif;font-stretch:112%;font-weight:700;font-size:clamp(22px,2.2vw,28px);line-height:1.2">{{ qCur.q }}</span>
+<div style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ qOpts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.pick }}" style="font-family:'Chakra Petch',sans-serif;font-size:16px;text-align:left;cursor:pointer;color:#f4f1ea;background:{{ o.bg }};border:1px solid {{ o.line }};border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:14px" style-hover="border-color:#5ee7ff;background:rgba(94,231,255,.08)"><span style="width:14px;height:14px;flex:none;border-radius:50%;border:1.5px solid #5ee7ff"></span>{{ o.label }}</button></sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ qDone }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;display:flex;flex-direction:column;gap:18px;border-radius:24px;padding:30px;background:rgba(11,16,36,.6);border:1px solid rgba(94,231,255,.5)">
+<span style="font-size:14px;color:#5ee7ff">{{ qRes.kicker }}</span>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 20px"><span style="font-family:'Archivo',sans-serif;font-stretch:118%;font-weight:800;font-size:clamp(26px,2.8vw,36px);line-height:1.05">{{ qRes.title }}</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:24px;color:#efe3b8;white-space:nowrap">{{ qRes.price }}</span></div>
+<span style="font-size:16px;line-height:1.6;color:#d6d8e0;text-wrap:pretty">{{ qRes.why }}</span>
+<div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px"><a href="{{ qRes.href }}" style="font-size:15px;font-weight:600;text-decoration:none;color:#03141c;background:#5ee7ff;padding:13px 22px;border-radius:999px;box-shadow:0 0 24px rgba(94,231,255,.45)" style-hover="background:#a6f3ff">{{ qRes.cta }}</a><a href="{{ qRes.caseHref }}" style="font-size:15px;text-decoration:none;color:#f4f1ea;padding:13px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.2)" style-hover="border-color:#fff">{{ qRes.caseLabel }}</a></div>
+<button onClick="{{ qRestart }}" style="font-family:'Chakra Petch',sans-serif;font-size:14px;color:#a3a7b5;background:none;border:0;cursor:pointer;padding:0;align-self:flex-start" style-hover="color:#5ee7ff">Start again</button>
+</div>
+</sc-if>
+</div>
+</section>
+
+<section style="position:relative;z-index:1;padding:120px 0 40px;display:flex;flex-direction:column;gap:28px">
+<div style="max-width:1320px;width:100%;margin:0 auto;padding:0 32px;box-sizing:border-box;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.03em">Our work</h2>
+<a href="Cases v4.dc.html" style="font-size:16px;font-weight:500">All case studies →</a>
+</div>
+<div ref="{{ galRef }}" onScroll="{{ onGalScroll }}" style="display:flex;gap:20px;overflow-x:auto;padding:10px max(32px,calc((100vw - 1256px) / 2)) 10px;scroll-snap-type:x mandatory;scroll-padding-left:max(32px,calc((100vw - 1256px) / 2));scrollbar-width:none;-ms-overflow-style:none">
+<sc-for list="{{ gallery }}" as="c" hint-placeholder-count="4">
+<div style="flex:0 0 min(420px,82vw);scroll-snap-align:start;border-radius:24px;overflow:hidden;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column">
+<div style="aspect-ratio:4/3;width:100%;position:relative;background:#1a1f33">{{ c.el }}</div>
+<a href="Cases v4.dc.html?case={{ c.id }}" style="padding:24px 26px 28px;display:flex;flex-direction:column;gap:12px;text-decoration:none;color:#f4f1ea;flex:1" style-hover="background:rgba(94,231,255,.06)">
+<span style="font-size:13px;color:#a3a7b5">{{ c.tag }}</span>
+<span style="font-family:'Archivo',sans-serif;font-stretch:112%;font-weight:700;font-size:21px;line-height:1.2">{{ c.title }}</span>
+<span style="display:flex;align-items:baseline;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)"><span style="font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:24px;color:#efe3b8">{{ c.metric }}</span><span style="font-size:13px;color:#a3a7b5">{{ c.ml }}</span></span>
+</a>
+</div>
+</sc-for>
+</div>
+<div style="max-width:1320px;width:100%;margin:0 auto;padding:0 32px;box-sizing:border-box;display:flex;align-items:center;gap:20px">
+<div style="flex:1;height:4px;border-radius:999px;background:rgba(255,255,255,.08);position:relative;overflow:hidden"><div style="position:absolute;top:0;bottom:0;left:{{ galLeft }};width:{{ galThumb }};border-radius:999px;background:linear-gradient(90deg,#5ee7ff,#b388ff);box-shadow:0 0 12px rgba(94,231,255,.7);transition:left .15s"></div></div>
+<button onClick="{{ galPrev }}" style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:#f4f1ea;font-size:18px;cursor:pointer" style-hover="border-color:#5ee7ff;color:#5ee7ff">←</button>
+<button onClick="{{ galNext }}" style="width:48px;height:48px;border-radius:50%;border:0;background:#5ee7ff;color:#03141c;font-size:18px;cursor:pointer;box-shadow:0 0 20px rgba(94,231,255,.5)">→</button>
+</div>
+</section>
+
+<section id="services" style="position:relative;z-index:0;max-width:1320px;margin:0 auto;padding:140px 32px;display:flex;flex-direction:column;gap:44px"><div style="position:absolute;left:-90px;top:90px;z-index:-1;width:120px;height:120px;pointer-events:none"><dc-import name="Planet v4" kind="gas" size="120" hint-size="120px,120px" style="width:120px;height:120px;flex:none"></dc-import></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px 56px;align-items:end">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.03em">Everything your marketing needs</h2>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#a3a7b5">Six directions orbit your brand. Pick one to see the services and prices inside.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<sc-for list="{{ planets }}" as="p" hint-placeholder-count="6"><button onClick="{{ p.pick }}" style="font-family:'Chakra Petch',sans-serif;font-size:15px;font-weight:500;cursor:pointer;padding:10px 18px;border-radius:999px;border:1px solid {{ p.chipLine }};background:{{ p.chipBg }};color:{{ p.chipInk }};display:flex;align-items:center;gap:10px"><span style="width:12px;height:12px;border-radius:50%;background:{{ p.color }}"></span>{{ p.name }}</button></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:48px;align-items:center">
+<div style="position:relative;width:min(620px,100%);aspect-ratio:1;justify-self:center">{{ orbitMap }}</div>
+<div style="position:relative;border-radius:28px;padding:34px;background:linear-gradient(160deg,rgba(94,231,255,.1),rgba(255,255,255,.025) 45%);border:1px solid rgba(94,231,255,.35);box-shadow:0 0 60px rgba(94,231,255,.08);display:flex;flex-direction:column;gap:22px;overflow:hidden">
+<div style="position:absolute;right:-50px;top:-50px;width:190px;height:190px;opacity:.8;pointer-events:none">{{ selPlanet }}</div>
+<div style="display:flex;align-items:center;gap:14px;position:relative"><button onClick="{{ prev }}" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(11,16,36,.6);color:#f4f1ea;cursor:pointer;font-size:16px">←</button><button onClick="{{ next }}" style="width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(11,16,36,.6);color:#f4f1ea;cursor:pointer;font-size:16px">→</button><span style="font-size:14px;color:#a3a7b5">{{ selIndex }} of 6</span></div>
+<div style="display:flex;flex-direction:column;gap:10px;position:relative;max-width:78%"><span style="font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:clamp(28px,3vw,38px);line-height:1.02">{{ sel.name }}</span><span style="font-size:16px;line-height:1.55;color:#d6d8e0">{{ sel.text }}</span></div>
+<div style="display:flex;flex-direction:column;gap:14px;position:relative">
+<sc-for list="{{ selItems }}" as="it" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;gap:16px;font-size:15px"><span>{{ it.n }}</span><span style="color:#5ee7ff;white-space:nowrap;font-weight:600">{{ it.p }}</span></div><div style="height:6px;border-radius:999px;background:rgba(255,255,255,.07)"><div style="width:{{ it.w }};height:100%;border-radius:999px;background:linear-gradient(90deg,#5ee7ff,#b388ff);box-shadow:0 0 12px rgba(94,231,255,.5)"></div></div></div></sc-for>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;position:relative;padding-top:6px"><a href="https://calendly.com/kseniia-kklsh/free-consultation-cml" target="_blank" style="font-size:15px;font-weight:600;text-decoration:none;color:#03141c;background:#5ee7ff;padding:12px 20px;border-radius:999px">Discuss {{ sel.short }}</a><a href="Services v4.dc.html" style="font-size:15px;text-decoration:none;color:#f4f1ea;padding:12px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.2)">Full price list</a></div>
+</div>
+</div>
+</section>
+
+<section style="position:relative;z-index:0;overflow:hidden;background:linear-gradient(180deg,#0b1024,#141c40 40%,#0b1024)"><div style="position:absolute;right:-120px;top:70px;z-index:-1;width:300px;height:300px;pointer-events:none"><dc-import name="Planet v4" kind="ice" size="300" hint-size="300px,300px" style="width:300px;height:300px;flex:none"></dc-import></div><div style="position:absolute;left:6%;bottom:60px;z-index:-1;width:34px;height:34px;pointer-events:none"><dc-import name="Planet v4" kind="ringed" size="34" hint-size="34px,34px" style="width:34px;height:34px;flex:none"></dc-import></div>
+<div style="max-width:1320px;margin:0 auto;padding:140px 32px;display:flex;flex-direction:column;gap:56px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px 56px;align-items:end">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.03em">Your first 6 weeks with us</h2>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#a3a7b5">This is how the Launch System package runs. After each stage you receive a finished result.</p>
+</div>
+<div style="border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:28px;background:rgba(255,255,255,.02);overflow-x:auto">
+<div style="min-width:760px;display:grid;grid-template-columns:200px repeat(6,minmax(0,1fr));row-gap:14px;column-gap:6px;align-items:center">
+<span></span><span style="font-size:13px;color:#6d7183">Week 1</span><span style="font-size:13px;color:#6d7183">Week 2</span><span style="font-size:13px;color:#6d7183">Week 3</span><span style="font-size:13px;color:#6d7183">Week 4</span><span style="font-size:13px;color:#6d7183">Week 5</span><span style="font-size:13px;color:#6d7183">Week 6</span>
+<span style="font-size:15px">Audit &amp; research</span><div style="grid-column:2 / span 1;height:38px;border-radius:999px;background:linear-gradient(90deg,#4fc3ff,#8fe9ff);box-shadow:0 0 20px rgba(110,200,255,.4);display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:600;color:#04121c">Audit report</div>
+<span style="font-size:15px">Positioning</span><div style="grid-column:2 / span 2;height:38px;border-radius:999px;background:linear-gradient(90deg,#8a6bff,#c3b0ff);box-shadow:0 0 20px rgba(94,231,255,.4);display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:600;color:#03141c;margin-left:50%">Strategy document</div>
+<span style="font-size:15px">Content system</span><div style="grid-column:4 / span 2;height:38px;border-radius:999px;background:linear-gradient(90deg,#3ee6c8,#9dfbe8);box-shadow:0 0 20px rgba(80,230,200,.4);display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:600;color:#03130f">Pillars, plan, templates</div>
+<span style="font-size:15px">Production</span><div style="grid-column:5 / span 1;height:38px;border-radius:999px;background:linear-gradient(90deg,#ff5fa2,#ff9cc8);box-shadow:0 0 20px rgba(255,95,160,.4);display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:600;color:#1c0410">First posts</div>
+<span style="font-size:15px">Launch &amp; ads</span><div style="grid-column:6 / span 1;height:38px;border-radius:999px;background:linear-gradient(90deg,#b77bff,#d9b8ff);box-shadow:0 0 20px rgba(180,120,255,.4);display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:600;color:#12051f">Channel live</div>
+<span style="font-size:15px">Analytics</span><div style="grid-column:6 / span 1;height:38px;border-radius:999px;border:1px dashed rgba(255,255,255,.4);display:flex;align-items:center;padding:0 14px;font-size:13px">Dashboard</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px">
+<div style="padding:22px 24px;border-radius:18px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;color:#a3a7b5">You get</span><span style="font-size:17px">A strategy document your team and freelancers work from</span></div>
+<div style="padding:22px 24px;border-radius:18px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;color:#a3a7b5">You get</span><span style="font-size:17px">A 3-month content plan with templates</span></div>
+<div style="padding:22px 24px;border-radius:18px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;color:#a3a7b5">You get</span><span style="font-size:17px">One channel live and a dashboard to track it</span></div>
+</div>
+</div>
+</section>
+
+<section id="results" style="position:relative;z-index:0;max-width:1320px;margin:0 auto;padding:140px 32px;display:flex;flex-direction:column;gap:56px"><div style="position:absolute;right:-40px;top:40px;z-index:-1;width:70px;height:70px;pointer-events:none"><dc-import name="Planet v4" kind="ringed" size="70" hint-size="70px,70px" style="width:70px;height:70px;flex:none"></dc-import></div><div style="position:absolute;left:30%;top:90px;z-index:-1;width:18px;height:18px;pointer-events:none"><dc-import name="Planet v4" kind="rocky" size="18" hint-size="18px,18px" style="width:18px;height:18px;flex:none"></dc-import></div>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:end">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.03em;max-width:760px">Real numbers from client accounts</h2>
+<a href="Cases v4.dc.html" style="font-size:16px;font-weight:500">All case studies →</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:20px">
+<div style="border-radius:24px;padding:30px;background:linear-gradient(160deg,rgba(94,231,255,.14),rgba(255,255,255,.02) 50%);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:22px">
+<span style="font-size:15px;color:#a3a7b5">Alex Lindholm · LinkedIn</span>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:44px;line-height:1;color:#5ee7ff">755,793</span><span style="font-size:15px;color:#d6d8e0">impressions in 12 months, +3,757% year over year</span></div>
+<div style="display:flex;flex-direction:column;gap:12px;margin-top:auto"><span style="font-size:13px;color:#6d7183">Top 3 posts, impressions</span>
+<div style="display:flex;align-items:center;gap:12px"><div style="flex:1;height:12px;border-radius:999px;background:rgba(255,255,255,.06)"><div style="width:100%;height:100%;border-radius:999px;background:#5ee7ff;box-shadow:0 0 14px rgba(94,231,255,.6)"></div></div><span style="font-size:14px;width:44px;text-align:right">105K</span></div>
+<div style="display:flex;align-items:center;gap:12px"><div style="flex:1;height:12px;border-radius:999px;background:rgba(255,255,255,.06)"><div style="width:71%;height:100%;border-radius:999px;background:#5ee7ff;opacity:.75"></div></div><span style="font-size:14px;width:44px;text-align:right">75K</span></div>
+<div style="display:flex;align-items:center;gap:12px"><div style="flex:1;height:12px;border-radius:999px;background:rgba(255,255,255,.06)"><div style="width:68%;height:100%;border-radius:999px;background:#5ee7ff;opacity:.55"></div></div><span style="font-size:14px;width:44px;text-align:right">71K</span></div>
+</div>
+</div>
+<div style="border-radius:24px;padding:30px;background:linear-gradient(160deg,rgba(80,230,200,.14),rgba(255,255,255,.02) 50%);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:22px">
+<span style="font-size:15px;color:#a3a7b5">Azarova Consulting · Instagram</span>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:44px;line-height:1;color:#b388ff">26,351</span><span style="font-size:15px;color:#d6d8e0">views in 30 days, reach up 49.9%</span></div>
+<div style="display:flex;flex-direction:column;gap:12px;margin-top:auto"><span style="font-size:13px;color:#6d7183">Where the 1,449 interactions came from</span>
+<div style="display:flex;height:18px;border-radius:999px;overflow:hidden;gap:3px"><div style="width:65%;background:#b388ff;box-shadow:0 0 14px rgba(179,136,255,.5)"></div><div style="width:29.6%;background:#ff7fb8"></div><div style="width:5.4%;background:#5ee7ff"></div></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:#d6d8e0"><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#b388ff"></span>Stories 65%</span><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#ff7fb8"></span>Reels 29.6%</span><span style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:50%;background:#5ee7ff"></span>Posts 5.4%</span></div>
+</div>
+</div>
+<div style="border-radius:24px;padding:30px;background:linear-gradient(160deg,rgba(255,95,160,.14),rgba(255,255,255,.02) 50%);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:22px">
+<span style="font-size:15px;color:#a3a7b5">XcelleRIDE · Instagram, March</span>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:44px;line-height:1;color:#ff7fb8">1.18M</span><span style="font-size:15px;color:#d6d8e0">accounts reached across team and coach pages</span></div>
+<div style="display:flex;align-items:flex-end;gap:20px;height:120px;margin-top:auto">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end"><div style="width:100%;height:100%;border-radius:12px 12px 4px 4px;background:linear-gradient(180deg,#ff7fb8,rgba(255,127,184,.25));box-shadow:0 0 20px rgba(255,110,180,.4)"></div><span style="font-size:13px;color:#d6d8e0">Coach · 1,094,499</span></div>
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end"><div style="width:100%;height:8%;min-height:8px;border-radius:12px 12px 4px 4px;background:#ff7fb8;opacity:.6"></div><span style="font-size:13px;color:#d6d8e0">Team · 82,199</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="prices" style="position:relative;z-index:0;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(120,80,255,.16),transparent 70%)">
+<div style="max-width:1320px;margin:0 auto;padding:140px 32px;display:flex;flex-direction:column;gap:56px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px 56px;align-items:end">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.03em">Packages</h2>
+<p style="margin:0;font-size:18px;line-height:1.6;color:#a3a7b5">Bigger planet, more work included. Single services from €150. Prices exclude VAT.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px;align-items:stretch">
+<div style="border-radius:24px;padding:30px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:18px">
+<div style="height:120px;display:flex;align-items:center"><dc-import name="Planet v4" look="line" kind="gas" size="96" hint-size="96px,96px" style="width:96px;height:96px;flex:none"></dc-import></div>
+<span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">Clarity</span>
+<span style="font-size:15px;line-height:1.55;color:#a3a7b5">Marketing audit, competitor research and a strategy session. Know what to fix first.</span>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:30px">€790</span><span style="font-size:14px;color:#a3a7b5">2 weeks</span></div>
+<span style="font-size:13px;color:#a3a7b5;margin-top:-10px">€950 if ordered separately</span>
+</div>
+<div style="border-radius:24px;padding:30px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:18px">
+<div style="height:120px;display:flex;align-items:center"><dc-import name="Planet v4" look="line" kind="ringed" size="96" hint-size="96px,96px" style="width:96px;height:96px;flex:none"></dc-import></div>
+<span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">Monthly Team</span>
+<span style="font-size:15px;line-height:1.55;color:#a3a7b5">Strategy session, one channel managed, content production and a monthly report.</span>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:30px">€1,900</span><span style="font-size:14px;color:#a3a7b5">per month</span></div>
+</div>
+<div style="border-radius:24px;padding:30px;background:linear-gradient(170deg,rgba(94,231,255,.2),rgba(255,255,255,.03) 55%);border:1px solid rgba(94,231,255,.6);box-shadow:0 0 60px rgba(94,231,255,.15);display:flex;flex-direction:column;gap:18px">
+<div style="height:120px;display:flex;align-items:center"><dc-import name="Planet v4" look="line" kind="star" size="96" hint-size="96px,96px" style="width:96px;height:96px;flex:none"></dc-import></div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">Launch System</span><span style="font-size:12px;font-weight:600;color:#03141c;background:#5ee7ff;padding:5px 10px;border-radius:999px">Most chosen</span></div>
+<span style="font-size:15px;line-height:1.55;color:#d6d8e0">Audit, positioning, content system, first channel launched and two follow-up sessions.</span>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.15)"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:30px">€2,900</span><span style="font-size:14px;color:#d6d8e0">6 weeks</span></div>
+<span style="font-size:13px;color:#c9ccd6;margin-top:-10px">€4,070 if ordered separately</span>
+</div>
+<div style="border-radius:24px;padding:30px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:18px">
+<div style="height:120px;display:flex;align-items:center;position:relative"><dc-import name="Planet v4" look="line" kind="rocky" size="110" hint-size="110px,110px" style="width:110px;height:110px;flex:none"></dc-import></div>
+<span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">EU Market Entry</span>
+<span style="font-size:15px;line-height:1.55;color:#a3a7b5">Everything in Launch System, adapted for a new European market.</span>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.1)"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:30px"><span style="font-size:16px;font-weight:600">from </span>€3,900</span><span style="font-size:14px;color:#a3a7b5">8 weeks</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="max-width:1320px;margin:0 auto;padding:40px 32px 140px">
+<div style="position:relative;overflow:hidden;border-radius:32px;border:1px solid rgba(255,255,255,.1);background:#111a3e;padding:64px 56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:48px;align-items:center">
+<div style="position:absolute;right:-180px;top:-180px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,95,160,.25),transparent 65%);pointer-events:none"></div>
+<div style="display:flex;flex-direction:column;gap:22px;position:relative">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(30px,3.6vw,48px);line-height:1.02;letter-spacing:-.03em">Expanding into Europe?</h2>
+<p style="margin:0;font-size:17px;line-height:1.6;color:#a3a7b5">We research your target market, adapt your positioning and messages for local buyers and plan the launch. Any EU country, 8 weeks, from €3,900.</p>
+<a href="EU Market Entry v4.dc.html" style="font-size:16px;font-weight:500;align-self:flex-start">How EU Market Entry works →</a>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;position:relative"><div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center"><dc-import name="Rocket v4" stage="0" color="#ff8fcf" size="96" hint-size="96px,96px" style="width:96px;height:96px;flex:none"></dc-import><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:18px">Research</span><span style="font-size:13px;line-height:1.4;color:#a3a7b5">Market, buyers and competitors</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center"><dc-import name="Rocket v4" stage="1" color="#5ee7ff" size="96" hint-size="96px,96px" style="width:96px;height:96px;flex:none"></dc-import><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:18px">Adapt</span><span style="font-size:13px;line-height:1.4;color:#a3a7b5">Positioning and messages in the local language</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center"><dc-import name="Rocket v4" stage="2" color="#b88cff" size="96" hint-size="96px,96px" style="width:96px;height:96px;flex:none"></dc-import><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:18px">Launch</span><span style="font-size:13px;line-height:1.4;color:#a3a7b5">Channels, content and partners</span></div></div>
+</div>
+</section>
+
+<section id="ways" style="position:relative;z-index:0;overflow:hidden;border-top:1px solid rgba(255,255,255,.08)"><div style="position:absolute;right:6%;top:70px;z-index:-1;width:90px;height:90px;pointer-events:none"><dc-import name="Planet v4" kind="aurora" size="90" hint-size="90px,90px" style="width:90px;height:90px;flex:none"></dc-import></div><div style="position:absolute;right:calc(6% + 110px);top:150px;z-index:-1;width:22px;height:22px;pointer-events:none"><dc-import name="Planet v4" kind="rocky" size="22" hint-size="22px,22px" style="width:22px;height:22px;flex:none"></dc-import></div>
+<div style="max-width:1320px;margin:0 auto;padding:140px 32px;display:flex;flex-direction:column;gap:48px">
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.03em">Three ways to work with us</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px">
+<div style="border-radius:24px;padding:32px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:14px;min-height:260px"><span style="font-size:15px;color:#ff7fb8">Learn it yourself</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">Celar Marketing Academy</span><span style="font-size:15px;line-height:1.55;color:#a3a7b5">Online programs and tools. You build your own strategy and content plan step by step.</span><a href="Academy v4.dc.html" style="margin-top:auto;font-size:15px">Opening soon · Join the waitlist →</a></div>
+<div style="border-radius:24px;padding:32px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;gap:14px;min-height:260px"><span style="font-size:15px;color:#b388ff">Get advice</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">Work 1:1</span><span style="font-size:15px;line-height:1.55;color:#a3a7b5">Personal strategy sessions on one specific marketing question.</span><a href="https://kseniiamarketing.eu/" style="margin-top:auto;font-size:15px">Book a 1:1 session →</a></div>
+<div style="border-radius:24px;padding:32px;background:linear-gradient(170deg,rgba(94,231,255,.18),rgba(255,255,255,.03) 55%);border:1px solid rgba(94,231,255,.5);display:flex;flex-direction:column;gap:14px;min-height:260px"><span style="font-size:15px;color:#5ee7ff">We do it for you</span><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:700;font-size:24px">Celar Studio</span><span style="font-size:15px;line-height:1.55;color:#d6d8e0">Single services, packages or a monthly marketing team.</span><a href="#services" style="margin-top:auto;font-size:15px">See services →</a></div>
+</div>
+</div>
+</section>
+
+<dc-import name="Footer v4" hint-size="100%,760px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Display&quot;}}">
+class Component extends DCLogic {
+  state = { sel: 1, gl: 0, gt: 0.3, qa: [] };
+  quizQs = [
+    { q:"What do you need help with most?", o:["Social media","Website and ads","Strategy and positioning","Launching in a new EU country"] },
+    { q:"Where is your marketing right now?", o:["Starting from zero","Posting, but without results","It works, I want to grow faster"] },
+    { q:"Will you sell in another EU country in the next 12 months?", o:["Yes, it’s decided","Maybe","No, my current market is enough"] },
+    { q:"How do you want to work?", o:["Do it for me","Advise me, I’ll do it myself","I want to learn it myself"] },
+    { q:"What is your monthly marketing budget?", o:["Under €500","€500 to €2,000","Over €2,000"] }
+  ];
+  cases = { biocycle:"BioCycle Labs", lindholme:"Alex Lindholm", vigor:"Vigor & Sage", azarova:"Azarova Consulting", xcelleride:"XcelleRIDE" };
+  quizResult([need, stage, eu, mode, budget]) {
+    const cal = "https://calendly.com/kseniia-kklsh/free-consultation-cml", S = "Services v4.dc.html";
+    const later = eu === 1 && need !== 3 ? " If another EU market comes up later, EU Market Entry builds on this work." : "";
+    let r;
+    if (mode === 2) {
+      const t = stage === 0 ? ["SMM Without Budget: 30-Day Challenge","€28","30 days, 15–30 minutes a day. You do the work yourself and see your first result."] : ["SMM Without Budget: 6-Week Program","€78","6 weeks, 2–3 lessons a week. You build a social media system that keeps working."];
+      r = { kicker:"Celar Marketing Academy", title:t[0], price:t[1], why:t[2] + " The full Academy opens soon: join the waitlist for free tips, lessons and templates.", href:"Academy v4.dc.html#waitlist", cta:"Join the Academy waitlist", c:"azarova" };
+    } else if (mode === 1) {
+      r = { kicker:"Get advice", title:"Strategy Session", price:"€150", why:"One focused session on your main question. You leave with a written action list and do the work with your own team." + later, href:cal, cta:"Book a free intro call", c:"lindholme" };
+    } else if (need === 3 || eu === 0) {
+      r = { kicker:"Package", title:"EU Market Entry", price:"from €3,900", why:"Market research, positioning and messages adapted for local buyers, and a launch plan. Any EU country, 8 weeks.", href:"EU Market Entry v4.dc.html", cta:"How EU Market Entry works", c:"vigor" };
+    } else if (budget === 0) {
+      r = { kicker:"Package", title:"Clarity", price:"€790", why:"With a tight budget, the first step is knowing where it should go. Audit, competitor research and a strategy session in 2 weeks." + later, href:S, cta:"See all services", c:"azarova" };
+    } else if (need === 0) {
+      r = stage === 0
+        ? (budget === 2 ? { kicker:"Package", title:"Launch System", price:"€2,900", why:"Audit, positioning, content system and your first channel live in 6 weeks." + later, href:S, cta:"See what’s included", c:"xcelleride" }
+                        : { kicker:"Service", title:"Channel Launch", price:"€1,490", why:"We set up one channel properly: profile, content pillars, first posts and a plan for the next months." + later, href:S, cta:"See social media services", c:"xcelleride" })
+        : (budget === 2 ? { kicker:"Package", title:"Monthly Team", price:"€1,900/mo", why:"Strategy, one channel managed, content production and a monthly report. One team instead of several freelancers." + later, href:S, cta:"See what’s included", c:"azarova" }
+                        : { kicker:"Service", title:"SMM Management", price:"from €690/mo", why:"We run your channel with a content plan and a monthly report, so posting turns into results." + later, href:S, cta:"See social media services", c:"azarova" });
+    } else if (need === 1) {
+      r = { kicker:"Services", title:"Landing page and ads setup", price:"from €1,380", why:"A page built to turn visitors into enquiries, and paid campaigns that send the right people to it." + later, href:S, cta:"See ads & web services", c:"biocycle" };
+    } else {
+      r = (stage === 2 || budget === 2)
+        ? { kicker:"Service", title:"Marketing Strategy", price:"€1,290", why:"Who you sell to, what you say and which channels to use, written into a document your team works from." + later, href:S, cta:"See strategy services", c:"biocycle" }
+        : { kicker:"Package", title:"Clarity", price:"€790", why:"Audit, competitor research and a strategy session. You know what to fix first in 2 weeks." + later, href:S, cta:"See all services", c:"lindholme" };
+    }
+    return { ...r, caseHref:`Cases v4.dc.html?case=${r.c}`, caseLabel:`Case: ${this.cases[r.c]}` };
+  }
+  galRef = React.createRef();
+  componentDidMount() { setTimeout(() => this.galUpd(), 300); }
+  galUpd() { const el = this.galRef.current; if (!el) return; const max = el.scrollWidth - el.clientWidth, t = el.clientWidth / el.scrollWidth; this.setState({ gt: t, gl: max > 0 ? (el.scrollLeft / max) * (1 - t) : 0 }); }
+  galBy(d) { const el = this.galRef.current; if (el) el.scrollBy({ left: d * el.clientWidth * 0.8, behavior: 'smooth' }); }
+  dirs = [
+    { name:"Audit & Research", short:"an audit", r:22, a:205, size:46, color:"radial-gradient(circle at 30% 30%,#f2fdff,#7fe9ff 30%,#1a5f8c 82%)", glow:"rgba(243,220,156,.75)", text:"Find out what works, what doesn’t and why, before spending more.", items:[{n:"Express Audit",p:"€190"},{n:"Marketing Audit",p:"€350"},{n:"Competitor Research",p:"€450"},{n:"Audience Research",p:"€590"}] },
+    { name:"Strategy", short:"strategy", r:22, a:25, size:52, color:"radial-gradient(circle at 30% 30%,#fff8de,#f3dc9c 30%,#a88d4a 82%)", glow:"rgba(243,220,156,.75)", text:"Who you sell to, what you say and which channels to use.", items:[{n:"Strategy Session",p:"€150"},{n:"Brand & Positioning",p:"€990"},{n:"Marketing Strategy",p:"€1,290"}] },
+    { name:"Social Media", short:"social media", r:34, a:125, size:50, color:"radial-gradient(circle at 30% 30%,#f3ecff,#a98bff 30%,#35207a 82%)", glow:"rgba(243,220,156,.75)", text:"Instagram and LinkedIn run with a plan and a monthly report.", items:[{n:"Content System Setup",p:"€790"},{n:"Channel Launch",p:"€1,490"},{n:"SMM Management",p:"from €690/mo"},{n:"LinkedIn for Founders",p:"from €590/mo"}] },
+    { name:"Production", short:"production", r:34, a:310, size:44, color:"radial-gradient(circle at 30% 30%,#fff0f8,#ff8fcf 30%,#7a1f5c 82%)", glow:"rgba(243,220,156,.75)", text:"Photo, video, copy and design templates in your brand style.", items:[{n:"Reels Pack (8 videos)",p:"€350"},{n:"Design Templates",p:"€390"},{n:"Content Shoot Day",p:"from €450"},{n:"Copywriting",p:"from €90/page"}] },
+    { name:"Ads & Web", short:"ads & web", r:46, a:62, size:48, color:"radial-gradient(circle at 30% 30%,#eef3ff,#7f9dff 30%,#1f2f7a 82%)", glow:"rgba(243,220,156,.75)", text:"Paid campaigns and pages that turn attention into enquiries.", items:[{n:"Ads Setup",p:"€490"},{n:"Ads Management",p:"from €450/mo"},{n:"Quick Website Design",p:"€200"},{n:"Landing Page",p:"from €890"},{n:"Funnel & Email",p:"€1,190"}] },
+    { name:"Analytics", short:"analytics", r:46, a:238, size:42, color:"radial-gradient(circle at 30% 30%,#fff8de,#f3dc9c 30%,#a88d4a 82%)", glow:"rgba(243,220,156,.75)", text:"See which channels bring results and where budget is lost.", items:[{n:"Analytics Audit",p:"€190"},{n:"Tracking & Dashboard",p:"€590"},{n:"Monthly Reporting",p:"from €190/mo"}] }
+  ];
+  stars(n, seed, w, h) {
+    let s = seed; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280; const out = [];
+    for (let i = 0; i < n; i++) out.push(`${Math.round(r()*w)}px ${Math.round(r()*h)}px 0 ${r()>.92?1:0}px rgba(255,255,255,${(.3+r()*.7).toFixed(2)})`);
+    return out.join(",");
+  }
+  buildScene() {
+    const e = React.createElement, motion = this.props.motion ?? true, an = (v) => motion ? v : "none";
+    const disk = "radial-gradient(ellipse at center,#fffdf2 0%,#f6e6b0 15%,#d9bf74 34%,rgba(94,231,255,.35) 56%,rgba(94,231,255,0) 72%)";
+    const planet = (d, path, dur, delay, extra) => e("div", { style: { position:"absolute", left:0, top:0, offsetPath:`path("${path}")`, offsetRotate:"0deg", animation: an(`cOrbit ${dur}s linear infinite`), animationDelay:`${delay}s` } }, extra);
+    this.heroScene = e("div", { style:{ position:"absolute", inset:0, pointerEvents:"none" } },
+      e("div", { style:{ position:"absolute", left:0, top:0, width:"1px", height:"1px", boxShadow:this.stars(220, 11, 2200, 900), animation:an("cDrift 120s linear infinite alternate") } }),
+      e("div", { style:{ position:"absolute", left:0, top:0, width:"1px", height:"1px", boxShadow:this.stars(60, 29, 1900, 900), animation:an("cTwinkle 4s ease-in-out infinite") } }),
+      e("div", { style:{ position:"absolute", right:"max(-200px, calc(50% - 860px))", top:"50%", width:"780px", height:"780px", marginTop:"-390px" } },
+        e("div", { style:{ position:"absolute", inset:"-15%", borderRadius:"50%", background:"radial-gradient(circle,rgba(240,220,160,.34),rgba(94,231,255,.1) 45%,transparent 65%)", animation:an("cBreath 7s ease-in-out infinite") } }),
+        e("div", { style:{ position:"absolute", left:"-34%", right:"-34%", top:"45.5%", height:"9%", borderRadius:"50%", background:disk, filter:"blur(1px)" } }),
+        e("div", { style:{ position:"absolute", inset:"25%", borderRadius:"50%", boxShadow:"0 0 0 3px #fff3cf, 0 0 50px 14px rgba(240,215,150,.7), inset 0 0 40px 10px rgba(240,215,150,.5)" } }),
+        e("div", { style:{ position:"absolute", inset:"27%", borderRadius:"50%", background:"#000" } }),
+        e("div", { style:{ position:"absolute", left:"-30%", right:"-30%", top:"48.6%", height:"2.8%", borderRadius:"50%", background:disk } }),
+        planet(0, "M -60 390 A 450 130 0 1 0 840 390 A 450 130 0 1 0 -60 390", 26, 0, e("div", { style:{ width:"26px", height:"26px", margin:"-13px 0 0 -13px", borderRadius:"50%", background:"radial-gradient(circle at 30% 30%,#fff4d6,#dcc07a 32%,#6e5a2c 82%)", boxShadow:"0 0 18px rgba(243,220,156,.8)" } })),
+        planet(0, "M -180 390 A 570 190 0 1 0 960 390 A 570 190 0 1 0 -180 390", 48, -20, e("div", { style:{ position:"relative", width:"48px", height:"48px", margin:"-24px 0 0 -24px" } },
+          e("div", { style:{ position:"absolute", inset:0, borderRadius:"50%", background:"radial-gradient(circle at 30% 30%,#fff8de,#f3dc9c 30%,#a88d4a 82%)", boxShadow:"0 0 22px rgba(243,220,156,.7)" } }),
+          e("div", { style:{ position:"absolute", left:"-16px", right:"-16px", top:"17px", height:"14px", borderRadius:"50%", border:"2px solid rgba(240,230,195,.85)", transform:"rotate(-16deg)" } })))
+      ),
+      e("div", { style:{ position:"absolute", inset:0, background:"linear-gradient(90deg,rgba(11,16,36,.94) 0%,rgba(11,16,36,.82) min(640px,60%),rgba(11,16,36,0) min(900px,85%))" } }),
+      e("div", { style:{ position:"absolute", left:"38%", top:"9%", width:"16px", height:"16px", borderRadius:"50%", background:"radial-gradient(circle at 30% 30%,#fff8de,#f3dc9c 30%,#a88d4a 82%)", boxShadow:"0 0 16px rgba(243,220,156,.8)" } }),
+      e("div", { style:{ position:"absolute", left:"52%", bottom:"70px", width:"40px", height:"40px", borderRadius:"50%", background:"radial-gradient(circle at 30% 30%,#ffffff,#ead9a2 32%,#8a7642 82%)", boxShadow:"0 0 22px rgba(243,220,156,.6)" } }),
+    );
+    this.sun = e("div", { style:{ position:"absolute", left:"50%", top:"50%", width:"18%", aspectRatio:"1", transform:"translate(-50%,-50%)", display:"flex", alignItems:"center", justifyContent:"center" } },
+      e("div", { style:{ position:"absolute", inset:"-28%", borderRadius:"50%", border:"1px dashed rgba(94,231,255,.4)", animation:an("cSpin 40s linear infinite") } }),
+      e("div", { style:{ position:"absolute", inset:0, borderRadius:"50%", background:"radial-gradient(circle at 35% 30%,#2b3670,#0f1533)", border:"1.5px solid #5ee7ff", boxShadow:"0 0 24px rgba(94,231,255,.45), inset 0 0 20px rgba(94,231,255,.15)" } }),
+      e("span", { style:{ position:"relative", fontFamily:"'Archivo',sans-serif", fontStretch:"115%", fontWeight:800, fontSize:"13px", color:"#5ee7ff", textAlign:"center", lineHeight:1.1 } }, "YOUR", e("br"), "BRAND"),
+      e("div", { style:{ position:"absolute", inset:"-95%", borderRadius:"50%", animation:an("cSpin 30s linear infinite") } },
+        e("div", { style:{ position:"absolute", top:"-4px", left:"50%", width:"8px", height:"8px", borderRadius:"50%", background:"#fff", boxShadow:"0 0 10px #fff" } })));
+  }
+  neon(d) { const m = (d.color.match(/#[0-9a-f]{6}/gi) || []); return m[1] || m[0] || "#5ee7ff"; }
+  linePlanet(c, s, act, big) {
+    const e = React.createElement, id = "lp" + c.slice(1) + (big ? "b" : "");
+    return e("svg", { viewBox:"0 0 100 100", width:s, height:s, style:{ display:"block", overflow:"visible", filter: act ? `drop-shadow(0 0 14px ${c})` : `drop-shadow(0 0 6px ${c}88)`, transition:"all .35s" } },
+      e("defs", null, e("radialGradient", { id:id+"g", cx:".35", cy:".3", r:".8" }, e("stop", { offset:"0", stopColor:"#2b3670" }), e("stop", { offset:"1", stopColor:"#0f1533" })),
+        e("clipPath", { id:id+"c" }, e("circle", { cx:50, cy:50, r:44 }))),
+      act ? e("circle", { cx:50, cy:50, r:49, fill:"none", stroke:c, strokeOpacity:.5, strokeDasharray:"2 4" }) : null,
+      e("circle", { cx:50, cy:50, r:44, fill:`url(#${id}g)`, stroke:c, strokeWidth:big ? 1 : 2.5 }),
+      e("g", { clipPath:`url(#${id}c)` },
+        e("ellipse", { cx:50, cy:50, rx:44, ry:14, fill:"none", stroke:c, strokeOpacity:.45, strokeWidth:big ? .6 : 1.4 }),
+        e("ellipse", { cx:50, cy:50, rx:16, ry:44, fill:"none", stroke:c, strokeOpacity:.35, strokeWidth:big ? .6 : 1.4 })));
+  }
+  orbit() {
+    const e = React.createElement, motion = this.props.motion ?? true, an = (v) => motion ? v : "none", sel = this.state.sel;
+    const rings = [[22,70,[0,1]],[34,105,[2,3]],[46,150,[4,5]]];
+    return e("div", { style:{ position:"absolute", inset:0 } },
+      rings.map(([r, dur, idx], ri) => {
+        const on = idx.includes(sel);
+        return e("div", { key:"r"+ri, style:{ position:"absolute", left:(50-r)+"%", top:(50-r)+"%", width:(2*r)+"%", height:(2*r)+"%" } },
+          e("div", { style:{ position:"absolute", inset:0, borderRadius:"50%", border: on ? "1px solid rgba(94,231,255,.7)" : "1px dashed rgba(255,255,255,.16)", boxShadow: on ? "0 0 30px rgba(94,231,255,.25), inset 0 0 30px rgba(94,231,255,.12)" : "none", transition:"all .4s" } }),
+          e("div", { style:{ position:"absolute", inset:0, animation:an(`cSpin ${dur}s linear infinite`) } },
+            idx.map((i) => { const d = this.dirs[i], a = d.a*Math.PI/180, act = i === sel, s = act ? d.size + 20 : d.size;
+              return e("div", { key:i, style:{ position:"absolute", left:(50+50*Math.cos(a))+"%", top:(50+50*Math.sin(a))+"%", width:0, height:0 } },
+                e("div", { style:{ position:"absolute", left:0, top:0, animation:an(`cSpinRev ${dur}s linear infinite`) } },
+                  e("button", { onClick:() => this.setState({ sel:i }), style:{ position:"absolute", left:0, top:0, transform:"translate(-50%,-50%)", display:"flex", flexDirection:"column", alignItems:"center", gap:"8px", background:"none", border:0, padding:0, cursor:"pointer", color:"#f4f1ea", fontFamily:"'Chakra Petch',sans-serif" } },
+                    this.linePlanet(this.neon(d), s, act),
+                    e("span", { style:{ fontSize:"13px", fontWeight:600, whiteSpace:"nowrap", padding:"4px 10px", borderRadius:"999px", background: act ? "#5ee7ff" : "rgba(11,16,36,.7)", color: act ? "#03141c" : "#f4f1ea" } }, d.name))));
+            })));
+      }),
+      this.sun);
+  }
+  renderVals() {
+    const m = this.props.motion ?? true;
+    if (!this.heroScene || this._m !== m) { this._m = m; this.buildScene(); }
+    const n = this.dirs.length, sel = this.dirs[this.state.sel];
+    const num = (p) => parseFloat((p.match(/[\d,]+/)||["0"])[0].replace(/,/g,"")) || 0;
+    const max = Math.max(...sel.items.map(it => num(it.p)));
+    const qa = this.state.qa, qi = qa.length, qDone = qi >= this.quizQs.length, qCur = this.quizQs[Math.min(qi, this.quizQs.length - 1)];
+    return {
+      qActive: !qDone, qDone, qNum: qi + 1, qCur, qCanBack: qi > 0 && !qDone,
+      qOpts: qCur.o.map((label, i) => ({ label, bg:"rgba(255,255,255,.03)", line:"rgba(255,255,255,.14)", pick: () => this.setState(s => ({ qa:[...s.qa, i] })) })),
+      qDots: this.quizQs.map((_, i) => ({ bg: i < qi ? "#5ee7ff" : "rgba(255,255,255,.12)", glow: i < qi ? "0 0 10px rgba(94,231,255,.6)" : "none" })),
+      qBack: () => this.setState(s => ({ qa:s.qa.slice(0, -1) })), qRestart: () => this.setState({ qa:[] }),
+      qRes: qDone ? this.quizResult(qa) : { kicker:"", title:"", price:"", why:"", href:"#", cta:"", caseHref:"#", caseLabel:"" },
+      galRef: this.galRef, onGalScroll: () => this.galUpd(), galPrev: () => this.galBy(-1), galNext: () => this.galBy(1), galLeft: (this.state.gl * 100).toFixed(1) + '%', galThumb: (this.state.gt * 100).toFixed(1) + '%', heroScene: this.heroScene, orbitMap: this.orbit(), selPlanet: this.linePlanet(this.neon(sel), 190, false, true), sel, selIndex: this.state.sel + 1,
+      selItems: sel.items.map(it => ({ ...it, w: Math.max(6, Math.round(num(it.p)/max*100)) + "%" })),
+      prev: () => this.setState(s => ({ sel:(s.sel+n-1)%n })), next: () => this.setState(s => ({ sel:(s.sel+1)%n })),
+      planets: this.dirs.map((d, i) => { const on = i === this.state.sel; return { name:d.name, color:d.color, pick:() => this.setState({ sel:i }), chipBg: on ? "#5ee7ff" : "rgba(255,255,255,.04)", chipInk: on ? "#03141c" : "#f4f1ea", chipLine: on ? "#5ee7ff" : "rgba(255,255,255,.14)" }; }),
+      gallery: [
+        { id:"biocycle", src:"bio-globe.png", pos:"70% center", tag:"Cleantech · Strategy, website, SEO", title:"From dense R&D to positioning farmers understand", metric:"3", ml:"plain-language outcomes on the new site", img:"BioCycle Labs homepage" },
+        { id:"lindholme", src:"alex-profile.png", pos:"center top", tag:"Personal brand · LinkedIn", title:"From generic founder profile to category voice", metric:"755,793", ml:"impressions in 12 months", img:"LinkedIn analytics" },
+        { id:"vigor", src:"vigor-site.png", pos:"center", tag:"Consumer brand · Multi-market SMM", title:"Three markets, one recognisable brand", metric:"+53%", ml:"followers across three markets in 11 weeks", img:"Vigor & Sage feeds" },
+        { id:"azarova", src:"az-grid-1.png", pos:"center 12%", tag:"Tax consulting · Instagram", title:"From inconsistent posting to a repeatable system", metric:"+49.9%", ml:"reach in 30 days", img:"Azarova Consulting Instagram" },
+        { id:"xcelleride", src:"xr-team-grid.jpg", pos:"center top", tag:"Sports team · Instagram", title:"One content plan for a team and its head coach", metric:"1.18M", ml:"accounts reached in March", img:"XcelleRIDE Instagram grid" },
+        { id:"mz", src:"mz-cover-horse.png", pos:"center 25%", tag:"Sports brand · Visual concept", title:"Three visual directions for a Grand Prix team", metric:"3", ml:"concepts tested on real posts", img:"MZ Sporthorses concept book" }
+      ].map(c => ({ ...c, el: React.createElement("img",{src:c.src,alt:c.img,decoding:"async",style:{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",objectPosition:c.pos,display:"block"}}) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

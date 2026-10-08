@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Blog · Celar Marketing Lab</title>
+<meta name="description" content="Articles on customer research, positioning, content and AI search from Celar Marketing Lab.">
+<link rel="icon" type="image/png" href="celar-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./blog-articles.js"></script>
+<style>
+body{margin:0;background:#0b1024;color:#f4f1ea;font-family:'Chakra Petch',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:#5ee7ff}
+a:hover{color:#a6f3ff}
+html{overflow-x:clip}
+html,body{height:auto!important}
+#dc-root,#dc-root>.sc-host{height:auto!important;min-height:100%}
+</style>
+</helmet>
+<dc-import name="Header v4" active="blog" hint-size="100%,70px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+<section style="position:relative;z-index:0;overflow:hidden">
+<div style="position:absolute;right:-80px;top:40px;z-index:-1;width:280px;height:280px;pointer-events:none"><dc-import name="Planet v4" kind="gas" size="280" hint-size="280px,280px" style="width:280px;height:280px;flex:none"></dc-import></div>
+<div style="max-width:1320px;margin:0 auto;padding:100px 32px 56px;display:flex;flex-direction:column;gap:22px">
+<h1 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:clamp(40px,5.6vw,84px);line-height:.96;letter-spacing:-.035em">Blog</h1>
+<p style="margin:0;font-size:19px;line-height:1.6;color:#d6d8e0;max-width:620px;text-wrap:pretty">Articles on customer research, positioning, content and search, backed by sources.</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+<sc-for list="{{ topics }}" as="t" hint-placeholder-count="5"><button type="button" onClick="{{ t.pick }}" style="font-family:'Chakra Petch',sans-serif;font-size:15px;font-weight:500;cursor:pointer;padding:9px 18px;border-radius:999px;border:1px solid {{ t.line }};background:{{ t.bg }};color:{{ t.color }}">{{ t.label }}</button></sc-for>
+</div>
+</div>
+</section>
+<section style="max-width:1320px;margin:0 auto;padding:0 32px 120px">
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:18px">
+<sc-for list="{{ list }}" as="a" hint-placeholder-count="6">
+<a href="{{ a.href }}" onClick="{{ a.open }}" style="text-decoration:none;color:#f4f1ea;border-radius:22px;padding:28px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);display:flex;flex-direction:column;gap:14px;min-height:260px;box-sizing:border-box;overflow:hidden" style-hover="border-color:rgba(94,231,255,.5);background:rgba(94,231,255,.05)">
+<div style="position:relative;height:170px;margin:-28px -28px 6px;border-radius:22px 22px 0 0;overflow:hidden;background:radial-gradient(ellipse 70% 90% at 70% 50%,{{ a.glow }},transparent 70%),#0d1330;border-bottom:1px solid rgba(255,255,255,.07)">
+<div style="position:absolute;left:50%;top:50%;width:300px;height:96px;margin:-48px 0 0 -150px;border-radius:50%;border:1px solid {{ a.ring }};transform:rotate(-12deg)"></div>
+<div style="position:absolute;left:50%;top:50%;width:420px;height:150px;margin:-75px 0 0 -210px;border-radius:50%;border:1px dashed rgba(255,255,255,.1);transform:rotate(-12deg)"></div>
+<div style="position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px"><dc-import name="Planet v4" kind="{{ a.kind }}" look="solid" size="120" hint-size="120px,120px" style="width:120px;height:120px"></dc-import></div>
+<div style="position:absolute;left:22px;bottom:18px;width:40px;height:40px;opacity:.8"><dc-import name="Planet v4" kind="{{ a.kind2 }}" size="40" hint-size="40px,40px" style="width:40px;height:40px"></dc-import></div>
+<span style="position:absolute;right:20px;top:16px;font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:15px;color:rgba(255,255,255,.4)">{{ a.num }}</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#a3a7b5"><span>{{ a.topic }}</span><span>{{ a.read }}</span></div>
+<h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:24px;line-height:1.15;letter-spacing:-.01em;text-wrap:balance">{{ a.title }}</h2>
+<p style="margin:0;font-size:15px;line-height:1.6;color:#a3a7b5;text-wrap:pretty">{{ a.desc }}</p>
+<span style="margin-top:auto;font-size:15px;font-weight:600;color:#5ee7ff">Read article →</span>
+</a>
+</sc-for>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ art }}" hint-placeholder-val="{{ false }}">
+<div style="position:sticky;top:70px;z-index:40;height:3px;background:rgba(255,255,255,.06)"><div style="height:3px;width:{{ progress }};background:{{ accent }};box-shadow:0 0 12px {{ accent }}"></div></div>
+<article style="max-width:760px;margin:0 auto;padding:72px 32px 120px;display:flex;flex-direction:column;gap:20px">
+<a href="Blog v4.dc.html" onClick="{{ back }}" style="font-size:15px;text-decoration:none;color:#c9ccd6" style-hover="color:#5ee7ff">← All articles</a>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;font-size:14px;color:#a3a7b5;margin-top:12px"><span>{{ art.topic }}</span><span>{{ art.read }} read</span><button type="button" onClick="{{ copy }}" style="margin-left:auto;font-family:'Chakra Petch',sans-serif;font-size:14px;cursor:pointer;color:#c9ccd6;background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 14px" style-hover="border-color:#5ee7ff;color:#5ee7ff">{{ copyLabel }}</button></div>
+<h1 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:clamp(32px,4.4vw,56px);line-height:1.02;letter-spacing:-.025em;text-wrap:balance">{{ art.title }}</h1>
+<p style="margin:0;font-size:20px;line-height:1.55;color:#d6d8e0;text-wrap:pretty">{{ art.desc }}</p>
+<div style="position:relative;height:300px;margin:16px 0 20px;border-radius:28px;overflow:hidden;background:radial-gradient(ellipse 60% 80% at 62% 50%,{{ art.glow }},transparent 70%),radial-gradient(1px 1px at 12% 22%,#fff,transparent),radial-gradient(1px 1px at 82% 18%,#fff,transparent),radial-gradient(1px 1px at 30% 80%,#fff,transparent),radial-gradient(1px 1px at 90% 72%,#fff,transparent),radial-gradient(1px 1px at 52% 12%,#fff,transparent),#0d1330;border:1px solid rgba(255,255,255,.09)">
+<div style="position:absolute;left:58%;top:50%;width:460px;height:150px;margin:-75px 0 0 -230px;border-radius:50%;border:1px solid {{ art.ring }};transform:rotate(-14deg)"></div>
+<div style="position:absolute;left:58%;top:50%;width:680px;height:230px;margin:-115px 0 0 -340px;border-radius:50%;border:1px dashed rgba(255,255,255,.12);transform:rotate(-14deg)"></div>
+<div style="position:absolute;left:58%;top:50%;width:200px;height:200px;margin:-100px 0 0 -100px"><dc-import name="Planet v4" kind="{{ art.kind }}" look="solid" size="200" hint-size="200px,200px" style="width:200px;height:200px"></dc-import></div>
+<div style="position:absolute;left:9%;top:22%;width:64px;height:64px"><dc-import name="Planet v4" kind="{{ art.kind2 }}" size="64" hint-size="64px,64px" style="width:64px;height:64px"></dc-import></div>
+<div style="position:absolute;right:7%;bottom:14%;width:44px;height:44px;opacity:.85"><dc-import name="Planet v4" kind="{{ art.kind3 }}" size="44" hint-size="44px,44px" style="width:44px;height:44px"></dc-import></div>
+</div>
+<sc-for list="{{ blocks }}" as="b" hint-placeholder-count="8">
+<sc-if value="{{ b.isH }}" hint-placeholder-val="{{ false }}"><div style="margin-top:28px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Archivo',sans-serif;font-stretch:120%;font-weight:800;font-size:15px;color:{{ accent }}">{{ b.n }}</span><h2 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:28px;line-height:1.15;letter-spacing:-.01em;color:#f4f1ea">{{ b.text }}</h2></div></sc-if>
+<sc-if value="{{ b.isFlow }}" hint-placeholder-val="{{ false }}"><div style="margin:8px 0;padding:22px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;align-items:center;gap:10px"><sc-for list="{{ b.steps }}" as="s" hint-placeholder-count="5"><span style="display:flex;align-items:center;gap:10px"><span style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid {{ accent }};font-size:15px;font-weight:600;color:#f4f1ea"><span style="font-size:12px;color:{{ accent }}">{{ s.n }}</span>{{ s.t }}</span><sc-if value="{{ s.arrow }}" hint-placeholder-val="{{ true }}"><span style="color:#a3a7b5">→</span></sc-if></span></sc-for></div></sc-if>
+<sc-if value="{{ b.isStat }}" hint-placeholder-val="{{ false }}"><div style="margin:8px 0;padding:28px;border-radius:24px;background:radial-gradient(ellipse 70% 120% at 0% 50%,{{ glow }},transparent 70%),rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px"><span style="font-family:'Archivo',sans-serif;font-stretch:125%;font-weight:800;font-size:64px;line-height:1;color:{{ accent }}">{{ b.v }}</span><div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:6px"><span style="font-size:18px;line-height:1.45;color:#f4f1ea">{{ b.l }}</span><span style="font-size:14px;color:#a3a7b5">{{ b.s }}</span></div></div></sc-if>
+<sc-if value="{{ b.isCmp }}" hint-placeholder-val="{{ false }}"><div style="margin:8px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px"><sc-for list="{{ b.cols }}" as="c" hint-placeholder-count="2"><div style="padding:22px;border-radius:20px;border:1px solid {{ c.line }};background:{{ c.bg }};display:flex;flex-direction:column;gap:8px"><span style="font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:20px;color:{{ c.color }}">{{ c.h }}</span><span style="font-size:16px;line-height:1.5;color:#d6d8e0">{{ c.t }}</span></div></sc-for></div></sc-if>
+<sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font-size:18px;line-height:1.7;color:#d6d8e0;text-wrap:pretty"><sc-for list="{{ b.segs }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }};color:{{ s.c }}">{{ s.t }}</span></sc-for></p></sc-if>
+<sc-if value="{{ b.isQ }}" hint-placeholder-val="{{ false }}"><p style="margin:4px 0;padding:18px 22px;border-radius:16px;background:rgba(94,231,255,.06);border:1px solid rgba(94,231,255,.25);font-size:19px;line-height:1.55;font-weight:600;color:#f4f1ea">{{ b.text }}</p></sc-if>
+<sc-if value="{{ b.isUl }}" hint-placeholder-val="{{ false }}"><ul style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px;font-size:18px;line-height:1.6;color:#d6d8e0"><sc-for list="{{ b.items }}" as="li" hint-placeholder-count="3"><li><sc-for list="{{ li }}" as="s" hint-placeholder-count="1"><span style="font-weight:{{ s.w }};color:{{ s.c }}">{{ s.t }}</span></sc-for></li></sc-for></ul></sc-if>
+</sc-for>
+<div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-direction:column;gap:12px">
+<span style="font-size:15px;color:#a3a7b5">Sources</span>
+<sc-for list="{{ art.sources }}" as="s" hint-placeholder-count="2"><a href="{{ s.h }}" target="_blank" rel="noopener" style="font-size:15px;line-height:1.5">{{ s.t }}</a></sc-for>
+</div>
+<div style="margin-top:40px;border-radius:24px;padding:32px;background:linear-gradient(160deg,rgba(94,231,255,.12),rgba(255,255,255,.03) 60%);border:1px solid rgba(94,231,255,.3);display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+<h3 style="margin:0;font-family:'Archivo',sans-serif;font-stretch:115%;font-weight:800;font-size:26px;line-height:1.15">Want to apply this to your business?</h3>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#d6d8e0">Book a free 20-minute call and we’ll look at where to start.</p>
+<a href="https://calendly.com/kseniia-kklsh/free-consultation-cml" target="_blank" style="font-size:16px;font-weight:600;text-decoration:none;color:#03141c;background:#5ee7ff;padding:14px 24px;border-radius:999px" style-hover="background:#a6f3ff">Book a free intro call</a>
+</div>
+<sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:40px;display:flex;flex-direction:column;gap:14px">
+<span style="font-size:15px;color:#a3a7b5">Read next</span>
+<sc-for list="{{ more }}" as="a" hint-placeholder-count="2"><a href="{{ a.href }}" onClick="{{ a.open }}" style="text-decoration:none;color:#f4f1ea;font-size:19px;font-weight:600;line-height:1.35;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.1)" style-hover="color:#5ee7ff">{{ a.title }} →</a></sc-for>
+</div>
+</sc-if>
+</article>
+</sc-if>
+
+<dc-import name="Footer v4" hint-size="100%,760px"></dc-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { topic: "All", slug: null, ready: !!window.CELAR_ARTICLES };
+  readSlug() { return new URLSearchParams(window.location.search).get("a") || (window.location.hash.match(/[?&]a=([\w-]+)/) || [])[1] || null; }
+  onHash = () => this.setState({ slug: this.readSlug() });
+  onScroll = () => { const h = document.documentElement.scrollHeight - innerHeight; const p = h > 0 ? Math.min(100, Math.round(scrollY / h * 100)) : 0; if (p !== this.state.p) this.setState({ p }); };
+  componentDidMount() {
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    this.setState({ slug: this.readSlug() });
+    window.addEventListener("hashchange", this.onHash);
+    if (!window.CELAR_ARTICLES) this.t = setInterval(() => { if (window.CELAR_ARTICLES) { clearInterval(this.t); this.setState({ ready: true }); } }, 60);
+  }
+  componentWillUnmount() { clearInterval(this.t); window.removeEventListener("hashchange", this.onHash); window.removeEventListener("scroll", this.onScroll); }
+  segs(s) {
+    return s.split(/(\*\*[^*]+\*\*)/).filter(Boolean).map(p => p.startsWith("**") ? { t: p.slice(2, -2), w: 700, c: "#f4f1ea" } : { t: p, w: 400, c: "inherit" });
+  }
+  parse(md) {
+    const out = []; let h = 0;
+    md.split("\n").forEach(l => {
+      l = l.trim(); if (!l) return;
+      if (l.startsWith("## ")) { h++; out.push({ isH: true, text: l.slice(3), n: String(h).padStart(2, "0") }); }
+      else if (l.startsWith("!! ")) { const [v, lb, s] = l.slice(3).split(" | "); out.push({ isStat: true, v, l: lb, s }); }
+      else if (l.startsWith("%% ")) { out.push({ isCmp: true, cols: l.slice(3).split(" || ").map((c, i) => { const [hh, t] = c.split(" | "); return { h: hh, t, color: i ? "#a3a7b5" : this.acc, line: i ? "rgba(255,255,255,.12)" : this.acc, bg: i ? "rgba(255,255,255,.02)" : "rgba(255,255,255,.05)" }; }) }); }
+      else if (l.startsWith("> ") && l.includes("→")) { const st = l.slice(2).split("→").map(x => x.trim()); out.push({ isFlow: true, steps: st.map((t, i) => ({ t, n: i + 1, arrow: i < st.length - 1 })) }); }
+      else if (l.startsWith("> ")) out.push({ isQ: true, text: l.slice(2) });
+      else if (l.startsWith("- ")) { const last = out[out.length - 1]; const seg = this.segs(l.slice(2)); if (last && last.isUl) last.items.push(seg); else out.push({ isUl: true, items: [seg] }); }
+      else out.push({ isP: true, segs: this.segs(l) });
+    });
+    return out;
+  }
+  go(slug) {
+    const inRouter = /^#\//.test(window.location.hash);
+    if (inRouter) window.location.hash = slug ? "#/blog?a=" + slug : "#/blog";
+    else { const u = new URL(window.location.href); if (slug) u.searchParams.set("a", slug); else u.searchParams.delete("a"); history.pushState(null, "", u); }
+    this.setState({ slug }); window.scrollTo(0, 0);
+  }
+  renderVals() {
+    const kinds = ["ice","ringed","gas","star","rocky","aurora"];
+    const hex = (c, a) => { const n = parseInt(c.slice(1), 16); return "rgba(" + (n >> 16) + "," + ((n >> 8) & 255) + "," + (n & 255) + "," + a + ")"; };
+    const all = (window.CELAR_ARTICLES || []).map((a, i) => ({ ...a, num: String(i + 1).padStart(2, "0"), kind2: kinds[(kinds.indexOf(a.kind) + 2) % 6], kind3: kinds[(kinds.indexOf(a.kind) + 4) % 6], glow: hex(a.accent || "#5ee7ff", .22), ring: hex(a.accent || "#5ee7ff", .45), href: "Blog v4.dc.html?a=" + a.slug, open: (e) => { e.preventDefault(); e.stopPropagation(); this.go(a.slug); } }));
+    const topics = ["All", ...Array.from(new Set(all.map(a => a.topic)))];
+    const cur = all.find(a => a.slug === this.state.slug);
+    this.acc = cur ? cur.accent : "#5ee7ff";
+    const art = cur ? { ...cur, sources: (cur.src || []).map(([t, h]) => ({ t, h })) } : null;
+    const more = cur ? all.filter(a => a.slug !== cur.slug).slice(0, 3) : [];
+    return {
+      progress: (this.state.p || 0) + "%", copyLabel: this.state.copied ? "Link copied" : "Copy link",
+      copy: () => { try { navigator.clipboard.writeText(location.href); } catch (e) {} this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 1800); },
+      isList: !cur, art, accent: this.acc, glow: cur ? cur.glow : "transparent", blocks: cur ? this.parse(cur.md) : [], more, hasMore: more.length > 0,
+      back: (e) => { e.preventDefault(); e.stopPropagation(); this.go(null); },
+      topics: topics.map(t => { const on = t === this.state.topic; return { label: t, pick: () => this.setState({ topic: t }), bg: on ? "#5ee7ff" : "transparent", color: on ? "#03141c" : "#c9ccd6", line: on ? "#5ee7ff" : "rgba(255,255,255,.2)" }; }),
+      list: this.state.topic === "All" ? all : all.filter(a => a.topic === this.state.topic)
+    };
+  }
+}
+</script>
+</body>
+</html>

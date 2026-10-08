@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>@keyframes plSpin{to{transform:rotate(360deg)}}@keyframes plScroll{to{background-position:-200px 0}}@keyframes plGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.25)}}</style></helmet>
+<div style="position:relative;width:100%;height:100%">{{ planet }}</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;160px&quot;,&quot;height&quot;:&quot;160px&quot;},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ice&quot;,&quot;ringed&quot;,&quot;gas&quot;,&quot;star&quot;,&quot;rocky&quot;,&quot;aurora&quot;],&quot;default&quot;:&quot;ice&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;look&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;glow&quot;,&quot;line&quot;],&quot;default&quot;:&quot;glow&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:120,&quot;min&quot;:16,&quot;max&quot;:600,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  build(kind, size) {
+    const e = React.createElement, full = size >= 50;
+    if (size > 200) {
+      const G = { ice:['#f2fdff','#7fe9ff','#1b6f9c','94,231,255'], ringed:['#f5ecff','#b88cff','#4a2a9c','184,140,255'], gas:['#ffe6f4','#ff8fcf','#8c2a64','255,143,207'], star:['#fffbe8','#ffd27a','#b5651d','255,200,94'], rocky:['#eef3ff','#7f9dff','#1f2f7a','127,157,255'], aurora:['#d9fff4','#3ee6c8','#0c5e60','62,230,200'] }[kind] || ['#f2fdff','#7fe9ff','#1b6f9c','94,231,255'];
+      return e('div', { style: { position:'absolute', inset:0, borderRadius:'50%', background:`radial-gradient(circle at 30% 30%,rgba(${G[3]},.35),rgba(${G[3]},.12) 45%,rgba(11,16,36,.9) 85%)`, boxShadow:`0 0 80px rgba(${G[3]},.18), inset 0 0 0 1px rgba(${G[3]},.35)` } });
+    }
+    const abs = (st, ...k) => e('div', { style: Object.assign({ position:'absolute' }, st) }, ...k);
+    const ball = (d, bg, glow, extra, ...k) => abs(Object.assign({ left:'50%', top:'50%', width:d, height:d, marginLeft:-d/2, marginTop:-d/2, borderRadius:'50%', background:bg, boxShadow:glow, overflow:'hidden' }, extra || {}), ...k);
+    const shade = (d) => abs({ left:'50%', top:'50%', width:d, height:d, marginLeft:-d/2, marginTop:-d/2, borderRadius:'50%', background:'radial-gradient(circle at 32% 28%,rgba(255,255,255,.5),transparent 38%,rgba(5,5,25,.6) 88%)' });
+    const orbit = (d, dur, moon, mc, rev) => full ? abs({ left:'50%', top:'50%', width:d, height:d, marginLeft:-d/2, marginTop:-d/2, borderRadius:'50%', border:'1px dashed rgba(255,255,255,.18)', animation:`plSpin ${dur}s linear infinite${rev ? ' reverse' : ''}` },
+      abs({ top:-moon/2, left:'50%', marginLeft:-moon/2, width:moon, height:moon, borderRadius:'50%', background:mc, boxShadow:'0 0 10px ' + mc })) : null;
+    const K = {
+      ice: () => [orbit(116, 9, 8, '#c8f8ff'),
+        ball(full ? 70 : 110, 'radial-gradient(circle at 32% 30%,#f2fdff,#7fe9ff 25%,#1b6f9c 70%,#0b2a4a)', '0 0 34px rgba(94,231,255,.55)'),
+        abs({ left:'50%', top:'50%', width:full ? 70 : 110, height:full ? 70 : 110, marginLeft:full ? -35 : -55, marginTop:full ? -35 : -55, borderRadius:'50%', background:'conic-gradient(from 0deg,rgba(255,255,255,.55),transparent 22%)', mixBlendMode:'screen', animation:'plSpin 3s linear infinite' })],
+      ringed: () => [orbit(112, 12, 10, '#e6d6ff', true),
+        ball(full ? 64 : 84, 'radial-gradient(circle at 32% 30%,#f5ecff,#b88cff 30%,#4a2a9c 80%)', '0 0 34px rgba(184,140,255,.55)'),
+        abs({ left:'50%', top:'50%', width:full ? 112 : 120, height:26, marginLeft:full ? -56 : -60, marginTop:-13, borderRadius:'50%', border:'3px solid rgba(220,200,255,.75)', borderTopColor:'transparent', transform:'rotate(-18deg)', boxShadow:'0 0 14px rgba(184,140,255,.6)' })],
+      gas: () => [orbit(104, 7, 7, '#ffd6ec'), orbit(120, 13, 5, '#ffffff', true),
+        ball(full ? 72 : 110, 'repeating-linear-gradient(165deg,#ff8fcf 0 8px,#d2569c 8px 13px,#ffc1e3 13px 18px,#a83a7a 18px 22px)', '0 0 34px rgba(255,143,207,.55)', { backgroundSize:'200px 200px', animation:'plScroll 14s linear infinite' }), shade(full ? 72 : 110)],
+      star: () => [full ? abs({ left:'50%', top:'50%', width:116, height:116, marginLeft:-58, marginTop:-58, borderRadius:'50%', background:'repeating-conic-gradient(rgba(255,200,94,.55) 0 4deg,transparent 4deg 18deg)', WebkitMaskImage:'radial-gradient(circle,transparent 34%,#000 36%,transparent 70%)', maskImage:'radial-gradient(circle,transparent 34%,#000 36%,transparent 70%)', animation:'plSpin 20s linear infinite' }) : null,
+        ball(full ? 66 : 110, 'radial-gradient(circle at 40% 38%,#fffbe8,#ffe08a 30%,#ffb03a 65%,#e0701e)', '0 0 44px rgba(255,200,94,.75)', { animation:'plGlow 3s ease-in-out infinite' })],
+      rocky: () => [orbit(110, 16, 9, '#dfe6ff'),
+        ball(full ? 70 : 110, 'radial-gradient(circle at 20% 30%,rgba(20,30,90,.7) 0 6%,transparent 7%),radial-gradient(circle at 55% 65%,rgba(20,30,90,.6) 0 9%,transparent 10%),radial-gradient(circle at 80% 25%,rgba(20,30,90,.55) 0 5%,transparent 6%),radial-gradient(circle at 35% 85%,rgba(20,30,90,.55) 0 4%,transparent 5%),#7f9dff', '0 0 30px rgba(127,157,255,.55)', { backgroundSize:'100px 100px', animation:'plScroll 18s linear infinite' }), shade(full ? 70 : 110)],
+      aurora: () => [full ? abs({ left:'50%', top:'50%', width:118, height:118, marginLeft:-59, marginTop:-59, borderRadius:'50%', border:'2px dotted rgba(120,255,220,.7)', transform:'rotateX(70deg)', animation:'plSpin 10s linear infinite' }) : null,
+        ball(full ? 68 : 110, 'radial-gradient(ellipse at 50% 0%,rgba(180,255,230,.9),transparent 30%),radial-gradient(circle at 35% 35%,#d9fff4,#3ee6c8 35%,#0c5e60 85%)', '0 0 34px rgba(62,230,200,.55)', { animation:'plGlow 4s ease-in-out infinite' }), shade(full ? 68 : 110)]
+    };
+    const s = size / 120;
+    return e('div', { style: { position:'absolute', left:0, top:0, width:120, height:120, transform:`scale(${s})`, transformOrigin:'0 0' } }, ...(K[kind] || K.ice)());
+  }
+  line(kind, size) {
+    const e = React.createElement;
+    const c = { ice:'#5ee7ff', ringed:'#b88cff', gas:'#ff8fcf', star:'#ffc85e', rocky:'#7f9dff', aurora:'#3ee6c8' }[kind] || '#5ee7ff';
+    const id = 'pl' + kind, R = kind === 'star' ? 22 : 26;
+    const ring = e('circle', { cx:60, cy:60, r:54, fill:'none', stroke:'rgba(255,255,255,.1)' });
+    const ticks = [0, 90, 180, 270].map(a => e('line', { key:a, x1:60, y1:4, x2:60, y2:10, stroke:c, strokeOpacity:.6, transform:`rotate(${a} 60 60)` }));
+    const clip = e('clipPath', { id:id+'c' }, e('circle', { cx:60, cy:60, r:R }));
+    const disc = e('circle', { cx:60, cy:60, r:R, fill:`url(#${id}g)`, stroke:c, strokeWidth:1.2 });
+    const inner = (...k) => e('g', { clipPath:`url(#${id}c)` }, ...k);
+    const spin = (dur, ...k) => e('g', { style:{ transformBox:'view-box', transformOrigin:'60px 60px', animation:`plSpin ${Math.abs(dur)}s linear infinite${dur < 0 ? ' reverse' : ''}` } }, ...k);
+    const moon = (r, dur, rev) => spin(rev ? -dur : dur, e('circle', { cx:60, cy:60, r, fill:'none', stroke:c, strokeOpacity:.3, strokeDasharray:'2 4' }), e('circle', { cx:60, cy:60-r, r:2.6, fill:'#0b1024', stroke:c, strokeWidth:1.2 }));
+    const meridian = e('ellipse', { cx:60, cy:60, rx:R, ry:R, fill:'none', stroke:c, strokeOpacity:.45, strokeWidth:.8 }, e('animate', { attributeName:'rx', values:`${R};2;${R}`, dur:'6s', repeatCount:'indefinite' }));
+    const F = {
+      ice: () => [moon(40, 14), disc, inner(e('ellipse', { cx:60, cy:60, rx:R, ry:8, fill:'none', stroke:c, strokeOpacity:.45, strokeWidth:.8 }), meridian)],
+      ringed: () => [moon(44, 18), disc, inner(e('line', { x1:30, y1:52, x2:90, y2:52, stroke:c, strokeOpacity:.35 }), e('line', { x1:30, y1:66, x2:90, y2:66, stroke:c, strokeOpacity:.35 })),
+        e('ellipse', { cx:60, cy:60, rx:44, ry:11, fill:'none', stroke:c, strokeWidth:1.2, transform:'rotate(-16 60 60)', strokeDasharray:'60 0' })],
+      gas: () => [moon(38, 10), moon(46, 16, true), disc, inner(...[44, 52, 60, 68, 76].map((y, i) => e('path', { key:y, d:`M30 ${y} Q60 ${y + (i % 2 ? 4 : -4)} 90 ${y}`, fill:'none', stroke:c, strokeOpacity:.4, strokeWidth:.8 })))],
+      star: () => [spin(30, ...Array.from({ length:16 }, (_, i) => e('line', { key:i, x1:60, y1:60-R-6, x2:60, y2:60-R-(i % 2 ? 12 : 18), stroke:c, strokeOpacity:i % 2 ? .4 : .8, transform:`rotate(${i * 22.5} 60 60)` }))),
+        disc, e('circle', { cx:60, cy:60, r:R - 7, fill:'none', stroke:c, strokeOpacity:.35, strokeDasharray:'1 3' })],
+      rocky: () => [moon(42, 20), disc, inner(e('circle', { cx:52, cy:52, r:5, fill:'none', stroke:c, strokeOpacity:.6 }), e('circle', { cx:68, cy:66, r:7, fill:'none', stroke:c, strokeOpacity:.5 }), e('circle', { cx:56, cy:72, r:3, fill:'none', stroke:c, strokeOpacity:.5 }), meridian)],
+      aurora: () => [moon(40, 12), disc, inner(meridian, e('ellipse', { cx:60, cy:60, rx:R, ry:8, fill:'none', stroke:c, strokeOpacity:.45, strokeWidth:.8 }))]
+    };
+    return e('svg', { viewBox:'0 0 120 120', width:size, height:size, style:{ position:'absolute', inset:0, overflow:'visible', filter: size > 200 ? 'none' : `drop-shadow(0 0 12px ${c}66)`, opacity: size > 200 ? .55 : 1 } },
+      e('defs', null, clip, e('radialGradient', { id:id+'g', cx:'.35', cy:'.3', r:'.8' }, e('stop', { offset:'0', stopColor:'#2b3670' }), e('stop', { offset:'1', stopColor:'#0f1533' }))),
+      ring, ticks, ...(F[kind] || F.ice)());
+  }
+  renderVals() {
+    const kind = this.props.kind || 'ice', size = Number(this.props.size) || 120, look = this.props.look || 'line', key = kind + size + look;
+    if (this._k !== key) { this._k = key; this._p = look === 'line' ? this.line(kind, size) : this.build(kind, size); }
+    return { planet: this._p };
+  }
+}
+</script>
+</body>
+</html>
